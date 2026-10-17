@@ -1,0 +1,3 @@
+{
+  "**/*.{astro,js,mjs,ts,css,md,mdx,json,yml,yaml}": ["prettier --write"]
+}
