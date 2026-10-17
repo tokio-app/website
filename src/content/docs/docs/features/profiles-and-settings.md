@@ -13,7 +13,7 @@ If you have unsaved changes when you switch profile or leave a page, Tokio asks 
 
 ## Settings
 
-- **Providers**: choose the engine used for text-to-speech and for TikTok events.
+- **Voice engines**: optionally add your TikTok session ID, which the TikTok voices use when it's set.
 - **Overlay server**: turn the local server for overlays on or off. See [Adding an overlay](/docs/guides/adding-an-overlay/).
 
 ## Notifications

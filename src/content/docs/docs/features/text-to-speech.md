@@ -7,13 +7,13 @@ Chat messages are read aloud as they come in. Set it up on the **TTS** page and 
 
 ## Voices
 
-Tokio has three voice engines. Choose one in **Settings → Providers**, then pick a voice on the **TTS** page:
+Tokio has three voice engines, and the **TTS** page lists all their voices in one menu, grouped by engine and language:
 
-- **TikTok**: TikTok's own voices (the "Default" provider).
+- **TikTok**: TikTok's own voices. They work without setup; to use your TikTok session instead, add its session ID in **Settings → Voice Engines**.
 - **Edge**: Microsoft Edge's voices.
 - **Windows**: the voices installed on your system, SAPI and OneCore, including older 32-bit voices. Only available on Windows.
 
-Adjust speed, pitch and volume to taste. When you switch engines, the profile's voice goes back to the new engine's default.
+Search the menu by voice name, engine or language. Adjust speed, pitch and volume to taste.
 
 ## Format
 
