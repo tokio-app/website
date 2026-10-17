@@ -48,7 +48,7 @@ Tokio rewrites the block with the overlay's ID and saved settings when it import
 
 ## Listening to events
 
-[`tokio-event-loader`](https://www.npmjs.com/package/tokio-event-loader) (MIT) connects to Tokio and hands you the events. Overlays you import need it: Tokio's previews post their events to the overlay's iframe, and the library receives them. It has no dependencies and ships an ES module, a CommonJS build and a browser build with TypeScript types, so it works the same in a plain page and in any framework.
+[`@tokioapp/overlay`](https://www.npmjs.com/package/@tokioapp/overlay) (MIT) connects to Tokio and hands you the events. Overlays you import need it: Tokio's previews post their events to the overlay's iframe, and the library receives them. It has no dependencies and ships an ES module, a CommonJS build and a browser build with TypeScript types, so it works the same in a plain page and in any framework.
 
 - `tokio.on(event, callback)` subscribes to an event and returns a function that unsubscribes.
 - `tokio.off(event, callback)` removes a callback.
@@ -58,14 +58,14 @@ See [Events](/docs/developers/events/) for every event and its data.
 
 ### In a plain HTML page
 
-Load the browser build from a CDN. It defines a global `TokioEventLoader`:
+Load the browser build from a CDN. It defines a global `TokioOverlay`:
 
 ```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script src="https://unpkg.com/tokio-event-loader@1.0.4"></script>
+    <script src="https://unpkg.com/@tokioapp/overlay@1"></script>
     <script id="tokio-setup">
       window.__OVERLAY_CONFIG__ = { title: "Likes", main_color: "#ffffff" };
       window.__OVERLAY_ID__ = "";
@@ -76,7 +76,7 @@ Load the browser build from a CDN. It defines a global `TokioEventLoader`:
     <p id="likes">0</p>
 
     <script type="module">
-      const { tokio, TOKIO_EVENTS } = TokioEventLoader;
+      const { tokio, TOKIO_EVENTS } = TokioOverlay;
       const title = document.getElementById("title");
       const likes = document.getElementById("likes");
 
@@ -105,11 +105,11 @@ Load the browser build from a CDN. It defines a global `TokioEventLoader`:
 Install the package and import it:
 
 ```sh
-npm install tokio-event-loader
+npm install @tokioapp/overlay
 ```
 
 ```js
-import { tokio, TOKIO_EVENTS } from "tokio-event-loader";
+import { tokio, TOKIO_EVENTS } from "@tokioapp/overlay";
 
 tokio.on(TOKIO_EVENTS.GIFT, (data) => {
   console.log(`${data.user.username} sent ${data.gift.name}`);

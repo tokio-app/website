@@ -94,8 +94,8 @@ The site must not look generated. Avoid the usual template patterns:
 
 - The app's `README.md` is the source of truth for features, chat commands, install steps, platforms and the overlay setup. When the app changes, update the docs and the landing page to match. Check facts against the app's code before writing them; don't describe settings or behavior you haven't confirmed.
 - Keep these app facts exact: the overlay address `http://tokio-app.local:37891/<overlay>/`, the WebSocket `ws://localhost:37891/?id=<id>`, the event names (`tokio:event:*`), and the default chat commands (`!play`, `!next`, `!last`, `!revoke`).
-- The overlay developer docs describe `info.yaml`, `config.yaml` (`OverlayConfigSchema` in the app's `src/common/schemas/overlay.ts`), the `<script id="tokio-setup">` block and the `tokio-event-loader` package (`../tokio-event-loader`). Update them when those change.
-- Overlays can be written in plain HTML or with any framework; `tokio-event-loader` has no dependencies and ships ESM, CommonJS and browser builds. Don't describe overlays as plain-HTML only, and give framework users the build requirements (relative asset paths, YAML files next to the built `index.html`, the `tokio-setup` block in the HTML template).
+- The overlay developer docs describe `info.yaml`, `config.yaml` (`OverlayConfigSchema` in the app's `src/common/schemas/overlay.ts`), the `<script id="tokio-setup">` block and the `@tokioapp/overlay` package (`../tokio-event-loader`). Update them when those change.
+- Overlays can be written in plain HTML or with any framework; `@tokioapp/overlay` has no dependencies and ships ESM, CommonJS and browser builds. Don't describe overlays as plain-HTML only, and give framework users the build requirements (relative asset paths, YAML files next to the built `index.html`, the `tokio-setup` block in the HTML template).
 - Write plain, user-facing English, in the app's tone: short sentences, second person, UI names in **bold** (**Settings → Overlay Server**).
 
 ## Licensing

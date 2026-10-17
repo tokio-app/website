@@ -24,7 +24,7 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 
 ## Library events
 
-These come from `tokio-event-loader`:
+These come from `@tokioapp/overlay`:
 
 | Constant | Event name     | Data                                                                                   |
 | -------- | -------------- | -------------------------------------------------------------------------------------- |
