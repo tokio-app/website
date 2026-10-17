@@ -1,0 +1,42 @@
+---
+// Links to the download page, or straight to the installer when the
+// visitor's OS has a single one (Windows, Linux).
+import { FALLBACK_INSTALLERS } from "../lib/release";
+import Icon from "./Icon.astro";
+
+interface Props {
+  size?: "md" | "lg";
+}
+
+const { size = "md" } = Astro.props;
+const direct = Object.fromEntries(
+  FALLBACK_INSTALLERS.filter((i) => i.os !== "mac").map((i) => [i.os, i.url]),
+);
+---
+
+<a
+  class:list={["btn", "btn-primary", { "btn-lg": size === "lg" }]}
+  href="/download/"
+  data-download-button
+  data-windows={direct.windows}
+  data-linux={direct.linux}
+>
+  <Icon name="download" size={size === "lg" ? 20 : 18} />
+  <span data-label>Download</span>
+</a>
+
+<script>
+  import { detectOS, OS_LABELS } from "../lib/os";
+
+  const os = detectOS();
+  if (os) {
+    for (const button of document.querySelectorAll<HTMLAnchorElement>(
+      "[data-download-button]",
+    )) {
+      const label = button.querySelector("[data-label]");
+      if (label) label.textContent = `Download for ${OS_LABELS[os]}`;
+      const url = os === "mac" ? undefined : button.dataset[os];
+      if (url) button.href = url;
+    }
+  }
+</script>

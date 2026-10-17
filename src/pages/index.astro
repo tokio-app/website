@@ -1,0 +1,479 @@
+---
+import DownloadButton from "../components/DownloadButton.astro";
+import Icon from "../components/Icon.astro";
+import LiveFeed from "../components/LiveFeed.astro";
+import Base from "../layouts/Base.astro";
+import { getLatestRelease, REPO_URL } from "../lib/release";
+
+const release = await getLatestRelease();
+
+// Each feature shows a small, real example of what it does.
+const FEATURES = [
+  {
+    title: "Text-to-speech",
+    href: "/docs/features/text-to-speech/",
+    text: "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices. Choose who can talk, what gets read and how names and acronyms should sound.",
+    example: "{username} says {comment}\n→ Lucia says hi from Lima!",
+  },
+  {
+    title: "Music requests",
+    href: "/docs/features/music-requests/",
+    text: "Viewers request songs from chat, played from YouTube or Spotify in a separate player window. Rename the commands or turn them off.",
+    example: "!play One More Time\n!next  !last  !revoke",
+  },
+  {
+    title: "Sound alerts",
+    href: "/docs/features/alerts/",
+    text: "Play a sound for follows, shares, likes, gifts, Super Fan events and more. Upload your own sounds or search MyInstants without leaving the app.",
+    example:
+      "Follow        bell.mp3\nGift · Rose   applause.mp3\nShare         whoosh.mp3",
+  },
+  {
+    title: "Overlays",
+    href: "/docs/features/overlays/",
+    text: "Import overlays, set their colors, text and gifts from the gallery, and add them to OBS or TikTok LIVE Studio with one link.",
+    example: "http://tokio-app.local:37891/\n  likes-counter/\n  gift-wall/",
+  },
+  {
+    title: "Profiles",
+    href: "/docs/features/profiles-and-settings/",
+    text: "Keep separate settings for different streams and switch between them from the title bar.",
+    example: "Just chatting\nMusic night   ← active\nGaming",
+  },
+];
+
+const STEPS = [
+  {
+    title: "Install Tokio",
+    text: "Download the installer for Windows, macOS or Linux. It fetches and installs the latest version.",
+    link: { href: "/download/", label: "Download" },
+  },
+  {
+    title: "Set it up",
+    text: "Pick your voices, connect your music, choose your alert sounds and overlays. Each profile keeps its own settings.",
+    link: { href: "/docs/#features", label: "Features" },
+  },
+  {
+    title: "Connect to your LIVE",
+    text: "Start your LIVE on TikTok, then enter your @username on Tokio's Home page and connect.",
+    link: { href: "/docs/connect/", label: "How to connect" },
+  },
+  {
+    title: "Go live",
+    text: "Switch on text-to-speech, music and alerts for this stream, and add your overlays to OBS or TikTok LIVE Studio.",
+    link: {
+      href: "/docs/guides/adding-an-overlay/",
+      label: "Adding an overlay",
+    },
+  },
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>Make your TikTok LIVE react.</h1>
+        <p class="lead">
+          Tokio reads chat aloud, takes song requests, plays sounds when someone
+          follows or sends a gift, and drives the overlays in OBS, TikTok LIVE
+          Studio or any streaming app that can show a web page.
+        </p>
+        <div class="actions">
+          <DownloadButton size="lg" />
+          <a class="btn btn-lg" href="/docs/">
+            Read the docs
+          </a>
+        </div>
+        <p class="meta">
+          {[
+            "Free and open source",
+            release && `Version ${release.version}`,
+            "Windows, macOS and Linux",
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </p>
+      </div>
+      <LiveFeed />
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Tokio does</h2>
+        <p>
+          Turn each feature on or off for the session and watch the live stats
+          as viewers join, like and send gifts.
+        </p>
+      </div>
+      <ul class="features">
+        {FEATURES.map((feature) => (
+          <li>
+            <h3>
+              <a href={feature.href}>{feature.title}</a>
+            </h3>
+            <p>{feature.text}</p>
+            <pre aria-hidden="true">{feature.example}</pre>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container overlay-grid">
+      <div class="section-head">
+        <h2>One link per overlay, in any streaming app</h2>
+        <p>
+          Each overlay gets its own address on your computer. Add it as a
+          browser source in OBS, as a link in TikTok LIVE Studio, or anywhere
+          that can show a web page. Tokio keeps it fed with LIVE events while
+          you stream.
+        </p>
+        <p>
+          <a href="/docs/guides/adding-an-overlay/">How to add an overlay</a>
+        </p>
+      </div>
+      <div class="card url-card">
+        <p class="muted">Browser source URL</p>
+        <code>http://tokio-app.local:37891/my-overlay/</code>
+        <ul>
+          <li>
+            <Icon name="check" size={18} /> OBS Studio
+          </li>
+          <li>
+            <Icon name="check" size={18} /> TikTok LIVE Studio
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Any app with a browser source
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Live in four steps</h2>
+      </div>
+      <ol class="steps">
+        {STEPS.map((step, index) => (
+          <li>
+            <span class="step-number">{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+            <a href={step.link.href}>{step.link.label}</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container cta-inner">
+      <h2>Ready for your next LIVE?</h2>
+      <p class="muted">
+        Tokio is free, open source and runs on your own computer.
+      </p>
+      <div class="actions">
+        <DownloadButton size="lg" />
+        <a class="btn btn-lg" href={REPO_URL}>
+          <Icon name="github" size={20} />
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--space-12) var(--space-16);
+    background: radial-gradient(
+      ellipse 70% 80% at 85% 0%,
+      var(--accent-soft),
+      transparent 70%
+    );
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .hero {
+      padding-block: var(--space-20);
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-16);
+    }
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  h1 {
+    font-size: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .lead {
+    max-width: 560px;
+    color: var(--font-secondary);
+    font-size: var(--font-lg);
+  }
+
+  @media (min-width: 720px) {
+    .lead {
+      font-size: var(--font-xl);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .meta {
+    color: var(--font-muted);
+    font-size: var(--font-sm);
+  }
+
+  .features {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .features li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3) var(--space-8);
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (min-width: 960px) {
+    .features li {
+      grid-template-columns: 220px minmax(0, 1fr) 340px;
+      align-items: start;
+    }
+  }
+
+  .features h3 {
+    font-size: var(--font-xl);
+  }
+
+  .features h3 a {
+    color: var(--font-primary);
+    text-decoration: none;
+  }
+
+  .features h3 a:hover {
+    color: var(--accent-primary-hover);
+    text-decoration: underline;
+  }
+
+  .features p {
+    max-width: 520px;
+    color: var(--font-secondary);
+  }
+
+  pre {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border-left: 2px solid var(--accent-primary);
+    background: var(--background-tertiary);
+    color: var(--font-primary);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-sm);
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  .steps h3 {
+    font-size: var(--font-xl);
+  }
+
+  .steps p {
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+  }
+
+  .band {
+    border-block: 1px solid var(--border);
+    background: var(--background-tertiary);
+  }
+
+  .overlay-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .overlay-grid .section-head {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 960px) {
+    .overlay-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-16);
+    }
+  }
+
+  .url-card {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: var(--background-primary);
+  }
+
+  .url-card p {
+    font-size: var(--font-sm);
+  }
+
+  .url-card code {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    color: var(--accent-primary-hover);
+    font-size: var(--font-md);
+  }
+
+  .url-card ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .url-card li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--font-secondary);
+  }
+
+  .url-card li :global(svg) {
+    color: var(--success);
+  }
+
+  /* Timeline: vertical on phones, horizontal from 960px. */
+  .steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .steps li {
+    position: relative;
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: var(--space-2);
+    padding: 0 0 var(--space-10) var(--space-12);
+  }
+
+  .steps li::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    bottom: var(--space-2);
+    left: 15px;
+    width: 2px;
+    background: linear-gradient(var(--accent-primary), var(--border-strong));
+  }
+
+  .steps li:last-child::before {
+    display: none;
+  }
+
+  .step-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--accent-primary);
+    border-radius: var(--radius-full);
+    background: var(--background-primary);
+    color: var(--accent-primary-hover);
+    font-size: var(--font-md);
+    font-weight: 700;
+  }
+
+  .steps a {
+    margin-top: var(--space-1);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  @media (min-width: 960px) {
+    .steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .steps li {
+      padding: var(--space-12) 0 0;
+    }
+
+    .steps li::before {
+      top: 15px;
+      bottom: auto;
+      left: 44px;
+      right: calc(var(--space-2) - var(--space-8));
+      width: auto;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-primary),
+        var(--border-strong)
+      );
+    }
+  }
+
+  .cta {
+    border-top: 1px solid var(--border);
+    background: radial-gradient(
+      ellipse at bottom,
+      var(--accent-soft),
+      transparent 70%
+    );
+  }
+
+  .cta-inner {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  .cta h2 {
+    font-size: var(--font-3xl);
+  }
+
+  .cta .actions {
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+</style>

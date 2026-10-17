@@ -1,0 +1,164 @@
+---
+// Hero illustration: LIVE events and what Tokio does with each one.
+import Icon from "./Icon.astro";
+
+const EVENTS = [
+  {
+    icon: "chat",
+    user: "@lucia",
+    text: "hi from Lima!",
+    action: "Read aloud with the Edge voice",
+  },
+  {
+    icon: "gift",
+    user: "@marco",
+    text: "sent Rose ×5",
+    action: "Played applause.mp3",
+  },
+  {
+    icon: "music",
+    user: "@ana",
+    text: "!play One More Time",
+    action: "Added to the music queue",
+  },
+  {
+    icon: "follow",
+    user: "@sam",
+    text: "followed you",
+    action: "Follow banner on the overlay",
+  },
+] as const;
+---
+
+<figure class="feed" aria-label="Example: Tokio reacting to LIVE events">
+  <figcaption>
+    <span class="live">
+      <i></i>LIVE
+    </span>
+    <span>@yourname</span>
+  </figcaption>
+  <ol>
+    {EVENTS.map((event, index) => (
+      <li style={`--delay: ${index * 0.6 + 0.2}s`}>
+        <span class="icon">
+          <Icon name={event.icon} size={16} />
+        </span>
+        <div>
+          <p>
+            <strong>{event.user}</strong> {event.text}
+          </p>
+          <p class="action">{event.action}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</figure>
+
+<style>
+  .feed {
+    margin: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    background: var(--background-tertiary);
+    overflow: hidden;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border);
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+  }
+
+  .live {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--accent-primary-hover);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .live i {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--accent-primary);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    font-size: var(--font-md);
+    animation: rise 0.5s ease-out both;
+    animation-delay: var(--delay);
+  }
+
+  li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  li div {
+    display: grid;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+
+  li p {
+    color: var(--font-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: var(--font-primary);
+    font-weight: 600;
+  }
+
+  .action {
+    color: var(--font-primary);
+    font-size: var(--font-sm);
+  }
+
+  .action::before {
+    content: "↳ ";
+    color: var(--accent-primary-hover);
+  }
+
+  .icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--background-secondary);
+    color: var(--font-secondary);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+</style>
