@@ -88,7 +88,7 @@ The site must not look generated. Avoid the usual template patterns:
 - No fake window chrome (traffic-light dots).
 - Prefer real content over decoration: actual commands, file names, event names and settings from the app.
 - Keep the brand's warmth, though. Plain is not the goal: soft rose washes (`--accent-soft` radial gradients) behind the hero and the closing "Ready for your next LIVE?" section, and rose accents such as the step timeline, are wanted. Keep them subtle and limited to a few places.
-- The getting-started timeline has four steps that match the app's flow: install, set it up (voices, music provider, alert sounds, overlays), connect to your LIVE, go live.
+- The getting-started timeline has four steps that match the app's flow: install, set it up (voices, music provider, alert sounds, overlays), prepare your stream (turn on the features, add the overlays to OBS or TikTok LIVE Studio), go live and connect. Everything is set up before the LIVE starts; Tokio can only connect once it has. The connect docs (`connect.mdx`) follow the same four steps.
 
 ## Content
 
