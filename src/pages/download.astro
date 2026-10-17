@@ -1,0 +1,263 @@
+---
+import Icon from "../components/Icon.astro";
+import Base from "../layouts/Base.astro";
+import {
+  FALLBACK_INSTALLERS,
+  formatSize,
+  getLatestRelease,
+  RELEASES_URL,
+  type OS,
+} from "../lib/release";
+
+const release = await getLatestRelease();
+const installers = release?.installers ?? FALLBACK_INSTALLERS;
+const published = release
+  ? new Date(release.publishedAt).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : undefined;
+
+const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
+  windows: "windows",
+  mac: "apple",
+  linux: "linux",
+};
+---
+
+<Base
+  title="Download"
+  description="Download Tokio for Windows, macOS and Linux. The installer fetches and installs the latest version."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h1>Get Tokio</h1>
+        <p>
+          The installer downloads and installs the latest version of Tokio. Once
+          installed, Tokio keeps itself up to date.
+        </p>
+        <p class="meta">
+          {release ? (
+            <>
+              Version {release.version}, released {published} ·{" "}
+              <a href={release.url}>Release notes</a>
+            </>
+          ) : (
+            <a href={RELEASES_URL}>See all releases</a>
+          )}
+        </p>
+      </div>
+
+      <ul class="installers">
+        {installers.map((installer) => (
+          <li class="card installer" data-os={installer.os}>
+            <span class="os-icon">
+              <Icon name={OS_ICONS[installer.os]} size={28} />
+            </span>
+            <div>
+              <h2>{installer.label}</h2>
+              <p class="muted">
+                {installer.arch}
+                {installer.size && <> · {formatSize(installer.size)}</>}
+              </p>
+            </div>
+            <span class="recommended">Your system</span>
+            <a class="btn" href={installer.url}>
+              <Icon name="download" size={18} />
+              Download
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="notes">
+        <div class="card note">
+          <h2>macOS</h2>
+          <p>
+            Tokio and its installer aren't notarized yet, so macOS may block
+            them the first time. Open it from Finder with right-click →{" "}
+            <strong>Open</strong>, or allow it in{" "}
+            <strong>System Settings → Privacy & Security</strong>. Not sure
+            which Mac you have? Apple menu → <strong>About This Mac</strong>:
+            "Apple M…" chips are Apple Silicon, "Intel" ones are Intel.
+          </p>
+        </div>
+        <div class="card note">
+          <h2>Linux</h2>
+          <p>
+            The installer is a <code>.tar.gz</code> archive: extract it and run
+            the program inside. Tokio itself runs as an AppImage, which needs
+            FUSE.
+          </p>
+        </div>
+        <div class="card note">
+          <h2>Voices</h2>
+          <p>
+            TikTok and Microsoft Edge voices work everywhere. The voices
+            installed on the system (SAPI and OneCore) are only available on
+            Windows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <div class="section-head">
+        <h2>App packages</h2>
+        <p>
+          Prefer to skip the installer? Every release also has Tokio's own
+          packages.
+        </p>
+      </div>
+      {release && release.packages.length > 0 ? (
+        <ul class="packages">
+          {release.packages.map((pkg) => (
+            <li>
+              <Icon name={OS_ICONS[pkg.os]} size={18} />
+              <a href={pkg.url}>{pkg.file}</a>
+              <span class="muted">
+                {pkg.label} · {pkg.arch} · {formatSize(pkg.size)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          <a href={RELEASES_URL}>Find them on the releases page</a>.
+        </p>
+      )}
+      <p class="muted older">
+        Looking for an older version?{" "}
+        <a href={RELEASES_URL}>Browse all releases on GitHub</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { detectOS } from "../lib/os";
+
+  const os = detectOS();
+  if (os) {
+    for (const card of document.querySelectorAll<HTMLElement>(
+      `.installer[data-os="${os}"]`,
+    )) {
+      card.classList.add("is-recommended");
+      card.querySelector(".btn")?.classList.add("btn-primary");
+    }
+  }
+</script>
+
+<style>
+  h1 {
+    font-size: var(--font-display);
+    font-weight: 800;
+  }
+
+  .meta {
+    font-size: var(--font-md);
+  }
+
+  .installers {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .installer {
+    position: relative;
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    transition: border-color var(--transition-fast);
+  }
+
+  .installer h2 {
+    font-size: var(--font-xl);
+  }
+
+  .installer p {
+    font-size: var(--font-md);
+  }
+
+  .os-icon {
+    color: var(--font-primary);
+  }
+
+  .recommended {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    display: none;
+    color: var(--accent-primary-hover);
+    font-size: var(--font-sm);
+    font-weight: 600;
+  }
+
+  .is-recommended {
+    border-color: var(--accent-primary);
+  }
+
+  .is-recommended .recommended {
+    display: block;
+  }
+
+  .notes {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    margin-top: var(--space-8);
+  }
+
+  .note {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+  }
+
+  .note h2 {
+    color: var(--font-primary);
+    font-size: var(--font-lg);
+  }
+
+  .band {
+    border-top: 1px solid var(--border);
+    background: var(--background-tertiary);
+  }
+
+  .packages {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .packages li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    font-size: var(--font-md);
+  }
+
+  .packages a {
+    font-family: var(--font-family-mono);
+    overflow-wrap: anywhere;
+  }
+
+  .older {
+    margin-top: var(--space-8);
+    font-size: var(--font-md);
+  }
+</style>
