@@ -30,9 +30,25 @@ config: true
 | `version` | Your overlay's version.                                    |
 | `config`  | `true` when the overlay has a `config.yaml` with settings. |
 
+### The setup block
+
+`index.html` must contain a `<script id="tokio-setup">` block. Write it yourself, before the scripts that read it:
+
+```html
+<script id="tokio-setup">
+  window.__OVERLAY_ID__ = "";
+  window.__OVERLAY_CONFIG__ = { title: "Likes", main_color: "#ffffff" };
+</script>
+```
+
+- `window.__OVERLAY_ID__` is required. Pass it to `tokio.connect`.
+- `window.__OVERLAY_CONFIG__` is only for overlays with settings (`config: true`). Give it the defaults from `config.yaml`, see [Settings](#settings).
+
+Tokio rewrites the block with the overlay's ID and saved settings when it imports the overlay, and again when the streamer saves its settings. It refuses to import an overlay without the block.
+
 ## Listening to events
 
-[`tokio-event-loader`](https://www.npmjs.com/package/tokio-event-loader) (MIT) connects to Tokio and hands you the events. It has no dependencies and ships an ES module, a CommonJS build and a browser build with TypeScript types, so it works the same in a plain page and in any framework.
+[`tokio-event-loader`](https://www.npmjs.com/package/tokio-event-loader) (MIT) connects to Tokio and hands you the events. Overlays you import need it: Tokio's previews post their events to the overlay's iframe, and the library receives them. It has no dependencies and ships an ES module, a CommonJS build and a browser build with TypeScript types, so it works the same in a plain page and in any framework.
 
 - `tokio.on(event, callback)` subscribes to an event and returns a function that unsubscribes.
 - `tokio.off(event, callback)` removes a callback.
@@ -115,13 +131,13 @@ When you build the overlay:
 
 - **Use relative asset paths.** The overlay is served under `/<overlay>/`, so absolute paths such as `/assets/app.js` don't resolve. In Vite, set `base: "./"`.
 - **Ship the YAML files with the build.** `info.yaml` and `config.yaml` must sit next to the built `index.html`. In Vite, put them in `public/` and they're copied into the output folder.
-- **Keep the setup block in the HTML template.** If the overlay has settings, put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_CONFIG__` at runtime.
+- **Keep the setup block in the HTML template.** Put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_ID__` (and `window.__OVERLAY_CONFIG__`) at runtime.
 
 Import the build output folder (for example `dist/`) into Tokio.
 
 ## Settings
 
-When `info.yaml` has `config: true`, `index.html` must contain a `<script id="tokio-setup">` block. Tokio replaces it with the overlay's saved settings and ID:
+When `info.yaml` has `config: true`, the [setup block](#the-setup-block) also sets `window.__OVERLAY_CONFIG__`, and Tokio fills it in with the overlay's saved settings:
 
 ```html
 <script id="tokio-setup">
@@ -184,7 +200,7 @@ When it's ready, import the folder in **Settings → Imported Overlays**. Tokio 
 
 ## Without the library
 
-The library is optional. Connect a WebSocket to `ws://localhost:37891/?id=<overlay ID>`. Each message is JSON with the event name and its data:
+Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Each message is JSON with the event name and its data:
 
 ```json
 {
