@@ -61,10 +61,11 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 ### Download links
 
 - `getLatestRelease()` in `src/lib/release.ts` fetches `repos/tokio-app/tokio/releases/latest` once per build. Only published, non-draft releases count. It uses `GITHUB_TOKEN` when set and returns `null` when GitHub can't be reached; pages must still build and work then.
-- Installer names have no version (`Tokio-Installer-windows-x64.exe`, `Tokio-Installer-mac-arm64.zip`, `Tokio-Installer-mac-x64.zip`, `Tokio-Installer-linux-x64.tar.gz`), so `FALLBACK_INSTALLERS` link to `releases/latest/download/<file>` and always work.
-- The app's own packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. They come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `release.yml`; keep `INSTALLERS` and `PACKAGES` in sync when those change.
+- `DOWNLOADS` is one card per system: the installer on Windows, the app itself on macOS and Linux. The installer is only worth it on Windows; the app's releases still carry the macOS and Linux installers, but the site doesn't link to them.
+- The installer's name has no version (`Tokio-Installer-windows-x64.exe`), so its `FALLBACK_DOWNLOADS` link goes to `releases/latest/download/<file>` and always works.
+- The app's own packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, the macOS and Linux cards link to the latest release's page instead. `PACKAGES` holds only the Windows setup, for those who skip the installer. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `release.yml`; keep `DOWNLOADS` and `PACKAGES` in sync when those change.
 - The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`.
-- `DownloadButton` links to `/download/` and, after OS detection, straight to the installer on Windows and Linux. macOS has two installers (Apple Silicon and Intel), so it keeps the download page.
+- `DownloadButton` links to `/download/` and, after OS detection, straight to the installer on Windows and to the AppImage on Linux. Linux only gets the direct link when the build read the release, since the AppImage's name carries the version. macOS has two zips (Apple Silicon and Intel), so it keeps the download page.
 
 ### Styling
 

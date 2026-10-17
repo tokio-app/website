@@ -1,7 +1,9 @@
 ---
-// Links to the download page, or straight to the installer when the
-// visitor's OS has a single one (Windows, Linux).
-import { FALLBACK_INSTALLERS } from "../lib/release";
+// Links to the download page, or straight to the download when the visitor's
+// OS has a single one: the installer on Windows, the AppImage on Linux. The
+// AppImage's name carries the version, so Linux only gets a direct link when
+// the build could read the latest release.
+import { FALLBACK_DOWNLOADS, getLatestRelease } from "../lib/release";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -9,8 +11,11 @@ interface Props {
 }
 
 const { size = "md" } = Astro.props;
+const release = await getLatestRelease();
 const direct = Object.fromEntries(
-  FALLBACK_INSTALLERS.filter((i) => i.os !== "mac").map((i) => [i.os, i.url]),
+  (release?.downloads ?? FALLBACK_DOWNLOADS)
+    .filter((d) => d.os !== "mac" && d.file)
+    .map((d) => [d.os, d.url]),
 );
 ---
 

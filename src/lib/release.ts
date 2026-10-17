@@ -11,7 +11,8 @@ export interface Download {
   os: OS;
   label: string;
   arch: string;
-  file: string;
+  /** Unknown for the app's packages when GitHub can't be reached. */
+  file?: string;
   url: string;
   size?: number;
 }
@@ -20,13 +21,18 @@ export interface Release {
   version: string;
   url: string;
   publishedAt: string;
-  installers: Download[];
+  downloads: Download[];
   packages: Download[];
 }
 
-// The installer names have no version, so these links always point at the
-// latest published release. Keep in sync with the app's release workflow.
-const INSTALLERS: Omit<Download, "url">[] = [
+type Source = Omit<Download, "url" | "file" | "size">;
+
+// What each system downloads: the installer on Windows, the app itself on
+// macOS and Linux. The installer's name has no version, so its link always
+// points at the latest published release. The app's packages carry the
+// version, so they're matched by suffix; patterns follow `artifactName` in the
+// app's electron-builder.yml. Keep in sync with the app's release workflow.
+const DOWNLOADS: (Source & ({ file: string } | { pattern: RegExp }))[] = [
   {
     os: "windows",
     label: "Windows",
@@ -37,46 +43,38 @@ const INSTALLERS: Omit<Download, "url">[] = [
     os: "mac",
     label: "macOS",
     arch: "Apple Silicon",
-    file: "Tokio-Installer-mac-arm64.zip",
+    pattern: /-mac-arm64\.zip$/,
   },
-  {
-    os: "mac",
-    label: "macOS",
-    arch: "Intel",
-    file: "Tokio-Installer-mac-x64.zip",
-  },
-  {
-    os: "linux",
-    label: "Linux",
-    arch: "x64",
-    file: "Tokio-Installer-linux-x64.tar.gz",
-  },
+  { os: "mac", label: "macOS", arch: "Intel", pattern: /-mac-x64\.zip$/ },
+  { os: "linux", label: "Linux", arch: "x64", pattern: /-x86_64\.AppImage$/ },
 ];
 
-// The app's own packages carry the version, so they're matched by suffix.
-// Patterns follow `artifactName` in the app's electron-builder.yml.
-const PACKAGES: (Omit<Download, "url" | "file"> & { pattern: RegExp })[] = [
+// The app's own Windows setup, for those who skip the installer.
+const PACKAGES: (Source & { pattern: RegExp })[] = [
   {
     os: "windows",
     label: "Windows setup",
     arch: "x64",
     pattern: /-setup\.exe$/,
   },
-  {
-    os: "mac",
-    label: "macOS",
-    arch: "Apple Silicon",
-    pattern: /-mac-arm64\.zip$/,
-  },
-  { os: "mac", label: "macOS", arch: "Intel", pattern: /-mac-x64\.zip$/ },
-  { os: "linux", label: "Linux AppImage", arch: "x64", pattern: /\.AppImage$/ },
 ];
 
-/** Installer links that work without the GitHub API. */
-export const FALLBACK_INSTALLERS: Download[] = INSTALLERS.map((i) => ({
-  ...i,
-  url: `${LATEST_RELEASE_URL}/download/${i.file}`,
-}));
+/**
+ * Download links that work without the GitHub API. The app's packages link to
+ * the latest release's page, since their names carry the version.
+ */
+export const FALLBACK_DOWNLOADS: Download[] = DOWNLOADS.map(
+  ({ os, label, arch, ...source }) =>
+    "file" in source
+      ? {
+          os,
+          label,
+          arch,
+          file: source.file,
+          url: `${LATEST_RELEASE_URL}/download/${source.file}`,
+        }
+      : { os, label, arch, url: LATEST_RELEASE_URL },
+);
 
 interface GitHubAsset {
   name: string;
@@ -119,29 +117,34 @@ async function fetchLatestRelease(): Promise<Release | null> {
     const data = (await res.json()) as GitHubRelease;
     const assets = new Map(data.assets.map((a) => [a.name, a]));
 
-    const installers = FALLBACK_INSTALLERS.map((i) => {
-      const asset = assets.get(i.file);
-      return asset ? { ...i, size: asset.size } : i;
+    const fromAsset = (d: Source, asset: GitHubAsset): Download => ({
+      ...d,
+      file: asset.name,
+      url: asset.browser_download_url,
+      size: asset.size,
+    });
+
+    // A file missing from the release keeps its fallback link.
+    const downloads = DOWNLOADS.map(({ os, label, arch, ...source }, i) => {
+      const fallback = FALLBACK_DOWNLOADS[i];
+      if ("file" in source) {
+        const asset = assets.get(source.file);
+        return asset ? { ...fallback, size: asset.size } : fallback;
+      }
+      const asset = data.assets.find((a) => source.pattern.test(a.name));
+      return asset ? fromAsset({ os, label, arch }, asset) : fallback;
     });
 
     const packages = PACKAGES.flatMap(({ pattern, ...p }) => {
       const asset = data.assets.find((a) => pattern.test(a.name));
-      if (!asset) return [];
-      return [
-        {
-          ...p,
-          file: asset.name,
-          url: asset.browser_download_url,
-          size: asset.size,
-        },
-      ];
+      return asset ? [fromAsset(p, asset)] : [];
     });
 
     return {
       version: data.tag_name.replace(/^v/, ""),
       url: data.html_url,
       publishedAt: data.published_at,
-      installers,
+      downloads,
       packages,
     };
   } catch (error) {

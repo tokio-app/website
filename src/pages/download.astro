@@ -2,7 +2,7 @@
 import Icon from "../components/Icon.astro";
 import Base from "../layouts/Base.astro";
 import {
-  FALLBACK_INSTALLERS,
+  FALLBACK_DOWNLOADS,
   formatSize,
   getLatestRelease,
   RELEASES_URL,
@@ -10,7 +10,7 @@ import {
 } from "../lib/release";
 
 const release = await getLatestRelease();
-const installers = release?.installers ?? FALLBACK_INSTALLERS;
+const downloads = release?.downloads ?? FALLBACK_DOWNLOADS;
 const published = release
   ? new Date(release.publishedAt).toLocaleDateString("en-US", {
       year: "numeric",
@@ -28,15 +28,17 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
 <Base
   title="Download"
-  description="Download Tokio for Windows, macOS and Linux. The installer fetches and installs the latest version."
+  description="Download Tokio for Windows, macOS and Linux."
 >
   <section class="section">
     <div class="container">
       <div class="section-head">
         <h1>Get Tokio</h1>
         <p>
-          The installer downloads and installs the latest version of Tokio. Once
-          installed, Tokio keeps itself up to date.
+          On Windows, a small installer downloads and installs the latest
+          version of Tokio. On macOS and Linux you download Tokio itself: a zip
+          with the app, or an AppImage. Once installed, Tokio checks for updates
+          on its own.
         </p>
         <p class="meta">
           {release ? (
@@ -50,21 +52,21 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
         </p>
       </div>
 
-      <ul class="installers">
-        {installers.map((installer) => (
-          <li class="card installer" data-os={installer.os}>
+      <ul class="downloads">
+        {downloads.map((download) => (
+          <li class="card download" data-os={download.os}>
             <span class="os-icon">
-              <Icon name={OS_ICONS[installer.os]} size={28} />
+              <Icon name={OS_ICONS[download.os]} size={28} />
             </span>
             <div>
-              <h2>{installer.label}</h2>
+              <h2>{download.label}</h2>
               <p class="muted">
-                {installer.arch}
-                {installer.size && <> · {formatSize(installer.size)}</>}
+                {download.arch}
+                {download.size && <> · {formatSize(download.size)}</>}
               </p>
             </div>
             <span class="recommended">Your system</span>
-            <a class="btn" href={installer.url}>
+            <a class="btn" href={download.url}>
               <Icon name="download" size={18} />
               Download
             </a>
@@ -76,20 +78,37 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
         <div class="card note">
           <h2>macOS</h2>
           <p>
-            Tokio and its installer aren't notarized yet, so macOS may block
-            them the first time. Open it from Finder with right-click →{" "}
-            <strong>Open</strong>, or allow it in{" "}
-            <strong>System Settings → Privacy & Security</strong>. Not sure
-            which Mac you have? Apple menu → <strong>About This Mac</strong>:
-            "Apple M…" chips are Apple Silicon, "Intel" ones are Intel.
+            Unzip it and move <strong>Tokio</strong> to your Applications
+            folder. macOS may block it the first time, since Tokio isn't
+            notarized yet.
           </p>
+          <details class="more">
+            <summary>
+              <span class="show">Read more</span>
+              <span class="hide">Show less</span>
+            </summary>
+            <p>
+              To open it anyway, right-click it in Finder and choose{" "}
+              <strong>Open</strong>, or allow it in{" "}
+              <strong>System Settings → Privacy & Security</strong>.
+            </p>
+            <p>
+              When an update is out, Tokio opens its release page so you can
+              download the new zip.
+            </p>
+            <p>
+              Not sure which Mac you have? Apple menu →{" "}
+              <strong>About This Mac</strong>: "Apple M…" chips are Apple
+              Silicon, "Intel" ones are Intel.
+            </p>
+          </details>
         </div>
         <div class="card note">
           <h2>Linux</h2>
           <p>
-            The installer is a <code>.tar.gz</code> archive: extract it and run
-            the program inside. Tokio itself runs as an AppImage, which needs
-            FUSE.
+            Tokio comes as an AppImage. Make it executable with{" "}
+            <code>chmod +x</code> (or in the file's properties) and run it.
+            AppImages need FUSE.
           </p>
         </div>
         <div class="card note">
@@ -107,10 +126,10 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
   <section class="section band">
     <div class="container">
       <div class="section-head">
-        <h2>App packages</h2>
+        <h2>Windows setup</h2>
         <p>
-          Prefer to skip the installer? Every release also has Tokio's own
-          packages.
+          Prefer to skip the installer on Windows? Every release also has
+          Tokio's own setup.
         </p>
       </div>
       {release && release.packages.length > 0 ? (
@@ -127,7 +146,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
         </ul>
       ) : (
         <p>
-          <a href={RELEASES_URL}>Find them on the releases page</a>.
+          <a href={RELEASES_URL}>Find it on the releases page</a>.
         </p>
       )}
       <p class="muted older">
@@ -144,7 +163,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
   const os = detectOS();
   if (os) {
     for (const card of document.querySelectorAll<HTMLElement>(
-      `.installer[data-os="${os}"]`,
+      `.download[data-os="${os}"]`,
     )) {
       card.classList.add("is-recommended");
       card.querySelector(".btn")?.classList.add("btn-primary");
@@ -162,7 +181,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
     font-size: var(--font-md);
   }
 
-  .installers {
+  .downloads {
     display: grid;
     gap: var(--space-4);
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
@@ -171,7 +190,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
     list-style: none;
   }
 
-  .installer {
+  .download {
     position: relative;
     display: grid;
     gap: var(--space-4);
@@ -179,11 +198,11 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
     transition: border-color var(--transition-fast);
   }
 
-  .installer h2 {
+  .download h2 {
     font-size: var(--font-xl);
   }
 
-  .installer p {
+  .download p {
     font-size: var(--font-md);
   }
 
@@ -228,6 +247,32 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
   .note h2 {
     color: var(--font-primary);
     font-size: var(--font-lg);
+  }
+
+  .more summary {
+    width: fit-content;
+    color: var(--accent-primary-hover);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .more summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .more summary:hover {
+    color: var(--accent-primary);
+  }
+
+  .more[open] .show,
+  .more:not([open]) .hide {
+    display: none;
+  }
+
+  .more p {
+    margin-top: var(--space-2);
   }
 
   .band {
