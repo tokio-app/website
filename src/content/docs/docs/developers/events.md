@@ -58,7 +58,7 @@ interface User {
 | `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd } }` |
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | none                                                               |
 | `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`        |
-| `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, duration, playing, played }[]`     |
+| `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`               |
 
 Each chat emote is `{ emoteID, index, images }`.
 
