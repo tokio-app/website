@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import icon from "../assets/icon.png";
+import { REPO_URL } from "../lib/release";
+import Icon from "./Icon.astro";
+
+const LINKS = [
+  { href: "/#features", label: "Features", wide: true },
+  { href: "/docs/", label: "Docs" },
+  { href: "/download/", label: "Download" },
+  { href: "/about/", label: "About" },
+];
+
+const path = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container inner">
+    <a class="brand" href="/">
+      <Image src={icon} alt="" width={28} height={28} />
+      <span>Tokio</span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        {LINKS.map((link) => (
+          <li class:list={{ wide: link.wide }}>
+            <a
+              href={link.href}
+              aria-current={path === link.href ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a class="github" href={REPO_URL} aria-label="Tokio on GitHub">
+      <Icon name="github" size={20} />
+    </a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background-primary) 82%, transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    height: var(--header-height);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--font-primary);
+    font-size: var(--font-lg);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  nav {
+    margin-left: auto;
+  }
+
+  ul {
+    display: flex;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a,
+  .github {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  nav a:hover,
+  nav a[aria-current="page"],
+  .github:hover {
+    color: var(--font-primary);
+  }
+
+  @media (max-width: 559px) {
+    .wide {
+      display: none;
+    }
+  }
+
+  @media (min-width: 720px) {
+    nav a {
+      padding-inline: var(--space-3);
+    }
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+import icon from "../assets/icon.png";
+import { RELEASES_URL, REPO_URL } from "../lib/release";
+
+const COLUMNS = [
+  {
+    title: "Product",
+    links: [
+      { href: "/#features", label: "Features" },
+      { href: "/download/", label: "Download" },
+      { href: RELEASES_URL, label: "Releases" },
+    ],
+  },
+  {
+    title: "Docs",
+    links: [
+      { href: "/docs/install/", label: "Install" },
+      { href: "/docs/guides/adding-an-overlay/", label: "Adding an overlay" },
+      {
+        href: "/docs/developers/building-an-overlay/",
+        label: "Building an overlay",
+      },
+    ],
+  },
+  {
+    title: "Project",
+    links: [
+      { href: REPO_URL, label: "GitHub" },
+      { href: `${REPO_URL}/issues`, label: "Report a bug" },
+      { href: "/about/", label: "About and license" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container grid">
+    <div class="intro">
+      <a class="brand" href="/">
+        <Image src={icon} alt="" width={24} height={24} />
+        <span>Tokio</span>
+      </a>
+      <p>
+        Free and open source. Tokio is not affiliated with or endorsed by TikTok
+        or ByteDance.
+      </p>
+    </div>
+    {COLUMNS.map((column) => (
+      <nav aria-label={column.title}>
+        <h2>{column.title}</h2>
+        <ul>
+          {column.links.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+  </div>
+  <div class="container bottom">
+    <p>© 2026 Italo Alfaro and contributors</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-12);
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: var(--space-3);
+    max-width: 320px;
+  }
+
+  @media (min-width: 720px) {
+    .grid {
+      grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+    }
+
+    .intro {
+      grid-column: auto;
+    }
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--font-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  h2 {
+    margin-bottom: var(--space-3);
+    color: var(--font-primary);
+    font-size: var(--font-md);
+    letter-spacing: 0;
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: var(--font-secondary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--font-primary);
+  }
+
+  .bottom {
+    margin-top: var(--space-12);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--border);
+    font-size: var(--font-sm);
+  }
+</style>
