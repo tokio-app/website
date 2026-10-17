@@ -31,21 +31,21 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 
 ## Layout
 
-| Path                           | Role                                                                                     |
-| ------------------------------ | ---------------------------------------------------------------------------------------- |
-| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `download.astro`, `about.astro`     |
-| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                 |
-| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                   |
-| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `LiveFeed` (hero illustration)             |
-| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                         |
-| `src/lib/os.ts`                | Browser-side OS detection for the download links                                         |
-| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                    |
-| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/` |
-| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark and light)               |
-| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                      |
-| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                           |
-| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                          |
-| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                       |
+| Path                           | Role                                                                                          |
+| ------------------------------ | --------------------------------------------------------------------------------------------- |
+| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `download.astro`, `about.astro`          |
+| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                      |
+| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                        |
+| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (hero illustration) |
+| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                              |
+| `src/lib/os.ts`                | Browser-side OS detection for the download links                                              |
+| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                         |
+| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`      |
+| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark and light)                    |
+| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                           |
+| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                |
+| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                               |
+| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                            |
 
 `dist/` and `.astro/` are generated. Don't edit them.
 
@@ -66,6 +66,7 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 - The app's own packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, the macOS and Linux cards link to the latest release's page instead. `PACKAGES` holds only the Windows setup, for those who skip the installer. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `release.yml`; keep `DOWNLOADS` and `PACKAGES` in sync when those change.
 - The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`.
 - `DownloadButton` links to `/download/` and, after OS detection, straight to the installer on Windows and to the AppImage on Linux. Linux only gets the direct link when the build read the release, since the AppImage's name carries the version. macOS has two zips (Apple Silicon and Intel), so it keeps the download page.
+- `DownloadTable` lists the same files with their real names in the Install docs (`install.mdx`), so the docs never spell out a version by hand.
 
 ### Styling
 

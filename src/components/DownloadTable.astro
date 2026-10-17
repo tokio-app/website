@@ -1,0 +1,34 @@
+---
+// The download table of the Install docs, with the latest release's file
+// names. Without release data, the app's packages link to the release page.
+import { FALLBACK_DOWNLOADS, getLatestRelease } from "../lib/release";
+
+const release = await getLatestRelease();
+const rows = [
+  ...(release?.downloads ?? FALLBACK_DOWNLOADS),
+  ...(release?.packages ?? []),
+];
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>System</th>
+      <th>Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((d) => (
+      <tr>
+        <td>
+          {d.label} ({d.arch})
+        </td>
+        <td>
+          <a href={d.url}>
+            {d.file ? <code>{d.file}</code> : "Latest release"}
+          </a>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

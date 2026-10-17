@@ -3,18 +3,13 @@ title: Install
 description: Download and install Tokio on Windows, macOS or Linux.
 ---
 
+import DownloadTable from "../../../components/DownloadTable.astro";
+
 Tokio runs on Windows, macOS and Linux. Get it from the [download page](/download/) or the [latest release](https://github.com/tokio-app/tokio/releases/latest).
 
-On Windows, download the installer and run it. It downloads and installs the latest version of Tokio. On macOS and Linux there's no installer: you download Tokio itself.
+On Windows, download the installer and run it. It downloads and installs the latest version of Tokio. If you'd rather skip the installer, each release also has Tokio's own Windows setup. On macOS and Linux there's no installer: you download Tokio itself.
 
-| System                | Download                          |
-| --------------------- | --------------------------------- |
-| Windows (x64)         | `Tokio-Installer-windows-x64.exe` |
-| macOS (Apple Silicon) | `tokio-<version>-mac-arm64.zip`   |
-| macOS (Intel)         | `tokio-<version>-mac-x64.zip`     |
-| Linux (x64)           | `tokio-<version>-x86_64.AppImage` |
-
-On Windows you can also skip the installer: each release has Tokio's own setup, `tokio-<version>-setup.exe`.
+<DownloadTable />
 
 All features work on every system, except the voices installed on the system: they're only available on Windows. TikTok and Edge voices work everywhere.
 
