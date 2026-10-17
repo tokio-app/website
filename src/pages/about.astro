@@ -1,0 +1,145 @@
+---
+import Base from "../layouts/Base.astro";
+import { REPO_URL } from "../lib/release";
+
+const FILE_URL = `${REPO_URL}/blob/main`;
+
+// Mirrors the Services list in the app's THIRD_PARTY_NOTICES.md.
+const SERVICES = [
+  {
+    name: "TikTok",
+    note: "TikTok LIVE, through tiktok-live-connector, and TikTok's text-to-speech (the Default TTS provider). Neither is an official public API.",
+  },
+  {
+    name: "Euler Stream",
+    note: "Request signing used by tiktok-live-connector.",
+  },
+  {
+    name: "Microsoft",
+    note: "Edge's Read Aloud service (the Edge TTS provider), which isn't an official public API.",
+  },
+  { name: "Spotify and YouTube", note: "Music requests." },
+  {
+    name: "MyInstants",
+    note: "Sound search and downloads for alerts, read from the public website rather than an official API. Its sounds are uploaded by its users and aren't covered by Tokio's license.",
+  },
+];
+---
+
+<Base
+  title="About and license"
+  description="Who makes Tokio, how it's licensed, the online services it uses and how your data is handled."
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>About Tokio</h1>
+      <p>
+        Tokio is a free, open-source desktop app that connects to your TikTok
+        LIVE and reacts to it with text-to-speech, music requests, sound alerts
+        and overlays. It's made by Italo Alfaro and contributors and developed
+        in the open on <a href={REPO_URL}>GitHub</a>.
+      </p>
+      <p>© 2026 Italo Alfaro and contributors.</p>
+
+      <h2 id="license">License</h2>
+      <p>
+        Tokio's source code is licensed under the{" "}
+        <a href={`${FILE_URL}/LICENSE`}>MIT License</a>. One file is an
+        exception:{" "}
+        <code>src/main/services/tts/providers/edge/common/drm-v2.ts</code> is
+        derived from <a href="https://github.com/rany2/edge-tts">edge-tts</a>{" "}
+        and is licensed under the{" "}
+        <a href={`${FILE_URL}/LICENSES/LGPL-3.0.txt`}>GNU LGPL v3.0</a>.
+      </p>
+      <p>
+        <strong>
+          The distributed application is licensed under the GNU AGPL v3.0 only.
+        </strong>{" "}
+        It includes{" "}
+        <a href="https://github.com/zerodytrash/TikTok-Live-Connector">
+          tiktok-live-connector
+        </a>{" "}
+        and its protocol package, which are licensed under the{" "}
+        <a href={`${FILE_URL}/LICENSES/AGPL-3.0.txt`}>GNU AGPL v3.0</a>, so the
+        application as a whole is distributed under the AGPL-3.0-only.
+      </p>
+      <p>
+        The full notices for every component are in{" "}
+        <a href={`${FILE_URL}/THIRD_PARTY_NOTICES.md`}>
+          THIRD_PARTY_NOTICES.md
+        </a>
+        . The <strong>About</strong> page inside the app shows the same notices
+        and the licenses of every package it ships.
+      </p>
+
+      <h2 id="source">Source code</h2>
+      <p>
+        The complete source code of every version is available at{" "}
+        <a href={REPO_URL}>github.com/tokio-app/tokio</a>. Each release is
+        tagged (for example <code>v0.1.0-alpha.3</code>), so you can get the
+        exact source of the version you installed. You may modify Tokio and
+        share your changes under the terms of its licenses.
+      </p>
+
+      <h2 id="warranty">No warranty</h2>
+      <p>
+        Tokio is provided "as is", without warranty of any kind, express or
+        implied, including but not limited to the warranties of merchantability,
+        fitness for a particular purpose and noninfringement. See the licenses
+        for the full terms.
+      </p>
+
+      <h2 id="services">Online services</h2>
+      <p>
+        Tokio talks to these online services. None of them is covered by Tokio's
+        license. Each one is subject to its operator's terms and can stop
+        working at any time.
+      </p>
+      <ul>
+        {SERVICES.map((service) => (
+          <li>
+            <strong>{service.name}:</strong> {service.note}
+          </li>
+        ))}
+      </ul>
+
+      <h2 id="privacy">Privacy</h2>
+      <p>
+        Tokio runs on your computer and has no account. Your settings, profiles
+        and sounds are saved on your computer. It sends requests only to the
+        services listed above, when you use the features that need them, and
+        checks GitHub for new versions to keep itself up to date.
+      </p>
+      <p>
+        This website is static and hosted on GitHub Pages. It sets no cookies
+        and uses no analytics. GitHub may log technical data such as your IP
+        address when you visit or download a file; see GitHub's privacy
+        statement.
+      </p>
+
+      <h2 id="trademarks">Trademarks</h2>
+      <p>
+        Tokio is not affiliated with or endorsed by TikTok or ByteDance. TikTok,
+        TikTok LIVE Studio, Spotify, YouTube, OBS Studio and Microsoft Edge are
+        trademarks of their respective owners.
+      </p>
+
+      <h2 id="website">This website</h2>
+      <p>
+        The source of this website is MIT-licensed and available at{" "}
+        <a href="https://github.com/tokio-app/website">
+          github.com/tokio-app/website
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 {
+    color: var(--font-primary);
+    font-size: var(--font-display);
+    font-weight: 800;
+  }
+</style>
