@@ -7,13 +7,13 @@ Chat messages are read aloud as they come in. Set it up on the **TTS** page and 
 
 ## Voices
 
-Tokio has three voice engines, and the **TTS** page lists all their voices in one menu, grouped by engine and language:
+Tokio has three voice engines, and the **TTS** page lists all their voices in one place:
 
 - **TikTok**: TikTok's own voices. They work without setup; to use your TikTok session instead, add its session ID in **Settings → Voice Engines**.
 - **Edge**: Microsoft Edge's voices.
 - **Windows**: the voices installed on your system, SAPI and OneCore, including older 32-bit voices. Only available on Windows.
 
-Search the menu by voice name, engine or language. Adjust speed, pitch and volume to taste.
+Click the voice to open the list. Search it by voice name or language, filter it by engine and language, and press play on any voice to hear a short line in its language before you pick it. Adjust speed, pitch and volume to taste.
 
 ## Format
 
