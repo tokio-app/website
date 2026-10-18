@@ -44,6 +44,20 @@ TikTok doesn't share a LIVE's emotes, so while you're connected Tokio saves the 
 
 Member Join and Super Fan Join alerts play for anyone who joins. Type a viewer's @handle or name to play only when they join, for example to give a regular their own entrance sound. Case, accents and emojis in the name don't matter.
 
+## Text-to-speech alerts
+
+Instead of a sound, an alert can speak a message. Open the alert's sound picker and go to the **Text-to-speech** tab: type the message, pick a voice, set the speed and pitch, and press play to hear it with sample values. The alert's volume slider still sets how loud it is.
+
+Messages can include details of the event:
+
+- `{username}` and `{handle}`: every event with a viewer, which is all but Envelope, Super Fan Box and Music Change
+- `{comment}`: Chat and Emote
+- `{gift}` and `{count}` (the combo size): Gift
+- `{count}` (the likes sent): Like
+- `{song}`: Music Change
+
+The replacements from the **TTS** page apply to these messages, and a message with a banned word, for example in a viewer's name, isn't spoken. Like chat, messages are made one at a time with the TTS page's cooldown between them, and the ones that don't fit in its queue length are skipped, so a busy LIVE can't flood the voice service. Picking a sound again replaces the message.
+
 ## Queue
 
 - **One after another**: alerts wait in a queue and play in order. Set the maximum queue length so they don't pile up.
