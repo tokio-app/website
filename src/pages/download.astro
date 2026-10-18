@@ -35,10 +35,9 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
       <div class="section-head">
         <h1>Get Tokio</h1>
         <p>
-          On Windows, a small installer downloads and installs the latest
-          version of Tokio. On macOS and Linux you download Tokio itself: a zip
-          with the app, or an AppImage. Once installed, Tokio checks for updates
-          on its own.
+          Pick your system: a setup on Windows, a zip with the app on macOS, an
+          AppImage on Linux. Once installed, Tokio checks for updates on its
+          own.
         </p>
         <p class="meta">
           {release ? (
@@ -120,35 +119,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
           </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section band">
-    <div class="container">
-      <div class="section-head">
-        <h2>Windows setup</h2>
-        <p>
-          Prefer to skip the installer on Windows? Every release also has
-          Tokio's own setup.
-        </p>
-      </div>
-      {release && release.packages.length > 0 ? (
-        <ul class="packages">
-          {release.packages.map((pkg) => (
-            <li>
-              <Icon name={OS_ICONS[pkg.os]} size={18} />
-              <a href={pkg.url}>{pkg.file}</a>
-              <span class="muted">
-                {pkg.label} · {pkg.arch} · {formatSize(pkg.size)}
-              </span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>
-          <a href={RELEASES_URL}>Find it on the releases page</a>.
-        </p>
-      )}
       <p class="muted older">
         Looking for an older version?{" "}
         <a href={RELEASES_URL}>Browse all releases on GitHub</a>.
@@ -273,32 +244,6 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   .more p {
     margin-top: var(--space-2);
-  }
-
-  .band {
-    border-top: 1px solid var(--border);
-    background: var(--background-tertiary);
-  }
-
-  .packages {
-    display: grid;
-    gap: var(--space-3);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .packages li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-2) var(--space-3);
-    font-size: var(--font-md);
-  }
-
-  .packages a {
-    font-family: var(--font-family-mono);
-    overflow-wrap: anywhere;
   }
 
   .older {

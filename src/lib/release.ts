@@ -11,7 +11,7 @@ export interface Download {
   os: OS;
   label: string;
   arch: string;
-  /** Unknown for the app's packages when GitHub can't be reached. */
+  /** Unknown when GitHub can't be reached. */
   file?: string;
   url: string;
   size?: number;
@@ -22,23 +22,15 @@ export interface Release {
   url: string;
   publishedAt: string;
   downloads: Download[];
-  packages: Download[];
 }
 
 type Source = Omit<Download, "url" | "file" | "size">;
 
-// What each system downloads: the installer on Windows, the app itself on
-// macOS and Linux. The installer's name has no version, so its link always
-// points at the latest published release. The app's packages carry the
+// What each system downloads: the app's own packages. Their names carry the
 // version, so they're matched by suffix; patterns follow `artifactName` in the
 // app's electron-builder.yml. Keep in sync with the app's release workflow.
-const DOWNLOADS: (Source & ({ file: string } | { pattern: RegExp }))[] = [
-  {
-    os: "windows",
-    label: "Windows",
-    arch: "x64",
-    file: "Tokio-Installer-windows-x64.exe",
-  },
+const DOWNLOADS: (Source & { pattern: RegExp })[] = [
+  { os: "windows", label: "Windows", arch: "x64", pattern: /-setup\.exe$/ },
   {
     os: "mac",
     label: "macOS",
@@ -49,31 +41,12 @@ const DOWNLOADS: (Source & ({ file: string } | { pattern: RegExp }))[] = [
   { os: "linux", label: "Linux", arch: "x64", pattern: /-x86_64\.AppImage$/ },
 ];
 
-// The app's own Windows setup, for those who skip the installer.
-const PACKAGES: (Source & { pattern: RegExp })[] = [
-  {
-    os: "windows",
-    label: "Windows setup",
-    arch: "x64",
-    pattern: /-setup\.exe$/,
-  },
-];
-
 /**
- * Download links that work without the GitHub API. The app's packages link to
- * the latest release's page, since their names carry the version.
+ * Download links that work without the GitHub API: the latest release's page,
+ * since the packages' names carry the version.
  */
 export const FALLBACK_DOWNLOADS: Download[] = DOWNLOADS.map(
-  ({ os, label, arch, ...source }) =>
-    "file" in source
-      ? {
-          os,
-          label,
-          arch,
-          file: source.file,
-          url: `${LATEST_RELEASE_URL}/download/${source.file}`,
-        }
-      : { os, label, arch, url: LATEST_RELEASE_URL },
+  ({ os, label, arch }) => ({ os, label, arch, url: LATEST_RELEASE_URL }),
 );
 
 interface GitHubAsset {
@@ -115,29 +88,18 @@ async function fetchLatestRelease(): Promise<Release | null> {
     );
     if (!res.ok) throw new Error(`GitHub responded ${res.status}`);
     const data = (await res.json()) as GitHubRelease;
-    const assets = new Map(data.assets.map((a) => [a.name, a]));
-
-    const fromAsset = (d: Source, asset: GitHubAsset): Download => ({
-      ...d,
-      file: asset.name,
-      url: asset.browser_download_url,
-      size: asset.size,
-    });
 
     // A file missing from the release keeps its fallback link.
-    const downloads = DOWNLOADS.map(({ os, label, arch, ...source }, i) => {
-      const fallback = FALLBACK_DOWNLOADS[i];
-      if ("file" in source) {
-        const asset = assets.get(source.file);
-        return asset ? { ...fallback, size: asset.size } : fallback;
-      }
-      const asset = data.assets.find((a) => source.pattern.test(a.name));
-      return asset ? fromAsset({ os, label, arch }, asset) : fallback;
-    });
-
-    const packages = PACKAGES.flatMap(({ pattern, ...p }) => {
+    const downloads = DOWNLOADS.map(({ pattern, ...source }, i) => {
       const asset = data.assets.find((a) => pattern.test(a.name));
-      return asset ? [fromAsset(p, asset)] : [];
+      return asset
+        ? {
+            ...source,
+            file: asset.name,
+            url: asset.browser_download_url,
+            size: asset.size,
+          }
+        : FALLBACK_DOWNLOADS[i];
     });
 
     return {
@@ -145,7 +107,6 @@ async function fetchLatestRelease(): Promise<Release | null> {
       url: data.html_url,
       publishedAt: data.published_at,
       downloads,
-      packages,
     };
   } catch (error) {
     console.warn(
