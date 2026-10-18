@@ -7,7 +7,7 @@ description: Keep separate settings for each stream and configure Tokio.
 
 Keep separate settings for different streams. Create a blank profile or clone an existing one, and switch between them from the title bar.
 
-A profile holds your text-to-speech, music and alert settings. Your uploaded sounds are a library shared by all profiles.
+A profile holds your text-to-speech, music and alert settings, and the emotes viewers have used in its LIVE. Your uploaded sounds are a library shared by all profiles.
 
 If you have unsaved changes when you switch profile or leave a page, Tokio asks whether to save or discard them.
 
