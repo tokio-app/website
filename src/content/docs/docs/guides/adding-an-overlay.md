@@ -10,7 +10,7 @@ Overlays are served by Tokio's overlay server. Turn it on first in **Settings â†
 TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own address, `tokio-app.local`:
 
 ```
-http://tokio-app.local:37891/<overlay>/
+http://tokio-app.local:37891/<overlay-id>/
 ```
 
 The first time you turn on the server, your system asks for administrator rights (your password on macOS and Linux) so Tokio can add this address to your hosts file, pointing to your own computer. Accept the prompt, or the server stays off. You won't be asked again while the entry is there.

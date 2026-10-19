@@ -3,7 +3,7 @@ title: Building an overlay
 description: Make your own Tokio overlay with plain HTML or any framework, and test it with sample events.
 ---
 
-An overlay is a web page. Write it by hand in HTML, CSS and JavaScript, or build it with React, Vue, Svelte or any other framework: Tokio only needs the finished folder. It serves the folder at `http://tokio-app.local:37891/<overlay>/` and sends the page every LIVE event over a WebSocket.
+An overlay is a web page. Write it by hand in HTML, CSS and JavaScript, or build it with React, Vue, Svelte or any other framework: Tokio only needs the finished folder. It serves the folder at `http://tokio-app.local:37891/<overlay-id>/` and sends the page every LIVE event over a WebSocket.
 
 ## Folder layout
 
