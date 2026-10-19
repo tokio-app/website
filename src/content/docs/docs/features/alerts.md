@@ -28,7 +28,9 @@ Any of these events can trigger an alert:
 
 ## Gift alerts
 
-Gift alerts can react to any gift or only to the ones you pick. They fire once per combo, when the combo ends, so a streak of 20 roses plays one sound.
+Gift alerts can react to any gift or only to the ones you pick, listed from cheapest to most expensive. They fire once per combo, when the combo ends, so a streak of 20 roses plays one sound.
+
+Tokio gets the gift list from TikTok when it starts, and it can miss some gifts, like ones from other regions. While you're connected, Tokio saves the gifts viewers send that aren't on it, so they show up in the list for every profile once someone has sent them.
 
 ## Chat alerts
 
