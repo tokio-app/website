@@ -49,18 +49,18 @@ interface User {
 }
 ```
 
-| Event                                                  | Data                                                               |
-| ------------------------------------------------------ | ------------------------------------------------------------------ |
-| `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                     |
-| `FOLLOW`, `SUPER_FAN`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | `{ user }`                                                         |
-| `SHARE`                                                | `{ user, shareCount }`                                             |
-| `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                  |
-| `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd } }` |
-| `ENVELOPE`, `SUPER_FAN_BOX`                            | none                                                               |
-| `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`        |
-| `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`               |
+| Event                                                  | Data                                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------- |
+| `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                            |
+| `FOLLOW`, `SUPER_FAN`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | `{ user }`                                                                |
+| `SHARE`                                                | `{ user, shareCount }`                                                    |
+| `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
+| `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd, image } }` |
+| `ENVELOPE`, `SUPER_FAN_BOX`                            | none                                                                      |
+| `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`               |
+| `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 
-Each chat emote is `{ emoteID, index, images }`.
+Each chat emote is `{ emoteID, index, images }`. A gift's `image` is the URL of its picture.
 
 :::tip[Gift combos]
 A gift streak sends several `GIFT` events with a growing `comboCount`. The last one has `repeatEnd: true`; react to that one for a single reaction per combo.
