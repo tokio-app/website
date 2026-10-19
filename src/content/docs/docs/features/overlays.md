@@ -19,7 +19,7 @@ In **Settings → Imported Overlays**, import an overlay by choosing its folder.
 
 ## Set it up
 
-Open an overlay in the gallery to change its settings: colors, text, the gifts it reacts to, and anything else the overlay offers. Save, and the new settings reach the overlay right away.
+Open an overlay in the gallery to change its settings: colors, text, the gifts it reacts to (picked from the same list as [gift alerts](/docs/features/alerts/#gift-alerts)), and anything else the overlay offers. Save, and the new settings reach the overlay right away.
 
 ## Add it to your stream
 
