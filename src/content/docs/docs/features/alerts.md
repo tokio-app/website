@@ -58,7 +58,7 @@ Messages can include details of the event:
 - `{count}` (the likes sent): Like
 - `{song}`: Music Change
 
-The replacements from the **TTS** page apply to these messages, and a message with a banned word, for example in a viewer's name, isn't spoken. Like chat, messages are made one at a time with the TTS page's cooldown between them, and the ones that don't fit in its queue length are skipped, so a busy LIVE can't flood the voice service. Picking a sound again replaces the message.
+The replacements and the **Remove Emojis** setting from the **TTS** page apply to these messages, and a message with a banned word, for example in a viewer's name, isn't spoken. Like chat, messages are made one at a time with the TTS page's cooldown between them, and the ones that don't fit in its queue length are skipped, so a busy LIVE can't flood the voice service. Picking a sound again replaces the message.
 
 ## Queue
 

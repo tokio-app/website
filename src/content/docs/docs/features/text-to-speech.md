@@ -15,6 +15,8 @@ Tokio has three voice engines, and the **TTS** page lists all their voices in on
 
 Click the voice to open the list. Search it by voice name or language, filter it by engine and language, and press play on any voice to hear a short line in its language before you pick it. Adjust speed, pitch and volume to taste.
 
+Type a message and press **Test Voice** to hear it with your replacements and emoji setting, even before you save them. A message chat wouldn't read, like one with a banned word, shows a warning instead.
+
 ## Format
 
 Choose which messages get read and how. The message template can use these placeholders:
@@ -26,6 +28,8 @@ Choose which messages get read and how. The message template can use these place
 | `{comment}`  | The chat message          |
 
 For example, `{username} {comment}` reads "Lucia hi from Lima!". You can also read only the messages that start with a command.
+
+Some voices read emojis by name, so 😂 can come out as "face with tears of joy". Turn on **Remove Emojis** to leave them out of messages and names. Messages that are only emojis are then skipped. Replacements apply first, so one can still turn an emoji into words, like ❤️ into "love".
 
 ## Replacements
 
