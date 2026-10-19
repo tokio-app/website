@@ -7,11 +7,11 @@ Overlays are web pages that react to your LIVE: a follow banner, a gift counter,
 
 ## Install an official overlay
 
-On the **Overlays** page, **Official Overlays** lists the overlays made for Tokio, with a preview of each. You can also see them on this site's [Overlays page](/overlays/).
+On the **Overlays** page, click **Official Overlays** to see the overlays made for Tokio, with a preview of each. You can also see them on this site's [Overlays page](/overlays/).
 
 Click **Install**. The overlay appears in the gallery, marked **Verified**.
 
-When a new version is out, its button changes to **Update**. Updating keeps your settings. Refresh the overlay in your streaming app to load the new version.
+When a new version is out, a dot appears on **Official Overlays** and the overlay's button changes to **Update**. Updating keeps your settings. Refresh the overlay in your streaming app to load the new version.
 
 ## Import your own overlay
 
@@ -33,7 +33,7 @@ Copy it from the gallery and add it to your streaming app. See [Adding an overla
 
 ## Remove an overlay
 
-Remove an official overlay with the trash button on its card under **Official Overlays**, and one you imported from **Settings → Imported Overlays**. Tokio deletes it with its settings, and its URL stops working in your streaming app.
+Remove an official overlay with the trash button on its card in **Official Overlays**, and one you imported from **Settings → Imported Overlays**. Tokio deletes it with its settings, and its URL stops working in your streaming app.
 
 ## Make your own
 
