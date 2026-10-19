@@ -11,14 +11,14 @@ Choose YouTube or Spotify on the **Music** page and connect. Spotify needs your 
 
 ## Chat commands
 
-The chat commands can be renamed or turned off in the **Controls** section:
+The chat commands can be renamed or turned off in the **Controls** section, and viewers can type them in any case:
 
-| Command   | Action                             |
-| --------- | ---------------------------------- |
-| `!play`   | Request a song                     |
-| `!next`   | Skip to the next song              |
-| `!last`   | Go back to the last song           |
-| `!revoke` | Remove your request from the queue |
+| Command   | Action                                   |
+| --------- | ---------------------------------------- |
+| `!play`   | Request a song                           |
+| `!next`   | Skip to the next song                    |
+| `!last`   | Go back to the last song                 |
+| `!revoke` | Remove a song from the queue by its name |
 
 For example, a viewer types `!play One More Time` to add that song to the queue.
 
