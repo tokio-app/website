@@ -87,7 +87,8 @@ Load the browser build from a CDN. It defines a global `TokioOverlay`:
 
       apply(window.__OVERLAY_CONFIG__);
 
-      // Sent when the streamer saves the overlay's settings.
+      // Sent when the streamer saves the overlay's settings, and on each
+      // change while they edit them in Tokio's preview.
       tokio.on(TOKIO_EVENTS.CONFIG, apply);
 
       tokio.on(TOKIO_EVENTS.LIKE, (data) => {
