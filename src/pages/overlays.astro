@@ -1,0 +1,189 @@
+---
+import { getImage } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import {
+  getOverlays,
+  OVERLAYS_RELEASE_URL,
+  OVERLAYS_REPO_URL,
+  type Overlay,
+} from "../lib/overlays";
+import { formatSize } from "../lib/release";
+
+const overlays = await getOverlays();
+
+// Each preview is resized at build time and served from this site. One that
+// can't be fetched shows a placeholder instead of failing the build.
+async function preview(overlay: Overlay) {
+  if (!overlay.preview) return null;
+  try {
+    return await getImage({
+      src: overlay.preview,
+      inferSize: true,
+      layout: "constrained",
+      format: "webp",
+      sizes: "(min-width: 960px) 560px, calc(100vw - 48px)",
+    });
+  } catch (error) {
+    console.warn(
+      `[overlays] No preview for ${overlay.id}: ${(error as Error).message}`,
+    );
+    return null;
+  }
+}
+
+const items = await Promise.all(
+  (overlays ?? []).map(async (overlay) => ({
+    overlay,
+    image: await preview(overlay),
+  })),
+);
+---
+
+<Base
+  title="Overlays"
+  description="The official overlays for Tokio, with a preview of each. Install them from Tokio and add them to OBS or TikTok LIVE Studio."
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h1>Overlays</h1>
+        <p>
+          Official overlays for your LIVE. Install one from the{" "}
+          <strong>Overlays</strong> page in Tokio, set its colors and text, and
+          add the link Tokio gives it to OBS or TikTok LIVE Studio. New versions
+          show up in Tokio, and updating keeps your settings.
+        </p>
+        <p class="links">
+          <a href="/docs/features/overlays/">How overlays work</a>
+          <a href="/docs/developers/building-an-overlay/">Make your own</a>
+        </p>
+      </div>
+
+      {overlays ? (
+        <ul class="overlays">
+          {items.map(({ overlay, image }) => (
+            <li id={overlay.id}>
+              <div class="preview">
+                {image ? (
+                  <img
+                    src={image.src}
+                    srcset={image.srcSet.attribute}
+                    {...image.attributes}
+                    alt={`Preview of ${overlay.name}`}
+                  />
+                ) : (
+                  <span class="muted">No preview yet</span>
+                )}
+              </div>
+              <div class="info">
+                <h2>{overlay.name}</h2>
+                <p class="description">{overlay.description}</p>
+                <p class="meta">
+                  Version {overlay.version} ·{" "}
+                  <a href={overlay.url}>Download the zip</a>{" "}
+                  {`(${formatSize(overlay.size)})`}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="muted">
+          The list of overlays couldn't be loaded.{" "}
+          <a href={OVERLAYS_RELEASE_URL}>See them on GitHub</a>.
+        </p>
+      )}
+
+      <p class="muted by-hand">
+        Prefer to do it by hand? Extract a zip and import the folder in{" "}
+        <strong>Settings → Imported Overlays</strong>. Imported overlays don't
+        get updates. The overlays are open source, in{" "}
+        <a href={OVERLAYS_REPO_URL}>tokio-app/overlays</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 {
+    font-size: var(--font-display);
+    font-weight: 800;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  .overlays {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .overlays li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6) var(--space-10);
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--border);
+    /* Linked by id, below the sticky header */
+    scroll-margin-top: var(--header-height);
+  }
+
+  @media (min-width: 960px) {
+    .overlays li {
+      grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+      align-items: center;
+    }
+  }
+
+  /* Previews are 16:9 screenshots on the app's background */
+  .preview {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--background-primary);
+  }
+
+  .preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .info {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: var(--space-3);
+  }
+
+  .info h2 {
+    font-size: var(--font-2xl);
+  }
+
+  .description {
+    max-width: 520px;
+    color: var(--font-secondary);
+  }
+
+  .meta {
+    color: var(--font-muted);
+    font-size: var(--font-sm);
+  }
+
+  .by-hand {
+    max-width: 640px;
+    margin-top: var(--space-8);
+    font-size: var(--font-md);
+  }
+</style>

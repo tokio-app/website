@@ -118,5 +118,7 @@ async function fetchLatestRelease(): Promise<Release | null> {
 
 export function formatSize(bytes?: number): string {
   if (!bytes) return "";
+  // Overlays weigh a few KB, the app's packages many MB.
+  if (bytes < 1024 * 1024) return `${Math.ceil(bytes / 1024)} KB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }

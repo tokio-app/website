@@ -7,6 +7,19 @@ export default defineConfig({
   // Custom domain on GitHub Pages, so no `base`. Must match public/CNAME.
   site: "https://tokio.ialfaro.com",
   trailingSlash: "always",
+  // The overlay previews, from the overlays' releases (src/lib/overlays.ts).
+  // GitHub redirects downloads to release-assets.githubusercontent.com, and
+  // Astro checks every redirect against these.
+  image: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+        pathname: "/tokio-app/overlays/releases/download/**",
+      },
+      { protocol: "https", hostname: "*.githubusercontent.com" },
+    ],
+  },
   integrations: [
     // Starlight also generates the sitemap because `site` is set.
     starlight({
@@ -75,6 +88,7 @@ export default defineConfig({
         {
           label: "More",
           items: [
+            { label: "Overlays", link: "/overlays/" },
             { label: "Download", link: "/download/" },
             { label: "About and license", link: "/about/" },
           ],

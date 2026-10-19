@@ -16,16 +16,16 @@ yarn preview    # serve dist/
 yarn format     # prettier
 ```
 
-| Path                | Content                                   |
-| ------------------- | ----------------------------------------- |
-| `src/pages/`        | Landing, download and about pages         |
-| `src/content/docs/` | Docs, served under `/docs/`               |
-| `src/components/`   | Components for the pages outside the docs |
-| `src/styles/`       | Design tokens and base styles             |
+| Path                | Content                                     |
+| ------------------- | ------------------------------------------- |
+| `src/pages/`        | Landing, overlays, download and about pages |
+| `src/content/docs/` | Docs, served under `/docs/`                 |
+| `src/components/`   | Components for the pages outside the docs   |
+| `src/styles/`       | Design tokens and base styles               |
 
 ## Deployment
 
-Every push to `main` builds the site and deploys it to GitHub Pages (`.github/workflows/deploy.yml`). The download page reads the latest Tokio release at build time, so the workflow can also be run by hand or by a `repository_dispatch` event of type `release`.
+Every push to `main` builds the site and deploys it to GitHub Pages (`.github/workflows/deploy.yml`). The download page reads the latest Tokio release and the overlays page the latest overlays catalog at build time, so the workflow also runs by hand and on a `repository_dispatch` event of type `release`, which the release workflows of Tokio and of the overlays send.
 
 ## License
 

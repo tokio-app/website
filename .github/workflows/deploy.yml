@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Sent by the app's release workflow so the download page shows the new version.
+  # Sent by the release workflows of the app and of the overlays, so the download and
+  # overlays pages show the new versions.
   repository_dispatch:
     types: [release]
 

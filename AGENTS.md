@@ -31,21 +31,22 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 
 ## Layout
 
-| Path                           | Role                                                                                          |
-| ------------------------------ | --------------------------------------------------------------------------------------------- |
-| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `download.astro`, `about.astro`          |
-| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                      |
-| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                        |
-| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (hero illustration) |
-| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                              |
-| `src/lib/os.ts`                | Browser-side OS detection for the download links                                              |
-| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                         |
-| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`      |
-| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark and light)                    |
-| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                           |
-| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                |
-| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                               |
-| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                            |
+| Path                           | Role                                                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro` |
+| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                               |
+| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                 |
+| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (hero illustration)          |
+| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                       |
+| `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                     |
+| `src/lib/os.ts`                | Browser-side OS detection for the download links                                                       |
+| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                                  |
+| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`               |
+| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark and light)                             |
+| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                                    |
+| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                         |
+| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                                        |
+| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                                     |
 
 `dist/` and `.astro/` are generated. Don't edit them.
 
@@ -63,9 +64,18 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 - `getLatestRelease()` in `src/lib/release.ts` fetches `repos/tokio-app/tokio/releases/latest` once per build. Only published, non-draft releases count. It uses `GITHUB_TOKEN` when set and returns `null` when GitHub can't be reached; pages must still build and work then.
 - `DOWNLOADS` is one card per system, each the app's own package: the setup on Windows, a zip per Mac architecture, the AppImage on Linux. Tokio has no separate installer.
 - The packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, every card links to the latest release's page instead. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `build-app.yml`; keep `DOWNLOADS` in sync when those change.
-- The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`.
+- The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`. The release workflows of the app and of the overlays send it after publishing, with the `WEBSITE_DISPATCH_TOKEN` secret (Contents read and write on this repo); without the secret they only warn.
 - `DownloadButton` links to `/download/` and, after OS detection, straight to the setup on Windows and to the AppImage on Linux. They only get the direct link when the build read the release, since their names carry the version. macOS has two zips (Apple Silicon and Intel), so it keeps the download page.
 - `DownloadTable` lists the same files with their real names in the Install docs (`install.mdx`), so the docs never spell out a version by hand.
+
+### Overlays page
+
+- `/overlays/` lists the official overlays from the catalog that `tokio-app/overlays` (locally `../tokio-overlays`) publishes with every release, `releases/latest/download/overlays.json` (format in that repo's `README.md`). `getOverlays()` in `src/lib/overlays.ts` reads it once per build. It needs no API call, so no token or rate limit.
+- It returns `null` when the catalog can't be read, and the page links to the overlays' latest release instead. Entries that don't validate, or whose zip or preview isn't under `https://github.com/tokio-app/overlays/releases/download/`, are left out. Schema 1 is the format read; a new schema renames or removes fields, and the site must then read both.
+- Previews go through `getImage` (`inferSize`, `layout: "constrained"`, webp), so they're resized and served from this site. Astro checks every redirect against `image.remotePatterns` in `astro.config.mjs`, and GitHub redirects downloads to `release-assets.githubusercontent.com`, so both hosts are allowed. A preview that fails shows a placeholder instead of failing the build.
+- Don't show an overlay's URL on the page. Tokio generates it (`http://tokio-app.local:37891/<overlay-id>/`), and streamers copy it from the gallery.
+- Local rebuilds may warn "An error was encountered while revalidating a cached remote asset". Astro 7.4 revalidates cached images without the image config, so it rejects GitHub's redirect and keeps the cached preview. That's harmless, since a release's files never change, and CI builds have no cache. Don't loosen `remotePatterns` for it.
+- New overlays only show after a rebuild, see Download links.
 
 ### Styling
 
@@ -92,7 +102,7 @@ The site must not look generated. Avoid the usual template patterns:
 ## Content
 
 - The app's `README.md` is the source of truth for features, chat commands, install steps, platforms and the overlay setup. When the app changes, update the docs and the landing page to match. Check facts against the app's code before writing them; don't describe settings or behavior you haven't confirmed.
-- Keep these app facts exact: the overlay address `http://tokio-app.local:37891/<overlay>/`, the WebSocket `ws://localhost:37891/?id=<id>`, the event names (`tokio:event:*`), and the default chat commands (`!play`, `!next`, `!last`, `!revoke`).
+- Keep these app facts exact: the overlay address `http://tokio-app.local:37891/<overlay-id>/` (generated by Tokio), the WebSocket `ws://localhost:37891/?id=<id>`, the event names (`tokio:event:*`), and the default chat commands (`!play`, `!next`, `!last`, `!revoke`).
 - The overlay developer docs describe `info.yaml`, `config.yaml` (`OverlayConfigSchema` in the app's `src/common/schemas/overlay.ts`), the `<script id="tokio-setup">` block and the `@tokioapp/overlay` package (`../tokio-event-loader`). Update them when those change.
 - Overlays can be written in plain HTML or with any framework; `@tokioapp/overlay` has no dependencies and ships ESM, CommonJS and browser builds. Don't describe overlays as plain-HTML only, and give framework users the build requirements (relative asset paths, YAML files next to the built `index.html`, the `tokio-setup` block in the HTML template).
 - Write plain, user-facing English, in the app's tone: short sentences, second person, UI names in **bold** (**Settings → Overlay Server**).
