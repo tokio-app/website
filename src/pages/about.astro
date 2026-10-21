@@ -8,11 +8,11 @@ const FILE_URL = `${REPO_URL}/blob/main`;
 const SERVICES = [
   {
     name: "TikTok",
-    note: "TikTok LIVE, through tiktok-live-connector, and TikTok's text-to-speech (the TikTok voices). Neither is an official public API.",
+    note: "TikTok LIVE, through @tokioapp/connector, and TikTok's text-to-speech (the TikTok voices). Neither is an official public API.",
   },
   {
     name: "Euler Stream",
-    note: "Request signing used by tiktok-live-connector.",
+    note: "Signs the connection to TikTok LIVE, with each user's own API key.",
   },
   {
     name: "Microsoft",
@@ -56,16 +56,11 @@ const SERVICES = [
         <a href={`${FILE_URL}/LICENSES/LGPL-3.0.txt`}>GNU LGPL v3.0</a>.
       </p>
       <p>
-        <strong>
-          The distributed application is licensed under the GNU AGPL v3.0 only.
-        </strong>{" "}
-        It includes{" "}
-        <a href="https://github.com/zerodytrash/TikTok-Live-Connector">
-          tiktok-live-connector
-        </a>{" "}
-        and its protocol package, which are licensed under the{" "}
-        <a href={`${FILE_URL}/LICENSES/AGPL-3.0.txt`}>GNU AGPL v3.0</a>, so the
-        application as a whole is distributed under the AGPL-3.0-only.
+        The distributed application is under the same licenses. It connects to
+        TikTok LIVE through{" "}
+        <a href="https://github.com/tokio-app/connector">@tokioapp/connector</a>
+        , which is MIT-licensed too, and the other components it includes keep
+        their own licenses.
       </p>
       <p>
         The full notices for every component are in{" "}
@@ -110,9 +105,12 @@ const SERVICES = [
       <h2 id="privacy">Privacy</h2>
       <p>
         Tokio runs on your computer and has no account. Your settings, profiles
-        and sounds are saved on your computer. It sends requests only to the
-        services listed above, when you use the features that need them, and
-        checks GitHub for new versions to keep itself up to date.
+        and sounds are saved on your computer. To connect to TikTok LIVE you
+        need your own Euler Stream account: Tokio saves its API key on your
+        computer, encrypted when your system supports it, and sends it only to
+        Euler Stream. It sends requests only to the services listed above, when
+        you use the features that need them, and checks GitHub for new versions
+        to keep itself up to date.
       </p>
       <p>
         This website is static and hosted on GitHub Pages. It sets no cookies

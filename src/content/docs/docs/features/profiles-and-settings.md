@@ -13,6 +13,7 @@ If you have unsaved changes when you switch profile or leave a page, Tokio asks 
 
 ## Settings
 
+- **TikTok LIVE**: your [Euler Stream](https://www.eulerstream.com) API key. Euler Stream signs Tokio's connection to TikTok LIVE, and each user brings their own key: [sign up](https://www.eulerstream.com/register) for free and paste it here. Tokio can't connect without it.
 - **Voice engines**: optionally add your TikTok session ID, which the TikTok voices use when it's set.
 - **Overlay server**: turn the local server for overlays on or off. See [Adding an overlay](/docs/guides/adding-an-overlay/).
 
