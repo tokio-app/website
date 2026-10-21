@@ -21,13 +21,13 @@ Type a message and press **Test Voice** to hear it with your replacements and em
 
 Choose which messages get read and how. The message template can use these placeholders:
 
-| Placeholder  | Replaced with             |
-| ------------ | ------------------------- |
-| `{username}` | The viewer's display name |
-| `{handle}`   | The viewer's `@handle`    |
-| `{comment}`  | The chat message          |
+| Placeholder  | Replaced with                        |
+| ------------ | ------------------------------------ |
+| `{username}` | The viewer's display name            |
+| `{handle}`   | The viewer's handle, without the `@` |
+| `{comment}`  | The chat message                     |
 
-For example, `{username} {comment}` reads "Lucia hi from Lima!". You can also read only the messages that start with a command.
+For example, `{username} {comment}` reads "Lucia hi from Lima!". You can also read only the messages that start with a command. The command isn't read aloud, and a message with nothing after it is skipped.
 
 Some voices read emojis by name, so 😂 can come out as "face with tears of joy". Turn on **Remove Emojis** to leave them out of messages and names. Messages that are only emojis are then skipped. Replacements apply first, so one can still turn an emoji into words, like ❤️ into "love".
 
@@ -37,10 +37,10 @@ Teach the voice how to say acronyms, slang and names. Each replacement swaps a w
 
 ## Permissions
 
-Let everyone talk, or only followers, superfans or moderators. You can also set a minimum fan level, a whitelist and a blacklist.
+Let everyone talk, or only followers, superfans or moderators. You can also set a minimum fan level, and a whitelist and a blacklist of @handles.
 
 ## Protection
 
-A cooldown per viewer and a maximum queue length keep the chat from flooding the voice.
+A cooldown between messages and a maximum queue length keep the chat from flooding the voice. Messages over a maximum length are skipped, and so are messages with a banned word, in the comment or in the viewer's name.
 
-Permissions and protection are shared with [music requests](/docs/features/music-requests/).
+[Music requests](/docs/features/music-requests/) have their own permissions and protection, set the same way.

@@ -9,7 +9,7 @@ Tokio's source is on [GitHub](https://github.com/tokio-app/tokio). Building it r
 git clone https://github.com/tokio-app/tokio.git
 cd tokio
 yarn install
-yarn dev          # run in development
+yarn dev          # run in development (close Tokio first)
 yarn test         # unit tests
 yarn typecheck    # type-check every process
 yarn lint         # lint
