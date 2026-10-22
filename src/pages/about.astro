@@ -8,7 +8,11 @@ const FILE_URL = `${REPO_URL}/blob/main`;
 const SERVICES = [
   {
     name: "TikTok",
-    note: "TikTok LIVE, through @tokioapp/connector, and TikTok's text-to-speech (the TikTok voices). Neither is an official public API.",
+    note: "TikTok LIVE, through @tokioapp/connector, and TikTok's text-to-speech (the TikTok voices), when the user has added a TikTok session ID. Neither is an official public API.",
+  },
+  {
+    name: "TikTok TTS proxy",
+    note: "The TikTok voices when no session ID is set (tiktok-tts.weilnet.workers.dev). It gets the text of each message to read and its voice. It's run by a third party, not by TikTok or Tokio.",
   },
   {
     name: "Euler Stream",
@@ -113,9 +117,10 @@ const SERVICES = [
         and sounds are saved on your computer. To connect to TikTok LIVE you
         need your own Euler Stream account: Tokio saves its API key on your
         computer, encrypted when your system supports it, and sends it only to
-        Euler Stream. It sends requests only to the services listed above, when
-        you use the features that need them, and checks GitHub for new versions
-        to keep itself up to date.
+        Euler Stream. A TikTok session ID, if you add one, is saved the same way
+        and sent only to TikTok. It sends requests only to the services listed
+        above, when you use the features that need them, and checks GitHub for
+        new versions to keep itself up to date.
       </p>
       <p>
         This website is static and hosted on GitHub Pages. It sets no cookies

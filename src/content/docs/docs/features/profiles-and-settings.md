@@ -9,14 +9,14 @@ Keep separate settings for different streams. Create a blank profile or clone an
 
 A profile holds your text-to-speech, music and alert settings, and the emotes viewers have used in its LIVE. Your uploaded sounds are a library shared by all profiles.
 
-If you have unsaved changes when you switch profile or leave a page, Tokio asks whether to save or discard them.
+Tokio saves your changes as you make them, to the profile you made them on.
 
 ## Settings
 
 - **TikTok LIVE**: your [Euler Stream](https://www.eulerstream.com) API key. Euler Stream signs Tokio's connection to TikTok LIVE, and each user brings their own key: [sign up](https://www.eulerstream.com/register) for free and paste it here. Tokio can't connect without it.
-- **Voice engines**: optionally add your TikTok session ID, which the TikTok voices use when it's set.
+- **Voice engines**: optionally add your TikTok session ID. With it, the TikTok voices come straight from TikTok. Without it, they go through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read.
 - **Overlay server**: turn the local server for overlays on or off. See [Adding an overlay](/docs/guides/adding-an-overlay/).
 
 ## Notifications
 
-When something fails, such as a voice that can't be generated or a sound that's missing, Tokio tells you what went wrong. The bell in the title bar keeps the session's history.
+When something fails, such as a voice that can't be generated, a sound that's missing or a change that couldn't be saved, Tokio tells you what went wrong. The bell in the title bar keeps the session's history.
