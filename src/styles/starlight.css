@@ -77,6 +77,20 @@ a[rel="me"]:hover {
   color: var(--sl-color-white);
 }
 
+/* "On this page" keeps the sidebar's width, and the content is centered
+   between them: Starlight gives that column half the spare width, which
+   the narrower content column made large. */
+@media (min-width: 72rem) {
+  .right-sidebar-container {
+    width: var(--sl-sidebar-width);
+  }
+
+  [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: auto;
+    width: calc(100% - var(--sl-sidebar-width));
+  }
+}
+
 /* The app's selected row */
 .sidebar-content a[aria-current="page"],
 .sidebar-content a[aria-current="page"]:hover,

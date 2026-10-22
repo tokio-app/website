@@ -95,7 +95,7 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 - Icons: `Icon.astro` draws line icons inline and takes brand icons (`github`, `apple`, `linux`) from Starlight. Add new line icons there instead of adding an icon package.
 - Layouts must work at phone width with no horizontal scroll. Keep lines of text under 80 characters: `.prose` is 68ch wide and the docs' content column 37rem.
 - Page styles are scoped with `:where()`, so they add no specificity, and a `site.css` rule such as `.prose ul` beats a page's `.services`. When they conflict, prefix the page's selector with the parent's class (`.prose .services`).
-- Starlight's own components are restyled with plain (unlayered) rules in `starlight.css`, which win over Starlight's `@layer starlight.*` styles. The docs pagination is made smaller there and kept in two fixed columns, so a lone "Previous" or "Next" link takes half the width.
+- Starlight's own components are restyled with plain (unlayered) rules in `starlight.css`, which win over Starlight's `@layer starlight.*` styles. The docs pagination is made smaller there and kept in two fixed columns, so a lone "Previous" or "Next" link takes half the width. The "On this page" column keeps the left sidebar's width, with the content centered between the two; Starlight would give it half the spare width.
 - Code blocks use Expressive Code's plain frame for every language (`expressiveCode.defaultProps.frame: "code"` in `astro.config.mjs`): its terminal frame draws window dots.
 - Local builds reuse rendered Markdown from `node_modules/.astro/data-store.json`. After changing Expressive Code or Markdown options, delete it before building, or the docs keep the old output. CI builds start without it.
 
