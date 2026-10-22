@@ -8,7 +8,9 @@ import { getLatestRelease, REPO_URL } from "../lib/release";
 const release = await getLatestRelease();
 
 // Code, or rows drawn the way the app draws them
-type Example = string | { name: string; value?: string; current?: boolean }[];
+type Example =
+  | string
+  | { name: string; value?: string; current?: boolean; verified?: boolean }[];
 
 // Each feature shows a small, real example of what it does.
 const FEATURES: {
@@ -43,7 +45,12 @@ const FEATURES: {
     title: "Overlays",
     href: "/docs/features/overlays/",
     text: "Install the official overlays or import your own, then add each with one link.",
-    example: "http://tokio-app.local:37891/\n  <overlay-id>/",
+    // Tagged as the app's gallery tags them
+    example: [
+      { name: "Gift Jar", value: "Verified", verified: true },
+      { name: "Top Likes", value: "Verified", verified: true },
+      { name: "My chat box", value: "External" },
+    ],
   },
   {
     title: "Profiles",
@@ -133,7 +140,12 @@ const STEPS = [
                 {feature.example.map((row) => (
                   <li class:list={{ current: row.current }}>
                     {row.name}
-                    {row.value && <span>{row.value}</span>}
+                    {row.value && (
+                      <span>
+                        {row.verified && <Icon name="check" size={14} />}
+                        {row.value}
+                      </span>
+                    )}
                     {row.current && <Icon name="check" size={14} />}
                   </li>
                 ))}
@@ -347,8 +359,15 @@ const STEPS = [
   }
 
   .example span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
     color: var(--font-secondary);
     font-size: var(--font-sm);
+  }
+
+  .example span :global(svg) {
+    color: var(--success);
   }
 
   /* A menu marks its current row, like the app's profile menu */
