@@ -9,7 +9,7 @@ Chat messages are read aloud as they come in. Set it up on the **TTS** page and 
 
 Tokio has three voice engines, and the **TTS** page lists all their voices in one place:
 
-- **TikTok**: TikTok's own voices. They work without setup; to use your TikTok session instead, add its session ID in **Settings → Voice Engines**.
+- **TikTok**: TikTok's voices. They work without setup, through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read. To get them straight from TikTok instead, add your TikTok session ID in **Settings → Voice Engines**.
 - **Edge**: Microsoft Edge's voices.
 - **Windows**: the voices installed on your system, SAPI and OneCore, including older 32-bit voices. Only available on Windows.
 
