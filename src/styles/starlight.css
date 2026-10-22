@@ -4,6 +4,8 @@
   --sl-font: var(--font-family);
   --sl-font-mono: var(--font-family-mono);
   --sl-line-height: 1.6;
+  /* Under 80 characters a line in Archivo */
+  --sl-content-width: 37rem;
 
   --sl-color-accent-low: #4c0519;
   --sl-color-accent: var(--accent-primary);
@@ -58,6 +60,15 @@
 
 .site-title img {
   height: 28px;
+}
+
+/* The GitHub link, like the site header's */
+a[rel="me"] {
+  color: var(--sl-color-gray-3);
+}
+
+a[rel="me"]:hover {
+  color: var(--sl-color-white);
 }
 
 /* The app's selected row */
