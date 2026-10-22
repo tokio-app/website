@@ -70,8 +70,8 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 ### Download links
 
 - `getLatestRelease()` in `src/lib/release.ts` fetches `repos/tokio-app/tokio/releases/latest` once per build. Only published, non-draft releases count. It uses `GITHUB_TOKEN` when set and returns `null` when GitHub can't be reached; pages must still build and work then.
-- `DOWNLOADS` is one row per package, each the app itself: the setup on Windows, a zip per Mac architecture, the AppImage on Linux. Tokio has no separate installer.
-- The packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, every row links to the latest release's page instead. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `build-app.yml`; keep `DOWNLOADS` in sync when those change.
+- `DOWNLOADS` is one card per system, each the app's own package: the setup on Windows, a zip per Mac architecture, the AppImage on Linux. Tokio has no separate installer.
+- The packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, every card links to the latest release's page instead. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `build-app.yml`; keep `DOWNLOADS` in sync when those change.
 - The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`. The release workflows of the app and of the overlays send it after publishing, with the `WEBSITE_DISPATCH_TOKEN` secret (Contents read and write on this repo); without the secret they only warn.
 - `DownloadButton` links to `/download/` and, after OS detection, straight to the setup on Windows and to the AppImage on Linux. They only get the direct link when the build read the release, since their names carry the version. macOS has two zips (Apple Silicon and Intel), so it keeps the download page.
 - `DownloadTable` lists the same files with their real names in the Install docs (`install.mdx`), so the docs never spell out a version by hand.
@@ -108,7 +108,7 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
 - No grids of identical cards with an icon in a tinted square and a "Learn more →" link. Show features as rows with a concrete example (a template, a chat command, a URL, the app's own rows), and link the title.
 - No fake window chrome (traffic-light dots).
 - Prefer real content over decoration: actual commands, file names, event names and settings from the app. Mono is for code only.
-- One Ink surface. Panels (`--background-tertiary`, radius 8, a `--border` hairline) only hold grouped content, such as the hero's feed, the feature examples and the download list; hairlines and spacing do the rest. Controls take radius 6, the hero's window 10.
+- One Ink surface. Panels (`--background-tertiary`, radius 8, a `--border` hairline) only hold grouped content, such as the hero's feed, the feature examples and the download cards; hairlines and spacing do the rest. Controls take radius 6, the hero's window 10.
 - Rose means LIVE or "do this": the tally and the LIVE dot, primary buttons, links, selection (the docs' current page) and focus. Text on rose buttons is white. Rose is never a border, frame or decoration.
 - The tally, the app's rose line at the top's center fading out to both sides, only appears on the hero's picture of the app while LIVE. The site itself isn't live.
 - Keep the brand's warmth, though. Plain is not the goal: the soft rose washes (`--accent-soft` radial gradients) behind the hero and the closing "Ready for your next LIVE?" section stay, subtle. The step timeline is neutral until its track fades into rose at step 4, where you go LIVE.

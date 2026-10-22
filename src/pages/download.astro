@@ -52,16 +52,16 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
       <ul class="downloads">
         {downloads.map((download) => (
-          <li class="download" data-os={download.os}>
-            <Icon name={OS_ICONS[download.os]} size={24} />
-            <div class="what">
+          <li class="card download" data-os={download.os}>
+            <Icon name={OS_ICONS[download.os]} size={28} />
+            <div>
               <h2>{download.label}</h2>
-              <p>
+              <p class="muted">
                 {download.arch}
                 {download.size && `, ${formatSize(download.size)}`}
               </p>
-              <span class="recommended">Your system</span>
             </div>
+            <span class="recommended">Your system</span>
             <a
               class="btn"
               href={download.url}
@@ -75,6 +75,22 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
       </ul>
 
       <div class="notes">
+        <div class="note">
+          <h2>Windows</h2>
+          <p>
+            Run the setup: it installs Tokio for your user and opens it. Besides
+            the TikTok and Edge voices, you also get the voices installed on
+            Windows (SAPI and OneCore).
+          </p>
+        </div>
+        <div class="note">
+          <h2>Linux</h2>
+          <p>
+            Tokio comes as an AppImage. Make it executable with{" "}
+            <code>chmod +x</code> (or in the file's properties) and run it.
+            AppImages need FUSE.
+          </p>
+        </div>
         <div class="note">
           <h2>macOS</h2>
           <div>
@@ -105,28 +121,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
             </details>
           </div>
         </div>
-        <div class="note">
-          <h2>Linux</h2>
-          <p>
-            Tokio comes as an AppImage. Make it executable with{" "}
-            <code>chmod +x</code> (or in the file's properties) and run it.
-            AppImages need FUSE.
-          </p>
-        </div>
-        <div class="note">
-          <h2>Voices</h2>
-          <p>
-            TikTok and Microsoft Edge voices work everywhere. The voices
-            installed on the system (SAPI and OneCore) are only available on
-            Windows.
-          </p>
-        </div>
       </div>
-
-      <p class="muted older">
-        Looking for an older version?{" "}
-        <a href={RELEASES_URL}>Browse all releases on GitHub</a>.
-      </p>
     </div>
   </section>
 </Base>
@@ -136,11 +131,11 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   const os = detectOS();
   if (os) {
-    for (const row of document.querySelectorAll<HTMLElement>(
+    for (const card of document.querySelectorAll<HTMLElement>(
       `.download[data-os="${os}"]`,
     )) {
-      row.classList.add("is-recommended");
-      row.querySelector(".btn")?.classList.add("btn-primary");
+      card.classList.add("is-recommended");
+      card.querySelector(".btn")?.classList.add("btn-primary");
     }
   }
 </script>
@@ -154,48 +149,35 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
     font-size: var(--font-md);
   }
 
-  /* One panel of rows, like the app's features on Home */
   .downloads {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
     margin: 0;
     padding: 0;
     list-style: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--background-tertiary);
   }
 
   .download {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-3) var(--space-4);
-  }
-
-  .download + .download {
-    border-top: 1px solid var(--border);
-  }
-
-  .download > :global(svg) {
-    flex: none;
-  }
-
-  .what {
+    position: relative;
     display: grid;
-    flex: 1;
-    min-width: 0;
+    gap: var(--space-4);
+    padding: var(--space-6);
   }
 
-  .what h2 {
-    font-size: var(--font-lg);
+  .download h2 {
+    font-size: var(--font-xl);
   }
 
-  .what p {
-    color: var(--font-secondary);
+  .download p {
     font-size: var(--font-md);
   }
 
   /* Your system also gets the rose button */
   .recommended {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
     display: none;
     color: var(--font-secondary);
     font-size: var(--font-sm);
@@ -203,23 +185,6 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   .is-recommended .recommended {
     display: block;
-  }
-
-  @media (min-width: 720px) {
-    .what {
-      display: flex;
-      align-items: baseline;
-      gap: var(--space-4);
-    }
-
-    .what h2 {
-      flex: none;
-      width: 120px;
-    }
-
-    .recommended {
-      margin-left: auto;
-    }
   }
 
   /* The app's aside layout: the title beside its text. Rows, so opening
@@ -274,10 +239,5 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   .more p {
     margin-top: var(--space-2);
-  }
-
-  .older {
-    margin-top: var(--space-8);
-    font-size: var(--font-md);
   }
 </style>
