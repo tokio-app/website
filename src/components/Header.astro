@@ -42,13 +42,13 @@ const path = Astro.url.pathname;
 </header>
 
 <style>
+  /* On Ink with a hairline, like the app's title bar */
   .header {
     position: sticky;
     top: 0;
-    z-index: var(--z-header);
+    z-index: var(--z-sticky);
     border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--background-primary) 82%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--background-primary);
   }
 
   .inner {
@@ -64,7 +64,7 @@ const path = Astro.url.pathname;
     gap: var(--space-2);
     color: var(--font-primary);
     font-size: var(--font-lg);
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
   }
 

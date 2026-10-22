@@ -33,6 +33,13 @@ export default defineConfig({
         "./src/styles/tokens.css",
         "./src/styles/starlight.css",
       ],
+      expressiveCode: {
+        // The plain frame for shell code too: the terminal frame draws
+        // window dots.
+        defaultProps: { frame: "code" },
+        // Code blocks are panels
+        styleOverrides: { borderRadius: "8px" },
+      },
       social: [
         {
           icon: "github",
