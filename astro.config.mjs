@@ -28,7 +28,11 @@ export default defineConfig({
         "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts and overlays.",
       logo: { src: "./src/assets/icon.png", alt: "Tokio" },
       favicon: "/favicon.ico",
-      customCss: ["./src/styles/tokens.css", "./src/styles/starlight.css"],
+      customCss: [
+        "@fontsource-variable/archivo/wdth.css",
+        "./src/styles/tokens.css",
+        "./src/styles/starlight.css",
+      ],
       social: [
         {
           icon: "github",

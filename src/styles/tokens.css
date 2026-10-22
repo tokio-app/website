@@ -1,36 +1,34 @@
 /*
- * Design tokens. The colors, radii and spacing come from the app
- * (tokio/src/ui/styles/tokens.css); the rest is web-only.
+ * Design tokens. The first block mirrors the app's
+ * (tokio/src/ui/styles/tokens.css): same names, values and order, without
+ * the ones the site doesn't use. Web-only tokens come after it.
  */
 
 :root {
-  /* Colors (from the app) */
+  /* Colors */
   --background-primary: #121212;
   --background-secondary: #1e1e1e;
   --background-secondary-hover: #3f3f46;
+  /* Panels: content grouped on the page, such as lists, cards and dialogs */
+  --background-tertiary: #18181b;
+  --border: #27272a;
   --accent-primary: #f43f5e;
   --accent-primary-hover: #fb7185;
+  --accent-soft: rgba(244, 63, 94, 0.12);
   --font-primary: #f1f5f9;
   --font-secondary: #a1a1aa;
+  /* Disabled text and offline values only, too faint for anything else */
+  --font-muted: #71717a;
   --danger: #e81c3e;
   --success: #22c55e;
   --warning: #f59e0b;
   --info: #60a5fa;
 
-  /* Colors (web) */
-  --background-tertiary: #18181b;
-  --border: #27272a;
-  --border-strong: #3f3f46;
-  --font-muted: #71717a;
-  --accent-soft: rgba(244, 63, 94, 0.12);
-  --accent-ink: #ffffff;
-
-  /* Radii */
+  /* Radii: controls md, panels lg, dialogs xl */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 10px;
-  --radius-2xl: 16px;
   --radius-full: 999px;
 
   /* Spacing */
@@ -44,36 +42,45 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
 
   /* Typography */
   --font-family:
-    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  --font-family-mono:
-    ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    "Archivo Variable", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Ubuntu, sans-serif;
+  /* Live numbers are set condensed, with tabular figures */
+  --stretch-readout: 75%;
   --font-xs: 12px;
   --font-sm: 13px;
   --font-md: 14px;
   --font-lg: 16px;
-  --font-xl: 20px;
+  --font-xl: 18px;
   --font-2xl: 24px;
-  --font-3xl: clamp(28px, 4vw, 36px);
-  --font-display: clamp(36px, 7vw, 64px);
+  --font-3xl: 36px;
 
-  /* Layout */
+  /* Controls */
+  --control-height: 36px;
+  --control-height-lg: 44px;
+
+  /* Elevation */
+  --z-sticky: 100;
+
+  /* Motion */
+  --transition-fast: 0.15s ease-out;
+
+  /* Web only */
+
+  /* Text on rose buttons */
+  --accent-ink: #ffffff;
+  --space-20: 80px;
+  --space-24: 96px;
+  --font-family-mono:
+    ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  /* Section titles, then page titles */
+  --font-title: clamp(28px, 4vw, 36px);
+  --font-display: clamp(40px, 6vw, 60px);
   --container: 1120px;
   --gutter: var(--space-4);
   --header-height: 64px;
-  --control-height: 40px;
-
-  /* Elevation */
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
-  --z-header: 100;
-
-  /* Motion */
-  --transition-fast: 0.2s ease;
 }
 
 @media (min-width: 720px) {

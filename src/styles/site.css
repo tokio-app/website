@@ -41,9 +41,16 @@ h2,
 h3,
 h4 {
   margin: 0;
+  font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+h3,
+h4 {
+  line-height: 1.3;
+  letter-spacing: 0;
 }
 
 p {
@@ -71,7 +78,7 @@ code {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-primary);
+  outline: 2px solid var(--accent-primary-hover);
   outline-offset: 2px;
 }
 
@@ -100,7 +107,7 @@ code {
 }
 
 .section-head h2 {
-  font-size: var(--font-3xl);
+  font-size: var(--font-title);
 }
 
 .section-head p {
@@ -111,7 +118,7 @@ code {
   color: var(--font-secondary);
 }
 
-/* Buttons */
+/* Buttons, as the app draws them */
 
 .btn {
   display: inline-flex;
@@ -119,63 +126,62 @@ code {
   justify-content: center;
   gap: var(--space-2);
   min-height: var(--control-height);
-  padding: var(--space-2) var(--space-5);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-strong);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   background: var(--background-secondary);
   color: var(--font-primary);
   font: inherit;
   font-size: var(--font-md);
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    transform var(--transition-fast);
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .btn:hover {
   color: var(--font-primary);
-  background: var(--background-secondary-hover);
-}
-
-.btn:active {
-  transform: translateY(1px);
+  border-color: var(--background-secondary-hover);
+  background: var(--border);
 }
 
 .btn-primary {
+  border-color: transparent;
   background: var(--accent-primary);
-  border-color: var(--accent-primary);
   color: var(--accent-ink);
+  font-weight: 600;
 }
 
 .btn-primary:hover {
+  border-color: transparent;
   background: var(--accent-primary-hover);
-  border-color: var(--accent-primary-hover);
   color: var(--accent-ink);
 }
 
 .btn-lg {
-  min-height: 48px;
+  min-height: var(--control-height-lg);
   padding-inline: var(--space-6);
   font-size: var(--font-lg);
+  font-weight: 600;
 }
 
+/* A panel: grouped content, without a shadow */
 .card {
   border: 1px solid var(--border);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-lg);
   background: var(--background-tertiary);
-  box-shadow: var(--shadow-card);
 }
 
 /* Long-form content (about page) */
 
+/* Under 80 characters a line */
 .prose {
   display: grid;
   gap: var(--space-4);
-  max-width: 720px;
+  max-width: 68ch;
   color: var(--font-secondary);
 }
 

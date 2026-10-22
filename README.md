@@ -29,4 +29,4 @@ Every push to `main` builds the site and deploys it to GitHub Pages (`.github/wo
 
 ## License
 
-The website's source is licensed under the [MIT License](LICENSE). Tokio is MIT-licensed too, except one LGPL-3.0-only file; see its [repository](https://github.com/tokio-app/tokio) for details.
+The website's source is licensed under the [MIT License](LICENSE), except the vendored `.claude/skills/frontend-design/` (Apache-2.0). It self-hosts the [Archivo](https://github.com/Omnibus-Type/Archivo) typeface, under the [SIL Open Font License 1.1](https://openfontlicense.org). Tokio is MIT-licensed too, except one LGPL-3.0-only file; see its [repository](https://github.com/tokio-app/tokio) for details.
