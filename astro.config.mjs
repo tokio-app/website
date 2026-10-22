@@ -33,6 +33,11 @@ export default defineConfig({
         "./src/styles/tokens.css",
         "./src/styles/starlight.css",
       ],
+      // Dark only, like the rest of the site: no theme switch
+      components: {
+        ThemeProvider: "./src/components/DarkOnly.astro",
+        ThemeSelect: "./src/components/DarkOnly.astro",
+      },
       expressiveCode: {
         // The plain frame for shell code too: the terminal frame draws
         // window dots.

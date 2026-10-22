@@ -1,4 +1,6 @@
-/* Maps the app's palette onto Starlight's theme variables. */
+/* Maps the app's palette onto Starlight's theme variables. The docs are
+   dark only, like the app: astro.config.mjs swaps Starlight's theme switch
+   for src/components/DarkOnly.astro. */
 
 :root {
   --sl-font: var(--font-family);
@@ -28,27 +30,6 @@
   --sl-color-hairline-light: var(--sl-color-gray-5);
   --sl-color-hairline: var(--sl-color-gray-5);
   --sl-color-hairline-shade: var(--sl-color-gray-5);
-
-  /* Borders on hover */
-  --docs-hover: var(--background-secondary-hover);
-}
-
-:root[data-theme="light"] {
-  --sl-color-accent-low: #ffe4e6;
-  --sl-color-accent: #e11d48;
-  --sl-color-accent-high: #881337;
-
-  --sl-color-white: #18181b;
-  --sl-color-gray-1: #27272a;
-  --sl-color-gray-2: #3f3f46;
-  --sl-color-gray-3: #52525b;
-  --sl-color-gray-4: #71717a;
-  --sl-color-gray-5: #e4e4e7;
-  --sl-color-gray-6: #f4f4f5;
-  --sl-color-gray-7: #fafafa;
-  --sl-color-black: #ffffff;
-
-  --docs-hover: #a1a1aa;
 }
 
 /* At the titles' weight, as on the site */
@@ -75,6 +56,11 @@ a[rel="me"] {
 
 a[rel="me"]:hover {
   color: var(--sl-color-white);
+}
+
+/* Nothing follows the GitHub link without the theme switch, so no divider */
+.social-icons::after {
+  content: none;
 }
 
 /* "On this page" keeps the sidebar's width, and the content is centered
@@ -108,7 +94,7 @@ site-search button[data-open-modal] {
 }
 
 site-search button[data-open-modal]:hover {
-  border-color: var(--docs-hover);
+  border-color: var(--background-secondary-hover);
 }
 
 @media (min-width: 50rem) {
@@ -125,22 +111,22 @@ site-search button[data-open-modal]:hover {
   background-color: var(--sl-color-gray-6);
 }
 
-:root:not([data-theme="light"]) .starlight-aside--note {
+.starlight-aside--note {
   --sl-color-asides-border: var(--info);
   --sl-color-asides-text-accent: var(--info);
 }
 
-:root:not([data-theme="light"]) .starlight-aside--tip {
+.starlight-aside--tip {
   --sl-color-asides-border: var(--success);
   --sl-color-asides-text-accent: var(--success);
 }
 
-:root:not([data-theme="light"]) .starlight-aside--caution {
+.starlight-aside--caution {
   --sl-color-asides-border: var(--warning);
   --sl-color-asides-text-accent: var(--warning);
 }
 
-:root:not([data-theme="light"]) .starlight-aside--danger {
+.starlight-aside--danger {
   --sl-color-asides-border: var(--danger);
   --sl-color-asides-text-accent: var(--danger);
 }
@@ -153,7 +139,7 @@ site-search button[data-open-modal]:hover {
 }
 
 .sl-link-card:hover {
-  border-color: var(--docs-hover);
+  border-color: var(--background-secondary-hover);
 }
 
 /* Smaller previous/next links at the bottom of each docs page. Two fixed
@@ -177,7 +163,7 @@ site-search button[data-open-modal]:hover {
 }
 
 .pagination-links a:hover {
-  border-color: var(--docs-hover);
+  border-color: var(--background-secondary-hover);
 }
 
 .pagination-links .link-title {

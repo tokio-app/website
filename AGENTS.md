@@ -31,22 +31,22 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 
 ## Layout
 
-| Path                           | Role                                                                                                   |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro` |
-| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                               |
-| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                 |
-| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (the hero: the app's Home)   |
-| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                       |
-| `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                     |
-| `src/lib/os.ts`                | Browser-side OS detection for the download links                                                       |
-| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                                  |
-| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`               |
-| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark and light)                             |
-| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                                    |
-| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                         |
-| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                                        |
-| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                                     |
+| Path                           | Role                                                                                                                                           |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro`                                         |
+| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                                                                       |
+| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                                                         |
+| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (the hero: the app's Home), `DarkOnly` (no theme switch in the docs) |
+| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                                                               |
+| `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                                                             |
+| `src/lib/os.ts`                | Browser-side OS detection for the download links                                                                                               |
+| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                                                                          |
+| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`                                                       |
+| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark only)                                                                          |
+| `src/assets/`                  | Images processed by Astro (`icon.png`, screenshots)                                                                                            |
+| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                                                                 |
+| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                                                                                |
+| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                                                                             |
 
 `dist/` and `.astro/` are generated. Don't edit them.
 
@@ -89,7 +89,7 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 
 - Colors, radii, spacing and type sizes come from the app's `tokio/src/ui/styles/tokens.css`. Keep the shared names, values and order in sync; web-only tokens go below them. Use tokens instead of raw values.
 - Type is Archivo (`@fontsource-variable/archivo`, its `wdth.css` for the width axis), imported in `Base.astro` and first in Starlight's `customCss`. Text is 400; labels, nav and buttons 500; titles and bold text 600. Only the hero's live numbers use the app's readout: `font-stretch: var(--stretch-readout)`, 700, `tabular-nums`.
-- The marketing pages are dark only, like the app. The docs follow Starlight's dark/light switch, so `starlight.css` defines both palettes.
+- The whole site is dark only, like the app. In the docs, `DarkOnly.astro` replaces Starlight's `ThemeProvider` and `ThemeSelect` (`components` in `astro.config.mjs`), so there's no theme switch and no light palette; Starlight already renders `<html data-theme="dark">`.
 - Ship no client framework. Small processed `<script>` tags in `.astro` files are fine; don't add React, Vue or similar for these pages.
 - Animations must respect `prefers-reduced-motion`. `site.css` handles it globally, delays included, so staggered entrances show at once.
 - Icons: `Icon.astro` draws line icons inline and takes brand icons (`github`, `apple`, `linux`) from Starlight. Add new line icons there instead of adding an icon package.
