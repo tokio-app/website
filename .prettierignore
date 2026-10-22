@@ -2,3 +2,5 @@ dist
 .astro
 node_modules
 yarn.lock
+# Vendored from anthropics/skills, kept as published
+.claude/skills/frontend-design

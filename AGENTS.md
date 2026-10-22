@@ -50,6 +50,14 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 
 `dist/` and `.astro/` are generated. Don't edit them.
 
+## Skills
+
+Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as `/<name>` and loads it when a task matches its description.
+
+**Other agents:** before doing one of these tasks, read its `SKILL.md`.
+
+- `frontend-design`: the visual direction for new or reshaped pages (Anthropic's skill, Apache-2.0, vendored as published, like the app's copy)
+
 ## Architecture
 
 ### Pages and docs
@@ -110,7 +118,7 @@ The site must not look generated. Avoid the usual template patterns:
 
 ## Licensing
 
-- The website's source is MIT (`LICENSE`).
+- The website's source is MIT (`LICENSE`), except `.claude/skills/frontend-design/`, Anthropic's skill under Apache-2.0 (its `LICENSE.txt` is beside it).
 - Tokio's source and the distributed app are MIT, except `drm-v2.ts` (LGPL-3.0-only). It connects to TikTok LIVE through `@tokioapp/connector` (MIT, `tokio-app/connector`). The About page must keep stating this, along with the copyright (`© 2026 Italo Alfaro and contributors`), the no-warranty notice and where to get the source.
 - `SERVICES` in `src/pages/about.astro` mirrors the Services list in the app's `THIRD_PARTY_NOTICES.md`. Keep them in sync.
 - Check licenses when adding or upgrading a dependency. Ask before adding anything copyleft (GPL, AGPL, LGPL, MPL, CC BY-SA), including fonts and icon sets.
