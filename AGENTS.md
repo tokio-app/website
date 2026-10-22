@@ -36,7 +36,7 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 | `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro` |
 | `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                               |
 | `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                 |
-| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (hero illustration)          |
+| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (the hero: the app's Home)   |
 | `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                       |
 | `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                     |
 | `src/lib/os.ts`                | Browser-side OS detection for the download links                                                       |
@@ -70,8 +70,8 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 ### Download links
 
 - `getLatestRelease()` in `src/lib/release.ts` fetches `repos/tokio-app/tokio/releases/latest` once per build. Only published, non-draft releases count. It uses `GITHUB_TOKEN` when set and returns `null` when GitHub can't be reached; pages must still build and work then.
-- `DOWNLOADS` is one card per system, each the app's own package: the setup on Windows, a zip per Mac architecture, the AppImage on Linux. Tokio has no separate installer.
-- The packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, every card links to the latest release's page instead. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `build-app.yml`; keep `DOWNLOADS` in sync when those change.
+- `DOWNLOADS` is one row per package, each the app itself: the setup on Windows, a zip per Mac architecture, the AppImage on Linux. Tokio has no separate installer.
+- The packages carry the version (`tokio-<version>-setup.exe`, `-mac-arm64.zip`, `-mac-x64.zip`, `-x86_64.AppImage`) and are matched by suffix. Without the GitHub API, every row links to the latest release's page instead. The names come from `artifactName` in the app's `electron-builder.yml` and the upload paths in its `build-app.yml`; keep `DOWNLOADS` in sync when those change.
 - The site is static, so the version only changes on rebuild. `deploy.yml` runs on push to `main`, by hand, and on a `repository_dispatch` of type `release`. The release workflows of the app and of the overlays send it after publishing, with the `WEBSITE_DISPATCH_TOKEN` secret (Contents read and write on this repo); without the secret they only warn.
 - `DownloadButton` links to `/download/` and, after OS detection, straight to the setup on Windows and to the AppImage on Linux. They only get the direct link when the build read the release, since their names carry the version. macOS has two zips (Apple Silicon and Intel), so it keeps the download page.
 - `DownloadTable` lists the same files with their real names in the Install docs (`install.mdx`), so the docs never spell out a version by hand.
@@ -87,25 +87,33 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 
 ### Styling
 
-- Colors, radii and spacing come from the app's `tokio/src/ui/styles/tokens.css`. Keep the shared names and values in sync; web-only tokens are added below them. Use tokens instead of raw values.
+- Colors, radii, spacing and type sizes come from the app's `tokio/src/ui/styles/tokens.css`. Keep the shared names, values and order in sync; web-only tokens go below them. Use tokens instead of raw values.
+- Type is Archivo (`@fontsource-variable/archivo`, its `wdth.css` for the width axis), imported in `Base.astro` and first in Starlight's `customCss`. Text is 400; labels, nav and buttons 500; titles and bold text 600. Only the hero's live numbers use the app's readout: `font-stretch: var(--stretch-readout)`, 700, `tabular-nums`.
 - The marketing pages are dark only, like the app. The docs follow Starlight's dark/light switch, so `starlight.css` defines both palettes.
 - Ship no client framework. Small processed `<script>` tags in `.astro` files are fine; don't add React, Vue or similar for these pages.
-- Animations must respect `prefers-reduced-motion` (handled globally in `site.css`).
+- Animations must respect `prefers-reduced-motion`. `site.css` handles it globally, delays included, so staggered entrances show at once.
 - Icons: `Icon.astro` draws line icons inline and takes brand icons (`github`, `apple`, `linux`) from Starlight. Add new line icons there instead of adding an icon package.
-- Layouts must work at phone width with no horizontal scroll.
+- Layouts must work at phone width with no horizontal scroll. Keep lines of text under 80 characters: `.prose` is 68ch wide and the docs' content column 37rem.
+- Page styles are scoped with `:where()`, so they add no specificity, and a `site.css` rule such as `.prose ul` beats a page's `.services`. When they conflict, prefix the page's selector with the parent's class (`.prose .services`).
 - Starlight's own components are restyled with plain (unlayered) rules in `starlight.css`, which win over Starlight's `@layer starlight.*` styles. The docs pagination is made smaller there and kept in two fixed columns, so a lone "Previous" or "Next" link takes half the width.
+- Code blocks use Expressive Code's plain frame for every language (`expressiveCode.defaultProps.frame: "code"` in `astro.config.mjs`): its terminal frame draws window dots.
+- Local builds reuse rendered Markdown from `node_modules/.astro/data-store.json`. After changing Expressive Code or Markdown options, delete it before building, or the docs keep the old output. CI builds start without it.
 
 ### Look and feel
 
-The site must not look generated. Avoid the usual template patterns:
+The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and the `frontend-design` skill. It must not look generated:
 
-- No pill tags or badges (version pills, "Free and open source" chips, colored labels), and no uppercase "eyebrow" labels above headings. Say it in plain text instead.
-- No colored shadows on buttons or gradient text.
-- No grids of identical cards with an icon in a tinted square and a "Learn more →" link. Show features as rows with a concrete example (a template, a chat command, a URL, a code line), and link the title.
+- No pill tags or badges (version pills, "Free and open source" chips, colored labels), no uppercase "eyebrow" labels, and no meta lines joined with middle dots. Say it in a sentence instead.
+- No colored shadows on buttons, no gradient text, and no shadows on cards.
+- No grids of identical cards with an icon in a tinted square and a "Learn more →" link. Show features as rows with a concrete example (a template, a chat command, a URL, the app's own rows), and link the title.
 - No fake window chrome (traffic-light dots).
-- Prefer real content over decoration: actual commands, file names, event names and settings from the app.
-- Keep the brand's warmth, though. Plain is not the goal: soft rose washes (`--accent-soft` radial gradients) behind the hero and the closing "Ready for your next LIVE?" section, and rose accents such as the step timeline, are wanted. Keep them subtle and limited to a few places.
-- The getting-started timeline has four steps that match the app's flow: install, set it up (the Euler Stream API key, voices, music provider, alert sounds, overlays), prepare your stream (turn on the features, add the overlays to OBS or TikTok LIVE Studio), go live and connect. Everything is set up before the LIVE starts; Tokio can only connect once it has. The connect docs (`connect.mdx`) follow the same four steps.
+- Prefer real content over decoration: actual commands, file names, event names and settings from the app. Mono is for code only.
+- One Ink surface. Panels (`--background-tertiary`, radius 8, a `--border` hairline) only hold grouped content, such as the hero's feed, the feature examples and the download list; hairlines and spacing do the rest. Controls take radius 6, the hero's window 10.
+- Rose means LIVE or "do this": the tally and the LIVE dot, primary buttons, links, selection (the docs' current page) and focus. Text on rose buttons is white. Rose is never a border, frame or decoration.
+- The tally, the app's rose line at the top's center fading out to both sides, only appears on the hero's picture of the app while LIVE. The site itself isn't live.
+- Keep the brand's warmth, though. Plain is not the goal: the soft rose washes (`--accent-soft` radial gradients) behind the hero and the closing "Ready for your next LIVE?" section stay, subtle. The step timeline is neutral until its track fades into rose at step 4, where you go LIVE.
+- Descriptions are short, a few words each, as in the app.
+- The getting-started timeline has four steps that match the app's flow: install, set it up (the Euler Stream API key, voices, music provider, alert sounds, overlays), prepare your stream (turn on the features, add the overlays to OBS or TikTok LIVE Studio), go live and connect. Everything is set up before the LIVE starts; Tokio can only connect once it has. The connect docs (`connect.mdx`) follow the same four steps. The steps' links line up at the bottom, whatever their text's length.
 
 ## Content
 
