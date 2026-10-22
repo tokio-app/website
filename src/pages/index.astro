@@ -87,12 +87,11 @@ const STEPS = [
         </div>
         <p class="meta">
           {[
-            "Free and open source",
-            release && `Version ${release.version}`,
-            "Windows, macOS and Linux",
+            "Free and open source, for Windows, macOS and Linux.",
+            release && `Version ${release.version}.`,
           ]
             .filter(Boolean)
-            .join(" · ")}
+            .join(" ")}
         </p>
       </div>
       <LiveFeed />
@@ -226,8 +225,6 @@ const STEPS = [
 
   h1 {
     font-size: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.03em;
   }
 
   .lead {
@@ -249,7 +246,7 @@ const STEPS = [
   }
 
   .meta {
-    color: var(--font-muted);
+    color: var(--font-secondary);
     font-size: var(--font-sm);
   }
 

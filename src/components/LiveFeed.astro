@@ -1,53 +1,95 @@
 ---
-// Hero illustration: LIVE events and what Tokio does with each one.
+// Hero illustration: the app's Home during a LIVE, with the tally lit, and
+// what Tokio does with each event.
 import Icon from "./Icon.astro";
 
-const EVENTS = [
+// The app's sample numbers, as its readout shortens them
+const STATS = [
+  { label: "Viewers", value: "312" },
+  { label: "Likes", value: "48.2K" },
+  { label: "Total views", value: "15.2K" },
+];
+
+interface Event {
+  name: string;
+  // Chats show the message under the name, other events after it
+  message?: string;
+  action?: string;
+  coins?: string;
+  icon: "volume" | "bell" | "music" | "layers";
+  reaction: string;
+}
+
+// Newest first, as the app's feed lists them
+const EVENTS: Event[] = [
   {
-    icon: "chat",
-    user: "@lucia",
-    text: "hi from Lima!",
-    action: "Read aloud with the Edge voice",
+    name: "Lucia",
+    message: "hi from Lima!",
+    icon: "volume",
+    reaction: "Read aloud with the Edge voice",
   },
   {
-    icon: "gift",
-    user: "@marco",
-    text: "sent Rose ×5",
-    action: "Played applause.mp3",
+    name: "Marco",
+    action: "sent Rose ×5",
+    coins: "5 coins",
+    icon: "bell",
+    reaction: "Played applause.mp3",
   },
   {
+    name: "Ana",
+    message: "!play One More Time",
     icon: "music",
-    user: "@ana",
-    text: "!play One More Time",
-    action: "Added to the music queue",
+    reaction: "Added to the music queue",
   },
   {
-    icon: "follow",
-    user: "@sam",
-    text: "followed you",
-    action: "Follow banner on the overlay",
+    name: "Sam",
+    action: "followed you",
+    icon: "layers",
+    reaction: "Follow banner on the overlay",
   },
-] as const;
+];
 ---
 
-<figure class="feed" aria-label="Example: Tokio reacting to LIVE events">
-  <figcaption>
-    <span class="live">
-      <i></i>LIVE
-    </span>
-    <span>@username</span>
-  </figcaption>
-  <ol>
+<figure
+  class="home"
+  aria-label="Example: Tokio's Home during a LIVE, and what it does with each event"
+>
+  <div class="head">
+    <p class="title">Dashboard</p>
+    <p class="status">
+      <span class="dot"></span>
+      <span>
+        LIVE · <span class="timer">01:23:10</span>
+      </span>
+    </p>
+  </div>
+
+  <div class="stats">
+    {STATS.map((stat) => (
+      <p class="stat">
+        <span class="value">{stat.value}</span>
+        <span class="label">{stat.label}</span>
+      </p>
+    ))}
+  </div>
+
+  <ol class="feed">
     {EVENTS.map((event, index) => (
-      <li style={`--delay: ${index * 0.6 + 0.2}s`}>
-        <span class="icon">
-          <Icon name={event.icon} size={16} />
+      <li style={`--delay: ${(EVENTS.length - 1 - index) * 0.6 + 0.4}s`}>
+        <span class="avatar" aria-hidden="true">
+          {event.name[0]}
         </span>
-        <div>
+        <div class="body">
           <p>
-            <strong>{event.user}</strong> {event.text}
+            <strong>{event.name}</strong>
+            {event.action && ` ${event.action}`}
+            {event.coins && <span class="coins">{event.coins}</span>}
           </p>
-          <p class="action">{event.action}</p>
+          {event.message && <p class="message">{event.message}</p>}
+          <p class="reaction">
+            <Icon name={event.icon} size={14} />
+            {event.reaction}
+          </p>
         </div>
       </li>
     ))}
@@ -55,54 +97,116 @@ const EVENTS = [
 </figure>
 
 <style>
-  .feed {
+  .home {
+    position: relative;
     margin: 0;
+    padding: var(--space-4);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    background: var(--background-tertiary);
-    overflow: hidden;
+    background: var(--background-primary);
   }
 
-  figcaption {
+  @media (min-width: 720px) {
+    .home {
+      padding: var(--space-6);
+    }
+  }
+
+  /* On air: the app's tally, a rose line at the top's center, fading out to
+     both sides */
+  .home::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent-primary) 35%,
+      var(--accent-primary) 65%,
+      transparent
+    );
+    animation: on-air 0.3s ease-out 0.1s both;
+  }
+
+  .head {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-3) var(--space-4);
-    border-bottom: 1px solid var(--border);
-    color: var(--font-secondary);
-    font-size: var(--font-sm);
+    justify-content: space-between;
+    gap: var(--space-4);
   }
 
-  .live {
+  .title {
+    font-size: var(--font-lg);
+    font-weight: 600;
+  }
+
+  .status {
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    color: var(--accent-primary-hover);
-    font-size: var(--font-xs);
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    font-size: var(--font-sm);
+    font-weight: 600;
   }
 
-  .live i {
+  .timer {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Steady, like the tally */
+  .dot {
     width: 8px;
     height: 8px;
     border-radius: var(--radius-full);
     background: var(--accent-primary);
-    animation: pulse 1.6s ease-in-out infinite;
   }
 
-  ol {
-    margin: 0;
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  /* The readout: live numbers, condensed, with tabular figures */
+  .value {
+    font-size: var(--font-3xl);
+    font-stretch: var(--stretch-readout);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .label {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+    font-weight: 500;
+  }
+
+  .feed {
+    margin: var(--space-6) 0 0;
     padding: 0;
     list-style: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--background-tertiary);
   }
 
   li {
     display: flex;
+    align-items: flex-start;
     gap: var(--space-3);
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-4);
     font-size: var(--font-md);
-    animation: rise 0.5s ease-out both;
+    animation: arrive 0.5s ease-out both;
     animation-delay: var(--delay);
   }
 
@@ -110,55 +214,62 @@ const EVENTS = [
     border-top: 1px solid var(--border);
   }
 
-  li div {
-    display: grid;
-    gap: var(--space-1);
-    min-width: 0;
-  }
-
-  li p {
-    color: var(--font-secondary);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  strong {
-    color: var(--font-primary);
-    font-weight: 600;
-  }
-
-  .action {
-    color: var(--font-primary);
-    font-size: var(--font-sm);
-  }
-
-  .action::before {
-    content: "↳ ";
-    color: var(--accent-primary-hover);
-  }
-
-  .icon {
+  .avatar {
     display: grid;
     place-items: center;
     flex: none;
     width: 28px;
     height: 28px;
     border-radius: var(--radius-full);
-    background: var(--background-secondary);
+    background: var(--border);
+    color: var(--font-secondary);
+    font-size: var(--font-xs);
+    font-weight: 600;
+  }
+
+  .body {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  .message,
+  .coins {
     color: var(--font-secondary);
   }
 
-  @keyframes rise {
+  .coins {
+    margin-left: var(--space-1);
+    font-size: var(--font-sm);
+  }
+
+  /* What Tokio did with it */
+  .reaction {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+  }
+
+  .reaction :global(svg) {
+    flex: none;
+  }
+
+  @keyframes on-air {
     from {
       opacity: 0;
-      transform: translateY(8px);
     }
   }
 
-  @keyframes pulse {
-    50% {
-      opacity: 0.35;
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
     }
   }
 </style>
