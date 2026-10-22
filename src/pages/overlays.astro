@@ -48,10 +48,9 @@ const items = await Promise.all(
       <div class="section-head">
         <h1>Overlays</h1>
         <p>
-          Official overlays for your LIVE. Install one from the{" "}
-          <strong>Overlays</strong> page in Tokio, set its colors and text, and
-          add the link Tokio gives it to OBS or TikTok LIVE Studio. New versions
-          show up in Tokio, and updating keeps your settings.
+          Install them from the <strong>Overlays</strong> page in Tokio, then
+          add each one's link to OBS or TikTok LIVE Studio. Updates keep your
+          settings.
         </p>
         <p class="links">
           <a href="/docs/features/overlays/">How overlays work</a>
@@ -79,7 +78,7 @@ const items = await Promise.all(
                 <h2>{overlay.name}</h2>
                 <p class="description">{overlay.description}</p>
                 <p class="meta">
-                  Version {overlay.version} ·{" "}
+                  Version {overlay.version}.{" "}
                   <a href={overlay.url}>Download the zip</a>{" "}
                   {`(${formatSize(overlay.size)})`}
                 </p>
@@ -107,7 +106,6 @@ const items = await Promise.all(
 <style>
   h1 {
     font-size: var(--font-display);
-    font-weight: 800;
   }
 
   .links {
@@ -115,7 +113,7 @@ const items = await Promise.all(
     flex-wrap: wrap;
     gap: var(--space-2) var(--space-6);
     font-size: var(--font-md);
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .overlays {
@@ -149,7 +147,7 @@ const items = await Promise.all(
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     background: var(--background-primary);
   }
 
@@ -177,7 +175,7 @@ const items = await Promise.all(
   }
 
   .meta {
-    color: var(--font-muted);
+    color: var(--font-secondary);
     font-size: var(--font-sm);
   }
 

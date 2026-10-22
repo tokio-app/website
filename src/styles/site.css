@@ -58,6 +58,12 @@ p {
   text-wrap: pretty;
 }
 
+/* At the titles' weight: 700 is only for readouts */
+b,
+strong {
+  font-weight: 600;
+}
+
 a {
   color: var(--accent-primary-hover);
   text-underline-offset: 3px;

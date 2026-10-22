@@ -51,6 +51,12 @@
   --docs-hover: #a1a1aa;
 }
 
+/* At the titles' weight, as on the site */
+b,
+strong {
+  font-weight: 600;
+}
+
 /* The site header's wordmark, not a rose title */
 .site-title {
   gap: var(--space-2);

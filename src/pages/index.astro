@@ -7,55 +7,70 @@ import { getLatestRelease, REPO_URL } from "../lib/release";
 
 const release = await getLatestRelease();
 
+// Code, or rows drawn the way the app draws them
+type Example = string | { name: string; value?: string; current?: boolean }[];
+
 // Each feature shows a small, real example of what it does.
-const FEATURES = [
+const FEATURES: {
+  title: string;
+  href: string;
+  text: string;
+  example: Example;
+}[] = [
   {
     title: "Text-to-speech",
     href: "/docs/features/text-to-speech/",
-    text: "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices. Choose who can talk, what gets read and how names and acronyms should sound.",
+    text: "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices.",
     example: "{username} says {comment}\n→ Lucia says hi from Lima!",
   },
   {
     title: "Music requests",
     href: "/docs/features/music-requests/",
-    text: "Viewers request songs from chat, played in Tokio's YouTube player or in your Spotify app. Rename the commands or turn them off.",
+    text: "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
     example: "!play One More Time\n!next  !last  !revoke",
   },
   {
     title: "Sound alerts",
     href: "/docs/features/alerts/",
-    text: "Play a sound for follows, shares, likes, gifts, Super Fan events and more. Upload your own sounds or search MyInstants without leaving the app.",
-    example:
-      "Follow        bell.mp3\nGift · Rose   applause.mp3\nShare         whoosh.mp3",
+    text: "A sound for follows, gifts, Super Fan events and more, from your files or MyInstants.",
+    example: [
+      { name: "Follow", value: "bell.mp3" },
+      { name: "Gift", value: "applause.mp3" },
+      { name: "Share", value: "whoosh.mp3" },
+    ],
   },
   {
     title: "Overlays",
     href: "/docs/features/overlays/",
-    text: "Install the official overlays or import your own, set their colors, text and gifts from the gallery, and add them to OBS or TikTok LIVE Studio with one link.",
+    text: "Install the official overlays or import your own, then add each with one link.",
     example: "http://tokio-app.local:37891/\n  <overlay-id>/",
   },
   {
     title: "Profiles",
     href: "/docs/features/profiles-and-settings/",
-    text: "Keep separate settings for different streams and switch between them from the title bar.",
-    example: "Just chatting\nMusic night   ← active\nGaming",
+    text: "Separate settings for different streams, switched from the title bar.",
+    example: [
+      { name: "Just chatting" },
+      { name: "Music night", current: true },
+      { name: "Gaming" },
+    ],
   },
 ];
 
 const STEPS = [
   {
     title: "Install Tokio",
-    text: "Download Tokio for Windows, macOS or Linux. Once installed, it checks for updates on its own.",
+    text: "For Windows, macOS or Linux. It checks for updates on its own.",
     link: { href: "/download/", label: "Download" },
   },
   {
     title: "Set it up",
-    text: "Add your free Euler Stream key, pick your voices, connect your music, choose your alert sounds and overlays. Each profile keeps its own settings.",
+    text: "Add your free Euler Stream key, then your voices, music, alert sounds and overlays.",
     link: { href: "/docs/#features", label: "Features" },
   },
   {
     title: "Prepare your stream",
-    text: "Switch on tts, music and alerts on Tokio's Home page, and add your overlays to OBS or TikTok LIVE Studio.",
+    text: "Turn on the features you want, and add your overlays to OBS or TikTok LIVE Studio.",
     link: {
       href: "/docs/guides/adding-an-overlay/",
       label: "Adding an overlay",
@@ -63,7 +78,7 @@ const STEPS = [
   },
   {
     title: "Go live and connect",
-    text: "Start your LIVE on TikTok, then enter your @username on Tokio's Home page and connect.",
+    text: "Start your LIVE on TikTok, then connect with your @username.",
     link: { href: "/docs/connect/", label: "How to connect" },
   },
 ];
@@ -102,11 +117,7 @@ const STEPS = [
     <div class="container">
       <div class="section-head">
         <h2>What Tokio does</h2>
-        <p>
-          Turn each feature on or off for the session, then follow your LIVE on
-          the dashboard: its stats, the followers and coins it brings, and a
-          feed of chats, gifts and follows as they come in.
-        </p>
+        <p>Turn each feature on or off for the session.</p>
       </div>
       <ul class="features">
         {FEATURES.map((feature) => (
@@ -115,30 +126,37 @@ const STEPS = [
               <a href={feature.href}>{feature.title}</a>
             </h3>
             <p>{feature.text}</p>
-            <pre aria-hidden="true">{feature.example}</pre>
+            {typeof feature.example === "string" ? (
+              <pre aria-hidden="true">{feature.example}</pre>
+            ) : (
+              <ul class="example" aria-hidden="true">
+                {feature.example.map((row) => (
+                  <li class:list={{ current: row.current }}>
+                    {row.name}
+                    {row.value && <span>{row.value}</span>}
+                    {row.current && <Icon name="check" size={14} />}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="section band">
+  <section class="section">
     <div class="container overlay-grid">
       <div class="section-head">
         <h2>One link per overlay, in any streaming app</h2>
-        <p>
-          Each overlay gets its own address on your computer. Add it as a
-          browser source in OBS, as a link in TikTok LIVE Studio, or anywhere
-          that can show a web page. Tokio keeps it fed with LIVE events while
-          you stream.
-        </p>
-        <p class="band-links">
+        <p>Each overlay gets its own address on your computer.</p>
+        <p class="links">
           <a href="/overlays/">Browse the overlays</a>
           <a href="/docs/guides/adding-an-overlay/">How to add an overlay</a>
         </p>
       </div>
       <div class="card url-card">
-        <p class="muted">Browser source URL</p>
+        <p class="label">Browser source URL</p>
         <code>http://tokio-app.local:37891/&lt;overlay-id&gt;/</code>
         <ul>
           <li>
@@ -257,7 +275,7 @@ const STEPS = [
     border-bottom: 1px solid var(--border);
   }
 
-  .features li {
+  .features > li {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-3) var(--space-8);
@@ -266,7 +284,7 @@ const STEPS = [
   }
 
   @media (min-width: 960px) {
-    .features li {
+    .features > li {
       grid-template-columns: 220px minmax(0, 1fr) 340px;
       align-items: start;
     }
@@ -291,11 +309,17 @@ const STEPS = [
     color: var(--font-secondary);
   }
 
-  pre {
+  /* Examples are panels: code in mono, app rows in the app's type */
+  pre,
+  .example {
     margin: 0;
-    padding: var(--space-3) var(--space-4);
-    border-left: 2px solid var(--accent-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     background: var(--background-tertiary);
+  }
+
+  pre {
+    padding: var(--space-3) var(--space-4);
     color: var(--font-primary);
     font-family: var(--font-family-mono);
     font-size: var(--font-sm);
@@ -303,18 +327,37 @@ const STEPS = [
     overflow-x: auto;
   }
 
-  .steps h3 {
-    font-size: var(--font-xl);
-  }
-
-  .steps p {
-    color: var(--font-secondary);
+  .example {
+    padding: 0;
+    list-style: none;
     font-size: var(--font-md);
   }
 
-  .band {
-    border-block: 1px solid var(--border);
-    background: var(--background-tertiary);
+  .example li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: var(--control-height);
+    padding: var(--space-1) var(--space-4);
+  }
+
+  .example li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .example span {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+  }
+
+  /* A menu marks its current row, like the app's profile menu */
+  .example:has(.current) li:not(.current) {
+    color: var(--font-secondary);
+  }
+
+  .example .current :global(svg) {
+    color: var(--accent-primary);
   }
 
   .overlay-grid {
@@ -328,7 +371,7 @@ const STEPS = [
     margin-bottom: 0;
   }
 
-  .band-links {
+  .links {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2) var(--space-6);
@@ -343,26 +386,28 @@ const STEPS = [
 
   .url-card {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-3);
     padding: var(--space-6);
-    background: var(--background-primary);
   }
 
-  .url-card p {
+  .url-card .label {
     font-size: var(--font-sm);
+    font-weight: 500;
   }
 
+  /* The app's overlay card shows it in a field */
   .url-card code {
     display: block;
-    padding: var(--space-3) var(--space-4);
-    color: var(--accent-primary-hover);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    color: var(--font-primary);
     font-size: var(--font-md);
   }
 
   .url-card ul {
     display: grid;
     gap: var(--space-2);
-    margin: 0;
+    margin: var(--space-1) 0 0;
     padding: 0;
     list-style: none;
   }
@@ -378,7 +423,8 @@ const STEPS = [
     color: var(--success);
   }
 
-  /* Timeline: vertical on phones, horizontal from 960px. */
+  /* Timeline: vertical on phones, horizontal from 960px. It turns rose
+     only on the way to going LIVE. */
   .steps {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -396,6 +442,7 @@ const STEPS = [
     padding: 0 0 var(--space-10) var(--space-12);
   }
 
+  /* The track to the next step */
   .steps li::before {
     content: "";
     position: absolute;
@@ -403,10 +450,11 @@ const STEPS = [
     bottom: var(--space-2);
     left: 15px;
     width: 2px;
-    background: linear-gradient(
-      var(--accent-primary),
-      var(--background-secondary-hover)
-    );
+    background: var(--border);
+  }
+
+  .steps li:nth-last-child(2)::before {
+    background: linear-gradient(var(--border), var(--accent-primary));
   }
 
   .steps li:last-child::before {
@@ -421,18 +469,30 @@ const STEPS = [
     place-items: center;
     width: 32px;
     height: 32px;
-    border: 2px solid var(--accent-primary);
+    border: 1px solid var(--background-secondary-hover);
     border-radius: var(--radius-full);
     background: var(--background-primary);
-    color: var(--accent-primary-hover);
     font-size: var(--font-md);
-    font-weight: 700;
+    font-weight: 600;
+  }
+
+  .steps li:last-child .step-number {
+    border: 2px solid var(--accent-primary);
+  }
+
+  .steps h3 {
+    font-size: var(--font-xl);
+  }
+
+  .steps p {
+    color: var(--font-secondary);
+    font-size: var(--font-md);
   }
 
   .steps a {
     margin-top: var(--space-1);
     font-size: var(--font-md);
-    font-weight: 600;
+    font-weight: 500;
   }
 
   @media (min-width: 960px) {
@@ -441,7 +501,10 @@ const STEPS = [
       gap: var(--space-8);
     }
 
+    /* The text takes the spare height, so the links line up */
     .steps li {
+      grid-template-rows: auto 1fr auto;
+      align-content: stretch;
       padding: var(--space-12) 0 0;
     }
 
@@ -452,11 +515,10 @@ const STEPS = [
       right: calc(var(--space-2) - var(--space-8));
       width: auto;
       height: 2px;
-      background: linear-gradient(
-        90deg,
-        var(--accent-primary),
-        var(--background-secondary-hover)
-      );
+    }
+
+    .steps li:nth-last-child(2)::before {
+      background: linear-gradient(90deg, var(--border), var(--accent-primary));
     }
   }
 

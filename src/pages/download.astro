@@ -35,14 +35,13 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
       <div class="section-head">
         <h1>Get Tokio</h1>
         <p>
-          Pick your system: a setup on Windows, a zip with the app on macOS, an
-          AppImage on Linux. Once installed, Tokio checks for updates on its
-          own.
+          A setup on Windows, a zip on macOS, an AppImage on Linux. Tokio checks
+          for updates on its own.
         </p>
         <p class="meta">
           {release ? (
             <>
-              Version {release.version}, released {published} ·{" "}
+              Version {release.version}, released {published}.{" "}
               <a href={release.url}>Release notes</a>
             </>
           ) : (
@@ -53,19 +52,21 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
       <ul class="downloads">
         {downloads.map((download) => (
-          <li class="card download" data-os={download.os}>
-            <span class="os-icon">
-              <Icon name={OS_ICONS[download.os]} size={28} />
-            </span>
-            <div>
+          <li class="download" data-os={download.os}>
+            <Icon name={OS_ICONS[download.os]} size={24} />
+            <div class="what">
               <h2>{download.label}</h2>
-              <p class="muted">
+              <p>
                 {download.arch}
-                {download.size && <> · {formatSize(download.size)}</>}
+                {download.size && `, ${formatSize(download.size)}`}
               </p>
+              <span class="recommended">Your system</span>
             </div>
-            <span class="recommended">Your system</span>
-            <a class="btn" href={download.url}>
+            <a
+              class="btn"
+              href={download.url}
+              aria-label={`Download for ${download.label} (${download.arch})`}
+            >
               <Icon name="download" size={18} />
               Download
             </a>
@@ -74,35 +75,37 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
       </ul>
 
       <div class="notes">
-        <div class="card note">
+        <div class="note">
           <h2>macOS</h2>
-          <p>
-            Unzip it and move <strong>Tokio</strong> to your Applications
-            folder. macOS may block it the first time, since Tokio isn't
-            notarized yet.
-          </p>
-          <details class="more">
-            <summary>
-              <span class="show">Read more</span>
-              <span class="hide">Show less</span>
-            </summary>
+          <div>
             <p>
-              To open it anyway, right-click it in Finder and choose{" "}
-              <strong>Open</strong>, or allow it in{" "}
-              <strong>System Settings → Privacy & Security</strong>.
+              Unzip it and move <strong>Tokio</strong> to your Applications
+              folder. macOS may block it the first time, since Tokio isn't
+              notarized yet.
             </p>
-            <p>
-              When an update is out, Tokio opens its release page so you can
-              download the new zip.
-            </p>
-            <p>
-              Not sure which Mac you have? Apple menu →{" "}
-              <strong>About This Mac</strong>: "Apple M…" chips are Apple
-              Silicon, "Intel" ones are Intel.
-            </p>
-          </details>
+            <details class="more">
+              <summary>
+                <span class="show">Read more</span>
+                <span class="hide">Show less</span>
+              </summary>
+              <p>
+                To open it anyway, right-click it in Finder and choose{" "}
+                <strong>Open</strong>, or allow it in{" "}
+                <strong>System Settings → Privacy & Security</strong>.
+              </p>
+              <p>
+                When an update is out, Tokio opens its release page so you can
+                download the new zip.
+              </p>
+              <p>
+                Not sure which Mac you have? Apple menu →{" "}
+                <strong>About This Mac</strong>: "Apple M…" chips are Apple
+                Silicon, "Intel" ones are Intel.
+              </p>
+            </details>
+          </div>
         </div>
-        <div class="card note">
+        <div class="note">
           <h2>Linux</h2>
           <p>
             Tokio comes as an AppImage. Make it executable with{" "}
@@ -110,7 +113,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
             AppImages need FUSE.
           </p>
         </div>
-        <div class="card note">
+        <div class="note">
           <h2>Voices</h2>
           <p>
             TikTok and Microsoft Edge voices work everywhere. The voices
@@ -133,11 +136,11 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   const os = detectOS();
   if (os) {
-    for (const card of document.querySelectorAll<HTMLElement>(
+    for (const row of document.querySelectorAll<HTMLElement>(
       `.download[data-os="${os}"]`,
     )) {
-      card.classList.add("is-recommended");
-      card.querySelector(".btn")?.classList.add("btn-primary");
+      row.classList.add("is-recommended");
+      row.querySelector(".btn")?.classList.add("btn-primary");
     }
   }
 </script>
@@ -145,74 +148,100 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 <style>
   h1 {
     font-size: var(--font-display);
-    font-weight: 800;
   }
 
   .meta {
     font-size: var(--font-md);
   }
 
+  /* One panel of rows, like the app's features on Home */
   .downloads {
-    display: grid;
-    gap: var(--space-4);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
     margin: 0;
     padding: 0;
     list-style: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--background-tertiary);
   }
 
   .download {
-    position: relative;
-    display: grid;
+    display: flex;
+    align-items: center;
     gap: var(--space-4);
-    padding: var(--space-6);
-    transition: border-color var(--transition-fast);
+    padding: var(--space-3) var(--space-4);
   }
 
-  .download h2 {
-    font-size: var(--font-xl);
+  .download + .download {
+    border-top: 1px solid var(--border);
   }
 
-  .download p {
+  .download > :global(svg) {
+    flex: none;
+  }
+
+  .what {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .what h2 {
+    font-size: var(--font-lg);
+  }
+
+  .what p {
+    color: var(--font-secondary);
     font-size: var(--font-md);
   }
 
-  .os-icon {
-    color: var(--font-primary);
-  }
-
+  /* Your system also gets the rose button */
   .recommended {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
     display: none;
-    color: var(--accent-primary-hover);
+    color: var(--font-secondary);
     font-size: var(--font-sm);
-    font-weight: 600;
-  }
-
-  .is-recommended {
-    border-color: var(--accent-primary);
   }
 
   .is-recommended .recommended {
     display: block;
   }
 
+  @media (min-width: 720px) {
+    .what {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+    }
+
+    .what h2 {
+      flex: none;
+      width: 120px;
+    }
+
+    .recommended {
+      margin-left: auto;
+    }
+  }
+
+  /* The app's aside layout: the title beside its text. Rows, so opening
+     one only makes that one taller. */
   .notes {
-    display: grid;
-    gap: var(--space-4);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    margin-top: var(--space-8);
+    margin-top: var(--space-10);
+    border-bottom: 1px solid var(--border);
   }
 
   .note {
     display: grid;
-    align-content: start;
-    gap: var(--space-2);
-    padding: var(--space-5);
+    gap: var(--space-2) var(--space-10);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--border);
     color: var(--font-secondary);
     font-size: var(--font-md);
+  }
+
+  @media (min-width: 720px) {
+    .note {
+      grid-template-columns: 200px minmax(0, 68ch);
+    }
   }
 
   .note h2 {
@@ -222,6 +251,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
   .more summary {
     width: fit-content;
+    margin-top: var(--space-2);
     color: var(--accent-primary-hover);
     text-decoration: underline;
     text-underline-offset: 3px;
