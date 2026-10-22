@@ -442,8 +442,8 @@ const STEPS = [
     color: var(--success);
   }
 
-  /* Timeline: vertical on phones, horizontal from 960px. It turns rose
-     only on the way to going LIVE. */
+  /* Timeline: vertical on phones, horizontal from 960px. Its track warms
+     up to rose on the way to going LIVE. */
   .steps {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -461,19 +461,29 @@ const STEPS = [
     padding: 0 0 var(--space-10) var(--space-12);
   }
 
-  /* The track to the next step */
+  /* The track to the next step. The three tracks share one gradient, from
+     the gray line at step 1 to rose at step 4. */
   .steps li::before {
+    --from: var(--border);
+    --to: color-mix(in srgb, var(--accent-primary) 33%, var(--border));
+
     content: "";
     position: absolute;
     top: 40px;
     bottom: var(--space-2);
     left: 15px;
     width: 2px;
-    background: var(--border);
+    background: linear-gradient(var(--from), var(--to));
   }
 
-  .steps li:nth-last-child(2)::before {
-    background: linear-gradient(var(--border), var(--accent-primary));
+  .steps li:nth-child(2)::before {
+    --from: color-mix(in srgb, var(--accent-primary) 33%, var(--border));
+    --to: color-mix(in srgb, var(--accent-primary) 67%, var(--border));
+  }
+
+  .steps li:nth-child(3)::before {
+    --from: color-mix(in srgb, var(--accent-primary) 67%, var(--border));
+    --to: var(--accent-primary);
   }
 
   .steps li:last-child::before {
@@ -534,10 +544,7 @@ const STEPS = [
       right: calc(var(--space-2) - var(--space-8));
       width: auto;
       height: 2px;
-    }
-
-    .steps li:nth-last-child(2)::before {
-      background: linear-gradient(90deg, var(--border), var(--accent-primary));
+      background: linear-gradient(90deg, var(--from), var(--to));
     }
   }
 
