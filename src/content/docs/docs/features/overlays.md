@@ -15,7 +15,7 @@ When a new version is out, a dot appears on **Official Overlays** and the overla
 
 ## Import your own overlay
 
-In **Settings → Imported Overlays**, import an overlay by choosing its folder. It appears in the gallery on the **Overlays** page. Imported overlays don't get updates.
+In **Settings → Overlay Library**, import an overlay by choosing its folder. It appears in the gallery on the **Overlays** page. Imported overlays don't get updates.
 
 ## Set it up
 
@@ -33,7 +33,7 @@ Copy it from the gallery and add it to your streaming app. See [Adding an overla
 
 ## Remove an overlay
 
-Remove an official overlay with the trash button on its card in **Official Overlays**, and one you imported from **Settings → Imported Overlays**. Tokio deletes it with its settings, and its URL stops working in your streaming app.
+Remove an official overlay with the trash button on its card in **Official Overlays**, and one you imported from **Settings → Overlay Library**. Tokio deletes it with its settings, and its URL stops working in your streaming app.
 
 ## Make your own
 
