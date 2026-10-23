@@ -3,7 +3,7 @@ title: Adding an overlay
 description: Show Tokio's overlays in OBS Studio, TikTok LIVE Studio or any streaming app.
 ---
 
-Overlays are served by Tokio's overlay server. Turn it on first in **Settings → Overlay Server**, then copy the overlay's URL from the **Overlays** page, or an alert's from its media on the **Alerts** page.
+Overlays are served by Tokio's overlay server. Turn it on first in **Settings → Overlay Server**, then copy the overlay's URL from the **Overlays** page, an alert's from its media on the **Alerts** page, or the countdown timer's from **Tools**.
 
 ## The overlay address
 
@@ -13,7 +13,7 @@ TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own a
 http://tokio-app.local:37891/<overlay-id>/
 ```
 
-Each [alert's images and videos](/docs/features/alerts/#images-and-videos) show on its own overlay, at `http://tokio-app.local:37891/alerts/<alert-id>/`.
+Each [alert's images and videos](/docs/features/alerts/#images-and-videos) show on its own overlay, at `http://tokio-app.local:37891/alerts/<alert-id>/`, and the [countdown timer](/docs/features/countdown-timer/) is at `http://tokio-app.local:37891/timer/`.
 
 The first time you turn on the server, your system asks for administrator rights (your password on macOS and Linux) so Tokio can add this address to your hosts file, pointing to your own computer. Accept the prompt, or the server stays off. You won't be asked again while the entry is there.
 
