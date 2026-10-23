@@ -47,7 +47,10 @@ Press the alert's play button to see it on the overlay.
 
 ## Gift alerts
 
-Gift alerts can react to any gift or only to the ones you pick. They fire once per combo, when the combo ends, so a streak of 20 roses plays one sound.
+Gift alerts can react to any gift or only to the ones you pick. Under the gifts, choose when the alert plays:
+
+- **When streak ends**: once per combo, when the combo ends, so a streak of 20 roses plays one sound. This is the default.
+- **Every gift**: once for each gift sent, so a streak of 20 roses plays it 20 times. The ones that don't fit in the queue's maximum length are skipped.
 
 Click **Any gift** in the alert's row to open the gift list. Search it by name, filter it by price (**Exactly**, **More than**, **Less than**, **At least**, **At most** or **Between** two amounts of coins) and sort it by price or name. Check the gifts you want and press **Done**. When you open the list again, the gifts you picked come first. **Select all shown** checks every gift the filters leave, such as all the gifts worth 1,000 coins or more, and **Clear** unchecks them all: with none checked, the alert plays for any gift.
 
@@ -75,7 +78,7 @@ Messages can include details of the event:
 
 - `{username}` and `{handle}`: every event with a viewer, which is all but Envelope, Super Fan Box and Music Change
 - `{comment}`: Chat and Emote
-- `{gift}` and `{count}` (the combo size): Gift
+- `{gift}` and `{count}` (the combo size): Gift. An alert on **Every gift** has no `{count}`.
 - `{count}` (the likes sent): Like
 - `{song}`: Music Change
 
