@@ -77,11 +77,25 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
       <div class="notes">
         <div class="note">
           <h2>Windows</h2>
-          <p>
-            Run the setup: it installs Tokio for your user and opens it. Besides
-            the TikTok and Edge voices, you also get the voices installed on
-            Windows (SAPI and OneCore).
-          </p>
+          <div>
+            <p>
+              Run the setup: it installs Tokio for your user and opens it.
+              Besides the TikTok and Edge voices, you also get the voices
+              installed on Windows (SAPI and OneCore). Windows may show{" "}
+              <strong>Windows protected your PC</strong> the first time, since
+              Tokio isn't signed yet.
+            </p>
+            <details class="more">
+              <summary>
+                <span class="show">Read more</span>
+                <span class="hide">Show less</span>
+              </summary>
+              <p>
+                To run it anyway, choose <strong>More info</strong>, then{" "}
+                <strong>Run anyway</strong>.
+              </p>
+            </details>
+          </div>
         </div>
         <div class="note">
           <h2>Linux</h2>
