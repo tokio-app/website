@@ -25,7 +25,7 @@ export default defineConfig({
     starlight({
       title: "Tokio",
       description:
-        "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts and overlays.",
+        "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts, a countdown timer and overlays.",
       logo: { src: "./src/assets/icon.png", alt: "Tokio" },
       favicon: "/favicon.ico",
       customCss: [
@@ -72,6 +72,10 @@ export default defineConfig({
             { label: "Music requests", slug: "docs/features/music-requests" },
             { label: "Alerts", slug: "docs/features/alerts" },
             { label: "Overlays", slug: "docs/features/overlays" },
+            {
+              label: "Countdown timer",
+              slug: "docs/features/countdown-timer",
+            },
             {
               label: "Profiles and settings",
               slug: "docs/features/profiles-and-settings",
