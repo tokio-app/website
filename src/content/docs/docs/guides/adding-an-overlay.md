@@ -31,6 +31,18 @@ The first time you turn on the server, your system asks for administrator rights
 
 Any streaming app that can show a web page works the same way: add a browser or web source and paste the overlay URL.
 
+## On another computer
+
+If OBS runs on another computer on your network, it can't use `tokio-app.local`, which points to the computer it's on. **Settings → Overlay Server** shows your computer's network address. Use it in place of `tokio-app.local`:
+
+```
+http://<network address>:37891/<overlay-id>/
+```
+
+For example, `http://192.168.1.20:37891/<overlay-id>/`. The overlay gets its events from Tokio on your computer.
+
+The first time the server starts, Windows may ask whether to allow Tokio through the firewall. Allow it, or the other computer can't connect.
+
 :::tip
 Tokio has to stay open while you stream so the overlays keep getting events.
 :::
