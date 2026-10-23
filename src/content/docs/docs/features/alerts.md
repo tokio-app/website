@@ -64,7 +64,9 @@ Chat alerts play for every message. Type a keyword to play only for messages tha
 
 Emote alerts can react to any emote or only to the ones you pick. They play once per message, however many emotes it has.
 
-TikTok doesn't share a LIVE's emotes, so while you're connected Tokio saves the ones viewers use to the active profile, numbered in the order they first appear. An emote shows up in the list once someone has used it, and an alert with no emotes picked plays for all of them.
+Click **Any emote** in the alert's row to open the emote list. Check the emotes you want and press **Done**. When you open the list again, the emotes you picked come first. **Select all** checks every emote and **Clear** unchecks them all: with none checked, the alert plays for any emote.
+
+TikTok doesn't share a LIVE's emotes, so while you're connected Tokio saves the ones viewers use to the active profile, numbered in the order they first appear. An emote shows up in the list once someone has used it.
 
 ## Join alerts
 
