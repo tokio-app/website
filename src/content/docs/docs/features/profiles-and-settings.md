@@ -15,7 +15,7 @@ Tokio saves your changes as you make them, to the profile you made them on.
 
 - **TikTok LIVE**: your [Euler Stream](https://www.eulerstream.com) API key. Euler Stream signs Tokio's connection to TikTok LIVE, and each user brings their own key: [sign up](https://www.eulerstream.com/register) for free and paste it here. Tokio can't connect without it.
 - **Voice engines**: optionally add your TikTok session ID. With it, the TikTok voices come straight from TikTok. Without it, they go through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read.
-- **Overlay server**: turn the local server for overlays on or off. It also shows your computer's network address, for OBS on another computer. See [Adding an overlay](/docs/guides/adding-an-overlay/#on-another-computer).
+- **Overlay server**: turn the local server for overlays on or off. It also shows your computer's network address, for a streaming app on another computer. See [Adding an overlay](/docs/guides/adding-an-overlay/#on-another-computer).
 
 ## Notifications
 

@@ -33,13 +33,17 @@ Any streaming app that can show a web page works the same way: add a browser or 
 
 ## On another computer
 
-If OBS runs on another computer on your network, it can't use `tokio-app.local`, which points to the computer it's on. **Settings → Overlay Server** shows your computer's network address. Use it in place of `tokio-app.local`:
+If your streaming app runs on another computer on your network, `tokio-app.local` there points to that computer. Point it to the one Tokio runs on instead, at the network address shown in **Settings → Overlay Server**:
 
-```
-http://<network address>:37891/<overlay-id>/
-```
+- On the other computer, add a line with that address and `tokio-app.local` to its hosts file. The file is `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on macOS and Linux, and you edit it as administrator. For example:
 
-For example, `http://192.168.1.20:37891/<overlay-id>/`. The overlay gets its events from Tokio on your computer.
+  ```
+  192.168.1.20 tokio-app.local
+  ```
+
+- Or add a DNS entry for `tokio-app.local` with that address on your router.
+
+The overlay URLs then work there as they are, and the overlays get their events from Tokio.
 
 The first time the server starts, Windows may ask whether to allow Tokio through the firewall. Allow it, or the other computer can't connect.
 
