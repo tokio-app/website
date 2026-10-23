@@ -31,6 +31,22 @@ The first time you turn on the server, your system asks for administrator rights
 
 Any streaming app that can show a web page works the same way: add a browser or web source and paste the overlay URL.
 
+## On another computer
+
+If your streaming app runs on another computer on your network, `tokio-app.local` there points to that computer. Point it to the one Tokio runs on instead, at the network address shown in **Settings → Overlay Server**:
+
+- On the other computer, add a line with that address and `tokio-app.local` to its hosts file. The file is `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on macOS and Linux, and you edit it as administrator. For example:
+
+  ```
+  192.168.1.20 tokio-app.local
+  ```
+
+- Or add a DNS entry for `tokio-app.local` with that address on your router.
+
+The overlay URLs then work there as they are, and the overlays get their events from Tokio.
+
+The first time the server starts, Windows may ask whether to allow Tokio through the firewall. Allow it, or the other computer can't connect.
+
 :::tip
 Tokio has to stay open while you stream so the overlays keep getting events.
 :::

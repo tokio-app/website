@@ -44,7 +44,7 @@ config: true
 - `window.__OVERLAY_ID__` is required. Pass it to `tokio.connect`.
 - `window.__OVERLAY_CONFIG__` is only for overlays with settings (`config: true`). Give it the defaults from `config.yaml`, see [Settings](#settings).
 
-Tokio rewrites the block with the overlay's ID and saved settings when it imports the overlay, and again when the streamer saves its settings. It refuses to import an overlay without the block.
+Tokio rewrites the block with the overlay's ID and saved settings when it imports the overlay, and again when the streamer saves its settings. It also adds a script that points the overlay's connection at the right computer: when a streaming app on another computer opens the overlay through `tokio-app.local` pointed at the Tokio PC (or at its network address), a WebSocket to `localhost:37891` goes to the computer the page came from instead. It refuses to import an overlay without the block.
 
 ## Listening to events
 
@@ -201,7 +201,7 @@ When it's ready, import the folder in **Settings → Overlay Library**. Tokio gi
 
 ## Without the library
 
-Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Each message is JSON with the event name and its data:
+Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address: opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay Server**). Each message is JSON with the event name and its data:
 
 ```json
 {
