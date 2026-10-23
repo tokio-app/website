@@ -191,7 +191,7 @@ While you build an overlay, test it from the **Tools** page instead of importing
 1. Turn on the overlay server in **Settings → Overlay Server**.
 2. On **Tools → Test Overlays**, enter a name and create an ID.
 3. Connect your overlay with that ID, for example `tokio.connect("<test ID>")`, and open it in your browser.
-4. Click **Test**. Tokio sends your overlay a sample of every LIVE event.
+4. Click **Test**. Tokio sends your overlay every LIVE event, carrying on from your last test: the same viewers come back, likes and coins add up, and a gift streak grows over a few clicks before it ends.
 
 If Tokio says "No overlay connected with this ID.", check that the page is open and connected with the same ID.
 
