@@ -1,9 +1,9 @@
 ---
 title: Alerts
-description: Play a sound for follows, gifts, chat and other LIVE events.
+description: Play a sound, or show an image or a video, for follows, gifts, chat and other LIVE events.
 ---
 
-Play a sound for LIVE events. Set them up on the **Alerts** page and turn alerts on for the session on **Home**.
+Play a sound, show an image or a video, or both, for LIVE events. Set them up on the **Alerts** page and turn alerts on for the session on **Home**.
 
 ## Events
 
@@ -24,7 +24,26 @@ Any of these events can trigger an alert:
 
 - Upload your own sounds, or search [MyInstants](https://www.myinstants.com) from inside the app.
 - Your sound library is shared by all your profiles.
+- **Clear** in the sound picker takes the sound or message off the alert and keeps it in your library.
+- Deleting a sound from your library removes it from your computer and from every alert that plays it, in all your profiles. Tokio asks first.
 - Set each alert's volume, and use the play button to preview it.
+
+## Images and videos
+
+An alert can also show an image or a video, with its sound or message or on its own. Click the alert's **Media** to choose one:
+
+- Pick a file from your media library, shown as thumbnails with the alert's own marked, or press **Browse file...** to add one: png, jpg, gif, webp, mp4 or webm, up to 50 MB. Your media library is shared by all your profiles. Upload, preview and delete files in **Settings → Media Library**.
+- **Clear** takes the image or video off the alert and keeps it in your library. Deleting one from the library removes it from your computer and from every alert that shows it, after you confirm.
+- **Duration** is how many seconds it stays on screen, 5 unless you change it. It stays while the alert's sound plays if that's longer, and a longer video is cut. For a video, turn on **Match video** to have it follow the video's length, up to 60 seconds, also when you pick another video.
+- A video plays with its own sound, at the alert's volume.
+
+Each alert shows its image or video on its own overlay, so you can place each one where you want it. Copy the overlay's URL from the alert's media and add it to your streaming app like any overlay (see [Adding an overlay](/docs/guides/adding-an-overlay/)):
+
+```
+http://tokio-app.local:37891/alerts/<alert-id>/
+```
+
+Press the alert's play button to see it on the overlay.
 
 ## Gift alerts
 
@@ -67,4 +86,6 @@ The replacements and the **Remove Emojis** setting from the **TTS** page apply t
 - **One after another**: alerts wait in a queue and play in order. Set the maximum queue length so they don't pile up.
 - **At the same time**: turn on **simultaneous** playback so different events play at the same time.
 
-Alerts stop when you disconnect or turn the feature off.
+An alert with an image or video keeps its place in the queue until it leaves the screen. For events that come often, like likes, keep the duration short or turn on simultaneous playback.
+
+Alerts stop, and their images and videos go away, when you disconnect or turn the feature off.
