@@ -43,7 +43,7 @@ Two settings apply to all of them:
 
 ## On stream
 
-The overlay shows the clock, with an optional title above it. When viewers add time, how much shows under the clock for a moment, like **+1:30**. Time added in a burst adds up into one number. While the multiplier is on, the overlay shows it there too, like **×2**. The clock fades while it isn't running.
+The overlay shows the clock, with an optional title above it. When viewers add time, how much shows under the clock for a moment, like **+1:30**. Time added in a burst adds up into one number. While the multiplier is on, the overlay shows it there too, like **×2**.
 
 In **Timer Look**, right under the preview so you see each change, set:
 
