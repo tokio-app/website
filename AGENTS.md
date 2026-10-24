@@ -6,7 +6,7 @@ Guidance for AI coding agents working in this repository.
 
 The website for Tokio at `https://tokio.ialfaro.com`: a landing page, a download page, the docs and an about/legal page. English only.
 
-Tokio itself is an Electron desktop app (Windows, macOS, Linux) that connects to a TikTok LIVE and reacts to its events with text-to-speech, music requests (Spotify/YouTube), alerts (sounds, images and videos) and browser-source overlays. It lives in `tokio-app/tokio` (locally `../tokio`) and has its own `AGENTS.md`.
+Tokio itself is an Electron desktop app (Windows, macOS, Linux) that connects to a TikTok LIVE and reacts to its events with text-to-speech, music requests (Spotify/YouTube), alerts (sounds, images and videos), game actions (Minecraft commands) and browser-source overlays. It lives in `tokio-app/tokio` (locally `../tokio`) and has its own `AGENTS.md`.
 
 Stack: Astro 7, Starlight, TypeScript (strict), Yarn 1, Node >= 24. The site is static and deployed to GitHub Pages from `tokio-app/website`.
 

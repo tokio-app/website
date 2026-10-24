@@ -5,7 +5,7 @@ description: Keep separate settings for each stream and configure Tokio.
 
 ## Profiles
 
-Keep separate settings for different streams. Each profile has its own TTS, music, alerts and countdown timer, and remembers the username you last connected with. Switch profiles from the title bar while you're not connected.
+Keep separate settings for different streams. Each profile has its own TTS, music, alerts, game actions and countdown timer, and remembers the username you last connected with. Switch profiles from the title bar while you're not connected.
 
 ![The profile menu in the title bar, with two profiles](../../../../assets/screenshots/profiles-menu.png)
 
