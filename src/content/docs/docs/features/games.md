@@ -141,9 +141,11 @@ Test needs a connected game of the action's edition. With no game connected, it 
 
 ## Limits
 
-- An action on **Every gift** runs up to 100 times for one event.
-- An action sends up to 100 commands for one event.
-- Tokio sends the game up to 50 commands at a time, and keeps up to 500 waiting. Any beyond that fail.
+There's no limit on runs: every gift on **Every gift** and every count of likes on **Like** runs the action, however many come at once.
+
+- When runs pile up, like 300 roses at once, Tokio spaces out each action's runs, 10 a second, so the game keeps up. Other actions don't wait for them.
+- Turning an action off, or removing it, stops the runs it still has waiting. So does the game leaving.
+- Runs already waiting still go out after you disconnect from the LIVE.
 
 ## Notices
 
