@@ -5,19 +5,36 @@ description: Keep separate settings for each stream and configure Tokio.
 
 ## Profiles
 
-Keep separate settings for different streams. Create a blank profile or clone an existing one, and switch between them from the title bar.
+Keep separate settings for different streams. Each profile has its own TTS, music, alerts and countdown timer, and remembers the username you last connected with. Switch profiles from the title bar while you're not connected.
 
-A profile holds your text-to-speech, music and alert settings, and the emotes viewers have used in its LIVE. Your uploaded sounds, images and videos are libraries shared by all profiles.
+![The profile menu in the title bar, with two profiles](../../../../assets/screenshots/profiles-menu.png)
 
-Tokio saves your changes as you make them, to the profile you made them on.
+In **Settings → Live Profiles**, **New** creates a blank profile and **Clone** copies the active one. **Import** and **Export** move a profile between computers as a file.
+
+![Settings → Live Profiles, with the active profile and the New, Clone, Import and Export buttons](../../../../assets/screenshots/settings-profiles.png)
+
+Tokio saves your changes as you make them.
 
 ## Settings
 
-- **TikTok LIVE**: your [Euler Stream](https://www.eulerstream.com) API key. Euler Stream signs Tokio's connection to TikTok LIVE, and each user brings their own key: [sign up](https://www.eulerstream.com/register) for free and paste it here. Tokio can't connect without it.
-- **Voice engines**: optionally add your TikTok session ID. With it, the TikTok voices come straight from TikTok. Without it, they go through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read.
-- **Overlay server**: turn the local server for overlays on or off. It also shows your computer's network address, for a streaming app on another computer. See [Adding an overlay](/docs/guides/adding-an-overlay/#on-another-computer).
-- **Tray**: Tokio keeps running in the tray (the menu bar on macOS) when you close its window, so the voices, sounds and overlays carry on. Click the icon, or choose **Open Tokio** in its menu, to bring the window back, and **Quit Tokio** to quit. Turn it off to quit when you close the window.
+- **TikTok LIVE**: your [Euler Stream](https://www.eulerstream.com) API key, which Tokio needs to connect. [Sign up](https://www.eulerstream.com/register) for free.
+- **Overlay Server**: turns on the server for overlays, and shows your computer's network address for a streaming app on [another computer](/docs/guides/adding-an-overlay/#on-another-computer).
+- **Updates**: turn off the automatic checks for new versions.
+- **Tray**: keep Tokio running in the tray (the menu bar on macOS) when you close its window. Click the icon or **Open Tokio** to bring it back, and **Quit Tokio** to quit.
+- **Voice Engines**: your TikTok session ID, so TikTok voices come straight from TikTok instead of a third-party proxy.
+
+![Settings: the Euler Stream API key, the overlay server with its network address, updates and the tray](../../../../assets/screenshots/settings.png)
+
+## Libraries
+
+**Sound Library** and **Media Library** hold the sounds, images and videos your alerts use, for all profiles. Upload, preview and delete them there. Deleting one removes it from every alert, after you confirm.
+
+![The Sound Library with four sounds and the Media Library with one image](../../../../assets/screenshots/settings-libraries.png)
+
+**Overlay Library** holds the [overlays you import](/docs/features/overlays/#import-your-own).
 
 ## Notifications
 
-When something fails, such as a voice that can't be generated, a sound that's missing or a change that couldn't be saved, Tokio tells you what went wrong. The bell in the title bar keeps the session's history.
+When something fails, such as a voice that can't be made or a sound that's missing, Tokio tells you what went wrong. The bell in the title bar keeps the session's history.
+
+![The notifications menu, listing what happened this session](../../../../assets/screenshots/notifications.png)

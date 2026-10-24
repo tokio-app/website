@@ -3,7 +3,7 @@ title: Building an overlay
 description: Make your own Tokio overlay with plain HTML or any framework, and test it with sample events.
 ---
 
-An overlay is a web page. Write it by hand in HTML, CSS and JavaScript, or build it with React, Vue, Svelte or any other framework: Tokio only needs the finished folder. It serves the folder at `http://tokio-app.local:37891/<overlay-id>/` and sends the page every LIVE event over a WebSocket.
+An overlay is a web page, written by hand or built with React, Vue, Svelte or any other framework: Tokio only needs the finished folder. It serves the folder at `http://tokio-app.local:37891/<overlay-id>/` and sends the page every LIVE event over a WebSocket.
 
 ## Folder layout
 
@@ -24,15 +24,15 @@ version: 1.0.0
 config: true
 ```
 
-| Key       | Description                                                |
-| --------- | ---------------------------------------------------------- |
-| `name`    | Shown in the gallery.                                      |
-| `version` | Your overlay's version.                                    |
-| `config`  | `true` when the overlay has a `config.yaml` with settings. |
+| Key       | Description                                                                        |
+| --------- | ---------------------------------------------------------------------------------- |
+| `name`    | Shown in the gallery.                                                              |
+| `version` | Your overlay's version.                                                            |
+| `config`  | Required: `true` when the overlay has a `config.yaml` with settings, else `false`. |
 
 ### The setup block
 
-`index.html` must contain a `<script id="tokio-setup">` block. Write it yourself, before the scripts that read it:
+`index.html` must contain a setup block, opened with exactly `<script id="tokio-setup">`. Write it yourself, before the scripts that read it:
 
 ```html
 <script id="tokio-setup">
@@ -41,18 +41,18 @@ config: true
 </script>
 ```
 
-- `window.__OVERLAY_ID__` is required. Pass it to `tokio.connect`.
+- `window.__OVERLAY_ID__` is required. Pass it to `tokio.connect`, never a hard-coded ID: Tokio's previews only reach the overlay through its own ID.
 - `window.__OVERLAY_CONFIG__` is only for overlays with settings (`config: true`). Give it the defaults from `config.yaml`, see [Settings](#settings).
 
-Tokio rewrites the block with the overlay's ID and saved settings when it imports the overlay, and again when the streamer saves its settings. It also adds a script that points the overlay's connection at the right computer: when a streaming app on another computer opens the overlay through `tokio-app.local` pointed at the Tokio PC (or at its network address), a WebSocket to `localhost:37891` goes to the computer the page came from instead. It refuses to import an overlay without the block.
+Tokio refuses to import an overlay without the block. It fills the block with the overlay's ID and saved settings, and adds a script that sends the overlay's WebSocket to the right computer when a streaming app on another computer opens it.
 
 ## Listening to events
 
-[`@tokioapp/overlay`](https://www.npmjs.com/package/@tokioapp/overlay) (MIT) connects to Tokio and hands you the events. Overlays you import need it: Tokio's previews post their events to the overlay's iframe, and the library receives them. It has no dependencies and ships an ES module, a CommonJS build and a browser build with TypeScript types, so it works the same in a plain page and in any framework.
+[`@tokioapp/overlay`](https://www.npmjs.com/package/@tokioapp/overlay) (MIT) connects to Tokio and hands you the events. Overlays you import need it, since Tokio's previews post their events to the overlay's frame and the library receives them. It has no dependencies, and ships an ES module, a CommonJS build and a browser build with TypeScript types.
 
 - `tokio.on(event, callback)` subscribes to an event and returns a function that unsubscribes.
 - `tokio.off(event, callback)` removes a callback.
-- `tokio.connect(id)` connects to Tokio and reconnects on its own if Tokio restarts. Call it once, when the overlay starts. `tokio.disconnect()` closes the connection.
+- `tokio.connect(id, url?)` connects to Tokio, at `ws://localhost:37891` unless you pass another URL, and reconnects on its own if Tokio restarts. Call it once, when the overlay starts. `tokio.disconnect()` closes the connection.
 
 See [Events](/docs/developers/events/) for every event and its data.
 
@@ -147,7 +147,7 @@ When `info.yaml` has `config: true`, the [setup block](#the-setup-block) also se
 </script>
 ```
 
-`config.yaml` describes the settings. Fields are grouped in sections, and each field's `id` becomes a key of `__OVERLAY_CONFIG__`:
+`config.yaml` describes the settings, which the streamer changes in the overlay's **Customize** window. Fields are grouped in sections, and each field's `id` becomes a key of `__OVERLAY_CONFIG__`:
 
 ```yaml
 sections:
@@ -184,14 +184,20 @@ Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and
 | `slider`   | `min`, `max`                                                           | The number                                                       |
 | `gifts`    | `multiple`; values are TikTok gift IDs                                 | A gift `{ value, label, img, coins }`, or a list when `multiple` |
 
+`mode`, `options`, and a slider's `min` and `max` are required; `multiple` and `searchable` default to `false`. Each section's `id` must be unique, and each field's `section` must name one.
+
+![The Gift Jar's Customize window: its settings, grouped in sections, next to a live preview](../../../../assets/screenshots/overlays-customize.png)
+
 ## Testing without importing
 
 While you build an overlay, test it from the **Tools** page instead of importing it after every change. It works with your framework's dev server too:
 
 1. Turn on the overlay server in **Settings → Overlay Server**.
 2. On **Tools → Test Overlays**, enter a name and create an ID.
-3. Connect your overlay with that ID, for example `tokio.connect("<test ID>")`, and open it in your browser.
+3. Put that ID in your overlay's `window.__OVERLAY_ID__`, and open the overlay in your browser.
 4. Click **Test**. Tokio sends your overlay every LIVE event, carrying on from your last test: the same viewers come back, likes and coins add up, and a gift streak grows over a few clicks before it ends.
+
+![Tools → Test Overlays, with a test ID created for an overlay, its Test button and the buttons that copy the ID and the WebSocket URL](../../../../assets/screenshots/tools-test-overlays.png)
 
 If Tokio says "No overlay connected with this ID.", check that the page is open and connected with the same ID.
 
