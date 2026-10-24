@@ -71,6 +71,7 @@ export default defineConfig({
             { label: "Text-to-speech", slug: "docs/features/text-to-speech" },
             { label: "Music requests", slug: "docs/features/music-requests" },
             { label: "Alerts", slug: "docs/features/alerts" },
+            { label: "Games", slug: "docs/features/games" },
             { label: "Overlays", slug: "docs/features/overlays" },
             {
               label: "Countdown timer",
