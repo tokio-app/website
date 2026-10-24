@@ -95,10 +95,11 @@ An action is for one edition, **Bedrock** or **Java**. New actions take the edit
 
 **Duplicate** copies an action and puts the copy right after it. Change the copy's edition to run the same steps in the other game.
 
-Triggers and their filters are the same as for [alerts](/docs/features/alerts/#triggers): Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan Join, Member Join and Music Change.
+Triggers and their filters are the same as for [alerts](/docs/features/alerts/#triggers): Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan Join, Member Join and Music Change. Like also takes a number of likes.
 
 - **Gift**: pick the gifts, and choose **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts). With **Every gift**, the steps run once for each gift sent.
-- **Chat**: type a keyword to run only for messages that have it.
+- **Chat**: type a keyword or phrase to run only for messages that have it.
+- **Like**: choose how many likes run it, 100 to start. Likes from all viewers count together, as for the [countdown timer](/docs/features/countdown-timer/): **every 100 likes** runs the steps once each time the LIVE gets 100 more. The count starts over when you disconnect.
 - **Member Join** and **Super Fan Join**: type an @handle or name to run only for that viewer.
 - **Emote**: pick the emotes, or leave it for any.
 
