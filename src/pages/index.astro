@@ -580,8 +580,16 @@ const STEPS = [
     font-size: var(--font-title);
   }
 
+  /* Stacked on phones, both as wide as the wider one */
   .cta .actions {
-    justify-content: center;
+    display: grid;
     margin-top: var(--space-2);
+  }
+
+  @media (min-width: 720px) {
+    .cta .actions {
+      display: flex;
+      justify-content: center;
+    }
   }
 </style>
