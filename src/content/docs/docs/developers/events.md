@@ -22,16 +22,19 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 | `ROOM_USER`      | `tokio:event:roomuser`     | The viewer count and top viewers change |
 | `MUSIC_CHANGE`   | `tokio:event:music:change` | The music request queue changes         |
 
-## Library events
+## Settings
 
-These come from `@tokioapp/overlay`:
+Tokio sends `CONFIG` (`tokio:config`) with the overlay's settings when the streamer saves them, and on each change while they edit them in the preview. See [Settings](/docs/developers/building-an-overlay/#settings).
 
-| Constant | Event name     | Data                                                                                   |
-| -------- | -------------- | -------------------------------------------------------------------------------------- |
-| `OPEN`   | `tokio:open`   | none                                                                                   |
-| `CLOSE`  | `tokio:close`  | `{ code, reason, wasClean }`                                                           |
-| `ERROR`  | `tokio:error`  | `{ type, message?, error? }`                                                           |
-| `CONFIG` | `tokio:config` | The overlay's settings, see [Settings](/docs/developers/building-an-overlay/#settings) |
+## Connection events
+
+These come from `@tokioapp/overlay` itself, about its WebSocket. They don't fire in Tokio's previews, which don't use one, so don't wait for `OPEN` to show the overlay.
+
+| Constant | Event name    | Data                         |
+| -------- | ------------- | ---------------------------- |
+| `OPEN`   | `tokio:open`  | none                         |
+| `CLOSE`  | `tokio:close` | `{ code, reason, wasClean }` |
+| `ERROR`  | `tokio:error` | `{ type, message?, error? }` |
 
 ## Data
 

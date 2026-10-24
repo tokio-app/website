@@ -15,28 +15,34 @@ Set everything up before you start your LIVE. Tokio can only connect once the LI
 
 2. **Set it up**
 
-   Get a free API key from [Euler Stream](https://www.eulerstream.com/register), which signs Tokio's connection to TikTok LIVE, and paste it in **Settings → TikTok LIVE**. You only do this once.
+   Get a free API key from [Euler Stream](https://www.eulerstream.com/register) and paste it in **Settings → TikTok LIVE**. You only do this once.
 
-   Pick your [voices](/docs/features/text-to-speech/), connect your [music](/docs/features/music-requests/), set up your [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/). Each [profile](/docs/features/profiles-and-settings/) keeps its own settings.
+   ![The Euler Stream API key field in Settings → TikTok LIVE](../../../assets/screenshots/settings-tiktok-live.png)
+
+   Then pick your [voice](/docs/features/text-to-speech/), connect your [music](/docs/features/music-requests/), and set up your [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
 
 3. **Prepare your stream**
 
-   On the **Home** page, turn on the features you want for this stream under **Active Features**: **TTS**, **Music** and **Alerts**. Then add your overlays to OBS or TikTok LIVE Studio; see [Adding an overlay](/docs/guides/adding-an-overlay/).
+   On **Home**, under **Active Features**, turn on **TTS**, **Music** and **Alerts** as you need them. They stay as you leave them. Add your overlays to OBS or TikTok LIVE Studio: see [Adding an overlay](/docs/guides/adding-an-overlay/).
+
+   ![Active Features on the Home page, with TTS and Alerts on and the overlay server running](../../../assets/screenshots/home-features.png)
 
 4. **Go live and connect**
 
-   Start your LIVE on TikTok. Then enter your `@username` on the **Home** page and click **Connect**.
+   Start your LIVE on TikTok. Then enter your `@username` on **Home** and click **Connect**.
 
 </Steps>
 
-While you're LIVE, the **Home** page shows how long you've been on, the viewers, likes and views, and the new followers, shares, gifts and coins since you connected. Its **Activity** feed lists chats, gifts, follows, shares and viewers joining as they come in. The gear next to **Activity** picks which of them it shows. Each feature can be turned on or off at any time during the session.
+## While you're LIVE
 
-Tokio has to stay open while you stream so it keeps getting events and your overlays stay up to date.
+**Home** shows your LIVE's numbers and an **Activity** feed of chats, gifts, follows, shares, new Super Fans and viewers joining. The feed stays after the LIVE ends, until the next one. Its gear picks which events it shows.
+
+![The Activity Feed window, with a switch for each kind of event](../../../assets/screenshots/home-feed-settings.png)
+
+Turning a feature off during the LIVE stops what it has queued. Keep Tokio open while you stream, so your overlays keep getting events.
 
 ## When something fails
 
-If Tokio can't connect, it tells you why: the LIVE hasn't started yet, the username wasn't found, your Euler Stream API key is missing or wasn't accepted, or the key hit its rate limit, with how long to wait. Your [Euler Stream plan](https://www.eulerstream.com/pricing) sets how often you can connect.
+If Tokio can't connect, it says why: the LIVE hasn't started, the username wasn't found, or your Euler Stream key is missing, wasn't accepted or hit its [plan's](https://www.eulerstream.com/pricing) limit.
 
-If the connection drops during your LIVE, Tokio reconnects on its own and tells you once it's back. You only need to connect again if it can't.
-
-When something else goes wrong, such as a voice that can't be generated or a sound that's missing, Tokio shows a notification telling you what happened. The bell in the title bar keeps the session's history.
+If the connection drops, Tokio reconnects on its own and tells you when it's back. Other problems, like a sound that's missing, show as notifications, and the bell in the title bar keeps them.

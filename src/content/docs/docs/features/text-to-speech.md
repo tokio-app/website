@@ -3,23 +3,31 @@ title: Text-to-speech
 description: Read chat messages aloud with TikTok, Edge or system voices.
 ---
 
-Chat messages are read aloud as they come in. Set it up on the **TTS** page and turn it on for the session on **Home**.
+Chat messages are read aloud as they come in. Set it up on the **TTS** page, and turn **TTS** on under **Active Features** on **Home**. Changes save as you make them.
 
 ## Voices
 
-Tokio has three voice engines, and the **TTS** page lists all their voices in one place:
+The **TTS** page lists the voices of three engines in one place:
 
-- **TikTok**: TikTok's voices. They work without setup, through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read. To get them straight from TikTok instead, add your TikTok session ID in **Settings → Voice Engines**.
+- **TikTok**: TikTok's voices. Without setup they go through `tiktok-tts.weilnet.workers.dev`, a proxy run by a third party, which gets the text of every message they read. Add your TikTok session ID in **Settings → Voice Engines** to get them from TikTok instead.
 - **Edge**: Microsoft Edge's voices.
-- **Windows**: the voices installed on your system, SAPI and OneCore, including older 32-bit voices. Only available on Windows.
+- **Windows**: the voices installed on Windows, SAPI and OneCore, 32-bit ones included.
 
-Click the voice to open the list. Search it by voice name or language, filter it by engine and language, and press play on any voice to hear a short line in its language before you pick it. Adjust speed, pitch and volume to taste.
+Click the voice to open the list. Search it, filter it by engine and language, and play any voice before you pick it.
 
-Type a message and press **Test Voice** to hear it with your replacements and emoji setting, even before you save them. A message chat wouldn't read, like one with a banned word, shows a warning instead.
+![The voice list, with its search, engine and language filters, and a play button on each voice](../../../../assets/screenshots/tts-voices.png)
+
+Set the speed, pitch and volume. To hear a message the way chat is read, type it and press **Test Voice**. If chat wouldn't read it, say for a banned word, you see why instead.
+
+![The voice, its speed, pitch and volume, and Test Voice with a message](../../../../assets/screenshots/tts-voice.png)
 
 ## Format
 
-Choose which messages get read and how. The message template can use these placeholders:
+Read every message, or only the ones that start with a dot, a slash or a command of your own, like `!tts`. The command isn't read aloud.
+
+![The Format section: which messages get read, the message template and Remove Emojis](../../../../assets/screenshots/tts-format.png)
+
+The **Message Template** sets what's read:
 
 | Placeholder  | Replaced with                        |
 | ------------ | ------------------------------------ |
@@ -27,20 +35,26 @@ Choose which messages get read and how. The message template can use these place
 | `{handle}`   | The viewer's handle, without the `@` |
 | `{comment}`  | The chat message                     |
 
-For example, `{username} {comment}` reads "Lucia hi from Lima!". You can also read only the messages that start with a command. The command isn't read aloud, and a message with nothing after it is skipped.
+`{username} {comment}` reads "Lucia hi from Lima!".
 
-Some voices read emojis by name, so 😂 can come out as "face with tears of joy". Turn on **Remove Emojis** to leave them out of messages and names. Messages that are only emojis are then skipped. Replacements apply first, so one can still turn an emoji into words, like ❤️ into "love".
+Some voices read emojis by name, like 😂 as "face with tears of joy". **Remove Emojis** leaves them out, and skips messages that are only emojis.
 
 ## Replacements
 
-Teach the voice how to say acronyms, slang and names. Each replacement swaps a word for the way it should be pronounced.
+Teach the voice to say acronyms, slang and names. Each replacement swaps a whole word, in any case, for how it should sound. Replacements apply before **Remove Emojis**, so one can still turn ❤️ into "love".
+
+![Two replacements: brb is read as be right back, and gg as good game](../../../../assets/screenshots/tts-replacements.png)
 
 ## Permissions
 
-Let everyone talk, or only followers, superfans or moderators. You can also set a minimum fan level, and a whitelist and a blacklist of @handles.
+**Allow Everyone** lets anyone talk. Uncheck it to allow only followers, superfans, moderators or a minimum fan level. With **Enable Whitelist / Blacklist**, blacklisted @handles are never read, and a whitelist with names lets only them talk.
+
+![The Permissions section with the whitelist and blacklist on and one handle blacklisted](../../../../assets/screenshots/tts-permissions.png)
 
 ## Protection
 
-A cooldown between messages and a maximum queue length keep the chat from flooding the voice. Messages over a maximum length are skipped, and so are messages with a banned word, in the comment or in the viewer's name.
+A **Cooldown** between messages and a **Max Queue Length** keep chat from flooding the voice. Messages over the **Max Comment Length** are skipped, and so are messages with a banned word in the comment, the name or the @handle. Banned words are caught even with capitals, accents, look-alike letters or hidden characters.
 
-[Music requests](/docs/features/music-requests/) have their own permissions and protection, set the same way.
+![The Protection section: cooldown, maximum queue length, maximum comment length and banned words](../../../../assets/screenshots/tts-protection.png)
+
+Replacements, **Remove Emojis** and banned words also apply to [alerts that speak](/docs/features/alerts/#spoken-messages). [Music requests](/docs/features/music-requests/) have their own permissions and protection.

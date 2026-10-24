@@ -3,38 +3,44 @@ title: Overlays
 description: Install the official overlays or import your own, set them up, add them to your streaming app and remove them.
 ---
 
-Overlays are web pages that react to your LIVE: a follow banner, a gift counter, the song that's playing. Tokio serves them from your computer and sends them every LIVE event.
+Overlays are web pages that react to your LIVE: a gift jar, a likes leaderboard, a follow banner. Tokio serves them from your computer and sends them every LIVE event.
 
 ## Install an official overlay
 
-On the **Overlays** page, click **Official Overlays** to see the overlays made for Tokio, with a preview of each. You can also see them on this site's [Overlays page](/overlays/).
+On **Overlays**, click **Official Overlays** to see the ones made for Tokio, also listed on this site's [Overlays page](/overlays/). Click **Install**, and it shows in the gallery marked **Verified**.
 
-Click **Install**. The overlay appears in the gallery, marked **Verified**.
+![An official overlay's card in Official Overlays, with its preview and the Install button](../../../../assets/screenshots/overlays-official.png)
 
-When a new version is out, a dot appears on **Official Overlays** and the overlay's button changes to **Update**. Updating keeps your settings. Refresh the overlay in your streaming app to load the new version.
+When a new version is out, a dot shows on **Official Overlays** and the button turns to **Update**. Updating keeps your settings that still fit the new version. Refresh the overlay in your streaming app afterwards.
 
-## Import your own overlay
+## Import your own
 
-In **Settings → Overlay Library**, import an overlay by choosing its folder. It appears in the gallery on the **Overlays** page. Imported overlays don't get updates.
+In **Settings → Overlay Library**, import an overlay's folder. It shows in the gallery marked **External**, and gets no updates.
+
+![The Overlay Library in Settings, with one imported overlay](../../../../assets/screenshots/settings-overlay-library.png)
 
 ## Set it up
 
-Open an overlay in the gallery to change its settings: colors, text, the gifts it reacts to (picked from the same list as [gift alerts](/docs/features/alerts/#gift-alerts)), and anything else the overlay offers. Save, and the new settings reach the overlay right away.
+Overlays with settings have **Customize**: colors, text, the gifts they react to and anything else they offer. Changes show in the preview first, and **Save** sends them to your stream. **Reset to defaults** puts them back.
+
+![The Gift Jar's settings, with its preview next to them](../../../../assets/screenshots/overlays-customize.png)
 
 ## Add it to your stream
 
-Tokio gives each overlay its own URL on your computer:
+Turn on the overlay server in **Settings → Overlay Server**, then copy the overlay's URL from its card:
 
 ```
 http://tokio-app.local:37891/<overlay-id>/
 ```
 
-Copy it from the gallery and add it to your streaming app. See [Adding an overlay](/docs/guides/adding-an-overlay/) for OBS and TikTok LIVE Studio.
+![An installed overlay in the gallery, with Test, Customize, its preview and its URL](../../../../assets/screenshots/overlays-card.png)
+
+**Test** sends sample events to the preview, and to the overlay in your streaming app. See [Adding an overlay](/docs/guides/adding-an-overlay/) for OBS and TikTok LIVE Studio.
 
 ## Remove an overlay
 
-Remove an official overlay with the trash button on its card in **Official Overlays**, and one you imported from **Settings → Overlay Library**. Tokio deletes it with its settings, and its URL stops working in your streaming app.
+Remove an official overlay with the trash button on its card in **Official Overlays**, and one you imported in **Settings → Overlay Library**. Tokio asks first, deletes it with its settings, and its URL stops working.
 
 ## Make your own
 
-Overlays are web pages, written by hand or built with any framework. See [Building an overlay](/docs/developers/building-an-overlay/).
+Overlays are web pages, written by hand or with any framework. See [Building an overlay](/docs/developers/building-an-overlay/).

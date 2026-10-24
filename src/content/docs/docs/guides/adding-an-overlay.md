@@ -3,19 +3,33 @@ title: Adding an overlay
 description: Show Tokio's overlays in OBS Studio, TikTok LIVE Studio or any streaming app.
 ---
 
-Overlays are served by Tokio's overlay server. Turn it on first in **Settings → Overlay Server**, then copy the overlay's URL from the **Overlays** page, an alert's from its media on the **Alerts** page, or the countdown timer's from **Tools**.
+Overlays are served by Tokio's overlay server. Turn it on in **Settings → Overlay Server** with **Enable Server**, and confirm.
+
+![Settings → Overlay Server, with the server on and the computer's network address](../../../../assets/screenshots/settings-overlay-server.png)
+
+The first time, your system asks for administrator rights (your password on macOS and Linux) so Tokio can add its address to your hosts file. Accept it, or the server stays off.
 
 ## The overlay address
 
-TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own address, `tokio-app.local`:
+TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own address, `tokio-app.local`. Copy each one in Tokio:
 
-```
-http://tokio-app.local:37891/<overlay-id>/
-```
+- An [overlay's](/docs/features/overlays/), from its card on **Overlays**:
 
-Each [alert's images and videos](/docs/features/alerts/#images-and-videos) show on its own overlay, at `http://tokio-app.local:37891/alerts/<alert-id>/`, and the [countdown timer](/docs/features/countdown-timer/) is at `http://tokio-app.local:37891/timer/`.
+  ```
+  http://tokio-app.local:37891/<overlay-id>/
+  ```
 
-The first time you turn on the server, your system asks for administrator rights (your password on macOS and Linux) so Tokio can add this address to your hosts file, pointing to your own computer. Accept the prompt, or the server stays off. You won't be asked again while the entry is there.
+- An [alert's media](/docs/features/alerts/#images-and-videos), from the media picker on **Alerts**:
+
+  ```
+  http://tokio-app.local:37891/alerts/<alert-id>/
+  ```
+
+- The [countdown timer's](/docs/features/countdown-timer/), from **Tools**:
+
+  ```
+  http://tokio-app.local:37891/timer/
+  ```
 
 ## OBS Studio
 
@@ -29,13 +43,13 @@ The first time you turn on the server, your system asks for administrator rights
 
 ## Other apps
 
-Any streaming app that can show a web page works the same way: add a browser or web source and paste the overlay URL.
+Any app that can show a web page works the same way: add a browser or web source and paste the URL.
 
 ## On another computer
 
-If your streaming app runs on another computer on your network, `tokio-app.local` there points to that computer. Point it to the one Tokio runs on instead, at the network address shown in **Settings → Overlay Server**:
+If your streaming app runs on another computer on your network, point `tokio-app.local` there to the computer Tokio runs on, at the network address shown in **Settings → Overlay Server**:
 
-- On the other computer, add a line with that address and `tokio-app.local` to its hosts file. The file is `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on macOS and Linux, and you edit it as administrator. For example:
+- Add a line with that address and `tokio-app.local` to the other computer's hosts file, as administrator. It's `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on macOS and Linux:
 
   ```
   192.168.1.20 tokio-app.local
@@ -43,9 +57,7 @@ If your streaming app runs on another computer on your network, `tokio-app.local
 
 - Or add a DNS entry for `tokio-app.local` with that address on your router.
 
-The overlay URLs then work there as they are, and the overlays get their events from Tokio.
-
-The first time the server starts, Windows may ask whether to allow Tokio through the firewall. Allow it, or the other computer can't connect.
+The overlay URLs then work there as they are. If Windows asks whether to allow Tokio through the firewall, allow it, or the other computer can't connect.
 
 :::tip
 Tokio has to stay open while you stream so the overlays keep getting events.
