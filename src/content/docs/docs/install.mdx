@@ -3,37 +3,65 @@ title: Install
 description: Download and install Tokio on Windows, macOS or Linux.
 ---
 
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 import DownloadTable from "../../../components/DownloadTable.astro";
+import Screenshot from "../../../components/Screenshot.astro";
 
-Tokio runs on Windows, macOS 13 or later, and Linux. Get it from the [download page](/download/) or the [latest release](https://github.com/tokio-app/tokio/releases/latest). On Windows, the setup installs Tokio for your user and opens it. On macOS and Linux you download Tokio itself.
+Tokio runs on Windows, macOS 13 or later, and Linux. Get it here, from the [download page](/download/) or from the [latest release](https://github.com/tokio-app/tokio/releases/latest).
 
 <DownloadTable />
 
-Everything works on every system, except the voices installed on the system, which only Windows has.
+<Tabs>
+  <TabItem label="Windows">
 
-:::caution[Windows]
-Tokio isn't signed yet, so Windows may show **Windows protected your PC**. Choose **More info**, then **Run anyway**.
-:::
+<Steps>
 
-:::caution[macOS]
-Unzip the download and move **Tokio** to your Applications folder. Tokio isn't notarized yet, so macOS may block it the first time: open it from Finder with right-click → **Open**, or allow it in **System Settings → Privacy & Security**.
-:::
+1. Run the setup. It installs Tokio for your user and opens it.
+2. Tokio isn't signed yet. If you see **Windows protected your PC**, choose **More info**, then **Run anyway**.
 
-:::note[Linux]
-Make the AppImage executable with `chmod +x` (or in the file's properties) and run it. It needs FUSE.
-:::
+</Steps>
+
+  </TabItem>
+  <TabItem label="macOS">
+
+<Steps>
+
+1. Unzip the download and move **Tokio** to your Applications folder.
+2. Tokio isn't notarized yet. If macOS blocks it, right-click it in Finder and choose **Open**, or allow it in **System Settings → Privacy & Security**.
+
+</Steps>
+
+  </TabItem>
+  <TabItem label="Linux">
+
+<Steps>
+
+1. Make the AppImage executable with `chmod +x`, or in the file's properties.
+2. Run it. It needs FUSE.
+
+</Steps>
+
+  </TabItem>
+</Tabs>
+
+Everything works on every system, except the system voices, which only Windows has.
 
 ## Your Euler Stream key
 
-Tokio connects to TikTok LIVE through [Euler Stream](https://www.eulerstream.com), which signs each connection with your own API key. [Sign up](https://www.eulerstream.com/register) for free and paste your key in **Settings → TikTok LIVE**. Your [plan](https://www.eulerstream.com/pricing) sets how often you can connect.
+Tokio connects through [Euler Stream](https://www.eulerstream.com), with your own API key. [Sign up](https://www.eulerstream.com/register) for free and paste your key in **Settings → TikTok LIVE**; your [plan](https://www.eulerstream.com/pricing) sets how often you can connect.
 
-![The Euler Stream API key field in Settings → TikTok LIVE](../../../assets/screenshots/settings-tiktok-live.png)
+<Screenshot
+  name="settings-tiktok-live"
+  alt="The Euler Stream API key field in Settings → TikTok LIVE"
+/>
 
 ## Updates
 
-Tokio checks GitHub for new versions when it starts and every few hours.
+Tokio checks for new versions on its own. On Windows and Linux, click **Restart to update** in the title bar; on macOS, **Download update** opens the release page.
 
-- On Windows and Linux it downloads them in the background. Click **Restart to update** in the title bar to install one.
-- On macOS, **Download update** in the title bar opens the release page, where you download the new zip.
+<Screenshot
+  name="update-button"
+  alt="The title bar with the profile menu and the Restart to update button"
+/>
 
 Turn the checks off in **Settings → Updates**, or check any time from **About**.
