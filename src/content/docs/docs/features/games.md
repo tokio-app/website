@@ -194,6 +194,8 @@ The pictures live in a library that all profiles share, in the `games/minecraft`
 
 - **Layout**: **List** shows every row at once. **One at a time** shows one row and turns to the next every 3 seconds. A row with several gifts stays until each of its gifts has shown, 2 seconds each.
 - **Format**: **Arrow** shows the event, an arrow and your picture side by side, like Rose ▸ TNT. **Sticker** shows your picture large, with the event's picture stuck on its bottom left corner, and no arrow.
+- **Text below pictures** puts the texts under the pictures instead of beside them, in either format.
+- **Event pictures**: the size of the gifts, emotes and Tokio's pictures for follows, shares, likes, chat and Super Fans: **Small**, **Medium** or **Large**.
 - **Columns**: how many overlays the rows split into, from 1 to 4.
 - **Pictures only** hides the texts next to pictures. A side without a picture keeps its text, so **Any gift** still shows, and so does chat's keyword, which its bubble can't say.
 - **Font**: the name of a font installed on the computer with your streaming app. Empty is Tokio's own, Archivo.
