@@ -59,8 +59,9 @@ On the **Media** tab, click **Choose media...** to show a png, jpg, gif, webp, m
 
 ![The Media tab: the alert's image, its duration and the alert's overlay URL](../../../../assets/screenshots/alerts-media.png)
 
-- **Duration** is how long it stays, in seconds, up to 60, or longer if the sound plays longer. A shorter video leaves when it ends. **Match video** uses the video's length.
-- A video shows its length in its corner, and its play button plays it right there to check it.
+- An image's **Duration** is how long it stays, in seconds, up to 60, or longer if the sound plays longer.
+- A video stays while it plays, up to 60 seconds. **Cut** keeps part of it, like a sound's cut: drag the handles, type the seconds in **Start** and **End**, or use the arrow keys. The preview shows the frame where a handle stops and the cut's length in its corner, and its play button plays only the cut. **Reset cut** plays the whole video again. Another video starts whole.
+- A video that doesn't say its length, like some recordings, can't be cut: set its **Duration** instead.
 - A video plays its own sound, at its own **Volume**, apart from the alert's sound.
 - Browsers play a page's video muted until you click the page. When you test the overlay in a browser tab, click it once, and the next videos play with sound. OBS's browser source plays the sound without a click.
 - Manage your media in **Settings → Media Library**.
