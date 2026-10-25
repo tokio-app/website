@@ -4,45 +4,76 @@ description: Get Tokio ready before you go live, then connect it to your TikTok 
 ---
 
 import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../components/Screenshot.astro";
 
-Set everything up before you start your LIVE. Tokio can only connect once the LIVE has started.
+Set everything up before you go live. Tokio can only connect once your LIVE has started.
 
 <Steps>
 
 1. **Install Tokio**
 
-   Download it from the [download page](/download/). See [Install](/docs/install/) for each system.
+   Download it for your system: see [Install](/docs/install/).
 
 2. **Set it up**
 
-   Get a free API key from [Euler Stream](https://www.eulerstream.com/register) and paste it in **Settings → TikTok LIVE**. You only do this once.
+   Paste your free [Euler Stream](https://www.eulerstream.com/register) API key in **Settings → TikTok LIVE**, once. Then set up your [voice](/docs/features/text-to-speech/), [music](/docs/features/music-requests/), [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
 
-   ![The Euler Stream API key field in Settings → TikTok LIVE](../../../assets/screenshots/settings-tiktok-live.png)
-
-   Then pick your [voice](/docs/features/text-to-speech/), connect your [music](/docs/features/music-requests/), and set up your [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
+   <Screenshot
+     name="settings-tiktok-live"
+     alt="The Euler Stream API key field in Settings → TikTok LIVE"
+   />
 
 3. **Prepare your stream**
 
-   On **Home**, under **Active Features**, turn on **TTS**, **Music** and **Alerts** as you need them. They stay as you leave them. Add your overlays to OBS or TikTok LIVE Studio: see [Adding an overlay](/docs/guides/adding-an-overlay/).
+   On **Home**, under **Active Features**, turn on what you need; it stays as you leave it. [Add your overlays](/docs/guides/adding-an-overlay/) to your streaming app.
 
-   ![Active Features on the Home page, with TTS and Alerts on and the overlay server running](../../../assets/screenshots/home-features.png)
+   <Screenshot
+     name="home-features"
+     alt="Active Features on the Home page, with TTS and Alerts on and the overlay server running"
+   />
 
 4. **Go live and connect**
 
    Start your LIVE on TikTok. Then enter your `@username` on **Home** and click **Connect**.
 
+   <Screenshot
+     name="home-connect"
+     alt="The connect box on Home, with @tokio.demo typed in and the Connect button"
+   />
+
 </Steps>
 
 ## While you're LIVE
 
-**Home** shows your LIVE's numbers and an **Activity** feed of chats, gifts, follows, shares, new Super Fans and viewers joining. The feed stays after the LIVE ends, until the next one. Its gear picks which events it shows.
+**Home** shows your LIVE's numbers and an **Activity** feed of what viewers do. The feed stays after the LIVE ends, until the next one.
 
-![The Activity Feed window, with a switch for each kind of event](../../../assets/screenshots/home-feed-settings.png)
+<Screenshot
+  name="dashboard"
+  alt="The Home page during a LIVE: how long it's been on, the viewers, likes and views, the features that are on, and the activity feed"
+/>
 
-Turning a feature off during the LIVE stops what it has queued. Keep Tokio open while you stream, so your overlays keep getting events.
+The gear next to **Activity** picks which events the feed shows.
+
+<Screenshot
+  name="home-feed-settings"
+  alt="The Activity Feed window, with a switch for each kind of event"
+/>
+
+Turning a feature off during the LIVE stops what it has queued.
 
 ## When something fails
 
-If Tokio can't connect, it says why: the LIVE hasn't started, the username wasn't found, or your Euler Stream key is missing, wasn't accepted or hit its [plan's](https://www.eulerstream.com/pricing) limit.
+If Tokio can't connect, it tells you why and what to do. If the connection drops, it reconnects on its own and tells you when it's back.
 
-If the connection drops, Tokio reconnects on its own and tells you when it's back. Other problems, like a sound that's missing, show as notifications, and the bell in the title bar keeps them.
+<details>
+<summary>Why a connect fails</summary>
+
+- The LIVE hasn't started yet. Connect once it has.
+- TikTok has no account with that username.
+- Your Euler Stream key is missing, wasn't accepted, or hit its rate limit.
+- Your Euler Stream [plan](https://www.eulerstream.com/pricing) doesn't include the connection.
+- Euler Stream couldn't sign the connection, or Tokio can't reach TikTok. Check your internet and try again.
+
+</details>
+
+Other problems, like a missing sound, show as notifications. The bell in the title bar keeps them for the session.
