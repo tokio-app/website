@@ -5,11 +5,13 @@ description: Play a sound or a message, or show an image or a video, for follows
 
 Play a sound or a spoken message, show an image or a video, or both, when something happens in your LIVE. Set them up on the **Alerts** page, and turn **Alerts** on under **Active Features** on **Home**.
 
-![Five alerts on the Alerts page: a follow alert that speaks a message, a gift alert for two gifts with a cut sound and an image, a chat alert for a keyword, a share alert and a join alert for one viewer](../../../../assets/screenshots/alerts.png)
+![Five named alerts on the Alerts page: Thank followers speaks a message, Big gifts plays a cut sound and shows an image for two gifts, Hype answers a chat keyword, Shares plays for shares and Regulars for one viewer joining](../../../../assets/screenshots/alerts.png)
 
-Each row sums up an alert: what sets it off, what it plays and for how long, and what it shows. Its switch turns it on and off, and its play button previews it. Alerts belong to the profile; your sounds and media are shared by all profiles.
+Each row sums up an alert: its name, what sets it off, what it plays and for how long, and what it shows. Its switch turns it on and off, and its play button previews it. An alert with an image or a video also has a button that copies its overlay URL. Alerts belong to the profile; your sounds and media are shared by all profiles.
 
-Click **Add alert**, then click the alert to open its editor. It has three tabs: **Trigger**, **Sound** and **Media**. Changes save as you make them, and **Done** closes it.
+Click **Add alert**, then click the alert to open its editor. Type its **Name** at the top: a new alert is named by its place in the list, like alert-3. Under the name are three tabs: **Trigger**, **Sound** and **Media**. Changes save as you make them, and **Done** closes it.
+
+To find an alert, click the search button next to **Add alert** and type part of its name.
 
 ## Triggers
 
@@ -66,7 +68,7 @@ On the **Media** tab, click **Choose media...** to show a png, jpg, gif, webp, m
 - Browsers play a page's video muted until you click the page. When you test the overlay in a browser tab, click it once, and the next videos play with sound. OBS's browser source plays the sound without a click.
 - Manage your media in **Settings → Media Library**.
 
-Each alert shows its media on its own overlay, so you can place it anywhere. Copy the **Overlay URL** and add it to your streaming app (see [Adding an overlay](/docs/guides/adding-an-overlay/)), then press the alert's play button to check it:
+Each alert shows its media on its own overlay, so you can place it anywhere. Copy the **Overlay URL**, here or with the copy button on the alert's row, and add it to your streaming app (see [Adding an overlay](/docs/guides/adding-an-overlay/)), then press the alert's play button to check it:
 
 ```
 http://tokio-app.local:37891/alerts/<alert-id>/
@@ -74,7 +76,7 @@ http://tokio-app.local:37891/alerts/<alert-id>/
 
 ## Gift alerts
 
-On the **Trigger** tab, click **Any gift** to pick gifts. Search them, filter them by price and sort them. **Select all shown** checks every gift the filters leave, like all gifts of 1,000 coins or more. With none checked, the alert plays for any gift.
+On the **Trigger** tab, click **Any gift** to pick gifts. Search them, filter them by price and sort them. **Select all shown** checks every gift the filters leave, like all gifts of 1,000 coins or more. With none checked, the alert plays for any gift. The alert's row names up to three of them and counts the rest, like "Rose, Lion or 230 more".
 
 ![The gift list filtered to gifts of at least 1,000 coins, with Galaxy checked](../../../../assets/screenshots/alerts-gifts.png)
 
