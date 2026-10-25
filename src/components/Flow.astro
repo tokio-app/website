@@ -1,0 +1,183 @@
+---
+// A diagram of where things run, for what has no screen to show: stops on a
+// hairline track, like the landing page's timeline, but without numbers,
+// since it isn't something you do in order. Side by side when there's room,
+// stacked otherwise. `live` marks a stop with the LIVE dot, the only color.
+interface Stop {
+  title: string;
+  // May hold inline HTML, such as <strong> for a UI name
+  text?: string;
+  code?: string;
+  live?: boolean;
+}
+
+interface Props {
+  // What the diagram shows, for screen readers
+  label: string;
+  stops: Stop[];
+}
+
+const { label, stops } = Astro.props;
+---
+
+<figure class="flow not-content" aria-label={label}>
+  <ol>
+    {stops.map((stop) => (
+      <li class:list={{ live: stop.live }}>
+        <span class="node" aria-hidden="true" />
+        <svg
+          class="chevron"
+          viewBox="0 0 6 10"
+          width="6"
+          height="10"
+          aria-hidden="true"
+        >
+          <path d="M1 1l4 4-4 4" />
+        </svg>
+        <p class="title">{stop.title}</p>
+        {stop.code && <code>{stop.code}</code>}
+        {stop.text && <p class="text" set:html={stop.text} />}
+      </li>
+    ))}
+  </ol>
+</figure>
+
+<style>
+  .flow {
+    container: flow / inline-size;
+    margin-block: var(--space-8);
+  }
+
+  /* Stacked: the track runs down the left, from stop to stop */
+  ol {
+    --node: 8px;
+    --node-top: 7px;
+
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    justify-items: start;
+    gap: var(--space-1);
+    padding: 0 0 var(--space-6) var(--space-6);
+  }
+
+  li:last-child {
+    padding-bottom: 0;
+  }
+
+  .node {
+    position: absolute;
+    top: var(--node-top);
+    left: 0;
+    width: var(--node);
+    height: var(--node);
+    border-radius: var(--radius-full);
+    background: var(--background-secondary-hover);
+  }
+
+  /* Steady, like the LIVE dot on the app's Home */
+  .live .node {
+    background: var(--accent-primary);
+  }
+
+  /* The track to the next stop, ending in the chevron */
+  li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--node-top) + var(--node) + var(--space-1));
+    bottom: -1px;
+    left: calc(var(--node) / 2 - 0.5px);
+    width: 1px;
+    background: var(--background-secondary-hover);
+  }
+
+  /* Turned to point down, centered on the track, its tip 6px above the next
+     stop's dot */
+  .chevron {
+    position: absolute;
+    bottom: -4px;
+    left: calc(var(--node) / 2 - 3px);
+    fill: none;
+    stroke: var(--font-secondary);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg);
+  }
+
+  li:last-child .chevron {
+    display: none;
+  }
+
+  .title {
+    color: var(--font-primary);
+    font-size: var(--font-lg);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .text {
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+    line-height: 1.5;
+  }
+
+  .text :global(strong) {
+    color: var(--font-primary);
+    font-weight: 600;
+  }
+
+  code {
+    padding: 1px var(--space-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--background-tertiary);
+    color: var(--font-primary);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-sm);
+    overflow-wrap: anywhere;
+  }
+
+  /* Side by side: the track runs along the top, through the stops' dots */
+  @container flow (min-width: 32rem) {
+    ol {
+      --gap: var(--space-6);
+
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: var(--gap);
+    }
+
+    li {
+      align-content: start;
+      padding: var(--space-6) 0 0;
+    }
+
+    .node {
+      top: 0;
+    }
+
+    li:not(:last-child)::before {
+      top: calc(var(--node) / 2 - 0.5px);
+      bottom: auto;
+      left: calc(var(--node) + var(--space-2));
+      right: calc(var(--space-2) - var(--gap));
+      width: auto;
+      height: 1px;
+    }
+
+    .chevron {
+      top: calc(var(--node) / 2 - 5px);
+      bottom: auto;
+      left: auto;
+      right: calc(var(--space-2) - var(--gap));
+      transform: none;
+    }
+  }
+</style>
