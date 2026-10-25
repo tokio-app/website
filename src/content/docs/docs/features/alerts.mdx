@@ -1,0 +1,160 @@
+---
+title: Alerts
+description: Play a sound or a message, or show an image or a video, for follows, gifts, chat and other LIVE events.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+Alerts play a sound or a message, or show an image or a video, when something happens in your LIVE.
+
+<Screenshot
+  name="alerts"
+  alt="Five named alerts on the Alerts page: Thank followers speaks a message, Big gifts plays a cut sound and shows an image for two gifts, Hype answers a chat keyword, Shares plays for shares and Regulars for one viewer joining"
+/>
+
+Each row has a switch, a play button to preview it and, with media, a button that copies its overlay URL. Alerts belong to the profile; sounds and media are shared.
+
+## Make an alert
+
+<Steps>
+
+1. On the **Alerts** page, click **Add alert**, click it and type a **Name**.
+2. On the **Trigger** tab, pick the event.
+
+   <Screenshot
+     name="alerts-trigger"
+     alt="The Trigger tab of a gift alert for any gift worth at least 100 coins, from moderators"
+   />
+
+3. On the **Sound** tab, click **Choose sound...** and pick a sound.
+
+   <Screenshot
+     name="alerts-sounds"
+     alt="The sound picker: your sounds, MyInstants and text-to-speech tabs, and Browse file"
+   />
+
+4. On the **Media** tab, add an image or a video, if you like.
+5. Turn on **Alerts** on **Home**, and test the alert with its play button.
+
+</Steps>
+
+Changes save as you go. To find an alert, click the search button next to **Add alert**.
+
+## Triggers
+
+Pick the **Event**: Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan Join, Member Join or Music Change (a new song from [music requests](/docs/features/music-requests/)).
+
+Under **From**, check **Followers**, **Moderators** or **Super Fans** to play only for them. Follow, Envelope, Super Fan Box and Music Change don't have it.
+
+## Sounds
+
+Pick one of your sounds, search [MyInstants](https://www.myinstants.com), or **Browse file...** for an mp3, wav or ogg up to 8 MB. **Clear** takes it off the alert, and **Volume** sets how loud it plays.
+
+## Cutting a sound
+
+Drag the waveform's handles to cut the start or the end, or type the seconds in **Start** and **End**. The play button next to **Reset cut** plays only the cut.
+
+<Screenshot
+  name="alerts-cut"
+  alt="The Sound tab: a waveform cut from 0.2 to 1.3 seconds of a 2 second sound"
+/>
+
+<details>
+<summary>More on cuts</summary>
+
+- With a handle focused, the arrow keys move it by a tenth of a second, or a second with Shift.
+- A sound cut before its end fades out quickly, so it doesn't click.
+- The file stays whole, so other alerts can cut it their own way.
+- The alert's row shows the cut's length, and its play button plays only the cut.
+
+</details>
+
+## Spoken messages
+
+On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and press **Use text-to-speech**.
+
+<Screenshot
+  name="alerts-tts"
+  alt="The Text-to-speech tab of the sound picker, with a message that thanks the viewer for the follow"
+/>
+
+Click a variable to add the event's details:
+
+| Variable                 | Triggers                                         |
+| ------------------------ | ------------------------------------------------ |
+| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music Change |
+| `{comment}`              | Chat and Emote                                   |
+| `{gift}`, `{count}`      | Gift (`{count}` is the combo size)               |
+| `{count}`                | Like (the likes sent)                            |
+| `{song}`                 | Music Change                                     |
+
+The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove Emojis**, banned words, cooldown and queue length apply too.
+
+## Images and videos
+
+Click **Choose media...** for a png, jpg, gif, webp, mp4 or webm up to 50 MB. An image stays for its **Duration**, up to 60 seconds, or longer if the sound is longer.
+
+<Screenshot
+  name="alerts-media"
+  alt="The Media tab: the alert's image, its duration and the alert's overlay URL"
+/>
+
+Each alert shows its media on its own overlay:
+
+```
+http://tokio-app.local:37891/alerts/<alert-id>/
+```
+
+Copy it here or from the alert's row, [add it to your streaming app](/docs/guides/adding-an-overlay/), and press the alert's play button to check it.
+
+<details>
+<summary>Videos</summary>
+
+- A video stays while it plays, up to 60 seconds.
+- **Cut** keeps part of it, like a sound's cut.
+- A video that doesn't say its length can't be cut: set its **Duration** instead.
+- A video plays its own sound, at its own **Volume**.
+- In a browser tab, click the overlay once to hear videos. OBS plays the sound without a click.
+
+</details>
+
+## Gift alerts
+
+On the **Trigger** tab, click **Any gift** to pick gifts. **Select all shown** checks every gift the filters leave.
+
+<Screenshot
+  name="alerts-gifts"
+  alt="The gift list filtered to gifts of at least 1,000 coins, with Galaxy checked"
+/>
+
+Then choose when it plays:
+
+- **When streak ends**: once per combo, so a streak of 20 roses plays it once. The default.
+- **Every gift**: once per gift, up to the queue's length.
+
+With **Any gift**, **Worth at least** sets the coins a streak, or a gift on **Every gift**, must be worth.
+
+<details>
+<summary>Gifts missing from the list</summary>
+
+TikTok's list misses some gifts, like other regions' ones. Tokio adds the ones viewers send.
+
+</details>
+
+## Chat, emote and join alerts
+
+- **Chat**: type a keyword or phrase to play only for messages with it as a whole word. **hi** plays for "Hi there!" but not for "this".
+- **Emote**: click **Any emote** to pick emotes. The list fills as viewers use them.
+- **Member Join** and **Super Fan Join**: type an @handle or name for an entrance sound for one viewer.
+
+## Queue
+
+Alerts play one at a time. **Max queue length** drops the extras, and **Play alerts simultaneously** lets different triggers overlap.
+
+<Screenshot
+  name="alerts-queue"
+  alt="The Alerts page header, with Play alerts simultaneously and Max queue length"
+/>
+
+An alert with media holds the queue for its duration, so keep it short for likes. Alerts stop when you disconnect.
