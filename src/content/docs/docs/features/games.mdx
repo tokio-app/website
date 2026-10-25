@@ -21,24 +21,14 @@ On **Games**, turn on **Minecraft**: the status reads **Waiting for Minecraft**.
 
 ## Bedrock Edition
 
-<Steps>
-
-1. In Minecraft, open **Settings → General → Network settings** and turn on **Enable WebSockets**.
-2. Open a world with cheats on.
-3. Type the command from **Games** in the game's chat:
-
-   ```
-   /connect 192.168.1.20:37892
-   ```
-
-</Steps>
+Follow the steps **Games** shows for Bedrock, in Minecraft:
 
 <Screenshot
   name="games-connect-bedrock"
-  alt="The Bedrock Edition setup on Games, with the /connect command to copy"
+  alt="The Bedrock Edition steps on Games: turn on Enable WebSockets in Settings → General → Network settings, open a world with cheats on, and paste the command in the chat, here /connect 192.168.1.20:37892"
 />
 
-Leaving the world ends the connection, so type the command again next time.
+**Require Encrypted WebSockets** can stay on. Leaving the world ends the connection, so type the `/connect` command again next time.
 
 <details>
 <summary>If it doesn't connect</summary>
@@ -68,20 +58,11 @@ You do this once, for Minecraft Java **26.3**.
 
 ### Connect
 
-<Steps>
-
-1. Open a world. Cheats can stay off.
-2. Type the command from **Games** in the game's chat:
-
-   ```
-   /tokio connect 192.168.1.20:37892
-   ```
-
-</Steps>
+Open a world, then type the command **Games** shows in the game's chat:
 
 <Screenshot
   name="games-connect-java"
-  alt="The Java Edition setup on Games, with the /tokio connect command to copy"
+  alt="The Java Edition steps on Games: install Fabric Loader, Fabric API and the Tokio mod for 26.3, open a world, and paste the command in the chat, here /tokio connect 192.168.1.20:37892"
 />
 
 On the same PC as Tokio, `/tokio connect` is enough. The mod never reconnects by itself: connect each time you open the world.
