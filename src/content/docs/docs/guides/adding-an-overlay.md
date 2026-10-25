@@ -19,7 +19,7 @@ TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own a
   http://tokio-app.local:37891/<overlay-id>/
   ```
 
-- An [alert's media](/docs/features/alerts/#images-and-videos), from the media picker on **Alerts**:
+- An [alert's media](/docs/features/alerts/#images-and-videos), from the **Media** tab of the alert's editor on **Alerts**:
 
   ```
   http://tokio-app.local:37891/alerts/<alert-id>/
