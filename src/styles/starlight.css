@@ -148,25 +148,6 @@ site-search button[data-open-modal]:hover {
   border-radius: var(--radius-lg);
 }
 
-/* Wide screenshots (Screenshot.astro sets --w, the app's own size) spread
-   past the text column, centered on it, up to the "On this page" column.
-   The main pane is their container, so 100cqi is its exact width, without
-   the scrollbar that vw counts. Only top-level ones: inside Steps, Tabs or
-   details they keep the column's width. Narrow ones stay left-aligned. */
-@media (min-width: 72rem) {
-  .main-pane {
-    container-type: inline-size;
-  }
-
-  .sl-markdown-content > .screenshot {
-    --shown: min(var(--w), 100cqi - 2 * var(--sl-content-pad-x));
-
-    width: var(--shown);
-    max-width: none;
-    margin-inline: min(0px, (100% - var(--shown)) / 2);
-  }
-}
-
 /* Smaller previous/next links at the bottom of each docs page. Two fixed
    columns, so a lone link keeps half the width on its own side. */
 @media (min-width: 40rem) {

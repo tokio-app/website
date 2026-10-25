@@ -1,8 +1,7 @@
 ---
 // A screenshot of the app from src/assets/screenshots/. They're taken at 2x,
-// so half the pixel width is the app's own size: shown at that width, crisp
-// on HiDPI screens, and never enlarged. Wide ones spread past the text column
-// on large screens (starlight.css).
+// so half the pixel width is the app's own size: shown at that width, or
+// narrower to fit the text column, crisp on HiDPI screens and never enlarged.
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
@@ -31,5 +30,4 @@ const width = Math.round(src.width / 2);
   width={width}
   densities={[1, 2]}
   class="screenshot"
-  style={`--w: ${width}px`}
 />
