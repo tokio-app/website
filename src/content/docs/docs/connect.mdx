@@ -12,7 +12,7 @@ Set everything up before you go live. Tokio can only connect once your LIVE has 
 
 1. **Install Tokio**
 
-   Download it for your system: see [Install](/docs/install/).
+   See [Install](/docs/install/).
 
 2. **Set it up**
 
@@ -63,17 +63,17 @@ Turning a feature off during the LIVE stops what it has queued.
 
 ## When something fails
 
-If Tokio can't connect, it tells you why and what to do. If the connection drops, it reconnects on its own and tells you when it's back.
+If Tokio can't connect, it tells you why. If the connection drops, it reconnects on its own.
 
 <details>
 <summary>Why a connect fails</summary>
 
-- The LIVE hasn't started yet. Connect once it has.
-- TikTok has no account with that username.
-- Your Euler Stream key is missing, wasn't accepted, or hit its rate limit.
+- The LIVE hasn't started yet.
+- The username wasn't found on TikTok.
+- Your Euler Stream key is missing, wasn't accepted or hit its rate limit.
 - Your Euler Stream [plan](https://www.eulerstream.com/pricing) doesn't include the connection.
-- Euler Stream couldn't sign the connection, or Tokio can't reach TikTok. Check your internet and try again.
+- Euler Stream couldn't sign it, or TikTok can't be reached.
 
 </details>
 
-Other problems, like a missing sound, show as notifications. The bell in the title bar keeps them for the session.
+Other problems show as notifications, kept under the bell in the title bar.
