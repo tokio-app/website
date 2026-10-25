@@ -5,6 +5,10 @@ export const REPO_URL = `https://github.com/${REPO}`;
 export const RELEASES_URL = `${REPO_URL}/releases`;
 export const LATEST_RELEASE_URL = `${RELEASES_URL}/latest`;
 
+// The Tokio mod for Minecraft Java Edition
+const MOD_REPO = "tokio-app/minecraft-mod";
+const MOD_RELEASE_URL = `https://github.com/${MOD_REPO}/releases/latest`;
+
 export type OS = "windows" | "mac" | "linux";
 
 export interface Download {
@@ -73,7 +77,7 @@ export function getLatestRelease(): Promise<Release | null> {
   return cached;
 }
 
-async function fetchLatestRelease(): Promise<Release | null> {
+async function fetchLatest(repo: string): Promise<GitHubRelease> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "User-Agent": "tokio-website",
@@ -81,13 +85,48 @@ async function fetchLatestRelease(): Promise<Release | null> {
   const token = process.env.GITHUB_TOKEN;
   if (token) headers.Authorization = `Bearer ${token}`;
 
+  const res = await fetch(
+    `https://api.github.com/repos/${repo}/releases/latest`,
+    { headers, signal: AbortSignal.timeout(10_000) },
+  );
+  if (!res.ok) throw new Error(`GitHub responded ${res.status}`);
+  return (await res.json()) as GitHubRelease;
+}
+
+export interface ModDownload {
+  /** Unknown when GitHub can't be reached. */
+  file?: string;
+  url: string;
+}
+
+let cachedMod: Promise<ModDownload> | undefined;
+
+/**
+ * The jar of the Tokio mod's latest release, downloaded straight from the
+ * docs. Its name carries the version, so without the GitHub API it links to
+ * the release's page instead. Fetched once per build.
+ */
+export function getModDownload(): Promise<ModDownload> {
+  cachedMod ??= fetchLatest(MOD_REPO)
+    .then((data) => {
+      const jar = data.assets.find(
+        (a) => a.name.endsWith(".jar") && !a.name.endsWith("-sources.jar"),
+      );
+      if (!jar) throw new Error("no jar in the latest release");
+      return { file: jar.name, url: jar.browser_download_url };
+    })
+    .catch((error: Error) => {
+      console.warn(
+        `[release] Linking the mod's release page: ${error.message}`,
+      );
+      return { url: MOD_RELEASE_URL };
+    });
+  return cachedMod;
+}
+
+async function fetchLatestRelease(): Promise<Release | null> {
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${REPO}/releases/latest`,
-      { headers, signal: AbortSignal.timeout(10_000) },
-    );
-    if (!res.ok) throw new Error(`GitHub responded ${res.status}`);
-    const data = (await res.json()) as GitHubRelease;
+    const data = await fetchLatest(REPO);
 
     // A file missing from the release keeps its fallback link.
     const downloads = DOWNLOADS.map(({ pattern, ...source }, i) => {
