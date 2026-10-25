@@ -112,6 +112,25 @@ Steps run in order, as the player in the game. Click **Add step** to add one.
 - **Give item**: pick an item and how many (1 to 100). You get it.
 - **Weather**: **Clear**, **Rain** or **Thunder**.
 - **Time of day**: **Day**, **Noon**, **Night** or **Midnight**.
+- **Hazard**: something that tries to kill you, or just gets in your way, ready for both editions. Lightning bolts, charged creepers and fangs take how many (1 to 100); the others run once:
+  - **Falling TNT**: lit TNT drops from 10 blocks above you. Set its fuse in seconds. Bedrock's TNT has only two fuses: 4 s, or a random 0.5 to 2 s when you set 2 s or less.
+  - **TNT ring**: 8 lit TNT around you, with the same fuse.
+  - **Lightning bolt**: strikes where you stand.
+  - **Charged creeper**: appears next to you.
+  - **Evoker fangs**: bite up from under you.
+  - **Anvil drop**: an anvil falls from 20 blocks above you. It needs air there, and it stays in the world after it lands.
+  - **Harming**: takes 6 hearts at once.
+  - **Launch into the sky**: you fly up as high as you set (up to 300 blocks, 50 to start), in the seconds you set: fewer seconds, faster. At the top you stop and fall right away. Above about 190 blocks, 1 second is too fast, so it takes a little longer.
+  - **Launch + water**: the same, but you get a water bucket first, to land in water if you're quick.
+  - **Freeze**: you can't walk, for the seconds you set (10 to start).
+  - **Lights out**: darkness, for the seconds you set.
+  - **Dizzy**: your screen wobbles, for the seconds you set.
+  - **Turn around**: you face the other way.
+  - **Random teleport**: you land somewhere within the distance you set (1,000 blocks to start).
+- **Help**: something that helps you survive, ready for both editions:
+  - **Netherite armor**: a whole set, put on right away. It replaces the armor you're wearing, which is lost.
+  - **Full heal**: fills your health and hunger.
+  - **Regeneration** II, **Absorption** IV (8 more hearts), **Resistance** IV (80% less damage), **Fire resistance**, **Speed** II, **Jump boost** II, **Strength** II, **Slow falling**, **Water breathing**, **Night vision** and **Invisibility**, for the seconds you set (30 to start).
 - **Command**: any command, typed as in the game's chat, with or without the slash. Use it for anything else, like effects, titles or sounds:
 
 ```
