@@ -31,6 +31,14 @@ TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own a
   http://tokio-app.local:37891/timer/
   ```
 
+- The [games overlay](/docs/features/games/#show-your-actions-on-stream), from **Games**:
+
+  ```
+  http://tokio-app.local:37891/games/minecraft/
+  ```
+
+  With more than one column, each has its own address, like `http://tokio-app.local:37891/games/minecraft/2/`.
+
 ## OBS Studio
 
 1. In **Sources**, click **+** and choose **Browser**.
