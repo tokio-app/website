@@ -1,0 +1,74 @@
+---
+title: Countdown timer
+description: A countdown on your stream that viewers add time to with gifts, likes, follows and chat.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans and chat.
+
+<Screenshot
+  name="timer-preview"
+  alt="The timer's preview on the Tools page: the title Subathon over a clock at 01:04:57"
+/>
+
+<Steps>
+
+1. On the **Tools** page, set the **Starting time**.
+2. Under **Time Added**, set the seconds each event adds.
+3. Add the timer's overlay to your streaming app (see [Adding an overlay](/docs/guides/adding-an-overlay/)):
+
+   ```
+   http://tokio-app.local:37891/timer/
+   ```
+
+4. Press **Start**.
+
+</Steps>
+
+## Controls
+
+<Screenshot
+  name="timer-controls"
+  alt="The countdown timer running, with its controls, the starting time and the overlay URL"
+/>
+
+| Button              | What it does                                                                  |
+| ------------------- | ----------------------------------------------------------------------------- |
+| **Start**           | Runs the clock from the **Starting time**, or carries on.                     |
+| **Pause**           | Holds the clock. Events still add time.                                       |
+| **Stop**            | Holds the clock, and events add nothing until you **Start** again.            |
+| **Reset**           | Puts the starting time back, after you confirm.                               |
+| **Add**, **Remove** | Change the clock by the minutes you enter, say for a donation from elsewhere. |
+
+At 0 the clock stops, and it keeps running when you leave **Tools**. It pauses when the LIVE ends or Tokio disconnects, unless you uncheck **Pause when the LIVE ends or disconnects**.
+
+## Time added
+
+<Screenshot
+  name="timer-time-added"
+  alt="Time Added: the multiplier, the maximum time and the seconds each event adds"
+/>
+
+- 0 seconds leaves an event out. **Multiplier** multiplies every event, like 2 for a double-time hour.
+- **Maximum time** stops adding time once the clock reaches it. 0 is no limit.
+- Chat messages count only with the keyword you enter, matched like a [chat alert's](/docs/features/alerts/#chat-emote-and-join-alerts), and once per viewer in the cooldown. Leave it empty to count any message.
+
+## On stream
+
+The overlay shows the clock, an optional **Title**, and what each burst adds, like **+1:30**. Set the rest in **Timer Look**.
+
+<Screenshot
+  name="timer-look"
+  alt="Timer Look: the colors, the title, the warning, the fonts and the names shown for each trigger"
+/>
+
+- **Warning** turns the clock to its warning color that many minutes before the end. 0 turns it off.
+- **Clock font** and **Title font** must be installed on the computer with your streaming app. Otherwise it uses Archivo.
+- **Show the multiplier** shows it, like **×2**, while it isn't 1.
+- **Show the triggers, one at a time** shows what each event adds, like **Follow +30s**, with the names you type.
+
+## Profiles and restarts
+
+Each profile has its own timer, and if Tokio closes while it runs, it comes back paused with about the time it had.
