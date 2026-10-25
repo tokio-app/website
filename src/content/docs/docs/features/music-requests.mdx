@@ -1,0 +1,96 @@
+---
+title: Music requests
+description: Let viewers request songs from chat, played from YouTube or Spotify.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+Viewers request songs from chat. YouTube songs play in Tokio's own player window, and Spotify songs in your Spotify app. Both need a Premium account.
+
+## Providers
+
+Pick one under **Provider** on the **Music** page, then turn on **Music** under **Active Features** on **Home**.
+
+<Tabs>
+<TabItem label="YouTube">
+
+You need **YouTube Premium** or **YouTube Music Premium**. On a free account, ads play between songs and can delay them or cut them short.
+
+<Steps>
+
+1. Pick **YouTube** and click **Connect**.
+2. Sign in to Google in the window that opens. Tokio remembers it.
+
+</Steps>
+
+<Screenshot
+  name="music-provider"
+  alt="The Provider section with YouTube picked"
+/>
+
+Keep the player window open while you stream: closing it disconnects music.
+
+</TabItem>
+<TabItem label="Spotify">
+
+You need **Spotify Premium**: only Premium accounts can let another app control playback. Tokio connects through an app of your own, made once in Spotify's dashboard.
+
+<Steps>
+
+1. Log in to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+2. Create an app. Any name works, like "Tokio".
+3. Add this redirect URI, exactly: `http://127.0.0.1:5173/callback`
+4. If it asks which APIs you'll use, check **Web API**.
+5. Accept the terms and save.
+6. In the app's **Settings**, copy the **Client ID**. You don't need the secret.
+
+</Steps>
+
+Then, on Tokio's **Music** page:
+
+<Steps>
+
+1. Pick **Spotify** and paste the ID in **Spotify Client ID**.
+2. Click **Connect**, log in and let Tokio control your playback.
+
+</Steps>
+
+<Screenshot
+  name="music-spotify"
+  alt="The Provider section with Spotify picked and its Client ID field"
+/>
+
+Before your LIVE, open Spotify and play a song, so Tokio has a device to play on. Connect with the account that made the app, or add others to its users in the dashboard first, up to five.
+
+</TabItem>
+</Tabs>
+
+## Chat commands
+
+| Command   | Action                                   |
+| --------- | ---------------------------------------- |
+| `!play`   | Request a song                           |
+| `!next`   | Skip to the next song                    |
+| `!last`   | Go back to the last song                 |
+| `!revoke` | Remove a song from the queue by its name |
+
+<Screenshot
+  name="music-commands"
+  alt="The Controls section, where each chat command can be renamed or turned off"
+/>
+
+Rename or turn off each one under **Controls**; viewers can type them in any case. `!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue.
+
+## Who can request
+
+Music has its own **Permissions** and **Protection**, set like [text-to-speech's](/docs/features/text-to-speech/#permissions). The cooldown is shared: after any command, every command waits until it passes.
+
+<Screenshot
+  name="music-protection"
+  alt="The Protection section on the Music page, with One request per viewer on"
+/>
+
+**One request per viewer** ignores a viewer's next `!play` while their song waits. A song that's already playing or waiting isn't added again.
+
+Song changes are a LIVE event too, so they can trigger an [alert](/docs/features/alerts/) or update an [overlay](/docs/features/overlays/).
