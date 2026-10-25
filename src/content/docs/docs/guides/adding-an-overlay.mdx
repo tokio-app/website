@@ -3,70 +3,84 @@ title: Adding an overlay
 description: Show Tokio's overlays in OBS Studio, TikTok LIVE Studio or any streaming app.
 ---
 
-Overlays are served by Tokio's overlay server. Turn it on in **Settings → Overlay Server** with **Enable Server**, and confirm.
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Flow from "../../../../components/Flow.astro";
+import Screenshot from "../../../../components/Screenshot.astro";
 
-![Settings → Overlay Server, with the server on and the computer's network address](../../../../assets/screenshots/settings-overlay-server.png)
+Tokio serves its overlays as web pages, and your streaming app shows them over your stream.
 
-The first time, your system asks for administrator rights (your password on macOS and Linux) so Tokio can add its address to your hosts file. Accept it, or the server stays off.
+<Steps>
 
-## The overlay address
+1. **Turn on the overlay server**
 
-TikTok LIVE Studio doesn't accept `localhost` links, so overlays use their own address, `tokio-app.local`. Copy each one in Tokio:
+   In **Settings → Overlay Server**, turn on **Enable Server** and confirm. The first time, accept the administrator prompt (your password on macOS and Linux) so Tokio can add its address to your hosts file.
 
-- An [overlay's](/docs/features/overlays/), from its card on **Overlays**:
+   <Screenshot
+     name="settings-overlay-server"
+     alt="Settings → Overlay Server, with the server on and the computer's network address"
+   />
 
-  ```
-  http://tokio-app.local:37891/<overlay-id>/
-  ```
+2. **Copy the overlay's address in Tokio**
 
-- An [alert's media](/docs/features/alerts/#images-and-videos), from the **Media** tab of the alert's editor on **Alerts**:
+   Each address starts with `http://tokio-app.local:37891`, like `http://tokio-app.local:37891/timer/`.
 
-  ```
-  http://tokio-app.local:37891/alerts/<alert-id>/
-  ```
+   | Copy it from                                                                          | Address               |
+   | ------------------------------------------------------------------------------------- | --------------------- |
+   | An [overlay's](/docs/features/overlays/) card on **Overlays**                         | `/<overlay-id>/`      |
+   | An [alert's](/docs/features/alerts/#images-and-videos) **Media** tab                  | `/alerts/<alert-id>/` |
+   | **Tools**, for the [timer](/docs/features/countdown-timer/)                           | `/timer/`             |
+   | **Games**, for the [games overlay](/docs/features/games/#show-your-actions-on-stream) | `/games/minecraft/`   |
+   | **Games**, for its column 2                                                           | `/games/minecraft/2/` |
 
-- The [countdown timer's](/docs/features/countdown-timer/), from **Tools**:
+3. **Add it in your streaming app**
 
-  ```
-  http://tokio-app.local:37891/timer/
-  ```
+   Paste the address in a new browser source:
 
-- The [games overlay](/docs/features/games/#show-your-actions-on-stream), from **Games**:
+</Steps>
 
-  ```
-  http://tokio-app.local:37891/games/minecraft/
-  ```
-
-  With more than one column, each has its own address, like `http://tokio-app.local:37891/games/minecraft/2/`.
-
-## OBS Studio
+<Tabs>
+  <TabItem label="OBS Studio">
 
 1. In **Sources**, click **+** and choose **Browser**.
-2. Paste the overlay URL and set the width and height to your canvas size.
+2. Paste the address and set the width and height to your canvas size.
 
-## TikTok LIVE Studio
+  </TabItem>
+  <TabItem label="TikTok LIVE Studio">
 
 1. Click **Add source** and choose **Link**.
-2. Paste the overlay URL and place the overlay on your scene.
+2. Paste the address and place the overlay on your scene.
 
-## Other apps
+  </TabItem>
+  <TabItem label="Other apps">
 
-Any app that can show a web page works the same way: add a browser or web source and paste the URL.
+1. Add a browser or web source.
+2. Paste the address.
+
+  </TabItem>
+</Tabs>
+
+Overlays use `tokio-app.local` because TikTok LIVE Studio doesn't accept `localhost` links.
 
 ## On another computer
 
-If your streaming app runs on another computer on your network, point `tokio-app.local` there to the computer Tokio runs on, at the network address shown in **Settings → Overlay Server**:
+If your streaming app runs on another computer on your network, point `tokio-app.local` there to the computer with Tokio.
 
-- Add a line with that address and `tokio-app.local` to the other computer's hosts file, as administrator. It's `C:\Windows\System32\drivers\etc\hosts` on Windows and `/etc/hosts` on macOS and Linux:
+<Flow
+  label="A streaming app on another computer"
+  stops={[
+    {
+      title: "Computer with Tokio",
+      code: "192.168.1.20",
+      text: "Its address is in <strong>Settings → Overlay Server</strong>",
+    },
+    {
+      title: "Computer with your streaming app",
+      code: "192.168.1.20 tokio-app.local",
+      text: "A line in its hosts file",
+    },
+  ]}
+/>
 
-  ```
-  192.168.1.20 tokio-app.local
-  ```
+Add that line to the other computer's hosts file, as administrator: `C:\Windows\System32\drivers\etc\hosts` on Windows, `/etc/hosts` on macOS and Linux. Or add a DNS entry for `tokio-app.local` on your router.
 
-- Or add a DNS entry for `tokio-app.local` with that address on your router.
-
-The overlay URLs then work there as they are. If Windows asks whether to allow Tokio through the firewall, allow it, or the other computer can't connect.
-
-:::tip
-Tokio has to stay open while you stream so the overlays keep getting events.
-:::
+If Windows asks whether to allow Tokio through the firewall, allow it, or the other computer can't connect.
