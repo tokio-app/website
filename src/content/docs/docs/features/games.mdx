@@ -1,0 +1,313 @@
+---
+title: Games
+description: Let your LIVE spawn mobs, give items and run commands in Minecraft.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+Gifts, follows and chat set things off in your Minecraft world, and an overlay shows viewers what each one does.
+
+<Screenshot
+  name="games-preview"
+  alt="The games overlay over a Minecraft sky: a follow icon, an arrow and a zombie head, then a rose, an arrow and a TNT block"
+/>
+
+## Connect Minecraft
+
+Tokio works with Bedrock Edition by itself, and with Java Edition through the Tokio mod. Both connect from the game's chat, one game at a time.
+
+On **Games**, turn on **Minecraft**: the status reads **Waiting for Minecraft**. Tokio listens only while it's on, and the switch is the same for all profiles.
+
+## Bedrock Edition
+
+<Steps>
+
+1. In Minecraft, open **Settings → General → Network settings** and turn on **Enable WebSockets**.
+2. Open a world with cheats on.
+3. Type the command from **Games** in the game's chat:
+
+   ```
+   /connect 192.168.1.20:37892
+   ```
+
+</Steps>
+
+<Screenshot
+  name="games-connect-bedrock"
+  alt="The Bedrock Edition setup on Games, with the /connect command to copy"
+/>
+
+Leaving the world ends the connection, so type the command again next time.
+
+<details>
+<summary>If it doesn't connect</summary>
+
+- **Port 37892 is in use**: another program holds the port. Close it, then turn **Minecraft** off and on.
+- The game says WebSockets are off: turn on **Enable WebSockets**.
+- The game won't take the command: the world needs cheats on.
+
+</details>
+
+## Java Edition
+
+The Tokio mod, for Fabric, connects single-player and LAN worlds you host, not dedicated servers. Cheats can stay off: it runs commands as you, with a command block's permission, and their answers don't show in chat.
+
+### Install the mod
+
+You do this once, for Minecraft Java **26.3**.
+
+<Steps>
+
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for 26.3.
+2. Put [Fabric API](https://modrinth.com/mod/fabric-api) for 26.3 in Minecraft's `mods` folder.
+3. Put the Tokio mod's `.jar` from its [releases page](https://github.com/tokio-app/minecraft-mod/releases/latest) in the same folder.
+4. Start Minecraft with the Fabric profile.
+
+</Steps>
+
+### Connect
+
+<Steps>
+
+1. Open a world. Cheats can stay off.
+2. Type the command from **Games** in the game's chat:
+
+   ```
+   /tokio connect 192.168.1.20:37892
+   ```
+
+</Steps>
+
+<Screenshot
+  name="games-connect-java"
+  alt="The Java Edition setup on Games, with the /tokio connect command to copy"
+/>
+
+On the same PC as Tokio, `/tokio connect` is enough. The mod never reconnects by itself: connect each time you open the world.
+
+| Command                    | What it does                               |
+| -------------------------- | ------------------------------------------ |
+| `/tokio`                   | Says whether the world is connected        |
+| `/tokio connect [address]` | Connects, to `localhost:37892` without one |
+| `/tokio disconnect`        | Disconnects from Tokio                     |
+
+Only the world's host can use them.
+
+<details>
+<summary>If it doesn't connect</summary>
+
+- The game doesn't know `/tokio`: check the Fabric profile and the `mods` folder.
+- **Couldn't connect to Tokio at …**: turn on **Minecraft**, and use an address from **Games**.
+- **Another game connected to Tokio.**: another game replaced this one.
+- **Minecraft was turned off in Tokio.**: the switch on **Games** was turned off.
+
+</details>
+
+## Another device
+
+The same command works from a phone or another PC on your network. With more than one address, **Games** shows a command for each: use the one on your device's network.
+
+## Actions
+
+An action is a trigger and the steps it runs. Actions belong to the profile.
+
+<Steps>
+
+1. Click **+** next to **Actions**.
+2. Pick the edition and the trigger.
+3. Click **Add step** and pick what happens.
+4. Click the play button to test it.
+
+</Steps>
+
+<Screenshot
+  name="games-actions"
+  alt="Two actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
+/>
+
+A new action takes the connected game's edition, or Bedrock. Changing it moves its mobs and items to the other edition's, or to a zombie or a diamond.
+
+**Duplicate** puts a copy right after the action: change its edition to run the same steps in the other game.
+
+Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes.
+
+| Trigger   | Options                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Gift**  | The gifts, and **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts)        |
+| **Chat**  | A keyword or phrase the message must have                                                                             |
+| **Like**  | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
+| **Emote** | The emotes, or any                                                                                                    |
+
+Actions run while **Minecraft** is on and a game of their edition is connected, whatever's on at **Home**.
+
+## Steps
+
+Steps run in order, as you, where you stand.
+
+| Step            | What it does                                         |
+| --------------- | ---------------------------------------------------- |
+| **Spawn mob**   | 1 to 100 of a mob, with an optional name             |
+| **Give item**   | 1 to 100 of an item, to you                          |
+| **Weather**     | **Clear**, **Rain** or **Thunder**                   |
+| **Time of day** | **Day**, **Noon**, **Night** or **Midnight**         |
+| **Hazard**      | Something that tries to kill you or gets in your way |
+| **Help**        | Something that helps you survive                     |
+| **Command**     | Any command, as you'd type it in chat, slash or not  |
+
+### Hazards
+
+| Hazard                  | What happens                                                  |
+| ----------------------- | ------------------------------------------------------------- |
+| **Falling TNT**         | Lit TNT drops from 10 blocks up, with the fuse you set        |
+| **TNT ring**            | 8 lit TNT around you                                          |
+| **Lightning bolt**      | Strikes where you stand, 1 to 100 times                       |
+| **Charged creeper**     | 1 to 100 appear next to you                                   |
+| **Evoker fangs**        | Bite up from under you, 1 to 100 times                        |
+| **Anvil drop**          | An anvil falls from 20 blocks up                              |
+| **Harming**             | Takes 6 hearts                                                |
+| **Launch into the sky** | Flies you up to 300 blocks (50 to start), then you fall       |
+| **Launch + water**      | The same, with a water bucket first                           |
+| **Freeze**              | You can't walk, for the seconds you set (10 to start)         |
+| **Lights out**          | Darkness, for the seconds you set                             |
+| **Dizzy**               | Your screen wobbles, for the seconds you set                  |
+| **Turn around**         | You face the other way                                        |
+| **Random teleport**     | Somewhere within the distance you set (1,000 blocks to start) |
+
+<details>
+<summary>The finer points</summary>
+
+- Bedrock's TNT has only two fuses: 4 s, or a random 0.5 to 2 s when you set 2 s or less.
+- The anvil needs air 20 blocks up, and it stays in the world after it lands.
+- A launch takes the seconds you set: fewer is faster. Above about 190 blocks, 1 second is too fast, so it takes a little longer.
+
+</details>
+
+### Help
+
+- **Netherite armor**: a whole set, put on at once. The armor you wear is lost.
+- **Full heal**: fills your health and hunger.
+- **Regeneration** II, **Absorption** IV, **Resistance** IV, **Fire resistance**, **Speed** II, **Jump boost** II, **Strength** II, **Slow falling**, **Water breathing**, **Night vision** and **Invisibility**: for the seconds you set (30 to start).
+
+### Command
+
+Use a command step for anything else, like titles or sounds:
+
+```
+say {username} sent {count} {gift}!
+```
+
+Write it for the action's edition, since some commands differ. A mob or item that doesn't exist runs nothing.
+
+## Variables
+
+A mob's name and a command can use these. Click one to add it.
+
+| Variable                 | Triggers                                                |
+| ------------------------ | ------------------------------------------------------- |
+| `{username}`, `{handle}` | All                                                     |
+| `{comment}`              | Chat, Emote                                             |
+| `{gift}`                 | Gift                                                    |
+| `{count}`                | Gift (the streak's size, not with **Every gift**), Like |
+
+Viewers pick their own names and messages, so Tokio cleans what a variable adds to a command.
+
+<details>
+<summary>What it removes</summary>
+
+Quotes (`"` and `'`), backslashes, brackets and braces (`[ ] { }`), `§`, `@` and control characters. It also cuts the text to 100 characters. Your own text in the step stays as you wrote it.
+
+</details>
+
+## Test
+
+The play button runs the action once with sample values, and lists the game's answers.
+
+<Screenshot
+  name="games-test"
+  alt="An action after a test: 1 of 3 commands failed, the anvil's in red"
+/>
+
+Failures show in red, in the game's language, and the list keeps the last 25: click its count to fold it. Test needs a game of the action's edition connected.
+
+## Show your actions on stream
+
+The **Overlay** section shows viewers what each event does, with a picture and name you pick.
+
+<Steps>
+
+1. Turn on the overlay server in **Settings → Overlay Server**.
+2. Copy the address in **Overlay URL**.
+3. Add it to your streaming app, as in [Adding an overlay](/docs/guides/adding-an-overlay/).
+
+</Steps>
+
+<Screenshot
+  name="games-overlay"
+  alt="The Overlay section: its URL, a row per action, the preview and the look options"
+/>
+
+```
+http://tokio-app.local:37891/games/minecraft/
+```
+
+Split it into up to 4 **Columns** to spread it over the screen: each gets its own address under **Overlay URLs**, like `http://tokio-app.local:37891/games/minecraft/2/`. It fills its source and shrinks to fit.
+
+### Rows
+
+Each action has a row, in the actions' order:
+
+- **Show** puts it on the overlay. It needs the action on, and a picture or a name.
+- The event shows a gift's or emote's picture, or Tokio's own pixel icon. Type over its text to change it; empty it to go back.
+- The square picks the picture.
+- The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
+- **Column** picks the column, with more than one.
+
+### Pictures
+
+Tokio can't include Minecraft's pictures, so you add your own: png, jpg, gif or webp, up to 50 MB. Click the square, then **Browse files...** to add one or several.
+
+All profiles share the library, in the `games/minecraft` folder of Tokio's app folder. **Clear** takes the picture off an action; its delete button in the picker takes it off every action and deletes the file.
+
+### Look
+
+**Format** is **Arrow**, as at the top of this page, or **Sticker**:
+
+<Screenshot
+  name="games-preview-sticker"
+  alt="The Sticker format: a zombie head with the follow icon on its corner, and a TNT block with a rose on its corner"
+/>
+
+| Option                          | What it does                                                      |
+| ------------------------------- | ----------------------------------------------------------------- |
+| **Layout**                      | **List** shows every row; **One at a time** turns every 3 seconds |
+| **Columns**                     | Splits the rows into 1 to 4 overlays                              |
+| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons        |
+| **Pictures only**               | Hides the texts next to pictures                                  |
+| **Text below pictures**         | Puts the texts under the pictures                                 |
+| **Font**                        | A font installed with your streaming app; empty is Archivo        |
+| **Text**, **Accent**, **Arrow** | The colors of the texts, a lit row and the arrows                 |
+
+### Light-up
+
+When an action runs in the game, its row lights up in the accent color. A burst keeps it lit until 1.5 seconds after the last run.
+
+The play button on **Overlay** lights the next row, in the preview and on stream.
+
+<details>
+<summary>Limits</summary>
+
+- Every gift on **Every gift** and every count on **Like** runs, however many come at once.
+- When runs pile up, Tokio sends each action's 10 a second, so the game keeps up. Other actions don't wait.
+- Turning an action off, removing it or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
+
+</details>
+
+<details>
+<summary>Notices</summary>
+
+- **Minecraft Java Edition isn't connected** (or **Bedrock Edition**): an action ran with no game of its edition. At most once a minute.
+- **A command failed in Minecraft**: the game refused a command, with its answer. At most once every 30 seconds per action.
+- **Tokio couldn't listen for Minecraft**: the port was in use when Tokio started.
+
+</details>
