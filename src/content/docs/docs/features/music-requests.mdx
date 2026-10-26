@@ -71,7 +71,7 @@ Before your LIVE, open Spotify and play a song, so Tokio has a device to play on
 | Command   | Action                                   |
 | --------- | ---------------------------------------- |
 | `!play`   | Request a song                           |
-| `!next`   | Skip to the next song                    |
+| `!next`   | Skip the song playing                    |
 | `!last`   | Go back to the last song                 |
 | `!revoke` | Remove a song from the queue by its name |
 
@@ -80,7 +80,9 @@ Before your LIVE, open Spotify and play a song, so Tokio has a device to play on
   alt="The Controls section, where each chat command can be renamed or turned off"
 />
 
-Rename or turn off each one under **Controls**; viewers can type them in any case. `!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue.
+Rename or turn off each one under **Controls**; viewers can type them in any case. `!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue. A song that's playing or already played can't be revoked.
+
+With **Limit Next, Last and Revoke** on (the default), `!next` and `!last` work for you and your moderators, who can also revoke any song. Viewers can skip a song they asked for while it plays, and revoke only their own requests.
 
 ## Who can request
 
@@ -92,5 +94,7 @@ Music has its own **Permissions** and **Protection**, set like [text-to-speech's
 />
 
 **One request per viewer** ignores a viewer's next `!play` while their song waits. A song that's already playing or waiting isn't added again.
+
+**Limit Next, Last and Revoke**, on by default, keeps `!next`, `!last` and revoking other viewers' songs to you and your moderators. Turn it off to let every viewer allowed by **Permissions** use them.
 
 Song changes are a LIVE event too, so they can trigger an [alert](/docs/features/alerts/) or update an [overlay](/docs/features/overlays/).
