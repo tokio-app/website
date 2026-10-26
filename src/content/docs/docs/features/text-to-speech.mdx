@@ -58,6 +58,8 @@ The **Message Template** sets what's read:
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove Emojis** leaves emojis out, and skips messages that are only emojis.
 
+A message with nothing to read is skipped: when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
+
 ## Replacements
 
 Teach the voice to say acronyms, slang and names. Each one swaps a whole word, in any case, and applies before **Remove Emojis**, so ❤️ can become "love".
