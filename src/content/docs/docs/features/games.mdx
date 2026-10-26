@@ -280,6 +280,7 @@ The play button on **Overlay** lights the next row, in the preview and on stream
 <summary>Limits</summary>
 
 - Every gift on **Every gift** and every count on **Like** runs, however many come at once.
+- Actions on other events keep at most 100 runs waiting. More are skipped until the game catches up, so a busy chat can't put them minutes behind.
 - When runs pile up, Tokio sends each action's 10 a second, so the game keeps up. Other actions don't wait.
 - Turning an action off, removing it or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
 
@@ -290,6 +291,7 @@ The play button on **Overlay** lights the next row, in the preview and on stream
 
 - **Minecraft Java Edition isn't connected** (or **Bedrock Edition**): an action ran with no game of its edition. At most once a minute.
 - **A command failed in Minecraft**: the game refused a command, with its answer. At most once every 30 seconds per action.
+- **The action has 100 runs waiting**: new ones are skipped until Minecraft catches up. At most once every 30 seconds per action.
 - **Tokio couldn't listen for Minecraft**: the port was in use when Tokio started.
 
 </details>
