@@ -130,9 +130,9 @@ useEffect(
 
 When you build the overlay:
 
-- **Use relative asset paths.** The overlay is served under `/<overlay>/`, so absolute paths such as `/assets/app.js` don't resolve. In Vite, set `base: "./"`.
-- **Ship the YAML files with the build.** `info.yaml` and `config.yaml` must sit next to the built `index.html`. In Vite, put them in `public/` and they're copied into the output folder.
-- **Keep the setup block in the HTML template.** Put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_ID__` (and `window.__OVERLAY_CONFIG__`) at runtime.
+- Use relative asset paths. The overlay is served under `/<overlay>/`, so absolute paths such as `/assets/app.js` don't resolve. In Vite, set `base: "./"`.
+- Ship the YAML files with the build. `info.yaml` and `config.yaml` must sit next to the built `index.html`. In Vite, put them in `public/` and they're copied into the output folder.
+- Keep the setup block in the HTML template. Put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_ID__` (and `window.__OVERLAY_CONFIG__`) at runtime.
 
 Import the build output folder (for example `dist/`) into Tokio.
 
@@ -192,22 +192,22 @@ Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and
 
 While you build an overlay, test it from the **Tools** page instead of importing it after every change. It works with your framework's dev server too:
 
-1. Turn on the overlay server in **Settings → Overlay Server**.
-2. On **Tools → Test Overlays**, enter a name and create an ID.
+1. Turn on the overlay server in **Settings → Overlay server**.
+2. On **Tools → Test overlays**, enter a name and create an ID.
 3. Put that ID in your overlay's `window.__OVERLAY_ID__`, and open the overlay in your browser.
 4. Click **Test**. Tokio sends your overlay every LIVE event, carrying on from your last test: the same viewers come back, likes and coins add up, and a gift streak grows over a few clicks before it ends.
 
-![Tools → Test Overlays, with a test ID created for an overlay, its Test button and the buttons that copy the ID and the WebSocket URL](../../../../assets/screenshots/tools-test-overlays.png)
+![Tools → Test overlays, with a test ID created for an overlay, its Test button and the buttons that copy the ID and the WebSocket URL](../../../../assets/screenshots/tools-test-overlays.png)
 
 If Tokio says "No overlay connected with this ID.", check that the page is open and connected with the same ID.
 
 ## Import it
 
-When it's ready, import the folder in **Settings → Overlay Library**. Tokio gives it an ID, writes its settings into the page and serves it. See [Overlays](/docs/features/overlays/).
+When it's ready, import the folder in **Settings → Overlay library**. Tokio gives it an ID, writes its settings into the page and serves it. See [Overlays](/docs/features/overlays/).
 
 ## Without the library
 
-Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address: opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay Server**). Each message is JSON with the event name and its data:
+Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address. Opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay server**). Each message is JSON with the event name and its data:
 
 ```json
 {

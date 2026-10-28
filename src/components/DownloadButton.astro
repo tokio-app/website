@@ -3,6 +3,7 @@
 // OS has a single one: the setup on Windows, the AppImage on Linux. Their
 // names carry the version, so they only get a direct link when the build could
 // read the latest release.
+import { langOf, localize, textOf } from "../i18n";
 import { FALLBACK_DOWNLOADS, getLatestRelease } from "../lib/release";
 import Icon from "./Icon.astro";
 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const { size = "md" } = Astro.props;
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).downloadButton;
 const release = await getLatestRelease();
 const direct = Object.fromEntries(
   (release?.downloads ?? FALLBACK_DOWNLOADS)
@@ -21,13 +24,14 @@ const direct = Object.fromEntries(
 
 <a
   class:list={["btn", "btn-primary", { "btn-lg": size === "lg" }]}
-  href="/download/"
+  href={localize("/download/", lang)}
   data-download-button
   data-windows={direct.windows}
   data-linux={direct.linux}
+  data-label-for={t.labelFor}
 >
   <Icon name="download" size={size === "lg" ? 20 : 18} />
-  <span data-label>Download</span>
+  <span data-label>{t.label}</span>
 </a>
 
 <script>
@@ -39,7 +43,9 @@ const direct = Object.fromEntries(
       "[data-download-button]",
     )) {
       const label = button.querySelector("[data-label]");
-      if (label) label.textContent = `Download for ${OS_LABELS[os]}`;
+      const text = button.dataset.labelFor;
+      if (label && text)
+        label.textContent = text.replace("{os}", OS_LABELS[os]);
       const url = os === "mac" ? undefined : button.dataset[os];
       if (url) button.href = url;
     }

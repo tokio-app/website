@@ -1,0 +1,154 @@
+---
+// A globe that opens this page in each language, each named in itself, the
+// current one checked like the app's profile menu. A pick is saved, and
+// src/i18n/detect.mjs follows it from then on. In the site header and,
+// replacing Starlight's LanguageSelect, in the docs header and phone menu.
+// A <details>, so it opens without JavaScript too.
+import { LANGUAGE_NAMES, langOf, localize, textOf, twinPath } from "../i18n";
+import Icon from "./Icon.astro";
+
+const here = langOf(Astro.currentLocale);
+const label = textOf(here).header.language;
+// The 404 shows at any missing path, which has no twin: it offers the homes
+const path = Astro.url.pathname;
+const notFound = /^\/(\w+\/)?404\/?$/.test(path);
+const hrefOf = (code: (typeof LANGUAGE_NAMES)[number]["code"]) =>
+  notFound ? localize("/", code) : twinPath(path, code);
+---
+
+<details class="languages">
+  <summary aria-label={label} title={label}>
+    <Icon name="globe" size={20} />
+  </summary>
+  <ul>
+    {LANGUAGE_NAMES.map(({ code, name }) => (
+      <li>
+        <a
+          href={hrefOf(code)}
+          hreflang={code}
+          lang={code}
+          data-language={code}
+          aria-current={code === here ? "true" : undefined}
+        >
+          {name}
+          {code === here && <Icon name="check" size={16} />}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<script>
+  import { PICK_KEY } from "../i18n/detect.mjs";
+
+  const menus =
+    document.querySelectorAll<HTMLDetailsElement>("details.languages");
+  for (const menu of menus) {
+    for (const link of menu.querySelectorAll<HTMLAnchorElement>(
+      "a[data-language]",
+    )) {
+      link.addEventListener("click", () => {
+        try {
+          localStorage.setItem(PICK_KEY, link.dataset.language ?? "");
+        } catch {
+          // Blocked storage: the link still works, and detect.mjs leaves links
+          // inside the site alone
+        }
+      });
+    }
+    // Escape closes it, back on its globe
+    menu.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !menu.open) return;
+      menu.open = false;
+      menu.querySelector("summary")?.focus();
+    });
+  }
+  // So does a click outside it, and coming back to the page
+  document.addEventListener("click", (event) => {
+    for (const menu of menus) {
+      if (!menu.contains(event.target as Node)) menu.open = false;
+    }
+  });
+  addEventListener("pageshow", () => {
+    for (const menu of menus) menu.open = false;
+  });
+</script>
+
+<style>
+  .languages {
+    position: relative;
+    flex: none;
+  }
+
+  /* Quiet like the GitHub link beside it */
+  summary {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    color: var(--font-secondary);
+    list-style: none;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover,
+  .languages[open] summary {
+    color: var(--font-primary);
+  }
+
+  /* The app's menu: a panel of rows, the current one checked in rose */
+  ul {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    z-index: 1;
+    min-width: 168px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--background-tertiary);
+  }
+
+  li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  /* .languages a, to win over site.css's rose links (scoped styles add no
+     specificity) */
+  .languages a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: var(--control-height);
+    padding: var(--space-1) var(--space-4);
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .languages a:hover,
+  .languages a[aria-current] {
+    color: var(--font-primary);
+  }
+
+  .languages a :global(svg) {
+    flex: none;
+    color: var(--accent-primary);
+  }
+
+  /* The docs' phone menu has it at its bottom: the list opens upward */
+  :global(.mobile-preferences) ul {
+    top: auto;
+    bottom: calc(100% + var(--space-2));
+  }
+</style>

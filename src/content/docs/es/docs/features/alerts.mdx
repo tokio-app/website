@@ -1,0 +1,160 @@
+---
+title: Alertas
+description: Reproduce un sonido o un mensaje, o muestra una imagen o un video, con seguidores nuevos, regalos, el chat y otros eventos del LIVE.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Las alertas reproducen un sonido o un mensaje, o muestran una imagen o un video, cuando algo pasa en tu LIVE.
+
+<Screenshot
+  name="alerts"
+  alt="Cinco alertas en la página Alertas: Gracias por seguir dice un mensaje, Regalos grandes reproduce un sonido recortado y muestra una imagen con dos regalos, Hype responde a una palabra clave del chat, Compartidos suena cuando comparten y Habituales cuando entra un espectador en particular"
+/>
+
+Cada perfil tiene sus propias alertas, pero tus sonidos, imágenes y videos son de todos los perfiles.
+
+## Crea una alerta
+
+<Steps>
+
+1. En la página **Alertas**, haz clic en **Agregar alerta**, luego en la alerta nueva, y escribe un **Nombre**.
+2. En la pestaña **Activador**, elige el evento.
+
+   <Screenshot
+     name="alerts-trigger"
+     alt="La pestaña Activador de una alerta de regalo para cualquier regalo de al menos 100 monedas, de moderadores"
+   />
+
+3. En la pestaña **Sonido**, haz clic en **Elegir sonido...** y elige un sonido.
+
+   <Screenshot
+     name="alerts-sounds"
+     alt="El selector de sonidos: las pestañas Mis sonidos, MyInstants y Texto a voz, y Elegir archivo"
+   />
+
+4. Si quieres, agrega una imagen o un video en la pestaña **Imagen o video**.
+5. Activa **Alertas** en **Inicio** y prueba la alerta con su botón de reproducir.
+
+</Steps>
+
+Los cambios se guardan solos. Para buscar una alerta, haz clic en el botón de búsqueda junto a **Agregar alerta**.
+
+## Activadores
+
+Elige el **Evento**: Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Super Fan, Caja de Super Fan, Entrada de Super Fan, Entrada de espectador o Cambio de canción (una canción nueva de los [pedidos de canciones](/es/docs/features/music-requests/)).
+
+En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene solo con ellos. Solo Chat, Emote y Regalo tienen esta opción, porque TikTok envía los roles de un espectador solo con esos eventos.
+
+## Sonidos
+
+Elige uno de tus sonidos, busca en [MyInstants](https://www.myinstants.com) o usa **Elegir archivo...** para un mp3, wav u ogg de hasta 8 MB. **Limpiar** lo quita de la alerta, y **Volumen** define qué tan fuerte suena.
+
+## Recortar un sonido
+
+Arrastra los controles de la forma de onda para recortar el inicio o el final, o escribe los segundos en **Inicio** y **Fin**. El botón de reproducir junto a **Restablecer recorte** reproduce solo el recorte.
+
+<Screenshot
+  name="alerts-cut"
+  alt="La pestaña Sonido: una forma de onda recortada de 0.2 a 1.3 segundos en un sonido de 2 segundos"
+/>
+
+<details>
+<summary>Más sobre los recortes</summary>
+
+- Con un control enfocado, las flechas del teclado lo mueven una décima de segundo, o un segundo con Shift.
+- Un sonido recortado antes de su final se apaga con un fundido corto, así no se oye un clic.
+- El archivo queda completo, así que otras alertas pueden recortarlo a su manera.
+- La fila de la alerta muestra la duración del recorte, y su botón de reproducir reproduce solo el recorte.
+
+</details>
+
+## Mensajes hablados
+
+En la pestaña **Texto a voz** del selector de sonidos, escribe un mensaje, elige una voz y presiona **Usar texto a voz**.
+
+<Screenshot
+  name="alerts-tts"
+  alt="La pestaña Texto a voz del selector de sonidos, con un mensaje que le agradece al espectador por seguir"
+/>
+
+Haz clic en una variable para agregar los datos del evento:
+
+| Variable                 | Activadores                                              |
+| ------------------------ | -------------------------------------------------------- |
+| `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción |
+| `{comment}`              | Chat y Emote                                             |
+| `{gift}`, `{count}`      | Regalo (`{count}` es el tamaño del combo)                |
+| `{count}`                | Me gusta (los Me gusta enviados)                         |
+| `{song}`                 | Cambio de canción                                        |
+
+También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/).
+
+## Imágenes y videos
+
+Haz clic en **Elegir archivo...** para un png, jpg, gif, webp, mp4 o webm de hasta 50 MB. Una imagen se queda en pantalla durante su **Duración**, hasta 60 segundos, o más si el sonido dura más.
+
+<Screenshot
+  name="alerts-media"
+  alt="La pestaña Imagen o video: la imagen de la alerta, su duración y la URL del overlay de la alerta"
+/>
+
+Cada alerta muestra su imagen o video en su propio overlay:
+
+```
+http://tokio-app.local:37891/alerts/<alert-id>/
+```
+
+Copia la URL aquí o desde la fila de la alerta, [agrégala a tu app de streaming](/es/docs/guides/adding-an-overlay/) y presiona el botón de reproducir de la alerta para comprobarla.
+
+<details>
+<summary>Videos</summary>
+
+- Un video se queda en pantalla mientras se reproduce, hasta 60 segundos.
+- **Recortar** conserva una parte, igual que el recorte de un sonido.
+- Un video que no indica su duración no se puede recortar: define su **Duración**.
+- Un video reproduce su propio sonido, con su propio **Volumen**.
+- En una pestaña del navegador, haz clic una vez en el overlay para oír los videos. OBS reproduce el sonido sin necesidad de clic.
+
+</details>
+
+## Alertas de regalos
+
+En la pestaña **Activador**, haz clic en **Cualquier regalo** para elegir regalos. **Seleccionar los visibles** marca cada regalo que dejan los filtros.
+
+<Screenshot
+  name="alerts-gifts"
+  alt="La lista de regalos filtrada a los de al menos 1,000 monedas, con Galaxy marcado"
+/>
+
+Luego elige cuándo suena:
+
+- **Al terminar el combo**: una vez por combo, así que un combo de 20 rosas la hace sonar una vez. Es la opción predeterminada.
+- **Cada regalo**: una vez por regalo, hasta el largo de la cola.
+
+Con **Cualquier regalo**, **Valor mínimo** define cuántas monedas debe valer un combo, o un regalo si elegiste **Cada regalo**.
+
+<details>
+<summary>Regalos que faltan en la lista</summary>
+
+A la lista de TikTok le faltan algunos regalos, como los de otras regiones. Tokio agrega los que envían tus espectadores.
+
+</details>
+
+## Alertas de chat, emotes y entradas
+
+- **Chat**: escribe una palabra clave o frase para que suene solo con los mensajes que la tengan como palabra completa. **hola** suena con "¡Hola a todos!" y "hola❤️todos", pero no con "Holanda".
+- **Emote**: haz clic en **Cualquier emote** para elegir emotes. La lista se llena a medida que los espectadores los usan.
+- **Entrada de espectador** y **Entrada de Super Fan**: escribe un @usuario o un nombre para darle a un espectador su propio sonido de entrada.
+
+## Cola
+
+Las alertas suenan una a la vez. **Largo máximo de la cola** descarta las que sobran, y **Reproducir alertas al mismo tiempo** deja que se superpongan las de activadores distintos.
+
+<Screenshot
+  name="alerts-queue"
+  alt="El encabezado de la página Alertas, con Reproducir alertas al mismo tiempo y Largo máximo de la cola"
+/>
+
+Una alerta con imagen o video ocupa la cola mientras dura, así que hazla corta si es para los Me gusta. Las alertas se detienen cuando te desconectas.

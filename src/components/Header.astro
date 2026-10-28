@@ -1,27 +1,33 @@
 ---
 import { Image } from "astro:assets";
 import icon from "../assets/icon.png";
+import { langOf, localize, textOf } from "../i18n";
 import { REPO_URL } from "../lib/release";
 import Icon from "./Icon.astro";
+import LanguageMenu from "./LanguageMenu.astro";
 
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).header;
+
+// Phones keep Docs and Download: the footer links the rest
 const LINKS = [
-  { href: "/#features", label: "Features", wide: true },
-  { href: "/docs/", label: "Docs" },
-  { href: "/overlays/", label: "Overlays", wide: true },
-  { href: "/download/", label: "Download" },
-  { href: "/about/", label: "About" },
-];
+  { href: "/#features", label: t.features, wide: true },
+  { href: "/docs/", label: t.docs },
+  { href: "/overlays/", label: t.overlays, wide: true },
+  { href: "/download/", label: t.download },
+  { href: "/about/", label: t.about, wide: true },
+].map((link) => ({ ...link, href: localize(link.href, lang) }));
 
 const path = Astro.url.pathname;
 ---
 
 <header class="header">
   <div class="container inner">
-    <a class="brand" href="/">
+    <a class="brand" href={localize("/", lang)}>
       <Image src={icon} alt="" width={28} height={28} />
       <span>Tokio</span>
     </a>
-    <nav aria-label="Main">
+    <nav aria-label={t.nav}>
       <ul>
         {LINKS.map((link) => (
           <li class:list={{ wide: link.wide }}>
@@ -35,9 +41,10 @@ const path = Astro.url.pathname;
         ))}
       </ul>
     </nav>
-    <a class="github" href={REPO_URL} aria-label="Tokio on GitHub">
+    <a class="github" href={REPO_URL} aria-label={t.github}>
       <Icon name="github" size={20} />
     </a>
+    <LanguageMenu />
   </div>
 </header>
 
@@ -83,6 +90,7 @@ const path = Astro.url.pathname;
   nav a,
   .github {
     display: flex;
+    flex: none;
     align-items: center;
     padding: var(--space-2);
     border-radius: var(--radius-md);

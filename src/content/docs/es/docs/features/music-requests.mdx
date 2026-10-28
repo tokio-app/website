@@ -1,0 +1,100 @@
+---
+title: Pedidos de canciones
+description: Deja que los espectadores pidan desde el chat canciones que suenan en YouTube o Spotify.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Los espectadores piden canciones desde el chat. Las de YouTube suenan en la ventana del reproductor de Tokio, y las de Spotify en tu app de Spotify. Los dos necesitan una cuenta Premium.
+
+## Proveedores
+
+Elige uno en **Proveedor**, en la página **Música**. Luego, en **Inicio**, activa **Música** en **Funciones activas**.
+
+<Tabs>
+<TabItem label="YouTube">
+
+Necesitas **YouTube Premium** o **YouTube Music Premium**. Con una cuenta gratis, entre canciones salen anuncios que pueden retrasarlas o cortarlas.
+
+<Steps>
+
+1. Elige **YouTube** y haz clic en **Conectar**.
+2. Inicia sesión en Google en la ventana que se abre. Tokio recuerda la sesión.
+
+</Steps>
+
+<Screenshot
+  name="music-provider"
+  alt="La sección Proveedor con YouTube elegido"
+/>
+
+Deja abierta la ventana del reproductor mientras transmites: si la cierras, la música se desconecta.
+
+</TabItem>
+<TabItem label="Spotify">
+
+Necesitas **Spotify Premium**: solo las cuentas Premium dejan que otra app controle la reproducción. Tokio se conecta a través de una app tuya, que creas una sola vez en el panel de Spotify.
+
+<Steps>
+
+1. Inicia sesión en el [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+2. Crea una app. Cualquier nombre sirve, como "Tokio".
+3. Agrega esta Redirect URI tal cual: `http://127.0.0.1:5173/callback`
+4. Si te pregunta qué APIs vas a usar, marca **Web API**.
+5. Acepta los términos y guarda.
+6. En **Settings** de la app, copia el **Client ID**. No necesitas el secret.
+
+</Steps>
+
+Luego, en la página **Música** de Tokio:
+
+<Steps>
+
+1. Elige **Spotify** y pega el ID en **Client ID de Spotify**.
+2. Haz clic en **Conectar**, inicia sesión y deja que Tokio controle tu reproducción.
+
+</Steps>
+
+<Screenshot
+  name="music-spotify"
+  alt="La sección Proveedor con Spotify elegido y su campo Client ID"
+/>
+
+Antes de tu LIVE, abre Spotify y pon una canción, así Tokio tiene un dispositivo donde reproducir. Conéctate con la cuenta que creó la app, o agrega antes otras cuentas, hasta cinco, a los usuarios de la app en el panel.
+
+</TabItem>
+</Tabs>
+
+## Comandos de chat
+
+| Comando   | Acción                                      |
+| --------- | ------------------------------------------- |
+| `!play`   | Pedir una canción                           |
+| `!next`   | Saltar la canción que suena                 |
+| `!last`   | Volver a la canción anterior                |
+| `!revoke` | Quitar una canción de la cola por su nombre |
+
+<Screenshot
+  name="music-commands"
+  alt="La sección Controles, donde cada comando de chat se puede renombrar o desactivar"
+/>
+
+Cambia el nombre de cada uno o desactívalo en **Controles**; los espectadores pueden escribirlos en mayúsculas o minúsculas. `!play One More Time` agrega esa canción, y `!revoke` acepta su nombre tal como se escribió o como aparece en la cola. No se puede retirar una canción que está sonando o que ya sonó.
+
+Con **Limitar Siguiente, Anterior y Retirar** activado (lo predeterminado), `!next` y `!last` funcionan para ti y tus moderadores, que además pueden retirar cualquier canción. Los espectadores pueden saltar una canción que pidieron mientras suena, y solo pueden retirar sus propios pedidos.
+
+## Quién puede pedir
+
+La música tiene sus propios **Permisos** y **Protección**, que se configuran como los del [texto a voz](/es/docs/features/text-to-speech/#permisos). El tiempo de espera es compartido: después de cualquier comando, todos los comandos esperan a que pase.
+
+<Screenshot
+  name="music-protection"
+  alt="La sección Protección de la página Música, con Un pedido por espectador activado"
+/>
+
+**Un pedido por espectador** ignora el siguiente `!play` de un espectador mientras su canción espera. Una canción que ya suena o está en espera no se vuelve a agregar.
+
+**Limitar Siguiente, Anterior y Retirar**, activado por defecto, deja `!next`, `!last` y retirar canciones de otros espectadores solo para ti y tus moderadores. Desactívalo para que los use cualquier espectador al que **Permisos** deje pedir.
+
+Los cambios de canción también son un evento del LIVE, así que pueden activar una [alerta](/es/docs/features/alerts/) o actualizar un [overlay](/es/docs/features/overlays/).

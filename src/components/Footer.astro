@@ -1,35 +1,39 @@
 ---
 import { Image } from "astro:assets";
 import icon from "../assets/icon.png";
+import { langOf, localize, textOf } from "../i18n";
 import { RELEASES_URL, REPO_URL } from "../lib/release";
+
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).footer;
 
 const COLUMNS = [
   {
-    title: "Product",
+    title: t.product,
     links: [
-      { href: "/#features", label: "Features" },
-      { href: "/overlays/", label: "Overlays" },
-      { href: "/download/", label: "Download" },
-      { href: RELEASES_URL, label: "Releases" },
+      { href: "/#features", label: t.features },
+      { href: "/overlays/", label: t.overlays },
+      { href: "/download/", label: t.download },
+      { href: RELEASES_URL, label: t.releases },
     ],
   },
   {
-    title: "Docs",
+    title: t.docs,
     links: [
-      { href: "/docs/install/", label: "Install" },
-      { href: "/docs/guides/adding-an-overlay/", label: "Adding an overlay" },
+      { href: "/docs/install/", label: t.install },
+      { href: "/docs/guides/adding-an-overlay/", label: t.addingAnOverlay },
       {
         href: "/docs/developers/building-an-overlay/",
-        label: "Building an overlay",
+        label: t.buildingAnOverlay,
       },
     ],
   },
   {
-    title: "Project",
+    title: t.project,
     links: [
-      { href: REPO_URL, label: "GitHub" },
-      { href: `${REPO_URL}/issues`, label: "Report a bug" },
-      { href: "/about/", label: "About and license" },
+      { href: REPO_URL, label: t.github },
+      { href: `${REPO_URL}/issues`, label: t.reportBug },
+      { href: "/about/", label: t.about },
     ],
   },
 ];
@@ -38,14 +42,11 @@ const COLUMNS = [
 <footer class="footer">
   <div class="container grid">
     <div class="intro">
-      <a class="brand" href="/">
+      <a class="brand" href={localize("/", lang)}>
         <Image src={icon} alt="" width={24} height={24} />
         <span>Tokio</span>
       </a>
-      <p>
-        Free and open source. Tokio is not affiliated with or endorsed by TikTok
-        or ByteDance.
-      </p>
+      <p>{t.intro}</p>
     </div>
     {COLUMNS.map((column) => (
       <nav aria-label={column.title}>
@@ -53,7 +54,7 @@ const COLUMNS = [
         <ul>
           {column.links.map((link) => (
             <li>
-              <a href={link.href}>{link.label}</a>
+              <a href={localize(link.href, lang)}>{link.label}</a>
             </li>
           ))}
         </ul>
@@ -61,7 +62,7 @@ const COLUMNS = [
     ))}
   </div>
   <div class="container bottom">
-    <p>© 2026 Italo Alfaro and contributors</p>
+    <p>{t.copyright}</p>
   </div>
 </footer>
 

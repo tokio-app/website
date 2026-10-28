@@ -1,14 +1,13 @@
 ---
 // Hero illustration: the app's Home during a LIVE, with the tally lit, and
 // what Tokio does with each event.
+import { langOf, textOf } from "../i18n";
 import Icon from "./Icon.astro";
 
-// The app's sample numbers, as its readout shortens them
-const STATS = [
-  { label: "Viewers", value: "312" },
-  { label: "Likes", value: "48.2K" },
-  { label: "Total views", value: "15.2K" },
-];
+const t = textOf(langOf(Astro.currentLocale)).liveFeed;
+
+// The app's sample numbers, as its readout shortens them in each language
+const STATS = t.stats;
 
 interface Event {
   name: string;
@@ -21,41 +20,16 @@ interface Event {
 }
 
 // Newest first, as the app's feed lists them
-const EVENTS: Event[] = [
-  {
-    name: "Lucia",
-    message: "hi from Lima!",
-    icon: "volume",
-    reaction: "Read aloud with the Edge voice",
-  },
-  {
-    name: "Marco",
-    action: "sent Rose ×5",
-    coins: "5 coins",
-    icon: "bell",
-    reaction: "Played applause.mp3",
-  },
-  {
-    name: "Ana",
-    message: "!play One More Time",
-    icon: "music",
-    reaction: "Added to the music queue",
-  },
-  {
-    name: "Sam",
-    action: "followed you",
-    icon: "layers",
-    reaction: "Follow banner on the overlay",
-  },
-];
+const ICONS = ["volume", "bell", "music", "layers"] as const;
+const EVENTS: Event[] = t.events.map((event, index) => ({
+  ...event,
+  icon: ICONS[index],
+}));
 ---
 
-<figure
-  class="home"
-  aria-label="Example: Tokio's Home during a LIVE, and what it does with each event"
->
+<figure class="home" aria-label={t.label}>
   <div class="head">
-    <p class="title">Dashboard</p>
+    <p class="title">{t.title}</p>
     <p class="status">
       <span class="dot"></span>
       <span>

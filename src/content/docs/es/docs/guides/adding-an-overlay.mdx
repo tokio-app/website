@@ -1,0 +1,86 @@
+---
+title: Agregar un overlay
+description: Muestra los overlays de Tokio en OBS Studio, TikTok LIVE Studio o cualquier app de streaming.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Flow from "../../../../../components/Flow.astro";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Tokio ofrece sus overlays como páginas web, y tu app de streaming los muestra sobre tu stream.
+
+<Steps>
+
+1. **Activa el servidor de overlays**
+
+   En **Configuración → Servidor de overlays**, enciende **Activar el servidor** y confirma. La primera vez, acepta el aviso de administrador (tu contraseña en macOS y Linux) para que Tokio pueda agregar su dirección a tu archivo hosts.
+
+   <Screenshot
+     name="settings-overlay-server"
+     alt="Configuración → Servidor de overlays, con el servidor activado y la dirección de red de la computadora"
+   />
+
+2. **Copia la dirección del overlay en Tokio**
+
+   Todas las direcciones empiezan con `http://tokio-app.local:37891`, como `http://tokio-app.local:37891/timer/`.
+
+   | Dónde copiarla                                                                                      | Dirección             |
+   | --------------------------------------------------------------------------------------------------- | --------------------- |
+   | La tarjeta de un [overlay](/es/docs/features/overlays/) en **Overlays**                             | `/<overlay-id>/`      |
+   | La pestaña **Imagen o video** de una [alerta](/es/docs/features/alerts/#imágenes-y-videos)          | `/alerts/<alert-id>/` |
+   | **Herramientas**, para el [temporizador](/es/docs/features/countdown-timer/)                        | `/timer/`             |
+   | **Juegos**, para el [overlay de juegos](/es/docs/features/games/#muestra-tus-acciones-en-el-stream) | `/games/minecraft/`   |
+   | **Juegos**, para su columna 2                                                                       | `/games/minecraft/2/` |
+
+3. **Agrégalo en tu app de streaming**
+
+   Pega la dirección en una nueva fuente de navegador:
+
+</Steps>
+
+<Tabs>
+  <TabItem label="OBS Studio">
+
+1. En **Fuentes**, haz clic en **+** y elige **Navegador**.
+2. Pega la dirección y ajusta el ancho y el alto al tamaño de tu lienzo.
+
+  </TabItem>
+  <TabItem label="TikTok LIVE Studio">
+
+1. Haz clic en **Add source** y elige **Link**.
+2. Pega la dirección y coloca el overlay en tu escena.
+
+  </TabItem>
+  <TabItem label="Otras apps">
+
+1. Agrega una fuente de navegador o fuente web.
+2. Pega la dirección.
+
+  </TabItem>
+</Tabs>
+
+Los overlays usan `tokio-app.local` porque TikTok LIVE Studio no acepta enlaces a `localhost`.
+
+## En otra computadora
+
+Si tu app de streaming está en otra computadora de tu red, haz que `tokio-app.local` apunte desde ahí a la computadora que tiene Tokio.
+
+<Flow
+  label="Una app de streaming en otra computadora"
+  stops={[
+    {
+      title: "Computadora con Tokio",
+      code: "192.168.1.20",
+      text: "Su dirección está en <strong>Configuración → Servidor de overlays</strong>",
+    },
+    {
+      title: "Computadora con tu app de streaming",
+      code: "192.168.1.20 tokio-app.local",
+      text: "Una línea en su archivo hosts",
+    },
+  ]}
+/>
+
+Agrega esa línea al archivo hosts de la otra computadora, como administrador: `C:\Windows\System32\drivers\etc\hosts` en Windows, `/etc/hosts` en macOS y Linux. También puedes agregar una entrada DNS para `tokio-app.local` en tu router.
+
+Si Windows pregunta si quieres permitir Tokio en el firewall, permítelo; si no, la otra computadora no podrá conectarse.

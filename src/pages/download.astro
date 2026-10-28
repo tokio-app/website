@@ -1,5 +1,6 @@
 ---
 import Icon from "../components/Icon.astro";
+import { DEFAULT_LANG, fill, langOf, textOf } from "../i18n";
 import Base from "../layouts/Base.astro";
 import {
   FALLBACK_DOWNLOADS,
@@ -9,14 +10,16 @@ import {
   type OS,
 } from "../lib/release";
 
+// Also /es/download/ and the other languages' (src/pages/<code>/download.astro)
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).download;
 const release = await getLatestRelease();
 const downloads = release?.downloads ?? FALLBACK_DOWNLOADS;
 const published = release
-  ? new Date(release.publishedAt).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+  ? new Date(release.publishedAt).toLocaleDateString(
+      lang === DEFAULT_LANG ? "en-US" : lang,
+      { year: "numeric", month: "long", day: "numeric" },
+    )
   : undefined;
 
 const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
@@ -26,26 +29,23 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 };
 ---
 
-<Base
-  title="Download"
-  description="Download Tokio for Windows, macOS and Linux."
->
+<Base title={t.title} description={t.description}>
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h1>Get Tokio</h1>
-        <p>
-          A setup on Windows, a zip on macOS, an AppImage on Linux. Tokio checks
-          for updates on its own.
-        </p>
+        <h1>{t.heading}</h1>
+        <p>{t.intro}</p>
         <p class="meta">
           {release ? (
             <>
-              Version {release.version}, released {published}.{" "}
-              <a href={release.url}>Release notes</a>
+              {fill(t.released, {
+                version: release.version,
+                date: published ?? "",
+              })}{" "}
+              <a href={release.url}>{t.releaseNotes}</a>
             </>
           ) : (
-            <a href={RELEASES_URL}>See all releases</a>
+            <a href={RELEASES_URL}>{t.allReleases}</a>
           )}
         </p>
       </div>
@@ -61,14 +61,16 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
                 {download.size && `, ${formatSize(download.size)}`}
               </p>
             </div>
-            <span class="recommended">Your system</span>
+            <span class="recommended">{t.yourSystem}</span>
             <a
               class="btn"
               href={download.url}
-              aria-label={`Download for ${download.label} (${download.arch})`}
+              aria-label={fill(t.downloadFor, {
+                system: `${download.label} (${download.arch})`,
+              })}
             >
               <Icon name="download" size={18} />
-              Download
+              {t.download}
             </a>
           </li>
         ))}
@@ -78,60 +80,32 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
         <div class="note">
           <h2>Windows</h2>
           <div>
-            <p>
-              Run the setup: it installs Tokio for your user and opens it.
-              Besides the TikTok and Edge voices, you also get the voices
-              installed on Windows (SAPI and OneCore). Windows may show{" "}
-              <strong>Windows protected your PC</strong> the first time, since
-              Tokio isn't signed yet.
-            </p>
+            <p set:html={t.windows} />
             <details class="more">
               <summary>
-                <span class="show">Read more</span>
-                <span class="hide">Show less</span>
+                <span class="show">{t.readMore}</span>
+                <span class="hide">{t.showLess}</span>
               </summary>
-              <p>
-                To run it anyway, choose <strong>More info</strong>, then{" "}
-                <strong>Run anyway</strong>.
-              </p>
+              <p set:html={t.windowsMore} />
             </details>
           </div>
         </div>
         <div class="note">
           <h2>Linux</h2>
-          <p>
-            Tokio comes as an AppImage. Make it executable with{" "}
-            <code>chmod +x</code> (or in the file's properties) and run it.
-            AppImages need FUSE.
-          </p>
+          <p set:html={t.linux} />
         </div>
         <div class="note">
           <h2>macOS</h2>
           <div>
-            <p>
-              Unzip it and move <strong>Tokio</strong> to your Applications
-              folder. macOS may block it the first time, since Tokio isn't
-              notarized yet.
-            </p>
+            <p set:html={t.mac} />
             <details class="more">
               <summary>
-                <span class="show">Read more</span>
-                <span class="hide">Show less</span>
+                <span class="show">{t.readMore}</span>
+                <span class="hide">{t.showLess}</span>
               </summary>
-              <p>
-                To open it anyway, right-click it in Finder and choose{" "}
-                <strong>Open</strong>, or allow it in{" "}
-                <strong>System Settings → Privacy & Security</strong>.
-              </p>
-              <p>
-                When an update is out, Tokio opens its release page so you can
-                download the new zip.
-              </p>
-              <p>
-                Not sure which Mac you have? Apple menu →{" "}
-                <strong>About This Mac</strong>: "Apple M…" chips are Apple
-                Silicon, "Intel" ones are Intel.
-              </p>
+              {t.macMore.map((text) => (
+                <p set:html={text} />
+              ))}
             </details>
           </div>
         </div>

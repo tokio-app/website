@@ -1,0 +1,297 @@
+---
+title: Juegos
+description: Haz que tu LIVE genere criaturas, dé objetos y ejecute comandos en Minecraft.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import ModDownload from "../../../../../components/ModDownload.astro";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Los regalos, los seguidores y el chat provocan cosas en tu mundo de Minecraft, y un overlay les muestra a los espectadores qué hace cada uno.
+
+<Screenshot
+  name="games-preview"
+  alt="El overlay de juegos sobre un cielo de Minecraft: el ícono de seguir, una flecha y una cabeza de zombi, y luego una Rose, una flecha y un bloque de TNT"
+/>
+
+## Conecta Minecraft
+
+Tokio funciona con Bedrock Edition por sí solo, y con Java Edition a través del mod de Tokio. Los dos se conectan desde el chat del juego, un juego a la vez.
+
+En **Juegos**, activa **Minecraft** y el estado dirá **Esperando a Minecraft**. Tokio solo escucha mientras está activado, y el interruptor es el mismo en todos los perfiles.
+
+## Bedrock Edition
+
+En Minecraft, sigue los pasos que **Juegos** muestra para Bedrock:
+
+<Screenshot
+  name="games-connect-bedrock"
+  alt="Los pasos de Bedrock Edition en Juegos: encender Activar WebSockets en Ajustes → General → Ajustes de red, abrir un mundo con los trucos activados y pegar el comando en el chat, aquí /connect 192.168.1.20:37892"
+/>
+
+**Requiere Websockets encriptados** puede quedar activado. Al salir del mundo se termina la conexión, así que la próxima vez vuelve a escribir el comando `/connect`.
+
+<details>
+<summary>Si no se conecta</summary>
+
+- **El puerto 37892 está en uso**: otro programa ocupa el puerto. Ciérralo y luego apaga y vuelve a encender **Minecraft**.
+- El juego dice que los WebSockets están desactivados: enciende **Activar WebSockets**.
+- El juego no acepta el comando: el mundo necesita los trucos activados.
+
+</details>
+
+## Java Edition
+
+El mod de Tokio, para Fabric, conecta los mundos de un jugador y los mundos LAN que hospedas, no los servidores dedicados. Los trucos pueden quedar desactivados: el mod ejecuta los comandos como tú, con el permiso de un bloque de comandos, y sus respuestas no aparecen en el chat.
+
+### Instala el mod
+
+Esto se hace una sola vez, para Minecraft Java **26.3**.
+
+<Steps>
+
+1. Instala [Fabric Loader](https://fabricmc.net/use/installer/) para 26.3.
+2. Pon [Fabric API](https://modrinth.com/mod/fabric-api) para 26.3 en la carpeta `mods` de Minecraft.
+3. Descarga <ModDownload /> y ponlo en la misma carpeta.
+4. Abre Minecraft con el perfil de Fabric.
+
+</Steps>
+
+### Conéctate
+
+Abre un mundo y escribe en el chat del juego el comando que muestra **Juegos**:
+
+<Screenshot
+  name="games-connect-java"
+  alt="Los pasos de Java Edition en Juegos: instalar Fabric Loader, Fabric API y el mod de Tokio para 26.3, abrir un mundo y pegar el comando en el chat, aquí /tokio connect 192.168.1.20:37892"
+/>
+
+En la misma computadora que Tokio, basta con `/tokio connect`. El mod nunca se reconecta solo, así que conéctate cada vez que abras el mundo.
+
+| Comando                    | Qué hace                                       |
+| -------------------------- | ---------------------------------------------- |
+| `/tokio`                   | Dice si el mundo está conectado                |
+| `/tokio connect [address]` | Se conecta; sin dirección, a `localhost:37892` |
+| `/tokio disconnect`        | Se desconecta de Tokio                         |
+
+Solo el anfitrión del mundo puede usarlos.
+
+<details>
+<summary>Si no se conecta</summary>
+
+- El juego no reconoce `/tokio`: revisa el perfil de Fabric y la carpeta `mods`.
+- **Couldn't connect to Tokio at …**: activa **Minecraft** y usa una dirección de **Juegos**.
+- **Otro juego se conectó a Tokio.**: otro juego tomó el lugar de este.
+- **Se desactivó Minecraft en Tokio.**: alguien apagó el interruptor en **Juegos**.
+
+</details>
+
+## Otro dispositivo
+
+El mismo comando funciona desde un teléfono u otra computadora de tu red. Si hay más de una dirección, **Juegos** muestra un comando para cada una: usa el de la red de tu dispositivo.
+
+## Acciones
+
+Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propias acciones.
+
+<Steps>
+
+1. Haz clic en **+** junto a **Acciones**.
+2. Elige la edición y el activador.
+3. Haz clic en **Agregar paso** y elige qué pasa.
+4. Haz clic en el botón de reproducir para probarla.
+
+</Steps>
+
+<Screenshot
+  name="games-actions"
+  alt="Dos acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
+/>
+
+Una acción nueva toma la edición del juego conectado, o Bedrock si no hay ninguno. Si le cambias la edición, sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond.
+
+**Duplicar acción** pone una copia justo después de la acción. Cámbiale la edición para ejecutar los mismos pasos en el otro juego.
+
+Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción.
+
+| Activador    | Opciones                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Regalo**   | Los regalos, y **Al terminar el combo** o **Cada regalo**, como en las [alertas de regalos](/es/docs/features/alerts/#alertas-de-regalos)  |
+| **Chat**     | Una palabra clave o frase que el mensaje debe tener                                                                                        |
+| **Me gusta** | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
+| **Emote**    | Los emotes, o cualquiera                                                                                                                   |
+
+Las acciones se ejecutan mientras **Minecraft** está activado y hay un juego de su edición conectado, sin importar qué esté activado en **Inicio**.
+
+## Pasos
+
+Los pasos se ejecutan en orden, como tú y donde estés.
+
+| Paso                 | Qué hace                                                                |
+| -------------------- | ----------------------------------------------------------------------- |
+| **Generar criatura** | De 1 a 100 de una criatura, con un nombre opcional                      |
+| **Dar objeto**       | De 1 a 100 de un objeto, para ti                                        |
+| **Clima**            | **Despejado**, **Lluvia** o **Tormenta**                                |
+| **Hora del día**     | **Día**, **Mediodía**, **Noche** o **Medianoche**                       |
+| **Peligro**          | Algo que intenta matarte o te estorba                                   |
+| **Ayuda**            | Algo que te ayuda a sobrevivir                                          |
+| **Comando**          | Cualquier comando, como lo escribirías en el chat, con barra o sin ella |
+
+### Peligros
+
+| Peligro                      | Qué pasa                                                                     |
+| ---------------------------- | ---------------------------------------------------------------------------- |
+| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas        |
+| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                              |
+| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                            |
+| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti                                               |
+| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                 |
+| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                     |
+| **Daño instantáneo**         | Te quita 6 corazones                                                         |
+| **Lanzar al cielo**          | Te lanza hasta 300 bloques hacia arriba (50 al principio) y luego caes       |
+| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                               |
+| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)          |
+| **Apagón**                   | Oscuridad durante los segundos que elijas                                    |
+| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                      |
+| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                            |
+| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio) |
+
+<details>
+<summary>Los detalles</summary>
+
+- La TNT de Bedrock solo tiene dos mechas: 4 s, o una al azar de 0.5 a 2 s cuando eliges 2 s o menos.
+- El yunque necesita aire 20 bloques más arriba, y se queda en el mundo después de caer.
+- Un lanzamiento tarda los segundos que elijas, así que con menos segundos va más rápido. Por encima de unos 190 bloques, 1 segundo es demasiado rápido y tarda un poco más.
+
+</details>
+
+### Ayuda
+
+- **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas.
+- **Curación completa**: te llena la salud y el hambre.
+- **Regeneración** II, **Absorción** IV, **Resistencia** IV, **Resistencia al fuego**, **Velocidad** II, **Impulso en salto** II, **Fuerza** II, **Caída lenta**, **Respiración acuática**, **Visión nocturna** e **Invisibilidad**: durante los segundos que elijas (30 al principio).
+
+### Comando
+
+Usa un paso de comando para todo lo demás, como títulos o sonidos:
+
+```
+say {username} sent {count} {gift}!
+```
+
+Escríbelo para la edición de la acción, porque algunos comandos cambian de una a otra. Si la criatura o el objeto no existe, no se ejecuta nada.
+
+## Variables
+
+El nombre de una criatura y los comandos pueden usarlas. Haz clic en una para agregarla.
+
+| Variable                 | Activadores                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| `{username}`, `{handle}` | Todos                                                             |
+| `{comment}`              | Chat, Emote                                                       |
+| `{gift}`                 | Regalo                                                            |
+| `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo**), Me gusta |
+
+Los espectadores eligen sus propios nombres y mensajes, así que Tokio limpia lo que una variable agrega a un comando.
+
+<details>
+<summary>Qué quita</summary>
+
+Las comillas (`"` y `'`), las barras invertidas, los corchetes y las llaves (`[ ] { }`), `§`, `@` y los caracteres de control. También corta el texto a 100 caracteres. El texto que tú escribes en el paso queda tal cual.
+
+</details>
+
+## Prueba
+
+El botón de reproducir ejecuta la acción una vez con valores de ejemplo y muestra las respuestas del juego.
+
+<Screenshot
+  name="games-test"
+  alt="Una acción después de una prueba: 1 de 3 comandos fallaron, el del yunque en rojo"
+/>
+
+Los fallos aparecen en rojo, en el idioma del juego, y la lista guarda los últimos 25: haz clic en el número para plegarla. Para probar una acción, tiene que haber un juego de su edición conectado.
+
+## Muestra tus acciones en el stream
+
+La sección **Overlay** les muestra a los espectadores qué hace cada evento, con una imagen y un nombre que tú eliges.
+
+<Steps>
+
+1. Activa el servidor de overlays en **Configuración → Servidor de overlays**.
+2. Copia la dirección de **URL del overlay**.
+3. Agrégala a tu app de streaming, como en [Agregar un overlay](/es/docs/guides/adding-an-overlay/).
+
+</Steps>
+
+<Screenshot
+  name="games-overlay"
+  alt="La sección Overlay: su URL, una fila por acción, la vista previa y las opciones de apariencia"
+/>
+
+```
+http://tokio-app.local:37891/games/minecraft/
+```
+
+Divídelo en hasta 4 **Columnas** para repartirlo por la pantalla: cada una tiene su propia dirección en **URLs del overlay**, como `http://tokio-app.local:37891/games/minecraft/2/`. El overlay ocupa toda su fuente de navegador y se achica para caber.
+
+### Filas
+
+Cada acción tiene una fila, en el mismo orden que las acciones:
+
+- **Mostrar en el overlay** la pone en el overlay. Necesita la acción activada, y una imagen o un nombre.
+- El evento muestra la imagen del regalo o del emote, o el ícono pixelado de Tokio. Escribe sobre su texto para cambiarlo, o bórralo para volver al original.
+- El cuadrado elige la imagen.
+- El nombre sale de los pasos, como **Zombie**. Escribe el tuyo, o bórralo para volver al original.
+- **Columna** elige la columna, si hay más de una.
+
+### Imágenes
+
+Tokio no puede incluir las imágenes de Minecraft, así que tú agregas las tuyas: png, jpg, gif o webp, de hasta 50 MB. Haz clic en el cuadrado y luego en **Elegir archivos...** para agregar una o varias.
+
+Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minecraft` de la carpeta de la app de Tokio. **Limpiar** le quita la imagen a una acción. Su botón de eliminar en el selector se la quita a todas las acciones y elimina el archivo.
+
+### Apariencia
+
+**Formato** puede ser **Flecha**, como al principio de esta página, o **Sticker**:
+
+<Screenshot
+  name="games-preview-sticker"
+  alt="El formato Sticker: una cabeza de zombi con el ícono de seguir en la esquina, y un bloque de TNT con una Rose en la esquina"
+/>
+
+| Opción                               | Qué hace                                                                        |
+| ------------------------------------ | ------------------------------------------------------------------------------- |
+| **Diseño**                           | **Lista** muestra todas las filas; **Una a la vez** cambia cada 3 segundos      |
+| **Columnas**                         | Reparte las filas en 1 a 4 overlays                                             |
+| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes** |
+| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                          |
+| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                          |
+| **Fuente**                           | Una fuente instalada con tu app de streaming; vacía, usa la fuente Archivo      |
+| **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la fila iluminada y de las flechas                |
+
+### Iluminación
+
+Cuando una acción se ejecuta en el juego, su fila se ilumina con el color destacado. Si llegan varias seguidas, sigue iluminada hasta 1.5 segundos después de la última.
+
+El botón de reproducir de **Overlay** ilumina la siguiente fila, en la vista previa y en el stream.
+
+<details>
+<summary>Límites</summary>
+
+- Con **Cada regalo** se ejecuta cada regalo, y con **Me gusta** cada cuenta, por muchos que lleguen a la vez.
+- Las acciones de otros eventos guardan como máximo 100 ejecuciones en espera. Las que pasen de ahí se omiten hasta que el juego se ponga al día, así que un chat muy activo no las deja minutos atrasadas.
+- Cuando se acumulan ejecuciones, Tokio envía las de cada acción a 10 por segundo para que el juego no se atrase. Las demás acciones no esperan.
+- Si apagas o quitas una acción, o el juego se desconecta, sus ejecuciones en espera se cancelan. Desconectarte del LIVE no las cancela.
+
+</details>
+
+<details>
+<summary>Avisos</summary>
+
+- **Minecraft Java Edition no está conectado** (o **Bedrock Edition**): una acción se ejecutó sin un juego de su edición conectado. Como mucho, una vez por minuto.
+- **Un comando de la acción “…” falló en Minecraft**: el juego rechazó un comando, y el aviso trae su respuesta. Como mucho, una vez cada 30 segundos por acción.
+- **La acción “…” tiene 100 ejecuciones en espera**: las nuevas se omiten hasta que Minecraft se ponga al día. Como mucho, una vez cada 30 segundos por acción.
+- **Tokio no pudo esperar conexiones de Minecraft**: el puerto estaba en uso cuando Tokio se inició.
+
+</details>

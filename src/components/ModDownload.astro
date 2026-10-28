@@ -2,13 +2,15 @@
 // The Tokio mod's jar for the Java Edition install steps: a direct download,
 // with the file's name. Without release data it links to the mod's latest
 // release instead.
+import { langOf, textOf } from "../i18n";
 import { getModDownload } from "../lib/release";
 
+const t = textOf(langOf(Astro.currentLocale)).modDownload;
 const mod = await getModDownload();
 ---
 
 <a href={mod.url}>
-  the Tokio mod
+  {t.label}
   {mod.file && (
     <>
       {" "}
