@@ -1,5 +1,6 @@
 ---
 import { getImage } from "astro:assets";
+import { fill, langOf, localize, textOf } from "../i18n";
 import Base from "../layouts/Base.astro";
 import {
   getOverlays,
@@ -9,6 +10,10 @@ import {
 } from "../lib/overlays";
 import { formatSize } from "../lib/release";
 
+// Also /es/overlays/ and the other languages' (src/pages/<code>/overlays.astro).
+// The overlays' names and descriptions come from the catalog, in English.
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).overlays;
 const overlays = await getOverlays();
 
 // Each preview is resized at build time and served from this site. One that
@@ -39,22 +44,19 @@ const items = await Promise.all(
 );
 ---
 
-<Base
-  title="Overlays"
-  description="The official overlays for Tokio, with a preview of each. Install them from Tokio and add them to OBS or TikTok LIVE Studio."
->
+<Base title={t.title} description={t.description}>
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h1>Overlays</h1>
-        <p>
-          Install them from the <strong>Overlays</strong> page in Tokio, then
-          add each one's link to OBS or TikTok LIVE Studio. Updates keep your
-          settings.
-        </p>
+        <h1>{t.heading}</h1>
+        <p set:html={t.intro} />
         <p class="links">
-          <a href="/docs/features/overlays/">How overlays work</a>
-          <a href="/docs/developers/building-an-overlay/">Make your own</a>
+          <a href={localize("/docs/features/overlays/", lang)}>
+            {t.howTheyWork}
+          </a>
+          <a href={localize("/docs/developers/building-an-overlay/", lang)}>
+            {t.makeYourOwn}
+          </a>
         </p>
       </div>
 
@@ -68,18 +70,18 @@ const items = await Promise.all(
                     src={image.src}
                     srcset={image.srcSet.attribute}
                     {...image.attributes}
-                    alt={`Preview of ${overlay.name}`}
+                    alt={fill(t.previewOf, { name: overlay.name })}
                   />
                 ) : (
-                  <span class="muted">No preview yet</span>
+                  <span class="muted">{t.noPreview}</span>
                 )}
               </div>
               <div class="info">
                 <h2>{overlay.name}</h2>
                 <p class="description">{overlay.description}</p>
                 <p class="meta">
-                  Version {overlay.version}.{" "}
-                  <a href={overlay.url}>Download the zip</a>{" "}
+                  {fill(t.version, { version: overlay.version })}{" "}
+                  <a href={overlay.url}>{t.downloadZip}</a>{" "}
                   {`(${formatSize(overlay.size)})`}
                 </p>
               </div>
@@ -88,17 +90,14 @@ const items = await Promise.all(
         </ul>
       ) : (
         <p class="muted">
-          The list of overlays couldn't be loaded.{" "}
-          <a href={OVERLAYS_RELEASE_URL}>See them on GitHub</a>.
+          {t.loadFailed} <a href={OVERLAYS_RELEASE_URL}>{t.seeOnGitHub}</a>.
         </p>
       )}
 
-      <p class="muted by-hand">
-        Prefer to do it by hand? Extract a zip and import the folder in{" "}
-        <strong>Settings → Overlay library</strong>. Imported overlays don't get
-        updates. The overlays are open source, in{" "}
-        <a href={OVERLAYS_REPO_URL}>tokio-app/overlays</a>.
-      </p>
+      <p
+        class="muted by-hand"
+        set:html={fill(t.byHand, { repo: OVERLAYS_REPO_URL })}
+      />
     </div>
   </section>
 </Base>

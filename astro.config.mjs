@@ -1,6 +1,18 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { DETECT_LANGUAGE } from "./src/i18n/detect.mjs";
+import { LANGUAGES } from "./src/i18n/languages.mjs";
+
+// The first language at the root, the others under /<code>/. Starlight writes
+// Astro's i18n config from these, which sets Astro.currentLocale on every page.
+const [root, ...others] = LANGUAGES;
+const locales = {
+  root: { label: root.name, lang: root.code },
+  ...Object.fromEntries(
+    others.map(({ code, name }) => [code, { label: name, lang: code }]),
+  ),
+};
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,15 +40,20 @@ export default defineConfig({
         "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts, a countdown timer and overlays.",
       logo: { src: "./src/assets/icon.png", alt: "Tokio" },
       favicon: "/favicon.ico",
+      locales,
+      // After Starlight's canonical and hreflang links: see detect.mjs
+      head: [{ tag: "script", content: DETECT_LANGUAGE }],
       customCss: [
         "@fontsource-variable/archivo/wdth.css",
         "./src/styles/tokens.css",
         "./src/styles/starlight.css",
       ],
-      // Dark only, like the rest of the site: no theme switch
       components: {
+        // Dark only, like the rest of the site: no theme switch
         ThemeProvider: "./src/components/DarkOnly.astro",
         ThemeSelect: "./src/components/DarkOnly.astro",
+        // The site header's link to the other language, not a select
+        LanguageSelect: "./src/components/LanguageLink.astro",
       },
       expressiveCode: {
         // The plain frame for shell code too: the terminal frame draws
@@ -56,54 +73,35 @@ export default defineConfig({
         baseUrl: "https://github.com/tokio-app/website/edit/main/",
       },
       lastUpdated: true,
+      // Pages show their title in their language. Groups and links take a
+      // `translations` per language. Starlight adds /<code> to the links.
       sidebar: [
         {
           label: "Getting started",
-          items: [
-            { label: "Introduction", slug: "docs" },
-            { label: "Install", slug: "docs/install" },
-            { label: "Connect to your LIVE", slug: "docs/connect" },
-          ],
+          items: ["docs", "docs/install", "docs/connect"],
         },
         {
           label: "Features",
           items: [
-            { label: "Text-to-speech", slug: "docs/features/text-to-speech" },
-            { label: "Music requests", slug: "docs/features/music-requests" },
-            { label: "Alerts", slug: "docs/features/alerts" },
-            { label: "Games", slug: "docs/features/games" },
-            { label: "Overlays", slug: "docs/features/overlays" },
-            {
-              label: "Countdown timer",
-              slug: "docs/features/countdown-timer",
-            },
-            {
-              label: "Profiles and settings",
-              slug: "docs/features/profiles-and-settings",
-            },
+            "docs/features/text-to-speech",
+            "docs/features/music-requests",
+            "docs/features/alerts",
+            "docs/features/games",
+            "docs/features/overlays",
+            "docs/features/countdown-timer",
+            "docs/features/profiles-and-settings",
           ],
         },
         {
           label: "Guides",
-          items: [
-            {
-              label: "Adding an overlay",
-              slug: "docs/guides/adding-an-overlay",
-            },
-          ],
+          items: ["docs/guides/adding-an-overlay"],
         },
         {
           label: "Overlay developers",
           items: [
-            {
-              label: "Building an overlay",
-              slug: "docs/developers/building-an-overlay",
-            },
-            { label: "Events", slug: "docs/developers/events" },
-            {
-              label: "Building Tokio from source",
-              slug: "docs/developers/building-from-source",
-            },
+            "docs/developers/building-an-overlay",
+            "docs/developers/events",
+            "docs/developers/building-from-source",
           ],
         },
         {

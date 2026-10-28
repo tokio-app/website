@@ -5,25 +5,31 @@ import "../styles/tokens.css";
 import "../styles/site.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import {
+  DEFAULT_LANG,
+  LANGUAGE_NAMES,
+  langOf,
+  textOf,
+  twinPath,
+} from "../i18n";
+import { DETECT_LANGUAGE } from "../i18n/detect.mjs";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const DEFAULT_DESCRIPTION =
-  "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts and overlays.";
-
-const { title, description = DEFAULT_DESCRIPTION } = Astro.props;
-const fullTitle = title
-  ? `${title} | Tokio`
-  : "Tokio: make your TikTok LIVE react";
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).meta;
+const { title, description = t.description } = Astro.props;
+const fullTitle = title ? `${title} | Tokio` : t.title;
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site);
 const ogImage = new URL("/icon.png", Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,6 +37,19 @@ const ogImage = new URL("/icon.png", Astro.site);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#121212" />
     <link rel="canonical" href={canonical} />
+    {LANGUAGE_NAMES.map(({ code }) => (
+      <link
+        rel="alternate"
+        hreflang={code}
+        href={new URL(twinPath(path, code), Astro.site)}
+      />
+    ))}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(twinPath(path, DEFAULT_LANG), Astro.site)}
+    />
+    <script is:inline set:html={DETECT_LANGUAGE} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -40,6 +59,7 @@ const ogImage = new URL("/icon.png", Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang} />
     <meta name="twitter:card" content="summary" />
   </head>
   <body>

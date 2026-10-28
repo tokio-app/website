@@ -2,9 +2,13 @@
 import DownloadButton from "../components/DownloadButton.astro";
 import Icon from "../components/Icon.astro";
 import LiveFeed from "../components/LiveFeed.astro";
+import { fill, langOf, localize, textOf } from "../i18n";
 import Base from "../layouts/Base.astro";
 import { getLatestRelease, REPO_URL } from "../lib/release";
 
+// Also /es/ and the other languages' homes (src/pages/<code>/index.astro)
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).home;
 const release = await getLatestRelease();
 
 // Code, or rows drawn the way the app draws them
@@ -12,124 +16,53 @@ type Example =
   | string
   | { name: string; value?: string; current?: boolean; verified?: boolean }[];
 
-// Each feature shows a small, real example of what it does.
+// Each feature shows a small, real example of what it does: code, or the
+// app's own rows (the gallery's tags, Time added's settings), in its words.
 const FEATURES: {
   title: string;
   href: string;
   text: string;
   example: Example;
-}[] = [
-  {
-    title: "Text-to-speech",
-    href: "/docs/features/text-to-speech/",
-    text: "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices.",
-    example: "{username} says {comment}\n→ Lucia says hi from Lima!",
-  },
-  {
-    title: "Music requests",
-    href: "/docs/features/music-requests/",
-    text: "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
-    example: "!play One More Time\n!next  !last  !revoke",
-  },
-  {
-    title: "Alerts",
-    href: "/docs/features/alerts/",
-    text: "A sound, an image or a video for follows, gifts, Super Fan events and more.",
-    example: [
-      { name: "Follow", value: "bell.mp3" },
-      { name: "Gift", value: "confetti.mp4" },
-      { name: "Share", value: "whoosh.mp3" },
-    ],
-  },
-  {
-    title: "Games",
-    href: "/docs/features/games/",
-    text: "Gifts, follows and chat spawn mobs and run commands in your Minecraft world.",
-    example: 'Follow\n→ summon zombie "Lucia" ~ ~ ~',
-  },
-  {
-    title: "Overlays",
-    href: "/docs/features/overlays/",
-    text: "Install the official overlays or import your own, then add each with one link.",
-    // Tagged as the app's gallery tags them
-    example: [
-      { name: "Gift Jar", value: "Verified", verified: true },
-      { name: "Top Likes", value: "Verified", verified: true },
-      { name: "My chat box", value: "External" },
-    ],
-  },
-  {
-    title: "Countdown timer",
-    href: "/docs/features/countdown-timer/",
-    text: "A subathon clock on your stream that gifts, likes, follows and chat add time to.",
-    // Rows of its Time added settings, as the app words them
-    example: [
-      { name: "Coins", value: "1 second per coin" },
-      { name: "Likes", value: "10 seconds every 100" },
-      { name: "Follows", value: "30 seconds each" },
-    ],
-  },
-  {
-    title: "Profiles",
-    href: "/docs/features/profiles-and-settings/",
-    text: "Separate settings for different streams, switched from the title bar.",
-    example: [
-      { name: "Just chatting" },
-      { name: "Music night", current: true },
-      { name: "Gaming" },
-    ],
-  },
-];
+}[] = (
+  [
+    ["tts", "/docs/features/text-to-speech/"],
+    ["music", "/docs/features/music-requests/"],
+    ["alerts", "/docs/features/alerts/"],
+    ["games", "/docs/features/games/"],
+    ["overlays", "/docs/features/overlays/"],
+    ["timer", "/docs/features/countdown-timer/"],
+    ["profiles", "/docs/features/profiles-and-settings/"],
+  ] as const
+).map(([id, href]) => ({ ...t.features[id], href: localize(href, lang) }));
 
-const STEPS = [
-  {
-    title: "Install Tokio",
-    text: "For Windows, macOS or Linux. It checks for updates on its own.",
-    link: { href: "/download/", label: "Download" },
-  },
-  {
-    title: "Set it up",
-    text: "Add your free Euler Stream key, then your voices, music, alerts and overlays.",
-    link: { href: "/docs/#features", label: "Features" },
-  },
-  {
-    title: "Prepare your stream",
-    text: "Turn on the features you want, and add your overlays to OBS or TikTok LIVE Studio.",
-    link: {
-      href: "/docs/guides/adding-an-overlay/",
-      label: "Adding an overlay",
-    },
-  },
-  {
-    title: "Go live and connect",
-    text: "Start your LIVE on TikTok, then connect with your @username.",
-    link: { href: "/docs/connect/", label: "How to connect" },
-  },
+// The docs' Features heading is #features in English, its own slug in others
+const STEP_LINKS = [
+  "/download/",
+  `/docs/#${t.docsFeaturesAnchor}`,
+  "/docs/guides/adding-an-overlay/",
+  "/docs/connect/",
 ];
+const STEPS = t.steps.map(({ title, text, link }, index) => ({
+  title,
+  text,
+  link: { href: localize(STEP_LINKS[index], lang), label: link },
+}));
 ---
 
 <Base>
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <h1>Make your TikTok LIVE react.</h1>
-        <p class="lead">
-          Tokio reads chat aloud, takes song requests, plays sounds and shows
-          videos when someone follows or sends a gift, and drives the overlays
-          in OBS, TikTok LIVE Studio or any streaming app that can show a web
-          page.
-        </p>
+        <h1>{t.title}</h1>
+        <p class="lead">{t.lead}</p>
         <div class="actions">
           <DownloadButton size="lg" />
-          <a class="btn btn-lg" href="/docs/">
-            Read the docs
+          <a class="btn btn-lg" href={localize("/docs/", lang)}>
+            {t.readDocs}
           </a>
         </div>
         <p class="meta">
-          {[
-            "Free and open source, for Windows, macOS and Linux.",
-            release && `Version ${release.version}.`,
-          ]
+          {[t.meta, release && fill(t.version, { version: release.version })]
             .filter(Boolean)
             .join(" ")}
         </p>
@@ -141,8 +74,8 @@ const STEPS = [
   <section class="section" id="features">
     <div class="container">
       <div class="section-head">
-        <h2>What Tokio does</h2>
-        <p>Turn each feature on or off for the session.</p>
+        <h2>{t.featuresTitle}</h2>
+        <p>{t.featuresText}</p>
       </div>
       <ul class="features">
         {FEATURES.map((feature) => (
@@ -178,26 +111,24 @@ const STEPS = [
   <section class="section">
     <div class="container overlay-grid">
       <div class="section-head">
-        <h2>One link per overlay, in any streaming app</h2>
-        <p>Each overlay gets its own address on your computer.</p>
+        <h2>{t.overlaysTitle}</h2>
+        <p>{t.overlaysText}</p>
         <p class="links">
-          <a href="/overlays/">Browse the overlays</a>
-          <a href="/docs/guides/adding-an-overlay/">How to add an overlay</a>
+          <a href={localize("/overlays/", lang)}>{t.browseOverlays}</a>
+          <a href={localize("/docs/guides/adding-an-overlay/", lang)}>
+            {t.howToAddOverlay}
+          </a>
         </p>
       </div>
       <div class="card url-card">
-        <p class="label">Browser source URL</p>
+        <p class="label">{t.urlLabel}</p>
         <code>http://tokio-app.local:37891/&lt;overlay-id&gt;/</code>
         <ul>
-          <li>
-            <Icon name="check" size={18} /> OBS Studio
-          </li>
-          <li>
-            <Icon name="check" size={18} /> TikTok LIVE Studio
-          </li>
-          <li>
-            <Icon name="check" size={18} /> Any app with a browser source
-          </li>
+          {t.apps.map((app) => (
+            <li>
+              <Icon name="check" size={18} /> {app}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -206,7 +137,7 @@ const STEPS = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>Live in four steps</h2>
+        <h2>{t.stepsTitle}</h2>
       </div>
       <ol class="steps">
         {STEPS.map((step, index) => (
@@ -223,15 +154,13 @@ const STEPS = [
 
   <section class="section cta">
     <div class="container cta-inner">
-      <h2>Ready for your next LIVE?</h2>
-      <p class="muted">
-        Tokio is free, open source and runs on your own computer.
-      </p>
+      <h2>{t.ctaTitle}</h2>
+      <p class="muted">{t.ctaText}</p>
       <div class="actions">
         <DownloadButton size="lg" />
         <a class="btn btn-lg" href={REPO_URL}>
           <Icon name="github" size={20} />
-          View on GitHub
+          {t.viewOnGitHub}
         </a>
       </div>
     </div>

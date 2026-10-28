@@ -1,109 +1,38 @@
 ---
+import { fill, langOf, textOf } from "../i18n";
 import Base from "../layouts/Base.astro";
 import { REPO_URL } from "../lib/release";
 
-const FILE_URL = `${REPO_URL}/blob/main`;
-
-// Mirrors the Services list in the app's THIRD_PARTY_NOTICES.md.
-const SERVICES = [
-  {
-    name: "TikTok",
-    note: "TikTok LIVE, through @tokioapp/connector, and TikTok's text-to-speech (the TikTok voices), when the user has added a TikTok session ID. Neither is an official public API.",
-  },
-  {
-    name: "TikTok TTS proxy",
-    note: "The TikTok voices when no session ID is set (tiktok-tts.weilnet.workers.dev). It gets the text of each message to read and its voice. It's run by a third party, not by TikTok or Tokio.",
-  },
-  {
-    name: "Euler Stream",
-    note: "Signs the connection to TikTok LIVE, with each user's own API key.",
-  },
-  {
-    name: "Microsoft",
-    note: "Edge's Read Aloud service (the Edge voices), which isn't an official public API.",
-  },
-  { name: "Spotify and YouTube", note: "Music requests." },
-  {
-    name: "GitHub",
-    note: "Update checks and downloads, from Tokio's releases, and the official overlays (their list, previews and downloads), from the releases of tokio-app/overlays.",
-  },
-  {
-    name: "MyInstants",
-    note: "Sound search and downloads for alerts, read from the public website rather than an official API. Its sounds are uploaded by its users and aren't covered by Tokio's license.",
-  },
-  {
-    name: "Lorem Picsum",
-    note: "Sample pictures (profile pictures, emotes, song covers) in overlay tests and previews.",
-  },
-];
+// Also /es/about/ and the other languages' (src/pages/<code>/about.astro).
+// `services` in each language's file mirrors the Services list in the app's
+// THIRD_PARTY_NOTICES.md. The heading ids stay the same in every language.
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).about;
+const links = { repo: REPO_URL, files: `${REPO_URL}/blob/main` };
 ---
 
-<Base
-  title="About and license"
-  description="Who makes Tokio, how it's licensed, the online services it uses and how your data is handled."
->
+<Base title={t.title} description={t.description}>
   <section class="section">
     <div class="container prose">
-      <h1>About Tokio</h1>
-      <p>
-        Tokio is a free, open-source desktop app that connects to your TikTok
-        LIVE and reacts to it with text-to-speech, music requests, alerts, a
-        countdown timer and overlays. It's made by Italo Alfaro and contributors
-        and developed in the open on <a href={REPO_URL}>GitHub</a>.
-      </p>
-      <p>© 2026 Italo Alfaro and contributors.</p>
+      <h1>{t.heading}</h1>
+      <p set:html={fill(t.intro, links)} />
+      <p>{t.copyright}</p>
 
-      <h2 id="license">License</h2>
-      <p>
-        Tokio's source code is licensed under the{" "}
-        <a href={`${FILE_URL}/LICENSE`}>MIT License</a>. One file is an
-        exception:{" "}
-        <code>src/main/services/tts/providers/edge/common/drm-v2.ts</code> is
-        derived from <a href="https://github.com/rany2/edge-tts">edge-tts</a>{" "}
-        and is licensed under the{" "}
-        <a href={`${FILE_URL}/LICENSES/LGPL-3.0.txt`}>GNU LGPL v3.0</a>.
-      </p>
-      <p>
-        The distributed application is under the same licenses. It connects to
-        TikTok LIVE through{" "}
-        <a href="https://github.com/tokio-app/connector">@tokioapp/connector</a>
-        , which is MIT-licensed too, and the other components it includes keep
-        their own licenses.
-      </p>
-      <p>
-        The full notices for every component are in{" "}
-        <a href={`${FILE_URL}/THIRD_PARTY_NOTICES.md`}>
-          THIRD_PARTY_NOTICES.md
-        </a>
-        . The <strong>About</strong> page inside the app shows the same notices
-        and the licenses of every package it ships.
-      </p>
+      <h2 id="license">{t.licenseTitle}</h2>
+      {t.license.map((text) => (
+        <p set:html={fill(text, links)} />
+      ))}
 
-      <h2 id="source">Source code</h2>
-      <p>
-        The complete source code of every version is available at{" "}
-        <a href={REPO_URL}>github.com/tokio-app/tokio</a>. Each release is
-        tagged (for example <code>v0.1.0-alpha.3</code>), so you can get the
-        exact source of the version you installed. You may modify Tokio and
-        share your changes under the terms of its licenses.
-      </p>
+      <h2 id="source">{t.sourceTitle}</h2>
+      <p set:html={fill(t.source, links)} />
 
-      <h2 id="warranty">No warranty</h2>
-      <p>
-        Tokio is provided "as is", without warranty of any kind, express or
-        implied, including but not limited to the warranties of merchantability,
-        fitness for a particular purpose and noninfringement. See the licenses
-        for the full terms.
-      </p>
+      <h2 id="warranty">{t.warrantyTitle}</h2>
+      <p>{t.warranty}</p>
 
-      <h2 id="services">Online services</h2>
-      <p>
-        Tokio talks to these online services. None of them is covered by Tokio's
-        license. Each one is subject to its operator's terms and can stop
-        working at any time.
-      </p>
+      <h2 id="services">{t.servicesTitle}</h2>
+      <p>{t.servicesText}</p>
       <ul class="services">
-        {SERVICES.map((service) => (
+        {t.services.map((service) => (
           <li>
             <strong>{service.name}</strong>
             {service.note}
@@ -111,42 +40,16 @@ const SERVICES = [
         ))}
       </ul>
 
-      <h2 id="privacy">Privacy</h2>
-      <p>
-        Tokio runs on your computer and has no account. Your settings, profiles,
-        sounds, images and videos are saved on your computer. To connect to
-        TikTok LIVE you need your own Euler Stream account: Tokio saves its API
-        key on your computer, encrypted when your system supports it, and sends
-        it only to Euler Stream. A TikTok session ID, if you add one, is saved
-        the same way and sent only to TikTok. It sends requests only to the
-        services listed above, when you use the features that need them, and
-        checks GitHub for new versions to keep itself up to date.
-      </p>
-      <p>
-        This website is static and hosted on GitHub Pages. It sets no cookies
-        and uses no analytics. GitHub may log technical data such as your IP
-        address when you visit or download a file; see GitHub's privacy
-        statement.
-      </p>
+      <h2 id="privacy">{t.privacyTitle}</h2>
+      {t.privacy.map((text) => (
+        <p>{text}</p>
+      ))}
 
-      <h2 id="trademarks">Trademarks</h2>
-      <p>
-        Tokio is not affiliated with or endorsed by TikTok or ByteDance. TikTok,
-        TikTok LIVE Studio, Spotify, YouTube, OBS Studio and Microsoft Edge are
-        trademarks of their respective owners.
-      </p>
+      <h2 id="trademarks">{t.trademarksTitle}</h2>
+      <p>{t.trademarks}</p>
 
-      <h2 id="website">This website</h2>
-      <p>
-        The source of this website is MIT-licensed and available at{" "}
-        <a href="https://github.com/tokio-app/website">
-          github.com/tokio-app/website
-        </a>
-        . Its typeface is{" "}
-        <a href="https://github.com/Omnibus-Type/Archivo">Archivo</a>, by the
-        Archivo Project Authors, under the{" "}
-        <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>.
-      </p>
+      <h2 id="website">{t.websiteTitle}</h2>
+      <p set:html={t.website} />
     </div>
   </section>
 </Base>

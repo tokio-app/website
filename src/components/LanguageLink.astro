@@ -1,0 +1,81 @@
+---
+// This page in the other languages, each named in itself. A click saves the
+// pick, which src/i18n/detect.mjs follows from then on. In the site header
+// and, replacing Starlight's LanguageSelect, in the docs header and menu.
+import { LANGUAGE_NAMES, langOf, twinPath } from "../i18n";
+import Icon from "./Icon.astro";
+
+interface Props {
+  // Only the globe on phones, in the site header
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const here = langOf(Astro.currentLocale);
+---
+
+{LANGUAGE_NAMES.filter(({ code }) => code !== here).map(({ code, name }) => (
+  <a
+    class:list={["language", { compact }]}
+    href={twinPath(Astro.url.pathname, code)}
+    hreflang={code}
+    lang={code}
+    data-language={code}
+  >
+    <Icon name="globe" size={18} />
+    <span class="name">{name}</span>
+  </a>
+))}
+
+<script>
+  import { PICK_KEY } from "../i18n/detect.mjs";
+
+  for (const link of document.querySelectorAll<HTMLAnchorElement>(
+    "a[data-language]",
+  )) {
+    link.addEventListener("click", () => {
+      try {
+        localStorage.setItem(PICK_KEY, link.dataset.language ?? "");
+      } catch {
+        // Blocked storage: the link still works, and detect.mjs leaves links
+        // inside the site alone
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Quiet like the nav: the language's own name does the work */
+  .language {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    color: var(--font-secondary);
+    font-size: var(--font-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .language:hover {
+    color: var(--font-primary);
+  }
+
+  .language :global(svg) {
+    flex: none;
+  }
+
+  @media (max-width: 559px) {
+    .compact .name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+</style>
