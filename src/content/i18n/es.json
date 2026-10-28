@@ -1,0 +1,11 @@
+{
+  "sidebarNav.accessibleLabel": "Principal",
+  "tableOfContents.overview": "Introducción",
+  "page.editLink": "Editar página",
+  "page.previousLink": "Anterior",
+  "page.nextLink": "Siguiente",
+  "pagefind.zero_results": "No hay resultados para [SEARCH_TERM]",
+  "pagefind.alt_search": "No hay resultados para [SEARCH_TERM]. Estos son los de [DIFFERENT_TERM]",
+  "pagefind.search_suggestion": "No hay resultados para [SEARCH_TERM]. Prueba alguna de estas búsquedas:",
+  "heading.anchorLabel": "Sección “{{title}}”"
+}

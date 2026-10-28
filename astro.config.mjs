@@ -78,10 +78,12 @@ export default defineConfig({
       sidebar: [
         {
           label: "Getting started",
+          translations: { es: "Primeros pasos" },
           items: ["docs", "docs/install", "docs/connect"],
         },
         {
           label: "Features",
+          translations: { es: "Funciones" },
           items: [
             "docs/features/text-to-speech",
             "docs/features/music-requests",
@@ -94,10 +96,12 @@ export default defineConfig({
         },
         {
           label: "Guides",
+          translations: { es: "Guías" },
           items: ["docs/guides/adding-an-overlay"],
         },
         {
           label: "Overlay developers",
+          translations: { es: "Desarrollo de overlays" },
           items: [
             "docs/developers/building-an-overlay",
             "docs/developers/events",
@@ -106,10 +110,23 @@ export default defineConfig({
         },
         {
           label: "More",
+          translations: { es: "Más" },
           items: [
-            { label: "Overlays", link: "/overlays/" },
-            { label: "Download", link: "/download/" },
-            { label: "About and license", link: "/about/" },
+            {
+              label: "Overlays",
+              translations: { es: "Overlays" },
+              link: "/overlays/",
+            },
+            {
+              label: "Download",
+              translations: { es: "Descargar" },
+              link: "/download/",
+            },
+            {
+              label: "About and license",
+              translations: { es: "Acerca de y licencia" },
+              link: "/about/",
+            },
           ],
         },
       ],

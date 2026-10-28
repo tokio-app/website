@@ -1,272 +1,320 @@
 {
   "meta": {
-    "title": "Tokio: make your TikTok LIVE react",
-    "description": "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts and overlays."
+    "title": "Tokio: haz que tu LIVE de TikTok reaccione",
+    "description": "Haz que tu LIVE de TikTok reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas de sonido y overlays."
   },
   "header": {
-    "nav": "Main",
-    "features": "Features",
+    "nav": "Principal",
+    "features": "Funciones",
     "docs": "Docs",
     "overlays": "Overlays",
-    "download": "Download",
-    "about": "About",
-    "github": "Tokio on GitHub"
+    "download": "Descargar",
+    "about": "Acerca de",
+    "github": "Tokio en GitHub"
   },
   "footer": {
-    "intro": "Free and open source. Tokio is not affiliated with or endorsed by TikTok or ByteDance.",
-    "product": "Product",
-    "features": "Features",
+    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo.",
+    "product": "Producto",
+    "features": "Funciones",
     "overlays": "Overlays",
-    "download": "Download",
-    "releases": "Releases",
+    "download": "Descargar",
+    "releases": "Versiones",
     "docs": "Docs",
-    "install": "Install",
-    "addingAnOverlay": "Adding an overlay",
-    "buildingAnOverlay": "Building an overlay",
-    "project": "Project",
+    "install": "Instalación",
+    "addingAnOverlay": "Agregar un overlay",
+    "buildingAnOverlay": "Crear un overlay",
+    "project": "Proyecto",
     "github": "GitHub",
-    "reportBug": "Report a bug",
-    "about": "About and license",
-    "copyright": "© 2026 Italo Alfaro and contributors"
+    "reportBug": "Reportar un error",
+    "about": "Acerca de y licencia",
+    "copyright": "© 2026 Italo Alfaro y colaboradores"
   },
   "downloadButton": {
-    "label": "Download",
-    "labelFor": "Download for {os}"
+    "label": "Descargar",
+    "labelFor": "Descargar para {os}"
   },
   "downloadTable": {
-    "system": "System",
-    "download": "Download",
-    "latestRelease": "Latest release"
+    "system": "Sistema",
+    "download": "Descarga",
+    "latestRelease": "Última versión"
   },
   "modDownload": {
-    "label": "the Tokio mod"
+    "label": "el mod de Tokio"
   },
   "liveFeed": {
-    "label": "Example: Tokio's Home during a LIVE, and what it does with each event",
-    "title": "Dashboard",
+    "label": "Ejemplo: la página Inicio de Tokio durante un LIVE y lo que hace con cada evento",
+    "title": "Panel",
     "stats": [
-      { "label": "Viewers", "value": "312" },
-      { "label": "Likes", "value": "48.2K" },
-      { "label": "Total views", "value": "15.2K" }
+      {
+        "label": "Espectadores",
+        "value": "312"
+      },
+      {
+        "label": "Me gusta",
+        "value": "48.2 k"
+      },
+      {
+        "label": "Vistas totales",
+        "value": "15.2 k"
+      }
     ],
     "events": [
       {
         "name": "Lucia",
-        "message": "hi from Lima!",
-        "reaction": "Read aloud with the Edge voice"
+        "message": "¡hola desde Lima!",
+        "reaction": "Se leyó en voz alta con la voz de Edge"
       },
       {
         "name": "Marco",
-        "action": "sent Rose ×5",
-        "coins": "5 coins",
-        "reaction": "Played applause.mp3"
+        "action": "envió Rose ×5",
+        "coins": "5 monedas",
+        "reaction": "Se reprodujo applause.mp3"
       },
       {
         "name": "Ana",
         "message": "!play One More Time",
-        "reaction": "Added to the music queue"
+        "reaction": "Se agregó a la cola de música"
       },
       {
         "name": "Sam",
-        "action": "followed you",
-        "reaction": "Follow banner on the overlay"
+        "action": "te siguió",
+        "reaction": "Banner de seguidor nuevo en el overlay"
       }
     ]
   },
   "home": {
-    "title": "Make your TikTok LIVE react.",
-    "lead": "Tokio reads chat aloud, takes song requests, plays sounds and shows videos when someone follows or sends a gift, and drives the overlays in OBS, TikTok LIVE Studio or any streaming app that can show a web page.",
-    "readDocs": "Read the docs",
-    "meta": "Free and open source, for Windows, macOS and Linux.",
-    "version": "Version {version}.",
-    "featuresTitle": "What Tokio does",
-    "featuresText": "Turn each feature on or off for the session.",
+    "title": "Haz que tu LIVE de TikTok reaccione.",
+    "lead": "Tokio lee el chat en voz alta, recibe pedidos de canciones, reproduce sonidos y muestra videos cuando alguien te sigue o envía un regalo, y controla los overlays en OBS, TikTok LIVE Studio o cualquier app de streaming que pueda mostrar una página web.",
+    "readDocs": "Lee la documentación",
+    "meta": "Gratis y de código abierto, para Windows, macOS y Linux.",
+    "version": "Versión {version}.",
+    "featuresTitle": "Lo que hace Tokio",
+    "featuresText": "Activa o desactiva cada función para la sesión.",
     "features": {
       "tts": {
-        "title": "Text-to-speech",
-        "text": "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices.",
-        "example": "{username} says {comment}\n→ Lucia says hi from Lima!"
+        "title": "Texto a voz",
+        "text": "El chat se lee en voz alta a medida que llega, con las voces de TikTok, de Microsoft Edge o de tu sistema.",
+        "example": "{username} dice {comment}\n→ Lucia dice ¡hola desde Lima!"
       },
       "music": {
-        "title": "Music requests",
-        "text": "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
+        "title": "Pedidos de canciones",
+        "text": "Los espectadores piden canciones desde el chat, y suenan en el reproductor de YouTube de Tokio o en tu app de Spotify.",
         "example": "!play One More Time\n!next  !last  !revoke"
       },
       "alerts": {
-        "title": "Alerts",
-        "text": "A sound, an image or a video for follows, gifts, Super Fan events and more.",
+        "title": "Alertas",
+        "text": "Un sonido, una imagen o un video para seguidores nuevos, regalos, eventos de Super Fan y más.",
         "example": [
-          { "name": "Follow", "value": "bell.mp3" },
-          { "name": "Gift", "value": "confetti.mp4" },
-          { "name": "Share", "value": "whoosh.mp3" }
+          {
+            "name": "Seguir",
+            "value": "bell.mp3"
+          },
+          {
+            "name": "Regalo",
+            "value": "confetti.mp4"
+          },
+          {
+            "name": "Compartir",
+            "value": "whoosh.mp3"
+          }
         ]
       },
       "games": {
-        "title": "Games",
-        "text": "Gifts, follows and chat spawn mobs and run commands in your Minecraft world.",
-        "example": "Follow\n→ summon zombie \"Lucia\" ~ ~ ~"
+        "title": "Juegos",
+        "text": "Los regalos, los seguidores y el chat hacen aparecer criaturas y ejecutan comandos en tu mundo de Minecraft.",
+        "example": "Seguir\n→ summon zombie \"Lucia\" ~ ~ ~"
       },
       "overlays": {
         "title": "Overlays",
-        "text": "Install the official overlays or import your own, then add each with one link.",
+        "text": "Instala los overlays oficiales o importa los tuyos, y agrega cada uno con un enlace.",
         "example": [
-          { "name": "Gift Jar", "value": "Verified", "verified": true },
-          { "name": "Top Likes", "value": "Verified", "verified": true },
-          { "name": "My chat box", "value": "External" }
+          {
+            "name": "Gift Jar",
+            "value": "Verificado",
+            "verified": true
+          },
+          {
+            "name": "Top Likes",
+            "value": "Verificado",
+            "verified": true
+          },
+          {
+            "name": "Mi chat",
+            "value": "Externo"
+          }
         ]
       },
       "timer": {
-        "title": "Countdown timer",
-        "text": "A subathon clock on your stream that gifts, likes, follows and chat add time to.",
+        "title": "Temporizador",
+        "text": "Un reloj de subathon en tu stream, al que los regalos, los Me gusta, los seguidores y el chat le suman tiempo.",
         "example": [
-          { "name": "Coins", "value": "1 second per coin" },
-          { "name": "Likes", "value": "10 seconds every 100" },
-          { "name": "Follows", "value": "30 seconds each" }
+          {
+            "name": "Monedas",
+            "value": "1 segundo por moneda"
+          },
+          {
+            "name": "Me gusta",
+            "value": "10 segundos cada 100"
+          },
+          {
+            "name": "Seguidores nuevos",
+            "value": "30 segundos cada uno"
+          }
         ]
       },
       "profiles": {
-        "title": "Profiles",
-        "text": "Separate settings for different streams, switched from the title bar.",
+        "title": "Perfiles",
+        "text": "Una configuración para cada tipo de stream, que cambias desde la barra de título.",
         "example": [
-          { "name": "Just chatting" },
-          { "name": "Music night", "current": true },
-          { "name": "Gaming" }
+          {
+            "name": "Charlando"
+          },
+          {
+            "name": "Noche de música",
+            "current": true
+          },
+          {
+            "name": "Jugando"
+          }
         ]
       }
     },
-    "overlaysTitle": "One link per overlay, in any streaming app",
-    "overlaysText": "Each overlay gets its own address on your computer.",
-    "browseOverlays": "Browse the overlays",
-    "howToAddOverlay": "How to add an overlay",
-    "urlLabel": "Browser source URL",
+    "overlaysTitle": "Un enlace por overlay, en cualquier app de streaming",
+    "overlaysText": "Cada overlay tiene su propia dirección en tu computadora.",
+    "browseOverlays": "Ver los overlays",
+    "howToAddOverlay": "Cómo agregar un overlay",
+    "urlLabel": "URL de la fuente de navegador",
     "apps": [
       "OBS Studio",
       "TikTok LIVE Studio",
-      "Any app with a browser source"
+      "Cualquier app con fuente de navegador"
     ],
-    "stepsTitle": "Live in four steps",
+    "stepsTitle": "Tu LIVE en cuatro pasos",
     "steps": [
       {
-        "title": "Install Tokio",
-        "text": "For Windows, macOS or Linux. It checks for updates on its own.",
-        "link": "Download"
+        "title": "Instala Tokio",
+        "text": "Para Windows, macOS o Linux. Busca actualizaciones por su cuenta.",
+        "link": "Descargar"
       },
       {
-        "title": "Set it up",
-        "text": "Add your free Euler Stream key, then your voices, music, alerts and overlays.",
-        "link": "Features"
+        "title": "Configúralo",
+        "text": "Agrega tu clave gratis de Euler Stream y después tus voces, música, alertas y overlays.",
+        "link": "Funciones"
       },
       {
-        "title": "Prepare your stream",
-        "text": "Turn on the features you want, and add your overlays to OBS or TikTok LIVE Studio.",
-        "link": "Adding an overlay"
+        "title": "Prepara tu stream",
+        "text": "Activa las funciones que quieras y agrega tus overlays a OBS o TikTok LIVE Studio.",
+        "link": "Agregar un overlay"
       },
       {
-        "title": "Go live and connect",
-        "text": "Start your LIVE on TikTok, then connect with your @username.",
-        "link": "How to connect"
+        "title": "Inicia el LIVE y conéctate",
+        "text": "Inicia tu LIVE en TikTok y después conéctate con tu @usuario.",
+        "link": "Cómo conectarte"
       }
     ],
-    "docsFeaturesAnchor": "features",
-    "ctaTitle": "Ready for your next LIVE?",
-    "ctaText": "Tokio is free, open source and runs on your own computer.",
-    "viewOnGitHub": "View on GitHub"
+    "docsFeaturesAnchor": "funciones",
+    "ctaTitle": "¿Todo listo para tu próximo LIVE?",
+    "ctaText": "Tokio es gratis, de código abierto y funciona en tu propia computadora.",
+    "viewOnGitHub": "Ver en GitHub"
   },
   "download": {
-    "title": "Download",
-    "description": "Download Tokio for Windows, macOS and Linux.",
-    "heading": "Get Tokio",
-    "intro": "A setup on Windows, a zip on macOS, an AppImage on Linux. Tokio checks for updates on its own.",
-    "released": "Version {version}, released {date}.",
-    "releaseNotes": "Release notes",
-    "allReleases": "See all releases",
-    "yourSystem": "Your system",
-    "download": "Download",
-    "downloadFor": "Download for {system}",
-    "readMore": "Read more",
-    "showLess": "Show less",
-    "windows": "Run the setup: it installs Tokio for your user and opens it. Besides the TikTok and Edge voices, you also get the voices installed on Windows (SAPI and OneCore). Windows may show <strong>Windows protected your PC</strong> the first time, since Tokio isn't signed yet.",
-    "windowsMore": "To run it anyway, choose <strong>More info</strong>, then <strong>Run anyway</strong>.",
-    "linux": "Tokio comes as an AppImage. Make it executable with <code>chmod +x</code> (or in the file's properties) and run it. AppImages need FUSE.",
-    "mac": "Unzip it and move <strong>Tokio</strong> to your Applications folder. macOS may block it the first time, since Tokio isn't notarized yet.",
+    "title": "Descargar",
+    "description": "Descarga Tokio para Windows, macOS y Linux.",
+    "heading": "Descarga Tokio",
+    "intro": "Un instalador en Windows, un zip en macOS y un AppImage en Linux. Tokio busca actualizaciones por su cuenta.",
+    "released": "Versión {version}, publicada el {date}.",
+    "releaseNotes": "Notas de la versión",
+    "allReleases": "Ver todas las versiones",
+    "yourSystem": "Tu sistema",
+    "download": "Descargar",
+    "downloadFor": "Descargar para {system}",
+    "readMore": "Leer más",
+    "showLess": "Mostrar menos",
+    "windows": "Ejecuta el instalador: instala Tokio para tu usuario y lo abre. Además de las voces de TikTok y Edge, tienes las voces instaladas en Windows (SAPI y OneCore). La primera vez, Windows puede mostrar <strong>Windows protegió su PC</strong>, porque Tokio todavía no está firmado.",
+    "windowsMore": "Para ejecutarlo igual, elige <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong>.",
+    "linux": "Tokio viene como AppImage. Hazlo ejecutable con <code>chmod +x</code> (o en las propiedades del archivo) y ábrelo. Los AppImage necesitan FUSE.",
+    "mac": "Descomprímelo y mueve <strong>Tokio</strong> a tu carpeta Aplicaciones. La primera vez, macOS puede bloquearlo, porque Tokio todavía no está notarizado.",
     "macMore": [
-      "To open it anyway, right-click it in Finder and choose <strong>Open</strong>, or allow it in <strong>System Settings → Privacy &amp; Security</strong>.",
-      "When an update is out, Tokio opens its release page so you can download the new zip.",
-      "Not sure which Mac you have? Apple menu → <strong>About This Mac</strong>: \"Apple M…\" chips are Apple Silicon, \"Intel\" ones are Intel."
+      "Para abrirlo igual, haz clic derecho sobre él en Finder y elige <strong>Abrir</strong>, o permítelo en <strong>Configuración del Sistema → Privacidad y seguridad</strong>.",
+      "Cuando sale una actualización, Tokio abre la página de la versión para que descargues el zip nuevo.",
+      "¿No sabes qué Mac tienes? Menú Apple → <strong>Acerca de esta Mac</strong>: los chips \"Apple M…\" son Apple Silicon y los \"Intel\" son Intel."
     ]
   },
   "overlays": {
     "title": "Overlays",
-    "description": "The official overlays for Tokio, with a preview of each. Install them from Tokio and add them to OBS or TikTok LIVE Studio.",
+    "description": "Los overlays oficiales de Tokio, con una vista previa de cada uno. Instálalos desde Tokio y agrégalos a OBS o TikTok LIVE Studio.",
     "heading": "Overlays",
-    "intro": "Install them from the <strong>Overlays</strong> page in Tokio, then add each one's link to OBS or TikTok LIVE Studio. Updates keep your settings.",
-    "howTheyWork": "How overlays work",
-    "makeYourOwn": "Make your own",
-    "previewOf": "Preview of {name}",
-    "noPreview": "No preview yet",
-    "version": "Version {version}.",
-    "downloadZip": "Download the zip",
-    "loadFailed": "The list of overlays couldn't be loaded.",
-    "seeOnGitHub": "See them on GitHub",
-    "byHand": "Prefer to do it by hand? Extract a zip and import the folder in <strong>Settings → Overlay library</strong>. Imported overlays don't get updates. The overlays are open source, in <a href=\"{repo}\">tokio-app/overlays</a>."
+    "intro": "Instálalos desde la página <strong>Overlays</strong> de Tokio y después agrega el enlace de cada uno a OBS o TikTok LIVE Studio. Al actualizarlos, conservan tu configuración.",
+    "howTheyWork": "Cómo funcionan los overlays",
+    "makeYourOwn": "Crea el tuyo",
+    "previewOf": "Vista previa de {name}",
+    "noPreview": "Todavía sin vista previa",
+    "version": "Versión {version}.",
+    "downloadZip": "Descargar el zip",
+    "loadFailed": "No se pudo cargar la lista de overlays.",
+    "seeOnGitHub": "Verlos en GitHub",
+    "byHand": "¿Prefieres hacerlo a mano? Extrae un zip e importa la carpeta en <strong>Configuración → Biblioteca de overlays</strong>. Los overlays importados no reciben actualizaciones. Los overlays son de código abierto y están en <a href=\"{repo}\">tokio-app/overlays</a>."
   },
   "about": {
-    "title": "About and license",
-    "description": "Who makes Tokio, how it's licensed, the online services it uses and how your data is handled.",
-    "heading": "About Tokio",
-    "intro": "Tokio is a free, open-source desktop app that connects to your TikTok LIVE and reacts to it with text-to-speech, music requests, alerts, a countdown timer and overlays. It's made by Italo Alfaro and contributors and developed in the open on <a href=\"{repo}\">GitHub</a>.",
-    "copyright": "© 2026 Italo Alfaro and contributors.",
-    "licenseTitle": "License",
+    "title": "Acerca de y licencia",
+    "description": "Quién hace Tokio, su licencia, los servicios en línea que usa y qué pasa con tus datos.",
+    "heading": "Acerca de Tokio",
+    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, un temporizador y overlays. La hacen Italo Alfaro y colaboradores, y se desarrolla en abierto en <a href=\"{repo}\">GitHub</a>.",
+    "copyright": "© 2026 Italo Alfaro y colaboradores.",
+    "licenseTitle": "Licencia",
     "license": [
-      "Tokio's source code is licensed under the <a href=\"{files}/LICENSE\">MIT License</a>. One file is an exception: <code>src/main/services/tts/providers/edge/common/drm-v2.ts</code> is derived from <a href=\"https://github.com/rany2/edge-tts\">edge-tts</a> and is licensed under the <a href=\"{files}/LICENSES/LGPL-3.0.txt\">GNU LGPL v3.0</a>.",
-      "The distributed application is under the same licenses. It connects to TikTok LIVE through <a href=\"https://github.com/tokio-app/connector\">@tokioapp/connector</a>, which is MIT-licensed too, and the other components it includes keep their own licenses.",
-      "The full notices for every component are in <a href=\"{files}/THIRD_PARTY_NOTICES.md\">THIRD_PARTY_NOTICES.md</a>. The <strong>About</strong> page inside the app shows the same notices and the licenses of every package it ships."
+      "El código fuente de Tokio está bajo la <a href=\"{files}/LICENSE\">MIT License</a>. Un archivo es la excepción: <code>src/main/services/tts/providers/edge/common/drm-v2.ts</code> deriva de <a href=\"https://github.com/rany2/edge-tts\">edge-tts</a> y está bajo la <a href=\"{files}/LICENSES/LGPL-3.0.txt\">GNU LGPL v3.0</a>.",
+      "La aplicación distribuida está bajo las mismas licencias. Se conecta a TikTok LIVE mediante <a href=\"https://github.com/tokio-app/connector\">@tokioapp/connector</a>, que también tiene licencia MIT, y los demás componentes que incluye conservan sus propias licencias.",
+      "Los avisos completos de cada componente están en <a href=\"{files}/THIRD_PARTY_NOTICES.md\">THIRD_PARTY_NOTICES.md</a>. La página <strong>Acerca de</strong> de la app muestra los mismos avisos y las licencias de cada paquete que incluye."
     ],
-    "sourceTitle": "Source code",
-    "source": "The complete source code of every version is available at <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Each release is tagged (for example <code>v0.1.0-alpha.3</code>), so you can get the exact source of the version you installed. You may modify Tokio and share your changes under the terms of its licenses.",
-    "warrantyTitle": "No warranty",
-    "warranty": "Tokio is provided \"as is\", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. See the licenses for the full terms.",
-    "servicesTitle": "Online services",
-    "servicesText": "Tokio talks to these online services. None of them is covered by Tokio's license. Each one is subject to its operator's terms and can stop working at any time.",
+    "sourceTitle": "Código fuente",
+    "source": "El código fuente completo de cada versión está disponible en <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Cada versión tiene su etiqueta (por ejemplo <code>v0.1.0-alpha.3</code>), así que puedes obtener el código exacto de la versión que instalaste. Puedes modificar Tokio y compartir tus cambios según los términos de sus licencias.",
+    "warrantyTitle": "Sin garantía",
+    "warranty": "Tokio se proporciona \"tal cual\", sin garantía de ningún tipo, expresa o implícita, incluidas, entre otras, las garantías de comerciabilidad, idoneidad para un fin determinado y no infracción. Consulta las licencias para ver los términos completos.",
+    "servicesTitle": "Servicios en línea",
+    "servicesText": "Tokio se comunica con estos servicios en línea. Ninguno está cubierto por la licencia de Tokio. Cada uno está sujeto a los términos de quien lo opera y puede dejar de funcionar en cualquier momento.",
     "services": [
       {
         "name": "TikTok",
-        "note": "TikTok LIVE, through @tokioapp/connector, and TikTok's text-to-speech (the TikTok voices), when the user has added a TikTok session ID. Neither is an official public API."
+        "note": "TikTok LIVE, mediante @tokioapp/connector, y el texto a voz de TikTok (las voces de TikTok) cuando el usuario agregó un ID de sesión de TikTok. Ninguno de los dos es una API pública oficial."
       },
       {
-        "name": "TikTok TTS proxy",
-        "note": "The TikTok voices when no session ID is set (tiktok-tts.weilnet.workers.dev). It gets the text of each message to read and its voice. It's run by a third party, not by TikTok or Tokio."
+        "name": "Proxy del TTS de TikTok",
+        "note": "Las voces de TikTok cuando no hay un ID de sesión (tiktok-tts.weilnet.workers.dev). Recibe el texto de cada mensaje que se lee y su voz. Lo opera un tercero, no TikTok ni Tokio."
       },
       {
         "name": "Euler Stream",
-        "note": "Signs the connection to TikTok LIVE, with each user's own API key."
+        "note": "Firma la conexión a TikTok LIVE con la clave de API de cada usuario."
       },
       {
         "name": "Microsoft",
-        "note": "Edge's Read Aloud service (the Edge voices), which isn't an official public API."
+        "note": "El servicio Leer en voz alta de Edge (las voces de Edge), que no es una API pública oficial."
       },
-      { "name": "Spotify and YouTube", "note": "Music requests." },
+      {
+        "name": "Spotify y YouTube",
+        "note": "Pedidos de canciones."
+      },
       {
         "name": "GitHub",
-        "note": "Update checks and downloads, from Tokio's releases, and the official overlays (their list, previews and downloads), from the releases of tokio-app/overlays."
+        "note": "La búsqueda y descarga de actualizaciones, desde las versiones de Tokio, y los overlays oficiales (su lista, vistas previas y descargas), desde las versiones de tokio-app/overlays."
       },
       {
         "name": "MyInstants",
-        "note": "Sound search and downloads for alerts, read from the public website rather than an official API. Its sounds are uploaded by its users and aren't covered by Tokio's license."
+        "note": "Búsqueda y descarga de sonidos para las alertas, desde su sitio web público y no desde una API oficial. Sus sonidos los suben sus usuarios y no están cubiertos por la licencia de Tokio."
       },
       {
         "name": "Lorem Picsum",
-        "note": "Sample pictures (profile pictures, emotes, song covers) in overlay tests and previews."
+        "note": "Imágenes de muestra (fotos de perfil, emotes, portadas de canciones) en las pruebas y vistas previas de los overlays."
       }
     ],
-    "privacyTitle": "Privacy",
+    "privacyTitle": "Privacidad",
     "privacy": [
-      "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved on your computer. To connect to TikTok LIVE you need your own Euler Stream account: Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok. It sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
-      "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
+      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
+      "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
-    "trademarksTitle": "Trademarks",
-    "trademarks": "Tokio is not affiliated with or endorsed by TikTok or ByteDance. TikTok, TikTok LIVE Studio, Spotify, YouTube, OBS Studio and Microsoft Edge are trademarks of their respective owners.",
-    "websiteTitle": "This website",
-    "website": "The source of this website is MIT-licensed and available at <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Its typeface is <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, by the Archivo Project Authors, under the <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
+    "trademarksTitle": "Marcas comerciales",
+    "trademarks": "Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Spotify, YouTube, OBS Studio y Microsoft Edge son marcas comerciales de sus respectivos dueños.",
+    "websiteTitle": "Este sitio web",
+    "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }
 }
