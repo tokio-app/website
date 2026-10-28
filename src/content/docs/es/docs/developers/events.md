@@ -28,7 +28,7 @@ Tokio envía `CONFIG` (`tokio:config`) con la configuración del overlay cuando 
 
 ## Eventos de conexión
 
-Estos los envía el propio `@tokioapp/overlay` y tratan de su WebSocket. No se disparan en las vistas previas de Tokio, que no usan WebSocket, así que no esperes a `OPEN` para mostrar el overlay.
+Estos los envía el propio `@tokioapp/overlay` e informan sobre su WebSocket. No se disparan en las vistas previas de Tokio, que no usan WebSocket, así que no esperes a `OPEN` para mostrar el overlay.
 
 | Constante | Nombre del evento | Datos                        |
 | --------- | ----------------- | ---------------------------- |

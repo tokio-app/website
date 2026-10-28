@@ -259,7 +259,7 @@
     "title": "Acerca de y licencia",
     "description": "Quién hace Tokio, su licencia, los servicios en línea que usa y qué pasa con tus datos.",
     "heading": "Acerca de Tokio",
-    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, un temporizador y overlays. La hacen Italo Alfaro y colaboradores, y se desarrolla en abierto en <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, un temporizador y overlays. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro y colaboradores.",
     "licenseTitle": "Licencia",
     "license": [
@@ -300,7 +300,7 @@
       },
       {
         "name": "MyInstants",
-        "note": "Búsqueda y descarga de sonidos para las alertas, desde su sitio web público y no desde una API oficial. Sus sonidos los suben sus usuarios y no están cubiertos por la licencia de Tokio."
+        "note": "Búsqueda y descarga de sonidos para las alertas, desde su sitio web público y no desde una API oficial. Los sonidos los suben sus usuarios y no están cubiertos por la licencia de Tokio."
       },
       {
         "name": "Lorem Picsum",

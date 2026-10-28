@@ -58,7 +58,7 @@ En [Eventos](/es/docs/developers/events/) están todos los eventos y sus datos.
 
 ### En una página HTML simple
 
-Carga el build para navegador desde un CDN. Este define la variable global `TokioOverlay`:
+Carga desde un CDN el build para navegador, que define la variable global `TokioOverlay`:
 
 ```html
 <!doctype html>
@@ -130,9 +130,9 @@ useEffect(
 
 Al hacer el build del overlay:
 
-- **Usa rutas relativas para los recursos.** El overlay se sirve en `/<overlay>/`, así que las rutas absolutas como `/assets/app.js` no funcionan. En Vite, pon `base: "./"`.
-- **Incluye los archivos YAML en el build.** `info.yaml` y `config.yaml` tienen que quedar junto al `index.html` generado. En Vite, ponlos en `public/` y se copian a la carpeta de salida.
-- **Deja el bloque tokio-setup en la plantilla HTML.** Pon el bloque `<script id="tokio-setup">` en tu plantilla `index.html` para que sobreviva al build, y lee `window.__OVERLAY_ID__` (y `window.__OVERLAY_CONFIG__`) en tiempo de ejecución.
+- Usa rutas relativas para los recursos. El overlay se sirve en `/<overlay>/`, así que las rutas absolutas como `/assets/app.js` no funcionan. En Vite, pon `base: "./"`.
+- Incluye los archivos YAML en el build. `info.yaml` y `config.yaml` tienen que quedar junto al `index.html` generado. En Vite, ponlos en `public/` y se copian a la carpeta de salida.
+- Deja el bloque tokio-setup en la plantilla HTML. Pon el bloque `<script id="tokio-setup">` en tu plantilla `index.html` para que sobreviva al build, y lee `window.__OVERLAY_ID__` (y `window.__OVERLAY_CONFIG__`) en tiempo de ejecución.
 
 Importa en Tokio la carpeta que genera el build (por ejemplo, `dist/`).
 
@@ -207,7 +207,7 @@ Cuando esté listo, importa la carpeta en **Configuración → Biblioteca de ove
 
 ## Sin la biblioteca
 
-Los overlays que importas en Tokio necesitan la biblioteca, porque las vistas previas de Tokio envían sus eventos al iframe del overlay. Una página que no importas puede abrir un WebSocket por su cuenta, a `ws://localhost:37891/?id=<overlay ID>`. Tokio no sirve esa página, así que nadie reescribe su dirección: si se abre en otra computadora, tiene que conectarse a la computadora de Tokio en vez de a `localhost`, ya sea por `tokio-app.local` apuntando a ella o por su dirección de red (la que aparece en **Configuración → Servidor de overlays**). Cada mensaje es un JSON con el nombre del evento y sus datos:
+Los overlays que importas en Tokio necesitan la biblioteca, porque las vistas previas de Tokio envían sus eventos al iframe del overlay. Una página que no importas puede abrir un WebSocket por su cuenta, a `ws://localhost:37891/?id=<overlay ID>`. Tokio no sirve esa página, así que nadie reescribe su dirección. Si se abre en otra computadora, tiene que conectarse a la computadora de Tokio en vez de a `localhost`: a `tokio-app.local`, si apunta a ella, o a su dirección de red (la que aparece en **Configuración → Servidor de overlays**). Cada mensaje es un JSON con el nombre del evento y sus datos:
 
 ```json
 {

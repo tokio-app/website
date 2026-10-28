@@ -130,9 +130,9 @@ useEffect(
 
 When you build the overlay:
 
-- **Use relative asset paths.** The overlay is served under `/<overlay>/`, so absolute paths such as `/assets/app.js` don't resolve. In Vite, set `base: "./"`.
-- **Ship the YAML files with the build.** `info.yaml` and `config.yaml` must sit next to the built `index.html`. In Vite, put them in `public/` and they're copied into the output folder.
-- **Keep the setup block in the HTML template.** Put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_ID__` (and `window.__OVERLAY_CONFIG__`) at runtime.
+- Use relative asset paths. The overlay is served under `/<overlay>/`, so absolute paths such as `/assets/app.js` don't resolve. In Vite, set `base: "./"`.
+- Ship the YAML files with the build. `info.yaml` and `config.yaml` must sit next to the built `index.html`. In Vite, put them in `public/` and they're copied into the output folder.
+- Keep the setup block in the HTML template. Put the `<script id="tokio-setup">` block in your `index.html` template so it survives the build, and read `window.__OVERLAY_ID__` (and `window.__OVERLAY_CONFIG__`) at runtime.
 
 Import the build output folder (for example `dist/`) into Tokio.
 
@@ -207,7 +207,7 @@ When it's ready, import the folder in **Settings → Overlay library**. Tokio gi
 
 ## Without the library
 
-Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address: opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay server**). Each message is JSON with the event name and its data:
+Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address. Opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay server**). Each message is JSON with the event name and its data:
 
 ```json
 {

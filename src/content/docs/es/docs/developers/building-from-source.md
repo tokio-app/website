@@ -21,4 +21,4 @@ yarn build:linux  # generar el AppImage de Linux en dist/
 
 ## Contribuir
 
-¿Quieres ayudar? Lee [CONTRIBUTING.md](https://github.com/tokio-app/tokio/blob/main/CONTRIBUTING.md) y el [código de conducta](https://github.com/tokio-app/tokio/blob/main/CODE_OF_CONDUCT.md).
+Para colaborar, lee [CONTRIBUTING.md](https://github.com/tokio-app/tokio/blob/main/CONTRIBUTING.md) y el [código de conducta](https://github.com/tokio-app/tokio/blob/main/CODE_OF_CONDUCT.md).
