@@ -4,7 +4,7 @@ Guidance for AI coding agents working in this repository.
 
 ## Project
 
-The website for Tokio at `https://tokio.ialfaro.com`: a landing page, a download page, the docs and an about/legal page. English only.
+The website for Tokio at `https://tokio.ialfaro.com`: a landing page, a download page, the docs and an about/legal page, in English and Spanish.
 
 Tokio itself is an Electron desktop app (Windows, macOS, Linux) that connects to a TikTok LIVE and reacts to its events with text-to-speech, music requests (Spotify/YouTube), alerts (sounds, images and videos), game actions (Minecraft commands) and browser-source overlays. It lives in `tokio-app/tokio` (locally `../tokio`) and has its own `AGENTS.md`.
 
@@ -31,22 +31,23 @@ Verify changes with `yarn typecheck`, `yarn build` and `yarn format:check`. For 
 
 ## Layout
 
-| Path                           | Role                                                                                                                                                                                                                                                                                                    |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro`                                                                                                                                                                                                  |
-| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight                                                                                                                                                                                                                                                |
-| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                                                                                                                                                                                                                  |
-| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (the hero: the app's Home), `DarkOnly` (no theme switch in the docs), and for the docs `Screenshot` (an app screenshot at the app's size), `Flow` (a diagram of where things run) and `ModDownload` (the Minecraft mod's jar) |
-| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                                                                                                                                                                                                                        |
-| `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                                                                                                                                                                                                                      |
-| `src/lib/os.ts`                | Browser-side OS detection for the download links                                                                                                                                                                                                                                                        |
-| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                                                                                                                                                                                                                                   |
-| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`                                                                                                                                                                                                                |
-| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark only)                                                                                                                                                                                                                                   |
-| `src/assets/`                  | Images processed by Astro: `icon.png`, and the docs' screenshots of the app in `screenshots/`                                                                                                                                                                                                           |
-| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                                                                                                                                                                                                                          |
-| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                                                                                                                                                                                                                                         |
-| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                                                                                                                                                                                                                                      |
+| Path                           | Role                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/`                   | The pages outside the docs: `index.astro` (landing), `overlays.astro`, `download.astro`, `about.astro`. `es/` renders each in Spanish                                                                                                                                                                                                                    |
+| `src/content/docs/docs/`       | Docs in Markdown/MDX, served under `/docs/` by Starlight. Their Spanish copies are in `src/content/docs/es/docs/`, served under `/es/docs/`                                                                                                                                                                                                              |
+| `src/i18n/`                    | The languages (`languages.mjs`), the words of the pages outside the docs (`en.json`, `es.json`), their helpers (`index.ts`) and the script that opens the visitor's language (`detect.mjs`)                                                                                                                                                              |
+| `src/layouts/Base.astro`       | Layout for `src/pages/`: head tags, `Header`, `Footer`                                                                                                                                                                                                                                                                                                   |
+| `src/components/`              | `Header`, `Footer`, `Icon`, `DownloadButton`, `DownloadTable`, `LiveFeed` (the hero: the app's Home), `LanguageLink` (the page in the other language), `DarkOnly` (no theme switch in the docs), and for the docs `Screenshot` (an app screenshot at the app's size), `Flow` (a diagram of where things run) and `ModDownload` (the Minecraft mod's jar) |
+| `src/lib/release.ts`           | Reads the latest Tokio release from the GitHub API at build time                                                                                                                                                                                                                                                                                         |
+| `src/lib/overlays.ts`          | Reads the official overlays' catalog at build time                                                                                                                                                                                                                                                                                                       |
+| `src/lib/os.ts`                | Browser-side OS detection for the download links                                                                                                                                                                                                                                                                                                         |
+| `src/styles/tokens.css`        | Design tokens, shared by both layouts                                                                                                                                                                                                                                                                                                                    |
+| `src/styles/site.css`          | Base styles and utility classes (`.btn`, `.card`, `.section`, `.prose`) for `src/pages/`                                                                                                                                                                                                                                                                 |
+| `src/styles/starlight.css`     | Maps the tokens onto Starlight's `--sl-color-*` variables (dark only)                                                                                                                                                                                                                                                                                    |
+| `src/assets/`                  | Images processed by Astro: `icon.png`, and the docs' screenshots of the app in `screenshots/`, the app in Spanish in `screenshots/es/`                                                                                                                                                                                                                   |
+| `public/`                      | Served as is: `favicon.ico`, `icon.png`, `CNAME`, `robots.txt`                                                                                                                                                                                                                                                                                           |
+| `astro.config.mjs`             | Site URL, Starlight config and the docs sidebar                                                                                                                                                                                                                                                                                                          |
+| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages                                                                                                                                                                                                                                                                                                                       |
 
 `dist/` and `.astro/` are generated. Don't edit them.
 
@@ -62,10 +63,38 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 
 ### Pages and docs
 
-- Starlight owns the docs and the 404 page. The docs live in `src/content/docs/docs/` so their URLs start with `/docs/`. Don't put files directly in `src/content/docs/`: they'd take root URLs and clash with `src/pages/`.
+- Starlight owns the docs and the 404 page. The docs live in `src/content/docs/docs/` so their URLs start with `/docs/`. Don't put files directly in `src/content/docs/`: they'd take root URLs and clash with `src/pages/`. The exceptions are `404.md`, and `es/` for the Spanish docs.
+- `404.md` speaks both languages: GitHub Pages serves the root `404.html` for every missing path, and Starlight builds it only in English. With it, the build warns that `[...slug]` can't render `/404`, and makes an unlinked `/es/404/`; both are harmless.
 - A new docs page needs an entry in the `sidebar` in `astro.config.mjs`. Use Starlight's components (`Steps`, `Tabs`, asides with `:::note`/`:::tip`/`:::caution`), `<details>`, and this site's `Screenshot` and `Flow` in `.mdx` files.
 - Pages outside the docs use `Base.astro` and the classes in `site.css`. Page-specific styles go in the page's scoped `<style>`.
 - URLs end with a slash (`trailingSlash: "always"`). Write internal links as `/docs/install/`, not `/docs/install`.
+
+### Languages
+
+- English is at the root URLs and Spanish under `/es/`, with the same paths after the prefix.
+- `src/i18n/languages.mjs` lists the languages, and `astro.config.mjs` makes Starlight's `locales` from it. Starlight then writes Astro's `i18n` config (setting both is a build error), so `Astro.currentLocale` is the page's language everywhere.
+- Spanish's `lang` is `es`, not `es-419`: Starlight finds its built-in Spanish UI only for `es`, and the sitemap rejects `es-419`. The text itself is the app's Latin American Spanish.
+- **Pages outside the docs:**
+  - They read their words with `textOf(langOf(Astro.currentLocale))` from `src/i18n/<lang>.json`, and their links go through `localize`.
+  - Texts with a link, `<strong>` or `<code>` are HTML, rendered with `set:html`, and `fill` fills their `{name}`s.
+  - A key missing from `es.json` fails `astro check`.
+- **Spanish routes:** `src/pages/es/<page>.astro` renders `../<page>.astro`, which reads its language from the URL, so a page's markup and styles stay in one file. A new page gets its Spanish route too.
+- **Starlight's own UI** comes in Spanish built in, and `src/content/i18n/es.json` overrides what clashes with the app's voice.
+- **Sidebar:** items are slugs, so each shows its page's title in its language. Groups and links take `translations`.
+- **Screenshots:** `Screenshot` shows `screenshots/es/<name>.png` on Spanish pages, or the English file while that's missing.
+- **Detection:** `detect.mjs` runs inline in every head (`Base.astro`, and Starlight's `head`), after the canonical and hreflang links.
+  - A language picked with `LanguageLink` (`localStorage`) wins.
+  - Without one, an English page entered from outside the site opens in the browser's first language the site has, by base subtag.
+  - Other languages' pages never move without a pick, and links inside the site never apply the browser rule.
+  - Only a page whose canonical path is the address bar's moves, so the 404 never does.
+- **`LanguageLink`** names each other language in itself, next to the GitHub icon: in `Header.astro`, and as Starlight's `LanguageSelect`. On phones the site header shows only its globe, and About joins the links hidden there.
+- **Adding a language** takes:
+  - an entry in `languages.mjs`
+  - `src/i18n/<code>.json`, plus its line in `index.ts`
+  - `src/pages/<code>/`
+  - the docs in `src/content/docs/<code>/docs/`
+  - the screenshots in `screenshots/<code>/`, from the app's screenshot script
+  - a `translations` entry per sidebar group and link
 
 ### Download links
 
@@ -121,21 +150,28 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
 ## Content
 
 - These docs are the full reference for Tokio's features, settings, chat commands, install steps, platforms and the overlay setup; the app's `README.md` only sums them up and links here. When the app changes, update the docs and the landing page to match. Check facts against the app's code before writing them; don't describe settings or behavior you haven't confirmed.
-- The docs' screenshots in `src/assets/screenshots/` come from the app's `drive-app` skill (`scripts/screenshots.mjs`, run with `--scale 2`), with made-up viewers: retake them there instead of editing them, when a page they show changes. Each is a crop of what its section describes, shown with `<Screenshot name="<file name>" alt="..." />` on a line of its own after the text it shows, with alt text that says what's in it. An unknown name fails the build. `starlight.css` frames them with a hairline, since they share the page's Ink.
+- The docs' screenshots in `src/assets/screenshots/` come from the app's `drive-app` skill (`scripts/screenshots.mjs`, run with `--scale 2`), with made-up viewers: retake them there instead of editing them, when a page they show changes. The Spanish ones in `screenshots/es/` come from the same run with `--lang es-419`; retake both. Each is a crop of what its section describes, shown with `<Screenshot name="<file name>" alt="..." />` on a line of its own after the text it shows, with alt text that says what's in it. An unknown name fails the build. `starlight.css` frames them with a hairline, since they share the page's Ink.
 - User pages show, then tell: one sentence of what the feature does, then its picture (what viewers see, or the feature's screen). `<Steps>` are for doing, `<Tabs>` for choosing (a system, a music provider, a streaming app), tables for looking things up, and collapsed `<details>` for troubleshooting, limits and other rare cases, which stay in the docs. A paragraph is at most two short sentences, and the text names what to click instead of describing the screenshot.
-- Some anchors are linked from elsewhere. Keep `#java-edition` on Games: the app's Games page links there for the mod's install steps, so Bedrock and Java stay headings, not tabs, with those steps visible. Keep `#features` on the Introduction: the landing page links there.
+- Some anchors are linked from elsewhere. Keep `#java-edition` on Games: the app's Games page links there for the mod's install steps, so Bedrock and Java stay headings, not tabs, with those steps visible, named Bedrock Edition and Java Edition in both languages. Keep `#features` on the Introduction (`#funciones` in Spanish, `home.docsFeaturesAnchor`): the landing page links there.
 - Connecting needs the user's own Euler Stream API key (free account, pasted in **Settings → TikTok LIVE**). Never suggest a shared key, and don't write Euler's rate limits: they can change at any time. Link `https://www.eulerstream.com`, `/register` and `/pricing`.
 - Keep these app facts exact: the overlay address `http://tokio-app.local:37891/<overlay-id>/` (generated by Tokio), the WebSocket `ws://localhost:37891/?id=<id>`, the event names (`tokio:event:*`), and the default chat commands (`!play`, `!next`, `!last`, `!revoke`).
 - The overlay developer docs describe `info.yaml`, `config.yaml` (`OverlayConfigSchema` in the app's `src/common/schemas/overlay.ts`), the `<script id="tokio-setup">` block and the `@tokioapp/overlay` package (`../tokio-event-loader`). Update them when those change.
 - Overlays can be written in plain HTML or with any framework; `@tokioapp/overlay` has no dependencies and ships ESM, CommonJS and browser builds. Don't describe overlays as plain-HTML only, and give framework users the build requirements (relative asset paths, YAML files next to the built `index.html`, the `tokio-setup` block in the HTML template).
 - Write plain, user-facing English, in the app's tone: short sentences, second person, UI names in **bold** (**Settings → Overlay server**).
+- **Both languages:**
+  - Every change lands in both languages in the same commit: a docs page and its `es/` copy, `en.json` and `es.json`.
+  - A Spanish page keeps its English page's sections, components and screenshots.
+- **The Spanish is the app's:**
+  - neutral Latin American with `tú`, the glossary in `tokio/.claude/rules/i18n.md`, and the humanizer (`tokio/.claude/skills/humanizer/SKILL.md`) on every sentence
+  - UI names in bold are the app's own Spanish, looked up by key: `en.json` → key → `es-419.json`, in `tokio/src/common/i18n/locales/`
+  - internal links start with `/es/`, and anchors follow the Spanish headings' slugs, accents kept
 
 ## Licensing
 
 - The website's source is MIT (`LICENSE`), except `.claude/skills/frontend-design/`, Anthropic's skill under Apache-2.0 (its `LICENSE.txt` is beside it).
 - The site self-hosts the Archivo typeface (`@fontsource-variable/archivo`, as in the app). Its font files are under the SIL OFL 1.1, the copyleft exception the user approved: it allows bundling with any software. The About page's "This website" section names it; keep that.
 - Tokio's source and the distributed app are MIT, except `drm-v2.ts` (LGPL-3.0-only). It connects to TikTok LIVE through `@tokioapp/connector` (MIT, `tokio-app/connector`). The About page must keep stating this, along with the copyright (`© 2026 Italo Alfaro and contributors`), the no-warranty notice and where to get the source.
-- `SERVICES` in `src/pages/about.astro` mirrors the Services list in the app's `THIRD_PARTY_NOTICES.md`. Keep them in sync.
+- `about.services` in `src/i18n/<lang>.json` mirrors the Services list in the app's `THIRD_PARTY_NOTICES.md`. Keep them in sync.
 - Check licenses when adding or upgrading a dependency. Ask before adding anything copyleft (GPL, AGPL, LGPL, MPL, CC BY-SA), including fonts and icon sets.
 - Tokio is not affiliated with TikTok or ByteDance. Keep that notice in the footer and on the About page, and don't use TikTok's logo or branding.
 
