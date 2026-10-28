@@ -281,7 +281,7 @@
       },
       {
         "name": "Proxy del TTS de TikTok",
-        "note": "Las voces de TikTok cuando no hay un ID de sesión (tiktok-tts.weilnet.workers.dev). Recibe el texto de cada mensaje que se lee y su voz. Lo opera un tercero, no TikTok ni Tokio."
+        "note": "Las voces de TikTok cuando no hay un ID de sesión (ottsy.weilbyte.dev). Recibe el texto de cada mensaje que se lee y su voz. Lo opera un tercero, no TikTok ni Tokio."
       },
       {
         "name": "Euler Stream",
