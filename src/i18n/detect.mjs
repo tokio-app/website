@@ -2,7 +2,7 @@
 // <head>, after the canonical and hreflang links, before anything paints:
 // Base.astro's, and the docs' through Starlight's `head` (astro.config.mjs).
 //
-// - A language picked with LanguageLink wins.
+// - A language picked in LanguageMenu wins.
 // - Without one, a default-language page entered from outside the site (another
 //   site, a typed URL, the app) follows the browser's first language the site
 //   has, by base subtag: es-PE is Spanish. Other languages' pages never move

@@ -10,7 +10,8 @@
     "overlays": "Overlays",
     "download": "Descargar",
     "about": "Acerca de",
-    "github": "Tokio en GitHub"
+    "github": "Tokio en GitHub",
+    "language": "Idioma"
   },
   "footer": {
     "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo.",

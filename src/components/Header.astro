@@ -4,7 +4,7 @@ import icon from "../assets/icon.png";
 import { langOf, localize, textOf } from "../i18n";
 import { REPO_URL } from "../lib/release";
 import Icon from "./Icon.astro";
-import LanguageLink from "./LanguageLink.astro";
+import LanguageMenu from "./LanguageMenu.astro";
 
 const lang = langOf(Astro.currentLocale);
 const t = textOf(lang).header;
@@ -44,7 +44,7 @@ const path = Astro.url.pathname;
     <a class="github" href={REPO_URL} aria-label={t.github}>
       <Icon name="github" size={20} />
     </a>
-    <LanguageLink compact />
+    <LanguageMenu />
   </div>
 </header>
 

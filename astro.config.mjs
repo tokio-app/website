@@ -52,8 +52,8 @@ export default defineConfig({
         // Dark only, like the rest of the site: no theme switch
         ThemeProvider: "./src/components/DarkOnly.astro",
         ThemeSelect: "./src/components/DarkOnly.astro",
-        // The site header's link to the other language, not a select
-        LanguageSelect: "./src/components/LanguageLink.astro",
+        // The site header's globe menu, not a select
+        LanguageSelect: "./src/components/LanguageMenu.astro",
       },
       expressiveCode: {
         // The plain frame for shell code too: the terminal frame draws
