@@ -1,0 +1,90 @@
+---
+title: Texto a voz
+description: Lee los mensajes del chat en voz alta con voces de TikTok, de Edge o del sistema.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Tokio lee en voz alta los mensajes del chat a medida que llegan.
+
+<Screenshot
+  name="tts-voices"
+  alt="La lista de voces, con su búsqueda, los filtros de motor e idioma, y un botón de reproducir en cada voz"
+/>
+
+<Steps>
+
+1. En la página **TTS**, haz clic en la voz y elige una de la lista.
+2. Ajusta la velocidad, el tono y el volumen, escribe un mensaje y presiona **Probar voz**.
+
+   <Screenshot
+     name="tts-voice"
+     alt="La voz, su velocidad, tono y volumen, y Probar voz con un mensaje"
+   />
+
+3. En **Inicio**, activa **TTS** en **Funciones activas**.
+
+</Steps>
+
+Los cambios se guardan mientras los haces. Si en el chat tu mensaje de prueba no se leería, por ejemplo por una palabra prohibida, verás por qué en lugar de oírlo.
+
+## Voces
+
+| Motor       | Notas                                                                                                                                                                                                                                      |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **TikTok**  | Las voces de TikTok. Pasan por `tiktok-tts.weilnet.workers.dev`, un proxy que administra un tercero y que recibe el texto de cada mensaje que leen. Para evitarlo, agrega tu ID de sesión de TikTok en **Configuración → Motores de voz**. |
+| **Edge**    | Las voces de Microsoft Edge.                                                                                                                                                                                                               |
+| **Windows** | Las voces instaladas en Windows, SAPI y OneCore, incluidas las de 32 bits.                                                                                                                                                                 |
+
+Busca en la lista, fíltrala por motor e idioma y reproduce cualquier voz antes de elegirla.
+
+## Formato
+
+Lee todos los mensajes, o solo los que empiezan con un punto, una barra o un comando tuyo. Al elegir **Comando personalizado** aparece `!tts`, que puedes cambiar. El comando no se lee en voz alta, y si lo dejas vacío no se lee nada.
+
+<Screenshot
+  name="tts-format"
+  alt="La sección Formato: qué mensajes se leen, la plantilla del mensaje y Quitar emojis"
+/>
+
+La **Plantilla del mensaje** define lo que se lee:
+
+| Marcador     | Se reemplaza por                      |
+| ------------ | ------------------------------------- |
+| `{username}` | El nombre visible del espectador      |
+| `{handle}`   | El usuario del espectador, sin la `@` |
+| `{comment}`  | El mensaje del chat                   |
+
+`{username} {comment}` lee "Lucia ¡hola desde Lima!". **Quitar emojis** deja fuera los emojis y omite los mensajes que solo tienen emojis.
+
+Un mensaje sin nada que leer se omite: pasa cuando la plantilla completa no tiene ninguna letra, número ni emoji, como `{comment}` con un "?" solo.
+
+## Reemplazos
+
+Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una palabra completa, en mayúsculas o minúsculas, y se aplica antes de **Quitar emojis**, así que ❤️ puede convertirse en "amor".
+
+<Screenshot
+  name="tts-replacements"
+  alt="Dos reemplazos: ntp se lee como no te preocupes, y gg como buena partida"
+/>
+
+## Permisos
+
+Desmarca **Permitir a todos** para permitir solo a seguidores, Super Fans, moderadores o un nivel mínimo de fan. Con **Usar listas de permitidos y bloqueados**, los @usuarios de la lista de bloqueados nunca se leen, y si la lista de permitidos tiene nombres, solo ellos hablan.
+
+<Screenshot
+  name="tts-permissions"
+  alt="La sección Permisos con las listas de permitidos y bloqueados activadas y un usuario en la lista de bloqueados"
+/>
+
+## Protección
+
+Un **Tiempo de espera** y un **Largo máximo de la cola** evitan que el chat sature la voz. Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos.
+
+<Screenshot
+  name="tts-protection"
+  alt="La sección Protección: tiempo de espera, largo máximo de la cola, largo máximo del mensaje y palabras prohibidas"
+/>
+
+Los reemplazos, **Quitar emojis** y las palabras prohibidas también se aplican a las [alertas que hablan](/es/docs/features/alerts/#mensajes-hablados). Los [pedidos de canciones](/es/docs/features/music-requests/#quién-puede-pedir) tienen sus propios permisos.

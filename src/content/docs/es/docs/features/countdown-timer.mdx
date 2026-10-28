@@ -1,0 +1,74 @@
+---
+title: Temporizador
+description: Una cuenta regresiva en tu stream a la que los espectadores suman tiempo con regalos, Me gusta, seguimientos y el chat.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores suman tiempo cuando envían regalos, dan Me gusta, te siguen, comparten, se hacen Super Fans o escriben en el chat.
+
+<Screenshot
+  name="timer-preview"
+  alt="La vista previa del temporizador en la página Herramientas: el título Subathon sobre un reloj en 01:04:57"
+/>
+
+<Steps>
+
+1. En la página **Herramientas**, define el **Tiempo inicial**.
+2. En **Tiempo sumado**, define los segundos que suma cada evento.
+3. Agrega el overlay del temporizador a tu app de streaming (mira [cómo agregar un overlay](/es/docs/guides/adding-an-overlay/)):
+
+   ```
+   http://tokio-app.local:37891/timer/
+   ```
+
+4. Presiona **Iniciar**.
+
+</Steps>
+
+## Controles
+
+<Screenshot
+  name="timer-controls"
+  alt="El temporizador en marcha, con sus controles, el tiempo inicial y la URL del overlay"
+/>
+
+| Botón                   | Qué hace                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------- |
+| **Iniciar**             | Pone en marcha el reloj desde el **Tiempo inicial**, o lo reanuda.                                  |
+| **Pausar**              | Congela el reloj. Los eventos siguen sumando tiempo.                                                |
+| **Detener**             | Congela el reloj, y los eventos no suman nada hasta que vuelvas a **Iniciar**.                      |
+| **Restablecer**         | Vuelve al tiempo inicial, después de que confirmes.                                                 |
+| **Agregar**, **Quitar** | Cambian el reloj en los minutos que escribas, por ejemplo por una donación que llegó por otro lado. |
+
+Al llegar a 0 el reloj se detiene, y sigue corriendo aunque salgas de **Herramientas**. Se pausa cuando el LIVE termina o Tokio se desconecta, salvo que desmarques **Pausar cuando el LIVE termine o se desconecte**.
+
+## Tiempo sumado
+
+<Screenshot
+  name="timer-time-added"
+  alt="Tiempo sumado: el multiplicador, el tiempo máximo y los segundos que suma cada evento"
+/>
+
+- Con 0 segundos, el evento no suma tiempo. **Multiplicador** multiplica todos los eventos, como 2 para una hora de tiempo doble.
+- **Tiempo máximo** deja de sumar tiempo cuando el reloj llega a ese valor. 0 es sin límite.
+- Los mensajes del chat cuentan solo si tienen la palabra clave que escribas, buscada igual que en una [alerta de chat](/es/docs/features/alerts/#alertas-de-chat-emotes-y-entradas), y una vez por espectador durante el tiempo de espera. Déjala vacía para contar cualquier mensaje.
+
+## En el stream
+
+El overlay muestra el reloj, un **Título** opcional y lo que suma cada tanda de eventos, como **+1:30**. El resto se configura en **Aspecto del temporizador**.
+
+<Screenshot
+  name="timer-look"
+  alt="Aspecto del temporizador: los colores, el título, el aviso, las fuentes y los nombres que se muestran para cada activador"
+/>
+
+- **Aviso** pone el reloj en su color de aviso esa cantidad de minutos antes del final. Con 0 se desactiva.
+- **Fuente del reloj** y **Fuente del título** deben estar instaladas en la computadora donde está tu app de streaming. Si no, se usa Archivo.
+- **Mostrar el multiplicador** lo muestra, como **×2**, mientras no sea 1.
+- **Mostrar los activadores, uno a la vez** muestra lo que suma cada evento, como **Seguir +30s**, con los nombres que escribas.
+
+## Perfiles y reinicios
+
+Cada perfil tiene su propio temporizador. Si Tokio se cierra mientras corre, vuelve en pausa con más o menos el tiempo que tenía.

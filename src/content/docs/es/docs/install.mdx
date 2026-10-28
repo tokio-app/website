@@ -1,0 +1,67 @@
+---
+title: Instalación
+description: Descarga e instala Tokio en Windows, macOS o Linux.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import DownloadTable from "../../../../components/DownloadTable.astro";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+Tokio funciona en Windows, macOS 13 o posterior y Linux. Descárgalo aquí o desde la [última versión](https://github.com/tokio-app/tokio/releases/latest).
+
+<DownloadTable />
+
+<Tabs>
+  <TabItem label="Windows">
+
+<Steps>
+
+1. Ejecuta el instalador. Instala Tokio para tu usuario y lo abre.
+2. Tokio todavía no está firmado. Si ves **Windows protegió su PC**, elige **Más información** y luego **Ejecutar de todas formas**.
+
+</Steps>
+
+  </TabItem>
+  <TabItem label="macOS">
+
+<Steps>
+
+1. Descomprime la descarga y mueve **Tokio** a tu carpeta Aplicaciones.
+2. Tokio todavía no está notarizado. Si macOS lo bloquea, haz clic derecho sobre él en Finder y elige **Abrir**, o permítelo en **Configuración del Sistema → Privacidad y seguridad**.
+
+</Steps>
+
+  </TabItem>
+  <TabItem label="Linux">
+
+<Steps>
+
+1. Haz ejecutable el AppImage con `chmod +x` o desde las propiedades del archivo.
+2. Ábrelo. Necesita FUSE.
+
+</Steps>
+
+  </TabItem>
+</Tabs>
+
+Todo funciona en todos los sistemas, salvo las voces del sistema, que solo tiene Windows.
+
+## Tu clave de Euler Stream
+
+Tokio se conecta a través de [Euler Stream](https://www.eulerstream.com) con tu propia clave de API: [regístrate](https://www.eulerstream.com/register) gratis y pégala en **Configuración → TikTok LIVE**. Tu [plan](https://www.eulerstream.com/pricing) define cada cuánto puedes conectarte.
+
+<Screenshot
+  name="settings-tiktok-live"
+  alt="El campo de la clave de API de Euler Stream en Configuración → TikTok LIVE"
+/>
+
+## Actualizaciones
+
+Tokio busca versiones nuevas al iniciar y cada pocas horas. En Windows y Linux las descarga por ti: haz clic en **Reiniciar para actualizar** en la barra de título. En macOS, **Descargar actualización** abre la página de la versión.
+
+<Screenshot
+  name="update-button"
+  alt="La barra de título con el menú de perfiles y el botón Reiniciar para actualizar"
+/>
+
+Desactiva la búsqueda en **Configuración → Actualizaciones**, o busca cuando quieras desde **Acerca de**.

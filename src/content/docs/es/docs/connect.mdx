@@ -1,0 +1,79 @@
+---
+title: Conéctate a tu LIVE
+description: Prepara Tokio antes de salir en vivo y luego conéctalo a tu TikTok LIVE.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
+
+Configura todo antes de salir en vivo. Tokio solo puede conectarse cuando tu LIVE ya empezó.
+
+<Steps>
+
+1. **Instala Tokio**
+
+   Consulta [Instalación](/es/docs/install/).
+
+2. **Configúralo**
+
+   Pega tu clave de API gratuita de [Euler Stream](https://www.eulerstream.com/register) en **Configuración → TikTok LIVE**, una sola vez. Después configura tu [voz](/es/docs/features/text-to-speech/), tu [música](/es/docs/features/music-requests/), tus [alertas](/es/docs/features/alerts/) y tus [overlays](/es/docs/features/overlays/).
+
+   <Screenshot
+     name="settings-tiktok-live"
+     alt="El campo de la clave de API de Euler Stream en Configuración → TikTok LIVE"
+   />
+
+3. **Prepara tu stream**
+
+   En **Inicio**, bajo **Funciones activas**, activa lo que necesites; se queda como lo dejes. [Agrega tus overlays](/es/docs/guides/adding-an-overlay/) a tu app de streaming.
+
+   <Screenshot
+     name="home-features"
+     alt="Funciones activas en la página de Inicio, con TTS y Alertas activados y el servidor de overlays funcionando"
+   />
+
+4. **Sal en vivo y conéctate**
+
+   Inicia tu LIVE en TikTok. Luego escribe tu `@usuario` en **Inicio** y haz clic en **Conectar**.
+
+   <Screenshot
+     name="home-connect"
+     alt="El cuadro de conexión en Inicio, con @tokio.demo escrito y el botón Conectar"
+   />
+
+</Steps>
+
+## Durante tu LIVE
+
+**Inicio** muestra los números de tu LIVE y un feed de **Actividad** con lo que hacen los espectadores. El feed se queda al terminar el LIVE, hasta el siguiente.
+
+<Screenshot
+  name="dashboard"
+  alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, los espectadores, los Me gusta y las vistas, las funciones activas y el feed de actividad"
+/>
+
+El engranaje junto a **Actividad** elige qué eventos muestra el feed.
+
+<Screenshot
+  name="home-feed-settings"
+  alt="La ventana del feed de actividad, con un interruptor para cada tipo de evento"
+/>
+
+Si desactivas una función durante el LIVE, se detiene lo que tenía en cola.
+
+## Cuando algo falla
+
+Si Tokio no puede conectarse, te dice por qué. Si se cae la conexión, se vuelve a conectar solo.
+
+<details>
+<summary>Por qué falla una conexión</summary>
+
+- El LIVE todavía no empezó.
+- No se encontró el nombre de usuario en TikTok.
+- Falta tu clave de Euler Stream, no fue aceptada o llegó a su límite de uso.
+- Tu [plan](https://www.eulerstream.com/pricing) de Euler Stream no incluye la conexión.
+- Euler Stream no pudo firmarla o no se puede llegar a TikTok.
+
+</details>
+
+Los demás problemas aparecen como notificaciones, que se guardan en la campana de la barra de título.

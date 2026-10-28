@@ -1,0 +1,60 @@
+---
+title: Perfiles y configuración
+description: Separa la configuración de cada stream y ajusta Tokio.
+---
+
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+Los perfiles separan la configuración de cada stream, y **Configuración** guarda lo que todos comparten. Tokio guarda tus cambios mientras los haces.
+
+## Perfiles
+
+Cada perfil tiene su propio TTS, música, alertas, acciones de juego y temporizador, y recuerda el usuario con el que te conectaste por última vez. Cambia de perfil desde la barra de título cuando no estés conectado.
+
+<Screenshot
+  name="profiles-menu"
+  alt="El menú de perfiles en la barra de título, con dos perfiles"
+/>
+
+En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y **Clonar** copia uno que ya tienes. **Importar** y **Exportar** pasan un perfil de una computadora a otra como archivo.
+
+<Screenshot
+  name="settings-profiles"
+  alt="Configuración → Perfiles de LIVE, con el perfil activo y los botones Nuevo, Clonar, Importar y Exportar"
+/>
+
+## Configuración
+
+| Sección                  | Para qué sirve                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok LIVE**          | Tu clave de API de [Euler Stream](https://www.eulerstream.com), que Tokio necesita para conectarse. [Regístrate](https://www.eulerstream.com/register) gratis.                                                                                                                                                                                            |
+| **Servidor de overlays** | Activa el servidor de los overlays y muestra tu dirección de red para una app de streaming en [otra computadora](/es/docs/guides/adding-an-overlay/#en-otra-computadora).                                                                                                                                                                                 |
+| **Idioma**               | Inglés o español. **Idioma del sistema** sigue el de tu computadora y, si no está disponible, usa inglés. Cambia los menús y mensajes de Tokio, y el texto que Tokio escribe en los overlays de juegos y del temporizador, pero no las voces del TTS.                                                                                                     |
+| **Actualizaciones**      | Desactiva la búsqueda automática de versiones nuevas.                                                                                                                                                                                                                                                                                                     |
+| **Bandeja del sistema**  | Deja Tokio en la bandeja del sistema (la barra de menús en macOS) cuando lo cierras. Haz clic en el ícono o en **Abrir Tokio** para volver a abrirlo, y en **Salir de Tokio** para cerrarlo. En Linux, la primera vez que lo cierras después de que Tokio inicia, una notificación avisa que Tokio sigue abierto: haz clic en ella para volver a abrirlo. |
+| **Motores de voz**       | Tu ID de sesión de TikTok, para que las voces de TikTok vengan directo de TikTok en lugar de un proxy de terceros.                                                                                                                                                                                                                                        |
+
+<Screenshot
+  name="settings"
+  alt="Configuración: la clave de API de Euler Stream, el servidor de overlays con su dirección de red, el idioma, las actualizaciones y la bandeja del sistema"
+/>
+
+## Bibliotecas
+
+**Biblioteca de sonidos** y **Biblioteca multimedia** guardan los sonidos, imágenes y videos que usan tus alertas, en todos los perfiles. Ahí puedes subirlos y previsualizarlos. Si eliminas uno, se quita de todas las alertas, después de que confirmes.
+
+<Screenshot
+  name="settings-libraries"
+  alt="La Biblioteca de sonidos con cuatro sonidos y la Biblioteca multimedia con una imagen"
+/>
+
+**Biblioteca de overlays** guarda los [overlays que importas](/es/docs/features/overlays/#importa-los-tuyos).
+
+## Notificaciones
+
+Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, Tokio te dice qué salió mal. La campana de la barra de título guarda la lista de la sesión.
+
+<Screenshot
+  name="notifications"
+  alt="El menú de notificaciones, con lo que pasó en esta sesión"
+/>
