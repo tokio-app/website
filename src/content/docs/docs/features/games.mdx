@@ -92,25 +92,28 @@ The same command works from a phone or another PC on your network. With more tha
 
 ## Actions
 
-An action is a trigger and the steps it runs. Actions belong to the profile.
+An action is a trigger and the steps it runs. Actions belong to the profile, and each edition has its own tab: **Bedrock** and **Java**.
 
 <Steps>
 
-1. Click **+** next to **Actions**.
-2. Pick the edition and the trigger.
-3. Click **Add step** and pick what happens.
-4. Click the play button to test it.
+1. Pick the tab of your game's edition.
+2. Click **Add action** under its actions.
+3. Pick the trigger.
+4. Click **Add step** and pick what happens.
+5. Click the play button to test it.
 
 </Steps>
 
 <Screenshot
   name="games-actions"
-  alt="Two actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
+  alt="The Bedrock tab of Actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
 />
 
-A new action takes the connected game's edition, or Bedrock. Changing it moves its mobs and items to the other edition's, or to a zombie or a diamond.
+**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition. Changing an action's edition moves it to the other tab, and its mobs and items to the other edition's, or to a zombie or a diamond.
 
 **Duplicate** puts a copy right after the action: change its edition to run the same steps in the other game.
+
+Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
 
 Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes.
 
@@ -233,7 +236,7 @@ The **Overlay** section shows viewers what each event does, with a picture and n
 http://tokio-app.local:37891/games/minecraft/
 ```
 
-Split it into up to 4 **Columns** to spread it over the screen: each gets its own address under **Overlay URLs**, like `http://tokio-app.local:37891/games/minecraft/2/`. It fills its source and shrinks to fit.
+Split it into up to 4 **Columns**, or **Rows** when it's horizontal, to spread it over the screen: each gets its own address under **Overlay URLs**, like `http://tokio-app.local:37891/games/minecraft/2/`. It fills its source and shrinks to fit.
 
 ### Rows
 
@@ -243,7 +246,7 @@ Each action has a row, in the actions' order:
 - The event shows a gift's or emote's picture, or Tokio's own pixel icon. Type over its text to change it; empty it to go back.
 - The square picks the picture.
 - The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
-- **Column** picks the column, with more than one.
+- **Column** (**Row** when horizontal) picks where it shows, with more than one.
 
 ### Pictures
 
@@ -260,21 +263,28 @@ All profiles share the library, in the `games/minecraft` folder of Tokio's app f
   alt="The Sticker format: a zombie head with the follow icon on its corner, and a TNT block with a rose on its corner"
 />
 
-| Option                          | What it does                                                      |
-| ------------------------------- | ----------------------------------------------------------------- |
-| **Layout**                      | **List** shows every row; **One at a time** turns every 3 seconds |
-| **Columns**                     | Splits the rows into 1 to 4 overlays                              |
-| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons        |
-| **Pictures only**               | Hides the texts next to pictures                                  |
-| **Text below pictures**         | Puts the texts under the pictures                                 |
-| **Font**                        | A font installed with your streaming app; empty is Archivo        |
-| **Text**, **Accent**, **Arrow** | The colors of the texts, a lit row and the arrows                 |
+**Horizontal** puts the actions side by side, for a strip along the top or bottom of the stream:
+
+<Screenshot
+  name="games-preview-horizontal"
+  alt="The Horizontal layout: a follow icon, an arrow and a zombie head, then a rose, an arrow and a TNT block, on one line"
+/>
+
+| Option                          | What it does                                                                                                           |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Layout**                      | **Vertical** shows every action top to bottom and **Horizontal** side by side; **One at a time** turns every 3 seconds |
+| **Columns**                     | Splits the actions into 1 to 4 overlays, called **Rows** when horizontal                                               |
+| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons                                                             |
+| **Pictures only**               | Hides the texts next to pictures                                                                                       |
+| **Text below pictures**         | Puts the texts under the pictures                                                                                      |
+| **Font**                        | A font installed with your streaming app; empty is Archivo                                                             |
+| **Text**, **Accent**, **Arrow** | The colors of the texts, a lit action and the arrows                                                                   |
 
 ### Light-up
 
-When an action runs in the game, its row lights up in the accent color. A burst keeps it lit until 1.5 seconds after the last run.
+When an action runs in the game, it lights up on the overlay in the accent color. A burst keeps it lit until 1.5 seconds after the last run.
 
-The play button on **Overlay** lights the next row, in the preview and on stream.
+The play button on **Overlay** lights up the next action, in the preview and on stream.
 
 <details>
 <summary>Limits</summary>

@@ -92,25 +92,28 @@ El mismo comando funciona desde un teléfono u otra computadora de tu red. Si ha
 
 ## Acciones
 
-Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propias acciones.
+Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propias acciones, y cada edición tiene su pestaña: **Bedrock** y **Java**.
 
 <Steps>
 
-1. Haz clic en **+** junto a **Acciones**.
-2. Elige la edición y el activador.
-3. Haz clic en **Agregar paso** y elige qué pasa.
-4. Haz clic en el botón de reproducir para probarla.
+1. Elige la pestaña de la edición de tu juego.
+2. Haz clic en **Agregar acción**, debajo de sus acciones.
+3. Elige el activador.
+4. Haz clic en **Agregar paso** y elige qué pasa.
+5. Haz clic en el botón de reproducir para probarla.
 
 </Steps>
 
 <Screenshot
   name="games-actions"
-  alt="Dos acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
+  alt="La pestaña Bedrock de Acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
 />
 
-Una acción nueva toma la edición del juego conectado, o Bedrock si no hay ninguno. Si le cambias la edición, sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond.
+**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña. Si le cambias la edición a una acción, se mueve a la otra pestaña, y sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond.
 
 **Duplicar acción** pone una copia justo después de la acción. Cámbiale la edición para ejecutar los mismos pasos en el otro juego.
+
+Haz clic en **Acciones** para plegar las acciones y darle más espacio al overlay. Se vuelven a abrir la próxima vez que entres a **Juegos**.
 
 Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción.
 
@@ -233,7 +236,7 @@ La sección **Overlay** les muestra a los espectadores qué hace cada evento, co
 http://tokio-app.local:37891/games/minecraft/
 ```
 
-Divídelo en hasta 4 **Columnas** para repartirlo por la pantalla: cada una tiene su propia dirección en **URLs del overlay**, como `http://tokio-app.local:37891/games/minecraft/2/`. El overlay ocupa toda su fuente de navegador y se achica para caber.
+Divídelo en hasta 4 **Columnas**, o **Filas** si es horizontal, para repartirlo por la pantalla: cada una tiene su propia dirección en **URLs del overlay**, como `http://tokio-app.local:37891/games/minecraft/2/`. El overlay ocupa toda su fuente de navegador y se achica para caber.
 
 ### Filas
 
@@ -243,7 +246,7 @@ Cada acción tiene una fila, en el mismo orden que las acciones:
 - El evento muestra la imagen del regalo o del emote, o el ícono pixelado de Tokio. Escribe sobre su texto para cambiarlo, o bórralo para volver al original.
 - El cuadrado elige la imagen.
 - El nombre sale de los pasos, como **Zombie**. Escribe el tuyo, o bórralo para volver al original.
-- **Columna** elige la columna, si hay más de una.
+- **Columna** (**Fila** si es horizontal) elige dónde se muestra, si hay más de una.
 
 ### Imágenes
 
@@ -260,21 +263,28 @@ Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minec
   alt="El formato Sticker: una cabeza de zombi con el ícono de seguir en la esquina, y un bloque de TNT con una Rose en la esquina"
 />
 
-| Opción                               | Qué hace                                                                        |
-| ------------------------------------ | ------------------------------------------------------------------------------- |
-| **Diseño**                           | **Lista** muestra todas las filas; **Una a la vez** cambia cada 3 segundos      |
-| **Columnas**                         | Reparte las filas en 1 a 4 overlays                                             |
-| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes** |
-| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                          |
-| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                          |
-| **Fuente**                           | Una fuente instalada con tu app de streaming; vacía, usa la fuente Archivo      |
-| **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la fila iluminada y de las flechas                |
+**Horizontal** pone las acciones una al lado de la otra, en una franja para la parte de arriba o de abajo del stream:
+
+<Screenshot
+  name="games-preview-horizontal"
+  alt="El diseño Horizontal: el ícono de seguir, una flecha y una cabeza de zombi, y luego una Rose, una flecha y un bloque de TNT, en una sola línea"
+/>
+
+| Opción                               | Qué hace                                                                                                                                  |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Diseño**                           | **Vertical** muestra todas las acciones de arriba abajo, y **Horizontal** una al lado de la otra; **Una a la vez** cambia cada 3 segundos |
+| **Columnas**                         | Reparte las acciones en 1 a 4 overlays, que se llaman **Filas** si es horizontal                                                          |
+| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes**                                                           |
+| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                                                                                    |
+| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                                                                                    |
+| **Fuente**                           | Una fuente instalada con tu app de streaming; vacía, usa la fuente Archivo                                                                |
+| **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la acción iluminada y de las flechas                                                                        |
 
 ### Iluminación
 
-Cuando una acción se ejecuta en el juego, su fila se ilumina con el color destacado. Si llegan varias seguidas, sigue iluminada hasta 1.5 segundos después de la última.
+Cuando una acción se ejecuta en el juego, se ilumina en el overlay con el color destacado. Si llegan varias seguidas, sigue iluminada hasta 1.5 segundos después de la última.
 
-El botón de reproducir de **Overlay** ilumina la siguiente fila, en la vista previa y en el stream.
+El botón de reproducir de **Overlay** ilumina la siguiente acción, en la vista previa y en el stream.
 
 <details>
 <summary>Límites</summary>
