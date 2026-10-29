@@ -172,7 +172,7 @@ fields:
       default: ffffff
 ```
 
-Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and a `type`. Its `attributes` always include a `value` and a `default` of the same type.
+Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and a `type`. Its `attributes` always include a `value` and a `default` of the same type. A table's columns have only a `default`.
 
 | Type       | Other attributes                                                       | Value in `__OVERLAY_CONFIG__`                                    |
 | ---------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -183,10 +183,79 @@ Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and
 | `toggle`   | none                                                                   | `true` or `false`                                                |
 | `slider`   | `min`, `max`                                                           | The number                                                       |
 | `gifts`    | `multiple`; values are TikTok gift IDs                                 | A gift `{ value, label, img, coins }`, or a list when `multiple` |
+| `font`     | none; values are a font's name, or `""` for your overlay's own font    | The font's name, or `""` ([Fonts](#fonts))                       |
+| `table`    | `columns`, optional `max`; values are lists of rows                    | A list of rows, one object per row ([Tables](#tables))           |
 
-`mode`, `options`, and a slider's `min` and `max` are required; `multiple` and `searchable` default to `false`. Each section's `id` must be unique, and each field's `section` must name one.
+`mode`, `options`, a table's `columns`, and a slider's `min` and `max` are required; `multiple` and `searchable` default to `false`. Each section's `id` must be unique, and each field's `section` must name one.
 
 ![The Gift Jar's Customize window: its settings, grouped in sections, next to a live preview](../../../../assets/screenshots/overlays-customize.png)
+
+### Fonts
+
+A `font` setting lets the streamer pick one of the fonts installed on the Tokio computer. Its value is the font's name, up to 60 characters, and `""` means your overlay's own font. The streaming app draws the overlay, so the font has to be installed on the computer that runs it too. Without it, the browser uses the next font in the list.
+
+Tokio gives the overlay the font's name. Put it in quotes and add your own font after it:
+
+```js
+const { font } = window.__OVERLAY_CONFIG__;
+document.body.style.fontFamily = font
+  ? `${JSON.stringify(font)}, sans-serif`
+  : "";
+```
+
+Replace `sans-serif` with the font your stylesheet uses. An empty `fontFamily` leaves your stylesheet in charge.
+
+### Tables
+
+A `table` setting is a list of rows the streamer adds and removes, such as social links. Each column is a field without a `section` or a `value`, and its `default` fills that cell in a new row. The table's `value` and `default` are lists of rows:
+
+```yaml
+- name: Social links
+  id: socials
+  type: table
+  section: general
+  attributes:
+    max: 4
+    columns:
+      - name: Platform
+        id: platform
+        type: dropdown
+        attributes:
+          options:
+            - { value: facebook, label: Facebook }
+            - { value: instagram, label: Instagram }
+          default: facebook
+      - name: Username
+        id: username
+        type: input
+        attributes: { mode: text, placeholder: "@username", default: "" }
+      - name: Icon color
+        id: icon_color
+        type: color
+        attributes: { default: ffffff }
+    value:
+      - { platform: facebook, username: "@tokio", icon_color: ffffff }
+    default:
+      - { platform: facebook, username: "", icon_color: ffffff }
+```
+
+The overlay gets the rows as objects, each cell under its column's `id`:
+
+```js
+window.__OVERLAY_CONFIG__ = {
+  socials: [
+    { platform: "facebook", username: "@tokio", icon_color: "#ffffff" },
+  ],
+};
+```
+
+- A table has at least one column. A column can be any type except `table` and `slider`, and its `id` is unique within the table.
+- `max` is the most rows the streamer can add, an integer of 1 or more. Without it, there's no limit.
+- Every row has one value per column, keyed by the column's `id`, of a kind that column's `default` could be. A row can't have any other key.
+
+Cells are read like fields: colors have their `#`, and a `gifts` cell is a gift object. That cell can be `undefined` when Tokio has no gift list, so check it before you use it.
+
+When the streamer updates your overlay, Tokio keeps their rows, up to the new `max`. A cell stays when its column keeps its `id` and `type` and the value still fits, like a dropdown option that's still there. The others take their column's `default`, so keep column ids stable across versions.
 
 ## Testing without importing
 

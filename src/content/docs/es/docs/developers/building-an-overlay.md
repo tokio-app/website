@@ -172,21 +172,90 @@ fields:
       default: ffffff
 ```
 
-Cada campo tiene un `name`, un `id` único, una `section` (el `id` de una sección) y un `type`. Sus `attributes` siempre incluyen un `value` y un `default` del mismo tipo.
+Cada campo tiene un `name`, un `id` único, una `section` (el `id` de una sección) y un `type`. Sus `attributes` siempre incluyen un `value` y un `default` del mismo tipo. Las columnas de una tabla solo tienen un `default`.
 
-| Tipo       | Otros atributos                                                        | Valor en `__OVERLAY_CONFIG__`                                        |
-| ---------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `input`    | `mode` (`text` o `number`), `placeholder`                              | El texto o el número                                                 |
-| `dropdown` | `options` (`value`, `label`, `img` opcional), `multiple`, `searchable` | El valor elegido, o una lista con `multiple`                         |
-| `color`    | ninguno; los valores son códigos hex sin `#`, de 6 u 8 caracteres      | El color con `#`, por ejemplo `"#ffffff"`                            |
-| `check`    | ninguno                                                                | `true` o `false`                                                     |
-| `toggle`   | ninguno                                                                | `true` o `false`                                                     |
-| `slider`   | `min`, `max`                                                           | El número                                                            |
-| `gifts`    | `multiple`; los valores son IDs de regalos de TikTok                   | Un regalo `{ value, label, img, coins }`, o una lista con `multiple` |
+| Tipo       | Otros atributos                                                                       | Valor en `__OVERLAY_CONFIG__`                                        |
+| ---------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `input`    | `mode` (`text` o `number`), `placeholder`                                             | El texto o el número                                                 |
+| `dropdown` | `options` (`value`, `label`, `img` opcional), `multiple`, `searchable`                | El valor elegido, o una lista con `multiple`                         |
+| `color`    | ninguno; los valores son códigos hex sin `#`, de 6 u 8 caracteres                     | El color con `#`, por ejemplo `"#ffffff"`                            |
+| `check`    | ninguno                                                                               | `true` o `false`                                                     |
+| `toggle`   | ninguno                                                                               | `true` o `false`                                                     |
+| `slider`   | `min`, `max`                                                                          | El número                                                            |
+| `gifts`    | `multiple`; los valores son IDs de regalos de TikTok                                  | Un regalo `{ value, label, img, coins }`, o una lista con `multiple` |
+| `font`     | ninguno; los valores son el nombre de una fuente, o `""` para la fuente de tu overlay | El nombre de la fuente, o `""` ([Fuentes](#fuentes))                 |
+| `table`    | `columns`, `max` opcional; los valores son listas de filas                            | Una lista de filas, un objeto por fila ([Tablas](#tablas))           |
 
-`mode`, `options` y el `min` y el `max` de un slider son obligatorios; `multiple` y `searchable` son `false` si no los pones. El `id` de cada sección debe ser único, y la `section` de cada campo debe nombrar una de ellas.
+`mode`, `options`, las `columns` de una tabla y el `min` y el `max` de un slider son obligatorios; `multiple` y `searchable` son `false` si no los pones. El `id` de cada sección debe ser único, y la `section` de cada campo debe nombrar una de ellas.
 
 ![La ventana Personalizar del Gift Jar: su configuración, agrupada en secciones, junto a una vista previa en vivo](../../../../../assets/screenshots/es/overlays-customize.png)
+
+### Fuentes
+
+Un campo `font` deja que el streamer elija una de las fuentes instaladas en la computadora de Tokio. Su valor es el nombre de la fuente, de hasta 60 caracteres, y `""` significa la fuente propia de tu overlay. La app de streaming es la que dibuja el overlay, así que la fuente también tiene que estar instalada en la computadora que la ejecuta. Si no está, el navegador usa la siguiente fuente de la lista.
+
+Tokio le da al overlay el nombre de la fuente. Ponlo entre comillas y agrega tu propia fuente después:
+
+```js
+const { font } = window.__OVERLAY_CONFIG__;
+document.body.style.fontFamily = font
+  ? `${JSON.stringify(font)}, sans-serif`
+  : "";
+```
+
+Cambia `sans-serif` por la fuente que usa tu hoja de estilos. Un `fontFamily` vacío deja la fuente de tu hoja de estilos.
+
+### Tablas
+
+Un campo `table` es una lista de filas que el streamer agrega y quita, por ejemplo enlaces a redes sociales. Cada columna es un campo sin `section` ni `value`, y su `default` llena esa celda en una fila nueva. El `value` y el `default` de la tabla son listas de filas:
+
+```yaml
+- name: Social links
+  id: socials
+  type: table
+  section: general
+  attributes:
+    max: 4
+    columns:
+      - name: Platform
+        id: platform
+        type: dropdown
+        attributes:
+          options:
+            - { value: facebook, label: Facebook }
+            - { value: instagram, label: Instagram }
+          default: facebook
+      - name: Username
+        id: username
+        type: input
+        attributes: { mode: text, placeholder: "@username", default: "" }
+      - name: Icon color
+        id: icon_color
+        type: color
+        attributes: { default: ffffff }
+    value:
+      - { platform: facebook, username: "@tokio", icon_color: ffffff }
+    default:
+      - { platform: facebook, username: "", icon_color: ffffff }
+```
+
+El overlay recibe las filas como objetos, cada celda bajo el `id` de su columna:
+
+```js
+window.__OVERLAY_CONFIG__ = {
+  socials: [
+    { platform: "facebook", username: "@tokio", icon_color: "#ffffff" },
+  ],
+};
+```
+
+- Una tabla tiene al menos una columna. Una columna puede ser de cualquier tipo menos `table` y `slider`, y su `id` es único dentro de la tabla.
+- `max` es la mayor cantidad de filas que puede agregar el streamer, un entero de 1 o más. Sin él, no hay límite.
+- Cada fila tiene un valor por columna, con el `id` de la columna como clave, de un tipo que el `default` de esa columna podría tener. Una fila no puede tener otras claves.
+
+Las celdas se leen como los campos: los colores llevan su `#` y una celda `gifts` es un objeto de regalo. Esa celda puede ser `undefined` cuando Tokio no tiene la lista de regalos, así que revísala antes de usarla.
+
+Cuando el streamer actualiza tu overlay, Tokio conserva sus filas, hasta el nuevo `max`. Una celda se queda cuando su columna conserva su `id` y su `type` y el valor todavía sirve, como una opción de la lista que sigue existiendo. Las demás toman el `default` de su columna, así que mantén estables los `id` de las columnas entre versiones.
 
 ## Probar sin importar
 
