@@ -310,7 +310,7 @@
     ],
     "privacyTitle": "Privacidad",
     "privacy": [
-      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
+      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora, igual que los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok y nivel de fan. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",

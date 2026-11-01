@@ -26,6 +26,12 @@ Suscríbete con `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Con un WebSocket dire
 
 Tokio envía `CONFIG` (`tokio:config`) con la configuración del overlay cuando el streamer la guarda, y con cada cambio mientras la edita en la vista previa. Más detalles en [Configuración](/es/docs/developers/building-an-overlay/#configuración).
 
+## Fans
+
+Tokio envía `FANS` (`tokio:fans`) con los fans que el perfil del streamer vio en sus LIVEs, cuando el overlay se conecta y otra vez cuando la lista cambia, como mucho cada 5 segundos. Las vistas previas de Tokio no lo envían.
+
+TikTok solo envía el nivel de fan de un espectador cuando hace algo en el LIVE, así que esta lista trae fans que tu overlay todavía no vio. Tiene hasta 100, del nivel de fan más alto al más bajo y, con el mismo nivel, primero los que se vieron más recientemente.
+
 ## Eventos de conexión
 
 Estos los envía el propio `@tokioapp/overlay` e informan sobre su WebSocket. No se disparan en las vistas previas de Tokio, que no usan WebSocket, así que no esperes a `OPEN` para mostrar el overlay.
@@ -49,8 +55,12 @@ interface User {
   follower?: boolean;
   moderator?: boolean;
   fanLevel?: number;
+  fanBadge?: string; // la imagen de la insignia del nivel de fan
+  userId?: string; // id de TikTok, que no cambia cuando cambia el @usuario
 }
 ```
+
+`fanBadge` es la imagen que TikTok muestra para el nivel de fan: un corazón que cambia cada 10 niveles, sin el número, así que dibuja `fanLevel` al lado. Está vacío para un espectador que no es fan.
 
 | Evento                                                 | Datos                                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
@@ -62,9 +72,25 @@ interface User {
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | ninguno                                                                   |
 | `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`               |
 | `MUSIC_CHANGE`                                         | La cola: `{ title, thumbnail, playing, played }[]`                        |
+| `FANS`                                                 | `{ fans: Fan[] }`                                                         |
 
 Cada emote del chat es `{ emoteID, index, images }`. El `image` de un regalo es la URL de su imagen.
 
 :::tip[Combos de regalos]
 Un combo envía varios eventos `GIFT` con un `comboCount` que va creciendo. El último trae `repeatEnd: true`: reacciona a ese si quieres una sola reacción por combo.
 :::
+
+Cada fan de `FANS`:
+
+```ts
+interface Fan {
+  userId: string;
+  username: string; // nombre visible
+  handle: string; // @usuario
+  fanLevel: number;
+  fanBadge: string; // la imagen de la insignia del nivel de fan
+  seenAt: number; // cuándo lo vio Tokio por última vez, en ms desde 1970
+}
+```
+
+Los fans no traen foto de perfil, porque los enlaces de TikTok a esas fotos vencen en un par de días. Para un fan que está en el LIVE, tómala del `user` de sus eventos. Los enlaces de la insignia no vencen.
