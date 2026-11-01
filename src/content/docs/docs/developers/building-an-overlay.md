@@ -264,7 +264,7 @@ While you build an overlay, test it from the **Tools** page instead of importing
 1. Turn on the overlay server in **Settings → Overlay server**.
 2. On **Tools → Test overlays**, enter a name and create an ID.
 3. Put that ID in your overlay's `window.__OVERLAY_ID__`, and open the overlay in your browser.
-4. Click **Test**. Tokio sends your overlay every LIVE event, carrying on from your last test: the same viewers come back, likes and coins add up, and a gift streak grows over a few clicks before it ends.
+4. Click **Test**. Tokio sends your overlay every LIVE event and a sample of the fans and top gifters. The events carry on from your last test: the same viewers come back, likes and coins add up, and a gift streak grows over a few clicks before it ends.
 
 ![Tools → Test overlays, with a test ID created for an overlay, its Test button and the buttons that copy the ID and the WebSocket URL](../../../../assets/screenshots/tools-test-overlays.png)
 

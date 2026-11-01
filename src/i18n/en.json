@@ -125,6 +125,15 @@
           { "name": "Follows", "value": "30 seconds each" }
         ]
       },
+      "coinStats": {
+        "title": "Coin stats",
+        "text": "Every LIVE's coins and gifts, and who sent them. Overlays can show your top gifters.",
+        "example": [
+          { "name": "Leo", "value": "21,987 coins" },
+          { "name": "Maya", "value": "14,768 coins" },
+          { "name": "Sunny Fox", "value": "11,330 coins" }
+        ]
+      },
       "profiles": {
         "title": "Profiles",
         "text": "Separate settings for different streams, switched from the title bar.",
@@ -262,7 +271,7 @@
     ],
     "privacyTitle": "Privacy",
     "privacy": [
-      "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved on your computer, and so are the fans Tokio sees in your LIVEs: their name, @handle, TikTok ID and fan level. To connect to TikTok LIVE you need your own Euler Stream account: Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok. Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
+      "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved on your computer, and so are the fans Tokio sees in your LIVEs: their name, @handle, TikTok ID, fan level, whether they're a Super Fan, and when Tokio last saw them. Each profile also keeps the coins and gifts of every LIVE and the viewers who sent them: their name, @handle, TikTok ID, profile picture link, and the coins and gifts they sent and when. To connect to TikTok LIVE you need your own Euler Stream account: Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok. Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
       "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
     ],
     "trademarksTitle": "Trademarks",

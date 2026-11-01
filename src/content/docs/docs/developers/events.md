@@ -28,9 +28,17 @@ Tokio sends `CONFIG` (`tokio:config`) with the overlay's settings when the strea
 
 ## Fans
 
-Tokio sends `FANS` (`tokio:fans`) with the fans the streamer's profile has seen in its LIVEs, when the overlay connects and again when the list changes, at most every 5 seconds. Tokio's previews don't send it.
+Tokio sends `FANS` (`tokio:fans`) with the fans the streamer's profile has seen in its LIVEs, when the overlay connects and again when the list changes, at most every 5 seconds. In Tokio's previews, it comes as a sample when you click **Test**.
 
 TikTok only sends a viewer's fan level when they do something in the LIVE, so this list has fans your overlay hasn't seen yet. It holds up to 100, from the highest fan level down and, at the same level, the most recently seen first.
+
+## Gifters
+
+Tokio sends `GIFTERS` (`tokio:gifters`) with the top gifters, at most once a second: when the overlay connects, after a profile loads, when a LIVE starts, ends or is deleted, when the history is cleared, and on gifts.
+
+`live` is this LIVE's top 10 by coins, empty while Tokio isn't connected. `allTime` is the top 10 across every LIVE the profile kept, this one included.
+
+Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't. In Tokio's previews, it comes as a sample when you click **Test**.
 
 ## Connection events
 
@@ -73,6 +81,7 @@ interface User {
 | `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`               |
 | `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
+| `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
 Each chat emote is `{ emoteID, index, images }`. A gift's `image` is the URL of its picture.
 
@@ -89,8 +98,25 @@ interface Fan {
   handle: string; // @handle
   fanLevel: number;
   fanBadge: string; // the picture of the fan level's badge
+  superfan: boolean; // a Super Fan, as their last chat, gift or Super Fan event said
   seenAt: number; // when Tokio last saw them, in ms since the epoch
 }
 ```
 
 Fans have no profile picture, since TikTok's links to them expire within a couple of days. For a fan in the LIVE, take it from the `user` of their events. The badge's links don't expire.
+
+Each gifter in `GIFTERS`:
+
+```ts
+interface TopGifter {
+  userId: string;
+  username: string; // display name
+  handle: string; // @handle
+  picture: string; // their profile picture, from their latest gift
+  live: { coins: number; gifts: number }; // in this LIVE, 0 if they sent none
+  allTime: { coins: number; gifts: number }; // in every LIVE the profile kept
+  giftedAt: number; // when their last gift came, in ms since the epoch
+}
+```
+
+`picture` is empty when TikTok sent none. TikTok's links expire about 2 days after it sends them, so fall back to something, such as their initial, when one fails to load.

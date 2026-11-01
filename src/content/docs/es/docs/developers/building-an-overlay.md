@@ -264,7 +264,7 @@ Mientras haces un overlay, pruébalo desde la página **Herramientas** en vez de
 1. Activa el servidor de overlays en **Configuración → Servidor de overlays**.
 2. En **Herramientas → Overlays de prueba**, escribe un nombre y crea un ID.
 3. Pon ese ID en el `window.__OVERLAY_ID__` de tu overlay y abre el overlay en tu navegador.
-4. Haz clic en **Probar**. Tokio le envía a tu overlay cada evento del LIVE y sigue desde tu última prueba: vuelven los mismos espectadores, los Me gusta y las monedas se van sumando, y un combo de regalos crece durante varios clics antes de terminar.
+4. Haz clic en **Probar**. Tokio le envía a tu overlay cada evento del LIVE y una muestra de los fans y de quienes más regalan. Los eventos siguen desde tu última prueba: vuelven los mismos espectadores, los Me gusta y las monedas se van sumando, y un combo de regalos crece durante varios clics antes de terminar.
 
 ![Herramientas → Overlays de prueba, con un ID de prueba creado para un overlay, su botón Probar y los botones que copian el ID y la URL del WebSocket](../../../../../assets/screenshots/es/tools-test-overlays.png)
 

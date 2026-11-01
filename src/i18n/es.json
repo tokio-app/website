@@ -163,6 +163,24 @@
           }
         ]
       },
+      "coinStats": {
+        "title": "Estadísticas de monedas",
+        "text": "Las monedas y los regalos de cada LIVE, y quienes los enviaron. Los overlays pueden mostrar quienes más te regalan.",
+        "example": [
+          {
+            "name": "Leo",
+            "value": "21,987 monedas"
+          },
+          {
+            "name": "Maya",
+            "value": "14,768 monedas"
+          },
+          {
+            "name": "Sunny Fox",
+            "value": "11,330 monedas"
+          }
+        ]
+      },
       "profiles": {
         "title": "Perfiles",
         "text": "Una configuración para cada tipo de stream, que cambias desde la barra de título.",
@@ -310,7 +328,7 @@
     ],
     "privacyTitle": "Privacidad",
     "privacy": [
-      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora, igual que los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok y nivel de fan. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
+      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora, igual que los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil también guarda las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",
