@@ -109,7 +109,7 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
   alt="La pestaña Bedrock de Acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
 />
 
-**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña. Si le cambias la edición a una acción, se mueve a la otra pestaña, y sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond.
+**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña. Si le cambias la edición a una acción, se mueve a la otra pestaña, y sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond. En Bedrock, que no tiene los pasos de Java, **Meteorito** pasa a ser **Caída de TNT**, los láseres pasan a ser **Rayo**, y **Convertirse en criatura** y **Volver a la normalidad** se quitan.
 
 **Duplicar acción** pone una copia justo después de la acción. Cámbiale la edición para ejecutar los mismos pasos en el otro juego.
 
@@ -130,34 +130,42 @@ Las acciones se ejecutan mientras **Minecraft** está activado y hay un juego de
 
 Los pasos se ejecutan en orden, como tú y donde estés.
 
-| Paso                 | Qué hace                                                                |
-| -------------------- | ----------------------------------------------------------------------- |
-| **Generar criatura** | De 1 a 100 de una criatura, con un nombre opcional                      |
-| **Dar objeto**       | De 1 a 100 de un objeto, para ti                                        |
-| **Clima**            | **Despejado**, **Lluvia** o **Tormenta**                                |
-| **Hora del día**     | **Día**, **Mediodía**, **Noche** o **Medianoche**                       |
-| **Peligro**          | Algo que intenta matarte o te estorba                                   |
-| **Ayuda**            | Algo que te ayuda a sobrevivir                                          |
-| **Comando**          | Cualquier comando, como lo escribirías en el chat, con barra o sin ella |
+| Paso                        | Qué hace                                                                                                        |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Generar criatura**        | De 1 a 100 de una criatura, con un nombre opcional                                                              |
+| **Convertirse en criatura** | Solo en Java: te conviertes en una criatura, hasta **Volver a la normalidad** o durante los segundos que elijas |
+| **Volver a la normalidad**  | Solo en Java: termina **Convertirse en criatura**                                                               |
+| **Dar objeto**              | De 1 a 100 de un objeto, para ti                                                                                |
+| **Clima**                   | **Despejado**, **Lluvia** o **Tormenta**                                                                        |
+| **Hora del día**            | **Día**, **Mediodía**, **Noche** o **Medianoche**                                                               |
+| **Peligro**                 | Algo que intenta matarte o te estorba                                                                           |
+| **Ayuda**                   | Algo que te ayuda a sobrevivir                                                                                  |
+| **Comando**                 | Cualquier comando, como lo escribirías en el chat, con barra o sin ella                                         |
 
 ### Peligros
 
-| Peligro                      | Qué pasa                                                                     |
-| ---------------------------- | ---------------------------------------------------------------------------- |
-| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas        |
-| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                              |
-| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                            |
-| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti                                               |
-| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                 |
-| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                     |
-| **Daño instantáneo**         | Te quita 6 corazones                                                         |
-| **Lanzar al cielo**          | Te lanza hasta 300 bloques hacia arriba (50 al principio) y luego caes       |
-| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                               |
-| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)          |
-| **Apagón**                   | Oscuridad durante los segundos que elijas                                    |
-| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                      |
-| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                            |
-| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio) |
+| Peligro                      | Qué pasa                                                                                     |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas                        |
+| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                                              |
+| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                                            |
+| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti                                                               |
+| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                                 |
+| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                                     |
+| **Daño instantáneo**         | Te quita 6 corazones                                                                         |
+| **Lanzar al cielo**          | Te lanza hasta 300 bloques hacia arriba (50 al principio) y luego caes                       |
+| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                                               |
+| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)                          |
+| **Apagón**                   | Oscuridad durante los segundos que elijas                                                    |
+| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                                      |
+| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                                            |
+| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio)                 |
+| **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor |
+| **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo        |
+| **Súper láser**              | Cae la noche, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo            |
+| **Súper duper láser**        | Un súper láser que antes atraviesa todo el suelo que tienes encima                           |
+
+Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **Súper láser** y **Súper duper láser**. Sus explosiones rompen bloques y causan incendios como la TNT, salvo que la regla de juego `tnt_explodes` esté desactivada.
 
 <details>
 <summary>Los detalles</summary>
@@ -165,6 +173,7 @@ Los pasos se ejecutan en orden, como tú y donde estés.
 - La TNT de Bedrock solo tiene dos mechas: 4 s, o una al azar de 0.5 a 2 s cuando eliges 2 s o menos.
 - El yunque necesita aire 20 bloques más arriba, y se queda en el mundo después de caer.
 - Un lanzamiento tarda los segundos que elijas, así que con menos segundos va más rápido. Por encima de unos 190 bloques, 1 segundo es demasiado rápido y tarda un poco más.
+- Un meteorito cae en el suelo debajo de ti aunque estés volando, y tienes 2 segundos para quitarte de ahí.
 
 </details>
 
@@ -173,6 +182,16 @@ Los pasos se ejecutan en orden, como tú y donde estés.
 - **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas.
 - **Curación completa**: te llena la salud y el hambre.
 - **Regeneración** II, **Absorción** IV, **Resistencia** IV, **Resistencia al fuego**, **Velocidad** II, **Impulso en salto** II, **Fuerza** II, **Caída lenta**, **Respiración acuática**, **Visión nocturna** e **Invisibilidad**: durante los segundos que elijas (30 al principio).
+
+### Convertirse en criatura
+
+Te conviertes en la criatura, cualquiera que esté viva, jefes incluidos: tienes su tamaño, su salud, su daño, su armadura y su salto, y en tercera persona te ves como la criatura. Solo las acciones de Java lo tienen, gracias al mod de Tokio.
+
+Dura hasta un paso **Volver a la normalidad**, o los segundos que elijas. También vuelves a la normalidad si mueres o cierras el mundo. Conservas la misma parte de tus corazones: con la mitad de tu salud de jugador, tienes la mitad de los 100 de un Iron Golem.
+
+Caminas al paso de la criatura, entre la mitad y una vez y media tu paso normal. Las criaturas voladoras despegan enseguida y vuelan como en el modo creativo: los ghasts y los blazes más despacio, y los phantoms, los vexes y el Ender Dragon más rápido. Las criaturas acuáticas respiran bajo el agua, y los peces se ahogan en tierra. Las criaturas resistentes al fuego no se queman, los zombis y los esqueletos se prenden fuego al sol, los endermen y los blazes se lastiman con el agua, y las arañas trepan paredes. Haces los sonidos de la criatura al recibir daño, al morir, al caminar y cuando está quieta.
+
+El Ender Dragon destruye lo que atraviesa volando, salvo que la regla de juego `mobGriefing` esté desactivada. Los invitados de tu mundo LAN necesitan el mod para ver la criatura.
 
 ### Comando
 
