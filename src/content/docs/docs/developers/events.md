@@ -83,7 +83,7 @@ interface User {
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
-Each chat emote is `{ emoteID, index, images }`. A gift's `image` is the URL of its picture.
+Each chat emote is `{ emoteID, index, images }`, and a comment made only of emotes has an empty `content`. A gift's `image` is the URL of its picture.
 
 :::tip[Gift combos]
 A gift streak sends several `GIFT` events with a growing `comboCount`. The last one has `repeatEnd: true`; react to that one for a single reaction per combo.
