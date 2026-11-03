@@ -109,7 +109,7 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
   alt="The Bedrock tab of Actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
 />
 
-**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition. Changing an action's edition moves it to the other tab, and its mobs and items to the other edition's, or to a zombie or a diamond.
+**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition. Changing an action's edition moves it to the other tab, and its mobs and items to the other edition's, or to a zombie or a diamond. On Bedrock, which has no Java-only steps, **Meteor** becomes **Falling TNT**, the lasers become **Lightning bolt**, and **Turn into mob** and **Back to normal** go away.
 
 **Duplicate** puts a copy right after the action: change its edition to run the same steps in the other game.
 
@@ -130,34 +130,57 @@ Actions run while **Minecraft** is on and a game of their edition is connected, 
 
 Steps run in order, as you, where you stand.
 
-| Step            | What it does                                         |
-| --------------- | ---------------------------------------------------- |
-| **Spawn mob**   | 1 to 100 of a mob, with an optional name             |
-| **Give item**   | 1 to 100 of an item, to you                          |
-| **Weather**     | **Clear**, **Rain** or **Thunder**                   |
-| **Time of day** | **Day**, **Noon**, **Night** or **Midnight**         |
-| **Hazard**      | Something that tries to kill you or gets in your way |
-| **Help**        | Something that helps you survive                     |
-| **Command**     | Any command, as you'd type it in chat, slash or not  |
+| Step               | What it does                                                                     |
+| ------------------ | -------------------------------------------------------------------------------- |
+| **Spawn mob**      | 1 to 100 of a mob, with an optional name                                         |
+| **Turn into mob**  | Java only: you become a mob, until **Back to normal** or for the seconds you set |
+| **Back to normal** | Java only: ends **Turn into mob**                                                |
+| **Give item**      | 1 to 100 of an item, to you                                                      |
+| **Weather**        | **Clear**, **Rain** or **Thunder**                                               |
+| **Time of day**    | **Day**, **Noon**, **Night** or **Midnight**                                     |
+| **Hazard**         | Something that tries to kill you or gets in your way                             |
+| **Help**           | Something that helps you survive                                                 |
+| **Command**        | Any command, as you'd type it in chat, slash or not                              |
+
+### Spawn mob
+
+The list has every mob the game can summon, plus **Chicken Jockey**: a baby zombie riding a chicken. A name goes on the zombie.
+
+Mobs you spawn don't burn in daylight, and hostile ones come after you as soon as they appear.
+
+- On Java, the latest Tokio mod does both.
+- On Bedrock, mobs that would burn get fire resistance. Hostile mobs attack when they see you, as usual, and cave spiders spawn angry. Endermen, zombified piglins and spiders in daylight stay calm until you hit them.
 
 ### Hazards
 
-| Hazard                  | What happens                                                  |
-| ----------------------- | ------------------------------------------------------------- |
-| **Falling TNT**         | Lit TNT drops from 10 blocks up, with the fuse you set        |
-| **TNT ring**            | 8 lit TNT around you                                          |
-| **Lightning bolt**      | Strikes where you stand, 1 to 100 times                       |
-| **Charged creeper**     | 1 to 100 appear next to you                                   |
-| **Evoker fangs**        | Bite up from under you, 1 to 100 times                        |
-| **Anvil drop**          | An anvil falls from 20 blocks up                              |
-| **Harming**             | Takes 6 hearts                                                |
-| **Launch into the sky** | Flies you up to 300 blocks (50 to start), then you fall       |
-| **Launch + water**      | The same, with a water bucket first                           |
-| **Freeze**              | You can't walk, for the seconds you set (10 to start)         |
-| **Lights out**          | Darkness, for the seconds you set                             |
-| **Dizzy**               | Your screen wobbles, for the seconds you set                  |
-| **Turn around**         | You face the other way                                        |
-| **Random teleport**     | Somewhere within the distance you set (1,000 blocks to start) |
+| Hazard                  | What happens                                                                                   |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **Falling TNT**         | Lit TNT drops from 10 blocks up, with the fuse you set                                         |
+| **TNT ring**            | 8 lit TNT around you                                                                           |
+| **Lightning bolt**      | Strikes where you stand, 1 to 100 times                                                        |
+| **Charged creeper**     | 1 to 100 appear next to you                                                                    |
+| **Evoker fangs**        | Bite up from under you, 1 to 100 times                                                         |
+| **Anvil drop**          | An anvil falls from 20 blocks up                                                               |
+| **Harming**             | Takes 6 hearts                                                                                 |
+| **Launch into the sky** | Breaks through the blocks over you and flies you up to 300 blocks (50 to start), then you fall |
+| **Launch + water**      | The same, with a water bucket first                                                            |
+| **Freeze**              | You can't walk, for the seconds you set (10 to start)                                          |
+| **Lights out**          | Darkness, for the seconds you set                                                              |
+| **Dizzy**               | Your screen wobbles, for the seconds you set                                                   |
+| **Turn around**         | You face the other way                                                                         |
+| **Random teleport**     | Somewhere within the distance you set (1,000 blocks to start)                                  |
+| **Cobweb trap**         | Cobwebs fill the air around you and over you                                                   |
+| **Honey trap**          | A box of honey shuts you in: you walk slowly and can't jump                                    |
+| **Obsidian prison**     | A box of obsidian shuts you in, and you have to dig out                                        |
+| **Lava lake**           | The ground around you turns to lava, and you're left on one block of obsidian                  |
+| **Hole below**          | The ground under you opens, as deep as you set (10 blocks to start, up to 64)                  |
+| **Clear inventory**     | Everything in your inventory is gone                                                           |
+| **Meteor**              | 1 to 100 burning rocks fall from the sky, the first where you stand and the rest around you    |
+| **Laser**               | A red beam follows you for 2 seconds, then fires and blasts a hole where it stopped            |
+| **Super laser**         | Night falls, lightning strikes around you, and it bores a tunnel 60 blocks down                |
+| **Super duper laser**   | A super laser that first burns down through the ground over you                                |
+
+Java has four more hazards, from the Tokio mod: **Meteor**, **Laser**, **Super laser** and **Super duper laser**. Their blasts break blocks and start fires like TNT, unless the `tnt_explodes` game rule is off.
 
 <details>
 <summary>The finer points</summary>
@@ -165,6 +188,11 @@ Steps run in order, as you, where you stand.
 - Bedrock's TNT has only two fuses: 4 s, or a random 0.5 to 2 s when you set 2 s or less.
 - The anvil needs air 20 blocks up, and it stays in the world after it lands.
 - A launch takes the seconds you set: fewer is faster. Above about 190 blocks, 1 second is too fast, so it takes a little longer.
+- A launch first clears a 3×3 shaft as high as it goes, bedrock too, so in the Nether you go through the roof. The blocks it takes drop nothing. Near the top of the world, the part above it can't be cleared, and **Test** shows it failed.
+- The cobweb trap only fills air, so it breaks nothing. The honey and obsidian boxes replace the blocks where their walls, floor and roof go, and leave what's inside.
+- To get off the lava lake's island, jump the ring of lava, 2 blocks wide, or build your way out. Fall in and you catch fire.
+- The hole never breaks the bedrock at the bottom of the world: that close to it, it digs nothing. In the End, a deep enough hole goes through the island.
+- A meteor lands on the ground under you even when you fly, and you have 2 seconds to get out of the way.
 
 </details>
 
@@ -173,6 +201,16 @@ Steps run in order, as you, where you stand.
 - **Netherite armor**: a whole set, put on at once. The armor you wear is lost.
 - **Full heal**: fills your health and hunger.
 - **Regeneration** II, **Absorption** IV, **Resistance** IV, **Fire resistance**, **Speed** II, **Jump boost** II, **Strength** II, **Slow falling**, **Water breathing**, **Night vision** and **Invisibility**: for the seconds you set (30 to start).
+
+### Turn into mob
+
+You become the mob, any living one, bosses too: you're its size, you have its health, damage, armor and jump, and you see yourself as the mob in third person. Only Java actions have it, through the Tokio mod.
+
+It lasts until a **Back to normal** step, or for the seconds you set. Dying or closing the world turns you back too. You keep the same share of your hearts, so half your health as a player is half an iron golem's 100.
+
+You walk at the mob's pace, from half to one and a half times your usual walk. Flying mobs take off at once and fly as in creative mode: ghasts and blazes slower, phantoms, vexes and the Ender Dragon faster. Water mobs breathe underwater, and fish drown on land. Fireproof mobs don't burn, zombies and skeletons catch fire in the sun, endermen and blazes get hurt by water, and spiders climb walls. You make the mob's hurt, death, step and idle sounds.
+
+The Ender Dragon smashes through what it flies into, unless the `mobGriefing` game rule is off. Guests in your LAN world need the mod to see the mob.
 
 ### Command
 
@@ -247,6 +285,7 @@ Each action has a row, in the actions' order:
 - The square picks the picture.
 - The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
 - **Column** (**Row** when horizontal) picks where it shows, with more than one.
+- Drag a row by the dots on its left to move it up or down, or reach them with Tab and use the arrow keys. **Actions** lists them in the same order.
 
 ### Pictures
 
@@ -275,6 +314,7 @@ All profiles share the library, in the `games/minecraft` folder of Tokio's app f
 | **Layout**                      | **Vertical** shows every action top to bottom and **Horizontal** side by side; **One at a time** turns every 3 seconds |
 | **Columns**                     | Splits the actions into 1 to 4 overlays, called **Rows** when horizontal                                               |
 | **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons                                                             |
+| **Counts**                      | **Small**, **Medium** or **Large** numbers on the pictures' corners: an action's amount and the likes' count           |
 | **Pictures only**               | Hides the texts next to pictures                                                                                       |
 | **Text below pictures**         | Puts the texts under the pictures                                                                                      |
 | **Font**                        | A font on your computer, Archivo by default. Your streaming app's computer needs it too                                |
