@@ -153,26 +153,32 @@ Las criaturas que generas no se queman con la luz del día, y las hostiles van p
 
 ### Peligros
 
-| Peligro                      | Qué pasa                                                                                     |
-| ---------------------------- | -------------------------------------------------------------------------------------------- |
-| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas                        |
-| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                                              |
-| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                                            |
-| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti                                                               |
-| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                                 |
-| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                                     |
-| **Daño instantáneo**         | Te quita 6 corazones                                                                         |
-| **Lanzar al cielo**          | Te lanza hasta 300 bloques hacia arriba (50 al principio) y luego caes                       |
-| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                                               |
-| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)                          |
-| **Apagón**                   | Oscuridad durante los segundos que elijas                                                    |
-| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                                      |
-| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                                            |
-| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio)                 |
-| **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor |
-| **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo        |
-| **Súper láser**              | Cae la noche, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo            |
-| **Súper duper láser**        | Un súper láser que antes atraviesa todo el suelo que tienes encima                           |
+| Peligro                      | Qué pasa                                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas                                         |
+| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                                                               |
+| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                                                             |
+| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti                                                                                |
+| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                                                  |
+| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                                                      |
+| **Daño instantáneo**         | Te quita 6 corazones                                                                                          |
+| **Lanzar al cielo**          | Rompe los bloques que tienes encima y te lanza hasta 300 bloques hacia arriba (50 al principio), y luego caes |
+| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                                                                |
+| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)                                           |
+| **Apagón**                   | Oscuridad durante los segundos que elijas                                                                     |
+| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                                                       |
+| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                                                             |
+| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio)                                  |
+| **Trampa de telarañas**      | Las telarañas llenan el aire a tu alrededor y encima de ti                                                    |
+| **Trampa de miel**           | Una caja de miel te encierra: caminas despacio y no puedes saltar                                             |
+| **Prisión de obsidiana**     | Una caja de obsidiana te encierra y tienes que cavar para salir                                               |
+| **Lago de lava**             | El suelo a tu alrededor se vuelve lava y te quedas sobre un bloque de obsidiana                               |
+| **Hoyo debajo**              | El suelo bajo tus pies se abre, tan hondo como elijas (10 bloques al principio, hasta 64)                     |
+| **Vaciar el inventario**     | Pierdes todo lo que tienes en el inventario                                                                   |
+| **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor                  |
+| **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo                         |
+| **Súper láser**              | Cae la noche, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo                             |
+| **Súper duper láser**        | Un súper láser que antes atraviesa todo el suelo que tienes encima                                            |
 
 Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **Súper láser** y **Súper duper láser**. Sus explosiones rompen bloques y causan incendios como la TNT, salvo que la regla de juego `tnt_explodes` esté desactivada.
 
@@ -182,6 +188,10 @@ Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **
 - La TNT de Bedrock solo tiene dos mechas: 4 s, o una al azar de 0.5 a 2 s cuando eliges 2 s o menos.
 - El yunque necesita aire 20 bloques más arriba, y se queda en el mundo después de caer.
 - Un lanzamiento tarda los segundos que elijas, así que con menos segundos va más rápido. Por encima de unos 190 bloques, 1 segundo es demasiado rápido y tarda un poco más.
+- Un lanzamiento primero abre un hueco de 3×3 hasta donde sube, bedrock incluido, así que en el Nether atraviesas el techo. Los bloques que quita no sueltan nada. Cerca del tope del mundo, la parte de arriba no se puede abrir, y **Probar** la muestra como fallida.
+- La trampa de telarañas solo llena el aire, así que no rompe nada. Las cajas de miel y de obsidiana reemplazan los bloques donde van sus paredes, su piso y su techo, y dejan lo que hay adentro.
+- Para salir de la isla del lago de lava, salta el anillo de lava, de 2 bloques de ancho, o construye una salida. Si caes, te prendes fuego.
+- El hoyo nunca rompe el bedrock del fondo del mundo: tan cerca de él, no cava nada. En el End, un hoyo bastante hondo atraviesa la isla.
 - Un meteorito cae en el suelo debajo de ti aunque estés volando, y tienes 2 segundos para quitarte de ahí.
 
 </details>
