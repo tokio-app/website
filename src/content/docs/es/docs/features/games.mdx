@@ -153,6 +153,27 @@ Las criaturas que generas no se queman con la luz del día, y las hostiles van p
 - En Java, la versión más reciente del mod de Tokio se encarga de las dos cosas.
 - En Bedrock, las que se quemarían reciben resistencia al fuego. Las hostiles te atacan cuando te ven, como siempre, y las arañas de cueva aparecen enojadas. Los endermen, los piglins zombificados y las arañas de día no te atacan hasta que los golpeas.
 
+### Dar objeto
+
+La lista tiene todos los objetos que el juego puede dar. El objeto va a tu inventario, o cae a tus pies si está lleno.
+
+Marca **reemplazando los tuyos** y primero se van los que ya tienes de ese objeto, encantados o no, para que los regalos no te llenen el inventario.
+
+En Java, la armadura, las armas, las herramientas, los escudos, las elytras y las cañas de pescar tienen una casilla **con encantamientos**. Márcala y el objeto llega con los mejores encantamientos que puede tener, cada uno en su nivel más alto, y el paso los muestra debajo.
+
+Una espada de netherita lleva Filo V, Barrido III, Aspecto de fuego II, Empuje II, Saqueo III, Irrompibilidad III y Reparación.
+
+<details>
+<summary>Qué encantamientos</summary>
+
+- Cuando dos no pueden ir juntos, el objeto lleva Protección (no Protección contra el fuego, contra explosiones ni contra proyectiles), Filo (no Castigo ni Perdición de los artrópodos), Densidad (no Fisura), Fortuna (no Toque de seda), Agilidad acuática (no Paso helado), Multidisparo (no Perforación), y Lealtad y Conductividad (no Propulsión acuática).
+- Un arco lleva Infinidad, que no puede ir con Reparación. Aun así necesita una flecha en tu inventario para disparar, así que quizá te convenga dar una con él.
+- Ningún objeto lleva maldiciones.
+- **Reemplazando los tuyos** en una pieza de armadura también se lleva la que tienes puesta, y la nueva va a tu inventario.
+- Bedrock no puede dar objetos encantados: su `give` no acepta encantamientos, y su `enchant` solo funciona con el objeto que tienes en la mano. Por eso las acciones de Bedrock no tienen la casilla.
+
+</details>
+
 ### Peligros
 
 | Peligro                      | Qué pasa                                                                                                      |
@@ -177,6 +198,7 @@ Las criaturas que generas no se queman con la luz del día, y las hostiles van p
 | **Lago de lava**             | El suelo a tu alrededor se vuelve lava y te quedas sobre un bloque de obsidiana                               |
 | **Hoyo debajo**              | El suelo bajo tus pies se abre, tan hondo como elijas (10 bloques al principio, hasta 64)                     |
 | **Vaciar el inventario**     | Pierdes todo lo que tienes en el inventario                                                                   |
+| **Jefe al azar**             | Aparece junto a ti un Guardia (Warden), un Wither, un Devastador o un Evocador, elegido de nuevo cada vez     |
 | **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor                  |
 | **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo                         |
 | **Súper láser**              | Cae la noche en tu pantalla, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo              |
@@ -194,6 +216,8 @@ Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **
 - La trampa de telarañas solo llena el aire, así que no rompe nada. Las cajas de miel y de obsidiana reemplazan los bloques donde van sus paredes, su piso y su techo, y dejan lo que hay adentro.
 - Para salir de la isla del lago de lava, salta el anillo de lava, de 2 bloques de ancho, o construye una salida. Si caes, te prendes fuego.
 - El hoyo nunca rompe el bedrock del fondo del mundo: tan cerca de él, no cava nada. En el End, un hoyo bastante hondo atraviesa la isla.
+- En un combo de regalos, cada regalo trae un jefe al azar nuevo. El Ender Dragon no es uno de ellos: fuera del End vuela al centro del mundo y te deja en paz.
+- En un mundo LAN, los vexes de un evocador y el rugido de un devastador también pueden alcanzar a otros jugadores.
 - Un meteorito cae en el suelo debajo de ti aunque estés volando, y tienes 2 segundos para quitarte de ahí.
 - La noche de un súper láser solo se ve en tu pantalla: la hora del mundo no cambia.
 - Las partículas de los meteoritos y los láseres siguen tu ajuste de **Partículas** en Minecraft: menos con **Disminuidas**, ninguna con **Mínimas**.
@@ -202,7 +226,8 @@ Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **
 
 ### Ayuda
 
-- **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas.
+- **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas. En Java, marca **con encantamientos** y cada pieza lleva los mejores encantamientos que puede tener, como en **Dar objeto**.
+- **Kit de netherita**: la misma armadura, más una espada, un pico y un hacha de netherita, un arco y 64 flechas. En Java todo lleva los mejores encantamientos, el arco con Infinidad. Marca **reemplazando los tuyos** para que más kits no te llenen el inventario.
 - **Curación completa**: te llena la salud y el hambre.
 - **Regeneración** II, **Absorción** IV, **Resistencia** IV, **Resistencia al fuego**, **Velocidad** II, **Impulso en salto** II, **Fuerza** II, **Caída lenta**, **Respiración acuática**, **Visión nocturna** e **Invisibilidad**: durante los segundos que elijas (30 al principio).
 
