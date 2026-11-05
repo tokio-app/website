@@ -44,7 +44,7 @@ Follow the steps **Games** shows for Bedrock, in Minecraft:
 
 The Tokio mod, for Fabric, connects single-player and LAN worlds you host, not dedicated servers. Cheats can stay off: it runs commands as you, with a command block's permission, and their answers don't show in chat.
 
-In a LAN world, Tokio's mobs never go after other players, and its explosions, lightning and arrows don't hurt them. Only you see the meteors and lasers.
+In a LAN world, Tokio's mobs never go after other players, and its explosions, lightning, arrows, potions and dragon's breath don't hurt them. Only you see the meteors and lasers.
 
 ### Install the mod
 
@@ -242,6 +242,33 @@ It lasts until a **Back to normal** step, or for the seconds you set. Dying or c
 You walk at the mob's pace, from half to one and a half times your usual walk. Flying mobs take off at once and fly as in creative mode: ghasts and blazes slower, phantoms, vexes and the Ender Dragon faster. Water mobs breathe underwater, and fish drown on land. Fireproof mobs don't burn, zombies and skeletons catch fire in the sun, endermen and blazes get hurt by water, and spiders climb walls. You make the mob's hurt, death, step and idle sounds.
 
 The Ender Dragon smashes through what it flies into, unless the `mobGriefing` game rule is off. Guests in your LAN world need the mod to see the mob.
+
+#### Attacks
+
+Press **R** to use the mob's own attack where you look, and hold it to keep attacking at the mob's pace. The key is **Mob attack**, under **Tokio** in **Options → Controls → Key Binds**. Mobs that only bite or punch, like zombies and spiders, have nothing on R: they hit with left-click, for the mob's damage.
+
+| Mob                                                              | What R does                                                                                                                                                       |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Wither**                                                       | A wither skull from each of its heads in turn, one every 0.75 seconds                                                                                             |
+| **Ghast**                                                        | Opens its mouth for a second, then fires a fireball that explodes, every 3 seconds                                                                                |
+| **Blaze**                                                        | Three fireballs in a row, every 5.6 seconds                                                                                                                       |
+| **Skeleton**, **Stray**, **Bogged**, **Parched**, **Illusioner** | An arrow every second, every 2.5 for the Bogged. A Stray's slows, a Bogged's poisons, a Parched's weakens                                                         |
+| **Pillager**, **Piglin**                                         | A crossbow arrow every 2 seconds                                                                                                                                  |
+| **Drowned**                                                      | A trident every 2 seconds                                                                                                                                         |
+| **Witch**                                                        | A splash potion every 3 seconds: what a witch would throw at the mob you look at, or Harming                                                                      |
+| **Snow Golem**                                                   | A snowball every second                                                                                                                                           |
+| **Llama**, **Trader Llama**                                      | Spit every 2 seconds                                                                                                                                              |
+| **Shulker**                                                      | A bullet that follows the mob you look at and makes it float, every 2 seconds                                                                                     |
+| **Breeze**                                                       | Breathes in, then fires a wind charge, about every 1.5 seconds                                                                                                    |
+| **Ender Dragon**                                                 | A dragon fireball that leaves a cloud of breath, every 3 seconds                                                                                                  |
+| **Warden**                                                       | Charges for 1.7 seconds, then a sonic boom that goes through walls to the mob you aimed at, up to 15 blocks, every 5 seconds                                      |
+| **Evoker**                                                       | Raises its arms, and a second later 16 fangs bite up in a line toward the mob you aimed at, or in two rings around you when it's within 3 blocks, every 5 seconds |
+| **Guardian**, **Elder Guardian**                                 | A beam on the mob you look at, which hits after 4 seconds (3 for an Elder Guardian) if you keep it in sight                                                       |
+| **Creeper**                                                      | Hisses for 1.5 seconds, then explodes around you, every 3 seconds. You live on as a creeper                                                                       |
+
+Your left-click hits also do what the mob's own hit does: a Wither Skeleton's gives Wither, a Cave Spider's and a Bee's give Poison (not on Easy), an Iron Golem's tosses mobs up, and a Hoglin's and a Zoglin's throw them. Bare-handed, a Husk's makes mobs hungry, and a burning zombie's may set them on fire.
+
+Your attacks never hurt you or other players. Their blasts break blocks unless the `mobGriefing` game rule is off, and a Blaze's fireballs start fires. The arrows and tridents you fire can't be picked up.
 
 ### Command
 
