@@ -4,6 +4,7 @@ description: Crea tus propios overlays con texto, imágenes y los overlays que y
 ---
 
 import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
 
 Overlay Studio crea tus propios overlays con texto, imágenes, regalos y los overlays que ya tienes. Cada elemento puede quedarse en pantalla o reaccionar a tu LIVE, y cada overlay es una sola fuente de navegador.
 
@@ -23,6 +24,11 @@ Los cambios se guardan mientras los haces y llegan a tu stream al instante. Todo
 
 Los overlays nuevos son **Vertical**, de 1080 × 1920. Sin nada seleccionado, **Configuración del overlay** cambia el nombre y el **Lienzo**, a **Horizontal** de 1920 × 1080. La fuente de navegador ajusta el lienzo a su tamaño, centrado.
 
+<Screenshot
+  name="studio-editor"
+  alt="El editor de Overlay Studio: la lista de Elementos con dos grupos y un logo, el lienzo con un banner de Me gusta, una estrella, un mensaje de seguimiento en un globo de diálogo y la imagen de un espectador, y la configuración de la estrella seleccionada con su selector de Forma"
+/>
+
 Para eliminar un overlay, usa **Eliminar overlay** en su fila de **Overlay Studio** y confirma.
 
 ## Elementos y grupos
@@ -41,6 +47,11 @@ Un overlay se arma con elementos, lo que se ve:
 
 La lista de **Elementos** muestra cada elemento, el de adelante arriba, con una imagen pequeña de lo que muestra. Un elemento que reacciona a un evento dice a cuál bajo su nombre. Haz clic en un espacio vacío de la lista para quitar la selección. Para ordenar, bloquear, ocultar y mover elementos juntos, ponlos en un grupo: en el menú **+**, **Nuevo grupo** agrega uno delante de los demás. Un elemento nuevo va al grupo seleccionado, o al grupo del elemento seleccionado, y el menú dice cuál: **Agregar a Grupo 1**. Si no, va adelante, suelto.
 
+<Screenshot
+  name="studio-elements"
+  alt="La lista de Elementos: el logo solo, un grupo con la imagen de un espectador, el mensaje de seguimiento y su globo de diálogo, y un grupo con la estrella, el texto de Me gusta y el rectángulo del banner, cada uno con una imagen pequeña de lo que muestra"
+/>
+
 Arrastra el asa de un grupo o de un elemento para cambiar su orden, o para meter un elemento en un grupo o sacarlo. Un elemento que sueltas sobre la fila de un grupo va adelante en ese grupo o, cerca del borde de arriba de la fila, delante del grupo y suelto. Para sacar un elemento de su grupo, suéltalo en el espacio vacío debajo de la lista, o en el hueco entre dos grupos o elementos: queda ahí, suelto. También puedes enfocar el asa y usar las flechas arriba y abajo: un elemento en el borde de su grupo sale de él, y un elemento suelto entra al grupo que encuentra.
 
 La fila de cada grupo tiene tres botones:
@@ -57,6 +68,11 @@ En el lienzo, haz clic en un elemento para seleccionarlo, arrástralo para mover
 
 Para recortar una imagen, un video, un regalo o un emote, haz doble clic en él o haz clic en **Recortar en el lienzo** en su configuración. Se ve la imagen entera, con las partes que recortas atenuadas: arrastra los lados o las esquinas del marco para recortarla, o arrastra dentro del marco para mover la imagen debajo, y presiona Enter o haz clic afuera para conservar el recorte, o Escape para cancelar. Recortar nunca mueve ni cambia el tamaño de la imagen; el recuadro del elemento se ajusta a la parte que conservas. **Recorte (%)** en su configuración define el mismo recorte con números, y **Restablecer el recorte** devuelve la imagen entera. **Esquinas redondeadas** las redondea, hasta un círculo en una imagen cuadrada. La imagen de un espectador se recorta solo desde sus campos, que eligen la parte de la imagen de cada espectador que llena su círculo. Un archivo, regalo o emote nuevo empieza sin recorte.
 
+<Screenshot
+  name="studio-crop"
+  alt="Recortar el logo en el lienzo: se ve entero, con las partes recortadas atenuadas alrededor de un marco con un control en cada lado y esquina"
+/>
+
 Un video se reproduce con su sonido. **Fragmento**, en su configuración, conserva una parte, como el [recorte de una alerta](/es/docs/features/alerts/#recortar-un-sonido): arrastra los controles o escribe los segundos de **Inicio** y **Fin**, y el lienzo muestra el cuadro donde estás y luego vuelve a reproducir el fragmento. **Volumen** fija qué tan fuerte suena. Con **Repetir** activado, el video vuelve a empezar cuando termina su fragmento; sin él, se reproduce una vez, y un elemento que aparece con un evento se va cuando termina el video. Uno que se mueve con un evento reproduce su video de nuevo cada vez, y **Reproducir de nuevo**, junto a **Repetir**, lo reproduce otra vez en el lienzo. El lienzo no suena mientras editas: haz clic en **Sonido en el lienzo**, el altavoz debajo del lienzo, para oír sus videos. OBS reproduce el sonido sin un clic; en una pestaña del navegador, haz clic una vez en el overlay para oír los videos.
 
 Para eliminar un grupo o un elemento, selecciónalo y presiona Supr, o haz clic en el botón de la papelera junto a **+**. Un grupo se elimina con sus elementos. Ctrl+C copia la selección, Ctrl+X la corta y Ctrl+V pega una copia, cada una 20 px más abajo y a la derecha que la anterior, también en otro overlay. Un elemento copiado va al grupo seleccionado, y un grupo copiado se pega como un grupo nuevo.
@@ -66,6 +82,11 @@ Para eliminar un grupo o un elemento, selecciónalo y presiona Supr, o haz clic 
 La barra debajo del lienzo muestra su nivel de zoom. Haz zoom con sus botones, con Ctrl y la rueda del mouse (o pellizcando en un trackpad) donde está el puntero, o con Ctrl+= y Ctrl+-. Ctrl+0, o **Ajustar a la vista**, vuelve a mostrar el lienzo entero. Con zoom, muévete con la rueda o las barras de desplazamiento, o mantén presionada la barra espaciadora y arrastra el lienzo.
 
 **Reglas y guías**, el botón junto al zoom, o Ctrl+R, muestra reglas en los bordes de arriba e izquierdo del lienzo, en píxeles desde su esquina de arriba a la izquierda. Cada overlay recuerda si están activadas. Con las reglas activadas, mantén presionada la tecla Ctrl y arrastra desde una regla para agregar una guía: desde la regla de arriba para una guía horizontal, desde la de la izquierda para una vertical. Mantén presionada Ctrl y arrastra una guía para moverla, o de vuelta a una regla para quitarla. Sin nada seleccionado, la **Configuración del overlay** muestra sus guías: ahí puedes escribir sus posiciones, agregar una en el centro del lienzo, bloquearlas o quitarlas todas. Las guías se guardan con el overlay y nunca aparecen en el stream.
+
+<Screenshot
+  name="studio-guides"
+  alt="El lienzo con reglas en sus bordes superior e izquierdo y una guía en cada uno de sus centros"
+/>
 
 Cuando arrastras un elemento o un grupo, se ajusta a los bordes y al centro del lienzo, a los bordes y centros de los otros elementos, y a las guías mientras las reglas están activadas. Una esquina se ajusta igual cuando cambias el tamaño. Una línea muestra con qué se alinea. Mantén presionada Alt mientras arrastras para colocarlo libremente. Las teclas de flecha y los campos nunca se ajustan.
 
@@ -102,6 +123,11 @@ Un texto puede mostrar números en vivo de tu LIVE, escritos entre llaves:
 Se acortan como los muestra TikTok, como 12.8 K, y marcan 0 mientras no estás en LIVE. El editor muestra números de ejemplo.
 
 Un texto que reacciona a un evento también puede usar los valores de ese evento, como `¡Gracias, {username}!` con un regalo o `{username} envió {count} {gift}`. Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y, si reacciona a un evento, las del evento. Me gusta no tiene espectador ni cantidad propios, porque sus Me gusta vienen de todos los espectadores: `{likes}` muestra el total del LIVE.
+
+<Screenshot
+  name="studio-text"
+  alt="La configuración de un texto: el mensaje de seguimiento, con los números en vivo y los valores del evento listados debajo para agregarlos"
+/>
 
 Un elemento guarda los valores de su último evento hasta que Tokio se cierra, así que `Último seguidor: {username}` se sigue viendo después de recargar la fuente de navegador. Antes de su primer evento, esas variables están vacías. Los elementos ocultos, y los de un grupo oculto, siguen reaccionando, así que muestran el último evento cuando los vuelves a mostrar.
 
