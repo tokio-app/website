@@ -91,6 +91,7 @@ export default defineConfig({
             "docs/features/games",
             "docs/features/overlays",
             "docs/features/countdown-timer",
+            "docs/features/overlay-studio",
             "docs/features/coin-stats",
             "docs/features/fans",
             "docs/features/profiles-and-settings",
