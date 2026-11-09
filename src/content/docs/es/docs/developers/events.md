@@ -40,6 +40,14 @@ Tokio envía `GIFTERS` (`tokio:gifters`) con quienes más regalan, como mucho un
 
 Si hay un empate, gana quien llegó primero. Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
 
+## Música
+
+Tokio envía `MUSIC_CHANGE` con toda la cola de pedidos de canciones cada vez que cambia y cuando termina su última canción. Un overlay también la recibe al conectarse, mientras la cola tenga canciones. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
+
+La cola va en orden: las canciones que ya sonaron, la que está sonando (`playing: true`) y luego las que esperan. Si ninguna está sonando, la cola está vacía o ya terminó su última canción.
+
+`title` es la canción y sus artistas, como `Canción - Artista`. Tokio no sabe cuándo se pausa una canción, así que `playing` solo marca en qué punto va la cola.
+
 ## Eventos de conexión
 
 Estos los envía el propio `@tokioapp/overlay` e informan sobre su WebSocket. No se disparan en las vistas previas de Tokio, que no usan WebSocket, así que no esperes a `OPEN` para mostrar el overlay.

@@ -40,6 +40,14 @@ Tokio sends `GIFTERS` (`tokio:gifters`) with the top gifters, at most once a sec
 
 Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't. In Tokio's previews, it comes as a sample when you click **Test**.
 
+## Music
+
+Tokio sends `MUSIC_CHANGE` with the whole song request queue each time it changes and when its last song ends. An overlay also gets it as it connects, while the queue has songs. In Tokio's previews, it comes as a sample when you click **Test**.
+
+The queue is in order: the songs already played, the one playing (`playing: true`), then the ones waiting. When no song is playing, the queue is empty or its last song ended.
+
+`title` is the song and its artists, as `Song - Artist`. Tokio can't tell when a song is paused, so `playing` only marks where the queue is.
+
 ## Connection events
 
 These come from `@tokioapp/overlay` itself, about its WebSocket. They don't fire in Tokio's previews, which don't use one, so don't wait for `OPEN` to show the overlay.
