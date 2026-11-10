@@ -1,12 +1,12 @@
 ---
 title: Overlay Studio
-description: Build your own overlays from text, images and the overlays you already have, with elements that react to your LIVE.
+description: Build your own overlays from text, images, your cameras and the overlays you already have, with elements that react to your LIVE.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-Overlay Studio builds your own overlays from text, images, gifts and the overlays you already have. Each element can stay on screen or react to your LIVE, and each overlay is one browser source.
+Overlay Studio builds your own overlays from text, images, your cameras, gifts and the overlays you already have. Each element can stay on screen or react to your LIVE, and each overlay is one browser source.
 
 <Steps>
 
@@ -39,10 +39,11 @@ An overlay is made of elements, the things that show:
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Text**             | Your text, with its **Font**, **Size**, **Color**, **Alignment**, **Bold** and **Dark halo**.                                                                                                                                                                                                      |
 | **Image or video**   | A file from the media library you use for [alerts](/docs/features/alerts/#images-and-videos). A video plays with its sound.                                                                                                                                                                        |
-| **Gift**             | The picture of the gift a viewer sends, or of one gift you pick. The gift sent needs the **Gift** trigger, so it can't be **Always on screen**.                                                                                                                                                    |
-| **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen**.                                                                                                                                   |
+| **Camera**           | A camera on this computer, live. See [Cameras](#cameras).                                                                                                                                                                                                                                          |
+| **Gift**             | The picture of the gift a viewer sends, or of one gift you pick. The gift sent needs the **Gift** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                          |
+| **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                         |
 | **Shape**            | A rectangle, an ellipse, a polygon, a star, an arrow, a heart or a speech bubble, filling its box, with a **Fill** and a **Border**, each in its own color. Turn either one off. A polygon has 3 to 12 **Sides**, a star 3 to 12 **Points**, and a rectangle or speech bubble a **Corner radius**. |
-| **Viewer's picture** | The profile picture of the viewer who set the element off, or their initial when they have none. It can't be **Always on screen**, and only reacts to events a viewer sends: not an envelope, a Super Fan Box or a music change.                                                                   |
+| **Viewer's picture** | The profile picture of the viewer who set the element off, or their initial when they have none. It can't be **Always on screen** or **Moves all the time**, and only reacts to events a viewer sends: not an envelope, a Super Fan Box or a music change.                                         |
 | **Overlay**          | An installed overlay, the countdown timer, the games overlay or an alert's overlay. See [Embedding overlays](#embedding-overlays).                                                                                                                                                                 |
 
 The **Elements** list shows every element, the front one on top, with a small picture of what it shows. An element that reacts to an event says which one under its name. Click an empty spot in the list to deselect. To order, lock, hide and move elements together, put them in a group: in the **+** menu, **New group** adds one in front of the rest. A new element goes into the selected group, or the group of the selected element, and the menu names it: **Add to Group 1**. Otherwise it goes in front, on its own.
@@ -66,7 +67,7 @@ Select a group or an element to name it in its settings. An element without a na
 
 On the canvas, click an element to select it, drag it to move it and drag any of its corners to resize it. A text's box can't get narrower than its longest word, or shorter than its words, and it grows to fit them when you change its text, font, size or bold. To rotate it, drag the round handle above it, or hold Shift to turn it in steps of 15°. The arrow keys move it 1 px, 10 px with Shift, Delete deletes it, and Escape deselects it. **Position and size**, **Rotation (°)** and **Opacity** set the same things by number. You can also click and hold a number field, then drag left or right to change its number, 10 at a time with Shift. **Link width and height**, the button between **Width** and **Height**, keeps the proportions as you change either one, in the fields or by dragging a corner. **Align to the canvas** moves the element to an edge of the canvas or to its center, and **Flip** mirrors it horizontally or vertically. Select a group in the list to change all its elements at once: drag inside its outline or use the arrow keys to move it, and drag its corners or its round handle to resize or rotate it. Its settings have the same fields as an element's, and its **Opacity** fades the whole group.
 
-To crop an image, a video, a gift or an emote, double-click it or click **Crop on the canvas** in its settings. The whole picture shows, with the parts you cut away dimmed: drag the frame's sides or corners to crop it, or drag inside the frame to move the picture under it, then press Enter or click outside to keep the crop, or Escape to cancel. Cropping never moves or resizes the picture; the element's box shrinks to the part you keep. **Crop (%)** in its settings sets the same crop by number, and **Reset the crop** brings back the whole picture. **Round corners** rounds them, up to a circle for a square picture. A viewer's picture crops from its fields only, which pick the part of each viewer's picture that fills its circle. A new file, gift or emote starts uncropped.
+To crop an image, a video, a camera, a gift or an emote, double-click it or click **Crop on the canvas** in its settings. The whole picture shows, with the parts you cut away dimmed: drag the frame's sides or corners to crop it, or drag inside the frame to move the picture under it, then press Enter or click outside to keep the crop, or Escape to cancel. Cropping never moves or resizes the picture; the element's box shrinks to the part you keep. **Crop (%)** in its settings sets the same crop by number, and **Reset the crop** brings back the whole picture. **Round corners** rounds them, up to a circle for a square picture. A viewer's picture crops from its fields only, which pick the part of each viewer's picture that fills its circle. A new file, gift or emote starts uncropped.
 
 <Screenshot
   name="studio-crop"
@@ -94,19 +95,24 @@ A font must be installed on the computer that runs your streaming app, or the te
 
 ## When
 
-Each element's **When** sets how it reacts:
+Each element's and group's **When** sets how it reacts:
 
-| When                  | What the element does                                                                                                                     |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **Always on screen**  | Stays on screen.                                                                                                                          |
-| **Shows on an event** | Stays hidden until its **Trigger**, then comes in with its **Entrance** (Fade, Pop or Slide) for its **Seconds on screen**, from 1 to 60. |
-| **Moves on an event** | Stays on screen and plays its **Animation** (Bounce, Shake or Pulse) each time its **Trigger** fires.                                     |
+| When                   | What it does                                                                                                                                       |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Always on screen**   | Stays on screen.                                                                                                                                   |
+| **Shows on an event**  | Stays hidden until its **Trigger**, then comes in with its **Entrance** for its **Seconds on screen**, from 1 to 60, and leaves with its **Exit**. |
+| **Moves on an event**  | Stays on screen and plays its **Animation** each time its **Trigger** fires.                                                                       |
+| **Moves all the time** | Stays on screen and plays its **Animation** over and over, with no trigger.                                                                        |
+
+**Entrance** and **Exit** each pick one of Fade, Pop, Slide up, Slide down, Slide left, Slide right, Zoom, Drop, Spin, Flip, Wipe and Blur. For **Moves on an event**, **Animation** picks one of Bounce, Shake, Pulse, Wiggle, Spin, Flip, Jump, Swing, Ta-da, Heartbeat, Flash and Jelly; for **Moves all the time**, one of Float, Breathe, Spin, Sway, Hop and Drift.
+
+A group has a **When** too, and moves as one: a group that shows on an event brings all its elements in and takes them out together, and one that moves carries them with it. Its elements keep their own **When** inside it, so an element can bounce on each gift while its group floats.
 
 The **Trigger** picker has the same events and filters as [alerts](/docs/features/alerts/#triggers). On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger.
 
-If its trigger fires again while it shows, it starts over with the newest event's values.
+If its trigger fires again while it shows or leaves, it starts over with the newest event's values.
 
-In the editor, an element that shows on an event stays on the canvas with a dashed outline, so you can place it.
+In the editor, an element or group that shows on an event stays on the canvas with a dashed outline, so you can place it, and [Test](#test) plays its entrance, its seconds on screen and its exit before it comes back. What moves all the time moves on the canvas too.
 
 ## Text
 
@@ -131,6 +137,32 @@ A text that reacts to an event can also use that event's values, like `Thanks {u
 
 An element keeps its last event's values until Tokio closes, so `Last follower: {username}` still shows after you reload the browser source. Before its first event, those variables are empty. Hidden elements, and the elements of a hidden group, keep reacting, so they show the latest event when you show them again.
 
+## Cameras
+
+A **Camera** element shows a camera on this computer, live, on your stream and on the canvas. In **Camera**, pick **Default camera** (the one your system uses first) or any camera the computer has. Each element can show a different camera, and several elements can show the same one. A camera you picked that isn't plugged in shows as **(not connected)**.
+
+**Quality** sends the camera at **720p** or **1080p**. 1080p is sharper and takes more of your computer's power; 720p is plenty for a camera in a corner. Elements that show the same camera share it at the higher of their qualities.
+
+Crop it and round its corners like a picture, up to a circle for a round camera, and use **Flip** to mirror it. To show a camera on its own, make an overlay with one **Camera** element that fills the canvas.
+
+Tokio turns a camera on only while the editor or an overlay that shows it is open, and turns it off a few seconds after the last one closes. Hiding the element turns its camera off too. The editor shows the camera straight from your computer, so it works with the overlay server off. Your stream gets it through the server.
+
+:::note
+Once a camera has been on, Tokio uses more memory until you quit it: around 100 MB, depending on your camera and graphics card. Chromium, which Tokio is built on, keeps its camera process and the video encoder's memory after the camera turns off. The next camera uses them again, so the memory doesn't keep growing.
+:::
+
+Other computers on your network can't open your camera: only the overlays Tokio serves get its address, which changes every time the overlay server starts.
+
+If a camera can't start, Tokio tells you why and tries again every 5 seconds:
+
+- Another app may be using it, like OBS's own **Video Capture Device** for the same camera. Use the camera in one app at a time.
+- On Windows, turn on **Let desktop apps access your camera** in **Settings → Privacy & security → Camera**.
+- On macOS, allow Tokio when it asks, or later in **System Settings → Privacy & Security → Camera**.
+
+:::tip
+The camera can reach your stream slightly behind your microphone. If your lips look out of sync, delay the microphone a little in your streaming app. In OBS, that's **Sync Offset** in **Advanced Audio Properties**.
+:::
+
 ## Embedding overlays
 
 An **Overlay** element shows another overlay inside this one: pick it in **Overlay**. The list has your installed overlays, the **Countdown timer**, the **Games overlay**, and the alerts of the active profile that show an image or video.
@@ -147,7 +179,7 @@ If you remove an official overlay you embedded, its element shows nothing until 
 
 ## Test
 
-The play button, **Test the elements that react to events**, plays each element that reacts once with sample values, in the editor and on your stream. Tokio doesn't keep the samples, so a reload shows the real last event again.
+The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, elements with sample values, in the editor and on your stream. Tokio doesn't keep the samples, so a reload shows the real last event again.
 
 ## Notes
 
