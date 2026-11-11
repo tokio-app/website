@@ -37,6 +37,7 @@ En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y
 | **Actualizaciones**      | Desactiva la búsqueda automática de versiones nuevas.                                                                                                                                                                                                                                                                                                     |
 | **Bandeja del sistema**  | Deja Tokio en la bandeja del sistema (la barra de menús en macOS) cuando lo cierras. Haz clic en el ícono o en **Abrir Tokio** para volver a abrirlo, y en **Salir de Tokio** para cerrarlo. En Linux, la primera vez que lo cierras después de que Tokio inicia, una notificación avisa que Tokio sigue abierto: haz clic en ella para volver a abrirlo. |
 | **Motores de voz**       | Tu ID de sesión de TikTok, para que las voces de TikTok vengan directo de TikTok en lugar de un proxy de terceros.                                                                                                                                                                                                                                        |
+| **Registros**            | **Exportar registros**, el botón junto al título de la sección, guarda todos los registros de Tokio en un .zip para adjuntarlo a un reporte de error. **Registros detallados** también les agrega cada evento del LIVE, después de que lo confirmes. Así crecen más rápido, por eso desactívalo cuando ya los hayas enviado.                              |
 
 <Screenshot
   name="settings"
@@ -82,4 +83,4 @@ Tokio guarda todo en la carpeta `.tokio` de tu carpeta de usuario: `C:\Users\<t�
 | `history`         | Los LIVE anteriores de cada perfil, para **Monedas**   |
 | `logs`            | Lo que hizo Tokio, para reportar errores               |
 
-Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta los archivos de `.tokio/logs`. Incluyen tu usuario de TikTok.
+Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta el .zip que guarda **Exportar registros** en **Configuración → Registros**. Los registros incluyen tu usuario de TikTok y, con **Registros detallados** activado, también los de tus espectadores.

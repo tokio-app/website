@@ -37,6 +37,7 @@ In **Settings → Live profiles**, **New** creates a blank profile and **Clone**
 | **Updates**        | Turns off the automatic checks for new versions.                                                                                                                                                                                                                                      |
 | **Tray**           | Keeps Tokio in the tray (the menu bar on macOS) when you close it. Click the icon or **Open Tokio** to bring it back, and **Quit Tokio** to quit. On Linux, the first time you close it after Tokio starts, a notification says Tokio is still running: click it to bring Tokio back. |
 | **Voice engines**  | Your TikTok session ID, so TikTok voices come straight from TikTok instead of a third-party proxy.                                                                                                                                                                                    |
+| **Logs**           | **Export logs**, the button next to the section's title, saves all of Tokio's logs in one .zip to attach to a bug report. **Detailed logs** also writes every LIVE event to them, after you confirm. They grow faster that way, so turn it off once you've sent them.                 |
 
 <Screenshot
   name="settings"
@@ -82,4 +83,4 @@ Tokio keeps everything in the `.tokio` folder in your user folder: `C:\Users\<yo
 | `history`         | Each profile's past LIVEs, for Coin stats |
 | `logs`            | What Tokio did, for bug reports           |
 
-To report a bug, open an [issue on GitHub](https://github.com/tokio-app/tokio/issues) and attach the files in `.tokio/logs`. They include your TikTok username.
+To report a bug, open an [issue on GitHub](https://github.com/tokio-app/tokio/issues) and attach the .zip that **Export logs** saves in **Settings → Logs**. The logs include your TikTok username, and with **Detailed logs** on, your viewers' usernames too.
