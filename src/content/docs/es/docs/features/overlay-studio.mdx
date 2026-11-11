@@ -67,6 +67,11 @@ El **Cuándo** de cada elemento y de cada grupo define cómo reacciona:
 
 **Entrada** elige entre Fundido, Aparición, Deslizar hacia arriba, Deslizar hacia abajo, Deslizar a la izquierda, Deslizar a la derecha, Zoom, Caída, Giro, Volteo, Barrido y Desenfoque, y **Salida** entre los mismos, con Desaparición en lugar de Aparición. Con **Se mueve con un evento**, **Animación** elige entre Rebote, Sacudida, Pulso, Meneo, Giro, Volteo, Salto, Vaivén, Tadá, Latido, Destello y Gelatina; con **Se mueve todo el tiempo**, entre Flotar, Respirar, Girar, Mecerse, Saltitos y A la deriva.
 
+<Screenshot
+  name="studio-when"
+  alt="El Cuándo del mensaje de seguimiento: Aparece con un evento, con Seguir, Aparición como entrada, Deslizar hacia abajo como salida y 5 segundos en pantalla"
+/>
+
 Un grupo se mueve como un todo: uno que aparece con un evento hace entrar y salir a todos sus elementos juntos, y uno que se mueve los lleva consigo. Sus elementos conservan su propio **Cuándo**, así que un elemento puede rebotar con cada regalo mientras su grupo flota.
 
 El selector de **Activador** tiene los mismos eventos y filtros que las [alertas](/es/docs/features/alerts/#activadores). Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador.
@@ -113,6 +118,11 @@ Cada elemento puede mostrar una cámara distinta, y varios elementos pueden most
 Los elementos que muestran la misma cámara la comparten en la calidad más alta de las que piden.
 
 Recórtala y redondea sus esquinas como una imagen, hasta un círculo para una cámara redonda, y usa **Voltear** para reflejarla. Para mostrar solo una cámara, crea un overlay con un elemento **Cámara** que llene el lienzo.
+
+<Screenshot
+  name="studio-camera"
+  alt="Una cámara recortada en círculo en el lienzo, con su configuración: Cámara predeterminada en 720p"
+/>
 
 Tokio enciende una cámara solo mientras está abierto el editor o un overlay que la muestra, y la apaga unos segundos después de que se cierra el último. Ocultar el elemento también apaga su cámara.
 
