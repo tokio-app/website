@@ -6,8 +6,9 @@
   --sl-font: var(--font-family);
   --sl-font-mono: var(--font-family-mono);
   --sl-line-height: 1.6;
-  /* Under 80 characters a line in Archivo */
-  --sl-content-width: 37rem;
+  /* Room for the tables and screenshots (the user's call over shorter
+     lines), as wide as the About page */
+  --sl-content-width: var(--content-width);
 
   --sl-color-accent-low: #4c0519;
   --sl-color-accent: var(--accent-primary);
@@ -86,6 +87,28 @@ a[rel="me"]:hover {
   font-weight: 500;
 }
 
+/* A page that belongs to the one above it, like Minecraft steps under Games
+   (the user's call), is indented under it with a hairline of its own inside
+   its section's, the way Starlight draws a nested list */
+.sidebar-content a.child {
+  margin-inline-start: calc(2 * var(--sl-sidebar-item-padding-inline));
+  border-inline-start: 1px solid var(--sl-color-hairline-light);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+/* The search sits in the middle of the header bar (the user's call), not at
+   the content column's left edge: two equal columns around it */
+@media (min-width: 50rem) {
+  header.header > .header {
+    grid-template-columns: 1fr minmax(0, 22rem) 1fr;
+  }
+
+  header.header > .header > .right-group {
+    justify-self: end;
+  }
+}
+
 /* Search looks like a field */
 site-search button[data-open-modal] {
   border-color: var(--sl-color-gray-5);
@@ -140,6 +163,22 @@ site-search button[data-open-modal]:hover {
 
 .sl-link-card:hover {
   border-color: var(--background-secondary-hover);
+}
+
+/* Archivo's digits ride about 0.075em high in a line box, so the step
+   numbers are nudged down to the middle of their circles */
+.sl-steps > li::before {
+  padding-top: 0.075em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A table's first column names what the row is about, like a setting or a
+   step: its bold UI names don't break across lines. Phones still wrap them,
+   or a long Spanish name pushes its table past the screen. */
+@media (min-width: 50rem) {
+  .sl-markdown-content td:first-child strong {
+    white-space: nowrap;
+  }
 }
 
 /* The app's screenshots share the page's Ink, so a hairline frames them */

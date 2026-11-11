@@ -79,6 +79,8 @@
   --font-title: clamp(28px, 4vw, 36px);
   --font-display: clamp(40px, 6vw, 60px);
   --container: 1120px;
+  /* Long text: the docs' column and the About page */
+  --content-width: 45rem;
   --gutter: var(--space-4);
   --header-height: 64px;
 }

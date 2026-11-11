@@ -3,7 +3,7 @@ title: Compilar Tokio desde el código fuente
 description: Compila y ejecuta Tokio desde su código fuente.
 ---
 
-El código fuente de Tokio está en [GitHub](https://github.com/tokio-app/tokio). Para compilarlo necesitas Node.js 24.18 o posterior y Yarn 1.22.
+El código fuente de Tokio está en [GitHub](https://github.com/tokio-app/tokio). Para compilarlo necesitas Node.js 24.18 o posterior y Yarn 1.22.22 o posterior.
 
 ```sh
 git clone https://github.com/tokio-app/tokio.git

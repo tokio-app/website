@@ -28,7 +28,7 @@ Tokio envía `CONFIG` (`tokio:config`) con la configuración del overlay cuando 
 
 ## Fans
 
-Tokio envía `FANS` (`tokio:fans`) con los fans que el perfil del streamer vio en sus LIVEs, cuando el overlay se conecta y otra vez cuando la lista cambia, como mucho cada 5 segundos. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
+Tokio envía `FANS` (`tokio:fans`) con los fans que el perfil del streamer vio en sus LIVEs, cuando el overlay se conecta, después de cambiar de perfil y otra vez cuando la lista cambia, como mucho cada 5 segundos. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
 
 TikTok solo envía el nivel de fan de un espectador cuando hace algo en el LIVE, así que esta lista trae fans que tu overlay todavía no vio. Tiene hasta 100, del nivel de fan más alto al más bajo y, con el mismo nivel, primero los que se vieron más recientemente.
 
@@ -38,11 +38,15 @@ Tokio envía `GIFTERS` (`tokio:gifters`) con quienes más regalan, como mucho un
 
 `live` es el top 10 de este LIVE por monedas, vacío mientras Tokio no está conectado. `allTime` es el top 10 de todos los LIVEs que guardó el perfil, este incluido.
 
-Si hay un empate, gana quien llegó primero. Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
+Si hay un empate, gana quien llegó primero. Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no.
+
+En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
 
 ## Música
 
-Tokio envía `MUSIC_CHANGE` con toda la cola de pedidos de canciones cada vez que cambia y cuando termina su última canción. Un overlay también la recibe al conectarse, mientras la cola tenga canciones. En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
+Tokio envía `MUSIC_CHANGE` con toda la cola de pedidos de canciones cada vez que cambia y cuando termina su última canción. Un overlay también la recibe al conectarse, mientras la cola tenga canciones.
+
+En las vistas previas de Tokio llega como muestra cuando haces clic en **Probar**.
 
 La cola va en orden: las canciones que ya sonaron, la que está sonando (`playing: true`) y luego las que esperan. Si ninguna está sonando, la cola está vacía o ya terminó su última canción.
 
@@ -63,7 +67,7 @@ Estos los envía el propio `@tokioapp/overlay` e informan sobre su WebSocket. No
 La mayoría de los eventos incluyen al espectador que los provocó:
 
 ```ts
-interface User {
+interface UserData {
   username: string; // nombre visible
   handle: string; // @usuario
   profilePictures: string[];
@@ -78,6 +82,8 @@ interface User {
 
 `fanBadge` es la imagen que TikTok muestra para el nivel de fan: un corazón que cambia cada 10 niveles, sin el número, así que dibuja `fanLevel` al lado. Está vacío para un espectador que no es fan.
 
+`follower`, `moderator` y `superfan` solo traen su valor real en `CHAT` y `GIFT`. Los demás eventos envían `false`, incluso `FOLLOW`.
+
 | Evento                                                 | Datos                                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
 | `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                            |
@@ -86,12 +92,16 @@ interface User {
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
 | `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd, image } }` |
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | ninguno                                                                   |
-| `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`               |
+| `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | La cola: `{ title, thumbnail, playing, played }[]`                        |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
 Cada emote del chat es `{ emoteID, index, images }`, y un comentario hecho solo de emotes tiene el `content` vacío. El `image` de un regalo es la URL de su imagen.
+
+`gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
+
+`totalLikes` puede bajar por un rato, así que quédate con el más alto que hayas visto. En `ROOM_USER`, `viewers` es cuántos miran ahora y `views` el total del LIVE, y cada elemento de `ranks` es `{ username, handle, profilePictures, userId, score, position }`.
 
 :::tip[Combos de regalos]
 Un combo envía varios eventos `GIFT` con un `comboCount` que va creciendo. El último trae `repeatEnd: true`: reacciona a ese si quieres una sola reacción por combo.

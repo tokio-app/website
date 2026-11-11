@@ -27,7 +27,9 @@ Tokio reads chat messages aloud as they come in.
 
 </Steps>
 
-Changes save as you make them. If chat wouldn't read your test message, say for a banned word, you see why instead.
+**Test voice** applies your replacements, **Remove emojis** and banned words, so a message with a banned word or nothing left to read shows a notice instead.
+
+The format, the length limit and the permissions don't apply to the test, so it can play a message chat would skip.
 
 ## Voices
 
@@ -50,7 +52,9 @@ Give some viewers a voice of their own: under **Special users**, add their @hand
 
 ## Format
 
-Read every message, or only the ones that start with a dot, a slash or a command of your own. Choosing **Custom command** fills in `!tts`, which you can change. The command isn't read aloud, and with the command left blank nothing is read.
+Read every message, or only the ones that start with a dot, a slash or a command of your own.
+
+Choosing **Custom command** fills in `!tts`, which you can change. The command isn't read aloud, and with the command left blank nothing is read.
 
 <Screenshot
   name="tts-format"
@@ -67,7 +71,7 @@ The **Message template** sets what's read:
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove emojis** leaves emojis out, and skips messages that are only emojis.
 
-A message with nothing to read is skipped: when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
+A message is skipped when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
 
 ## Replacements
 
@@ -80,7 +84,9 @@ Teach the voice to say acronyms, slang and names. Each one swaps a whole word, i
 
 ## Permissions
 
-Uncheck **Allow everyone** to allow only followers, Super Fans, moderators or a minimum fan level. With **Use allow and block lists**, @handles on the block list are never read, and an allow list with names lets only them talk.
+Uncheck **Allow everyone**, then check **Followers only**, **Super Fans only**, **Moderators only** or **Minimum fan level**. Until you check one, everyone still talks, and a viewer who matches any checked one gets through.
+
+With **Use allow and block lists**, an allow list with names lets only them talk. @handles on the block list are never read, even when they're on the allow list.
 
 <Screenshot
   name="tts-permissions"
@@ -89,11 +95,13 @@ Uncheck **Allow everyone** to allow only followers, Super Fans, moderators or a 
 
 ## Protection
 
-A **Cooldown** and a **Max queue length** keep chat from flooding the voice. Messages over the **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters or hidden characters.
+The **Cooldown** is the seconds between two messages, for all of chat. Messages that come while the queue holds **Max queue length** messages are dropped.
+
+Messages over the **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters or hidden characters. A banned word also matches inside other words, so banning "ass" skips "class" too.
 
 <Screenshot
   name="tts-protection"
   alt="The Protection section: cooldown, maximum queue length, maximum comment length and banned words"
 />
 
-Replacements, **Remove emojis**, banned words and the block list also apply to [alerts that speak](/docs/features/alerts/#spoken-messages). [Music requests](/docs/features/music-requests/#who-can-request) have their own permissions.
+Replacements, **Remove emojis**, banned words and the block list also apply to [alerts that speak](/docs/features/alerts/#spoken-messages). [Music](/docs/features/music-requests/#who-can-request) has its own permissions.

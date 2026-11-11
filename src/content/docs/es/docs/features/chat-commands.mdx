@@ -1,0 +1,45 @@
+---
+title: Comandos de chat
+description: Lo que los espectadores pueden escribir en el chat, función por función.
+---
+
+Los espectadores escriben esto en el chat de tu LIVE. Cada uno funciona solo mientras su función está en marcha, y la página de esa función tiene los detalles.
+
+## Música
+
+| Comando             | Qué hace                                  |
+| ------------------- | ----------------------------------------- |
+| `!play <canción>`   | Pide una canción                          |
+| `!next`             | Pasa al siguiente pedido en espera        |
+| `!last`             | Vuelve a la canción anterior              |
+| `!revoke <canción>` | Quita una canción en espera por su nombre |
+
+Los espectadores pueden escribirlos en mayúsculas o minúsculas. Cambia el nombre de cada uno o desactívalo en **Controles**, elige [quién puede pedir](/es/docs/features/music-requests/#quién-puede-pedir) y consulta [Comandos de chat](/es/docs/features/music-requests/#comandos-de-chat) para saber quién puede saltar o retirar canciones.
+
+Funcionan mientras **Música** está activa en **Funciones activas** y conectada en **Música**.
+
+## Texto a voz
+
+En **Formato**, en **TTS**, elige qué mensajes se leen en voz alta:
+
+| Formato                     | Qué escriben los espectadores                |
+| --------------------------- | -------------------------------------------- |
+| **Leer todos los mensajes** | Cualquier mensaje                            |
+| **Prefijo de punto ( . )**  | `.hola a todos`                              |
+| **Prefijo de barra ( / )**  | `/hola a todos`                              |
+| **Comando personalizado**   | Tu comando primero, como `!tts hola a todos` |
+
+El prefijo o el comando no se lee en voz alta, y el comando personalizado funciona en mayúsculas o minúsculas. Consulta [Formato](/es/docs/features/text-to-speech/#formato).
+
+El chat se lee mientras **TTS** está activo en **Funciones activas**.
+
+## Palabras clave que eliges
+
+Algunas funciones reaccionan a una palabra clave que eliges. Coincide como palabra completa, en mayúsculas o minúsculas y con o sin acentos, y una vacía coincide con todos los mensajes.
+
+| Dónde la configuras                                                                  | Qué hace                                                                      | Funciona mientras                                                                              |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [Alertas de chat](/es/docs/features/alerts/#alertas-de-chat-emotes-y-entradas)       | Reproduce la alerta                                                           | **Alertas** está activa en **Funciones activas**, y la alerta también                          |
+| [Acciones de juego](/es/docs/features/games/#acciones) con **Chat**                  | Ejecuta la acción en Minecraft                                                | El interruptor de **Minecraft** está activado, tu mundo está conectado y la acción está activa |
+| [Temporizador](/es/docs/features/countdown-timer/#tiempo-sumado)                     | Suma los segundos que elijas, una vez por espectador en cada tiempo de espera | El temporizador está en marcha o en pausa                                                      |
+| [Elementos de Overlay Studio](/es/docs/features/overlay-studio/#cuándo) con **Chat** | Muestra o mueve el elemento                                                   | Su overlay está abierto en tu app de streaming                                                 |

@@ -15,8 +15,8 @@ Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores sum
 
 <Steps>
 
-1. En **Herramientas**, abre **Temporizador** y define el **Tiempo inicial**.
-2. En **Tiempo sumado**, define los segundos que suma cada evento.
+1. En **Herramientas**, abre **Temporizador** y define el **Tiempo inicial**, 60 minutos por defecto.
+2. En **Tiempo sumado**, define lo que suma cada evento.
 3. Agrega el overlay del temporizador a tu app de streaming (mira [cómo agregar un overlay](/es/docs/guides/adding-an-overlay/)):
 
    ```
@@ -34,15 +34,17 @@ Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores sum
   alt="El temporizador en marcha, con sus controles, el tiempo inicial y la URL del overlay"
 />
 
-| Botón                   | Qué hace                                                                                            |
-| ----------------------- | --------------------------------------------------------------------------------------------------- |
-| **Iniciar**             | Pone en marcha el reloj desde el **Tiempo inicial**, o lo reanuda.                                  |
-| **Pausar**              | Congela el reloj. Los eventos siguen sumando tiempo.                                                |
-| **Detener**             | Congela el reloj, y los eventos no suman nada hasta que vuelvas a **Iniciar**.                      |
-| **Restablecer**         | Vuelve al tiempo inicial, después de que confirmes.                                                 |
-| **Agregar**, **Quitar** | Cambian el reloj en los minutos que escribas, por ejemplo por una donación que llegó por otro lado. |
+| Botón                   | Qué hace                                                                                                                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Iniciar**             | Pone en marcha el reloj desde el **Tiempo inicial**, o lo reanuda.                                                                                                                       |
+| **Pausar**              | Congela el reloj. Los eventos siguen sumando tiempo.                                                                                                                                     |
+| **Detener**             | Congela el reloj, y los eventos no suman nada hasta que vuelvas a **Iniciar**.                                                                                                           |
+| **Restablecer**         | Vuelve al tiempo inicial, después de que confirmes.                                                                                                                                      |
+| **Agregar**, **Quitar** | Cambian el reloj en los minutos que escribas, como una donación que llegó por otro lado. Funcionan después de **Iniciar**, no usan el **Multiplicador** y paran en el **Tiempo máximo**. |
 
-Al llegar a 0 el reloj se detiene, y sigue corriendo aunque salgas de su página. Se pausa cuando el LIVE termina o Tokio se desconecta, salvo que desmarques **Pausar cuando el LIVE termine o se desconecte**.
+Al llegar a 0 el estado dice **Se acabó el tiempo**, e **Iniciar** espera a que uses **Agregar** o **Restablecer**. El reloj sigue corriendo aunque salgas de su página.
+
+Se pausa cuando el LIVE termina o Tokio se desconecta, salvo que desmarques **Pausar cuando el LIVE termine o se desconecte**.
 
 ## Tiempo sumado
 
@@ -50,6 +52,19 @@ Al llegar a 0 el reloj se detiene, y sigue corriendo aunque salgas de su página
   name="timer-time-added"
   alt="Tiempo sumado: el multiplicador, el tiempo máximo y los segundos que suma cada evento"
 />
+
+Los eventos suman tiempo solo después de que presionas **Iniciar**. Por defecto:
+
+| Evento                | Suma                                       |
+| --------------------- | ------------------------------------------ |
+| **Monedas**           | 1 segundo por moneda                       |
+| **Me gusta**          | 10 segundos cada 100 Me gusta              |
+| **Seguidores nuevos** | 30 segundos cada uno                       |
+| **Compartidos**       | 10 segundos cada uno                       |
+| **Super Fans nuevos** | 300 segundos cada uno                      |
+| **Mensajes del chat** | 0, una vez por espectador cada 30 segundos |
+
+**Me gusta por ciclo** define cuántos Me gusta suman tiempo juntos.
 
 - Con 0 segundos, el evento no suma tiempo. **Multiplicador** multiplica todos los eventos, como 2 para una hora de tiempo doble.
 - **Tiempo máximo** deja de sumar tiempo cuando el reloj llega a ese valor. Con 0 no hay límite.
@@ -64,11 +79,12 @@ El overlay muestra el reloj, un **Título** opcional y lo que suma cada tanda de
   alt="Aspecto del temporizador: los colores, el título, el aviso, las fuentes y los nombres que se muestran para cada activador"
 />
 
+- **Reloj**, **Título**, **Tiempo sumado** y **Aviso** son sus cuatro colores.
 - **Aviso** pone el reloj en su color de aviso esa cantidad de minutos antes del final. Con 0 se desactiva.
-- **Fuente del reloj** y **Fuente del título** muestran las fuentes de tu computadora. Si tu app de streaming está en otra computadora, instala la fuente ahí también; si no, el overlay usa Archivo.
+- **Fuente del reloj** y **Fuente del título** muestran las fuentes de tu computadora. Si tu app de streaming está en otra computadora, mira [Fuentes y sonido](/es/docs/guides/adding-an-overlay/#fuentes-y-sonido).
 - **Mostrar el multiplicador** lo muestra, como **×2**, mientras no sea 1.
 - **Mostrar los activadores, uno a la vez** muestra lo que suma cada evento, como **Seguir +30s**, con los nombres que escribas.
 
 ## Perfiles y reinicios
 
-Cada perfil tiene su propio temporizador. Si Tokio se cierra mientras corre, vuelve en pausa con más o menos el tiempo que tenía.
+Cada perfil tiene su propio temporizador, y cambiar de perfil lo pausa. Si Tokio se cierra mientras corre, vuelve en pausa con más o menos el tiempo que tenía.

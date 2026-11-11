@@ -1,0 +1,45 @@
+---
+title: Chat commands
+description: What viewers can type in chat, feature by feature.
+---
+
+Viewers type these in your LIVE's chat. Each one works only while its feature runs, and that feature's page has the details.
+
+## Music
+
+| Command          | What it does                       |
+| ---------------- | ---------------------------------- |
+| `!play <song>`   | Requests a song                    |
+| `!next`          | Plays the next waiting request     |
+| `!last`          | Goes back to the last song         |
+| `!revoke <song>` | Removes a waiting song by its name |
+
+Viewers can type them in any case. Rename or turn off each one under **Controls**, choose [who can request](/docs/features/music-requests/#who-can-request), and see [Chat commands](/docs/features/music-requests/#chat-commands) for who may skip or revoke.
+
+They work while **Music** is on under **Active features** and connected on **Music**.
+
+## Text-to-speech
+
+Under **Format** on **TTS**, pick which messages are read aloud:
+
+| Format                 | What viewers type                           |
+| ---------------------- | ------------------------------------------- |
+| **Read all messages**  | Any message                                 |
+| **Dot prefix ( . )**   | `.hi everyone`                              |
+| **Slash prefix ( / )** | `/hi everyone`                              |
+| **Custom command**     | Your command first, like `!tts hi everyone` |
+
+The prefix or command isn't read aloud, and a custom command matches in any case. See [Format](/docs/features/text-to-speech/#format).
+
+Chat is read while **TTS** is on under **Active features**.
+
+## Keywords you choose
+
+Some features react to a keyword you pick. It matches as a whole word, in any case and with or without accents, and a blank one matches every message.
+
+| Where you set it                                                           | What it does                                           | Works while                                                                  |
+| -------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| [Chat alerts](/docs/features/alerts/#chat-emote-and-join-alerts)           | Plays the alert                                        | **Alerts** is on under **Active features**, and so is the alert              |
+| [Game actions](/docs/features/games/#actions) on **Chat**                  | Runs the action in Minecraft                           | The **Minecraft** switch is on, your world is connected and the action is on |
+| [Countdown](/docs/features/countdown-timer/#time-added)                    | Adds the seconds you set, once per viewer per cooldown | The timer is running or paused                                               |
+| [Overlay Studio elements](/docs/features/overlay-studio/#when) on **Chat** | Shows or moves the element                             | Its overlay is open in your streaming app                                    |

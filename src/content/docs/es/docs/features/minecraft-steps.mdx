@@ -1,0 +1,159 @@
+---
+title: Pasos de Minecraft
+description: Qué hace en tu mundo cada paso de una acción de Juegos.
+---
+
+Todos los pasos que puede ejecutar una [acción](/es/docs/features/games/#acciones) de Juegos, y qué hace cada uno en el juego. Los pasos se ejecutan en orden, como tú y donde estés.
+
+## Generar criatura
+
+De 1 a 100 de una criatura, con un nombre opcional. La lista tiene todas las criaturas que el juego puede invocar, y además **Chicken Jockey**: un zombi bebé montado en una gallina, con el nombre en el zombi.
+
+Si son varias, aparecen de una en una, con un cuarto de segundo entre cada una. Así, 100 tardan unos 25 segundos, y las siguientes ejecuciones de la acción y **Probar** esperan a que terminen.
+
+Las criaturas que generas no se queman con la luz del día, y las hostiles van por ti.
+
+- En Java, el mod de Tokio se encarga de las dos cosas. Durante su primer segundo no atacan a nadie, así que un grupo no puede matarte apenas aparece.
+- En Bedrock, las que se quemarían reciben resistencia al fuego. Las hostiles te atacan cuando te ven, como siempre, y las arañas de cueva aparecen enojadas. Los endermen, los piglins zombificados y las arañas de día no te atacan hasta que los golpeas.
+
+## Dar objeto
+
+De 1 a 100 de un objeto, de entre todos los que el juego puede dar. El objeto va a tu inventario, o cae a tus pies si está lleno.
+
+Marca **reemplazando los tuyos** y primero se van los que ya tienes de ese objeto, encantados o no, para que los regalos no te llenen el inventario.
+
+En Java, la armadura, las armas, las herramientas, los escudos, las elytras y las cañas de pescar tienen una casilla **con encantamientos**. Márcala y el objeto llega con los mejores encantamientos que puede tener, cada uno en su nivel más alto, y el paso los muestra debajo.
+
+Una espada de netherita lleva Filo V, Barrido III, Aspecto de fuego II, Empuje II, Saqueo III, Irrompibilidad III y Reparación.
+
+<details>
+<summary>Qué encantamientos</summary>
+
+- Cuando dos no pueden ir juntos, el objeto lleva Protección (no Protección contra el fuego, contra explosiones ni contra proyectiles), Filo (no Castigo ni Perdición de los artrópodos), Densidad (no Fisura), Fortuna (no Toque de seda), Agilidad acuática (no Paso helado), Multidisparo (no Perforación), y Lealtad y Conductividad (no Propulsión acuática).
+- Un arco lleva Infinidad, que no puede ir con Reparación. Aun así necesita una flecha en tu inventario para disparar, así que quizá te convenga dar una con él.
+- Ningún objeto lleva maldiciones.
+- **Reemplazando los tuyos** en una pieza de armadura también se lleva la que tienes puesta, y la nueva va a tu inventario.
+- Las acciones de Bedrock no tienen la casilla **con encantamientos**: sus objetos llegan sin encantar.
+
+</details>
+
+## Peligros
+
+| Peligro                      | Qué pasa                                                                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con una mecha de 0 a 30 segundos (4 al principio)                                   |
+| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor, con la misma mecha                                                                               |
+| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                                                                                 |
+| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti, con un cuarto de segundo entre cada uno                                                           |
+| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                                                                      |
+| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                                                                          |
+| **Daño instantáneo**         | Te quita 6 corazones                                                                                                              |
+| **Lanzar al cielo**          | Rompe los bloques que tienes encima y te lanza de 5 a 300 bloques hacia arriba (50 al principio) en 1 a 10 segundos, y luego caes |
+| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                                                                                    |
+| **Congelar**                 | No puedes caminar durante 1 a 120 segundos (10 al principio)                                                                      |
+| **Apagón**                   | Oscuridad durante 1 a 120 segundos (10 al principio)                                                                              |
+| **Mareo**                    | Tu pantalla se tambalea durante 1 a 120 segundos (10 al principio)                                                                |
+| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                                                                                 |
+| **Teletransporte aleatorio** | A algún lugar dentro de 10 a 10,000 bloques (1,000 al principio)                                                                  |
+| **Trampa de telarañas**      | Las telarañas llenan el aire a tu alrededor y encima de ti                                                                        |
+| **Trampa de miel**           | Una caja de miel te encierra: caminas despacio y no puedes saltar                                                                 |
+| **Prisión de obsidiana**     | Una caja de obsidiana te encierra y tienes que cavar para salir                                                                   |
+| **Lago de lava**             | El suelo a tu alrededor se vuelve lava y te quedas sobre un bloque de obsidiana                                                   |
+| **Hoyo debajo**              | El suelo bajo tus pies se abre, tan hondo como elijas (10 bloques al principio, hasta 64)                                         |
+| **Vaciar el inventario**     | Pierdes todo lo que tienes en el inventario                                                                                       |
+| **Jefe al azar**             | Aparece junto a ti un Guardia (Warden), un Wither, un Devastador o un Evocador, elegido de nuevo cada vez                         |
+| **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor                                      |
+| **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo                                             |
+| **Súper láser**              | Cae la noche en tu pantalla, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo                                  |
+| **Súper duper láser**        | Un súper láser que antes atraviesa todo el suelo que tienes encima                                                                |
+
+Los últimos cuatro son solo de Java, del mod de Tokio. Sus explosiones rompen bloques y causan incendios como la TNT, salvo que la regla de juego `tnt_explodes` esté desactivada.
+
+<details>
+<summary>Los detalles</summary>
+
+- La TNT de Bedrock solo tiene dos mechas: 4 s, o una al azar de 0.5 a 2 s cuando eliges 2 s o menos.
+- El yunque necesita aire 20 bloques más arriba, y se queda en el mundo después de caer.
+- Un lanzamiento tarda los segundos que elijas, así que con menos segundos va más rápido. Por encima de unos 190 bloques, 1 segundo es demasiado rápido y tarda un poco más.
+- Un lanzamiento primero abre un hueco de 3×3 hasta donde sube, bedrock incluido, así que en el Nether atraviesas el techo. Los bloques que quita no sueltan nada. Cerca del tope del mundo, la parte de arriba no se puede abrir, y **Probar** la muestra como fallida.
+- La trampa de telarañas solo llena el aire, así que no rompe nada. Las cajas de miel y de obsidiana reemplazan los bloques donde van sus paredes, su piso y su techo, y dejan lo que hay adentro.
+- Para salir de la isla del lago de lava, salta el anillo de lava, de 2 bloques de ancho, o construye una salida. Si caes, te prendes fuego.
+- El hoyo nunca rompe el bedrock del fondo del mundo: tan cerca de él, no cava nada. En el End, un hoyo bastante hondo atraviesa la isla.
+- En un combo de regalos, cada regalo trae un jefe al azar nuevo.
+- En un mundo LAN, los vexes de un evocador y el rugido de un devastador también pueden alcanzar a otros jugadores.
+- Un meteorito cae en el suelo debajo de ti aunque estés volando, y tienes 2 segundos para quitarte de ahí.
+- La noche de un súper láser solo se ve en tu pantalla: la hora del mundo no cambia.
+- Las partículas de los meteoritos y los láseres siguen tu ajuste de **Partículas** en Minecraft: menos con **Disminuidas**, ninguna con **Mínimas**.
+
+</details>
+
+## Ayuda
+
+- **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas. En Java, marca **con encantamientos** y cada pieza lleva los mejores encantamientos que puede tener, como en **Dar objeto**.
+- **Kit de netherita**: la misma armadura, más una espada, un pico y un hacha de netherita, un arco y 64 flechas. En Java todo lleva los mejores encantamientos, el arco con Infinidad. Marca **reemplazando los tuyos** para que más kits no te llenen el inventario.
+- **Curación completa**: te llena la salud y el hambre.
+- **Regeneración** II, **Absorción** IV, **Resistencia** IV, **Resistencia al fuego**, **Velocidad** II, **Impulso en salto** II, **Fuerza** II, **Caída lenta**, **Respiración acuática**, **Visión nocturna** e **Invisibilidad**: durante 1 a 600 segundos (30 al principio).
+
+## Convertirse en criatura
+
+Solo en Java, gracias al mod de Tokio. Te conviertes en cualquier criatura viva, jefes incluidos, con su tamaño, su salud, su daño, su armadura y su salto, y en tercera persona te ves como la criatura.
+
+En **Cuánto tiempo**, elige **hasta volver a la normalidad**, que termina con un paso **Volver a la normalidad**, o **durante** 1 a 600 segundos (30 al principio).
+
+- También vuelves a la normalidad si cierras el mundo.
+- Si mueres, reapareces como la criatura por el tiempo que te quedaba: su tiempo se detiene mientras estás muerto.
+- Mientras dura una con tiempo fijo, un nuevo **Convertirse en criatura** espera a que se acabe ese tiempo y luego empieza con sus propios segundos. Van en el orden en que llegaron.
+- Una criatura sin segundos le cede el lugar a la siguiente enseguida, y **Volver a la normalidad** también descarta las que esperaban.
+- Conservas la misma parte de tus corazones: con la mitad de tu salud de jugador, tienes la mitad de los 100 de un Iron Golem.
+
+Mientras eres la criatura:
+
+- Caminas a su paso, entre la mitad y una vez y media tu paso normal.
+- Las criaturas voladoras despegan enseguida y vuelan como en el modo creativo: los ghasts y los blazes más despacio, y los phantoms, los vexes y el Ender Dragon más rápido.
+- Las criaturas acuáticas respiran bajo el agua, y los peces se ahogan en tierra.
+- Las criaturas resistentes al fuego no se queman, los zombis y los esqueletos se prenden fuego al sol, los endermen y los blazes se lastiman con el agua, y las arañas trepan paredes.
+- Haces los sonidos de la criatura al recibir daño, al morir, al caminar y cuando está quieta.
+- El Ender Dragon destruye lo que atraviesa volando, salvo que la regla de juego `mobGriefing` esté desactivada.
+
+Los invitados de tu mundo LAN necesitan el mod para ver la criatura.
+
+### Ataques
+
+Presiona **R** para usar el ataque de la criatura hacia donde miras, y mantenla presionada para seguir atacando a su ritmo. La tecla es **Mob attack**, en **Tokio**, dentro de **Opciones → Controles → Asignación de teclas**.
+
+Las criaturas que solo muerden o golpean, como los zombis y las arañas, no tienen nada en la R. Golpean con clic izquierdo, con el daño de la criatura.
+
+| Criatura                                                         | Qué hace la R                                                                                                                                                                                             |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Wither**                                                       | Un cráneo de Wither de cada una de sus cabezas por turnos, uno cada 0.75 segundos                                                                                                                         |
+| **Ghast**                                                        | Abre la boca un segundo y luego lanza una bola de fuego que explota, cada 3 segundos                                                                                                                      |
+| **Blaze**                                                        | Tres bolas de fuego seguidas, cada 5.6 segundos                                                                                                                                                           |
+| **Skeleton**, **Stray**, **Bogged**, **Parched**, **Illusioner** | Una flecha cada segundo, cada 2.5 en el Bogged. La de un Stray da Lentitud, la de un Bogged Veneno y la de un Parched Debilidad                                                                           |
+| **Pillager**, **Piglin**                                         | Una flecha de ballesta cada 2 segundos                                                                                                                                                                    |
+| **Drowned**                                                      | Un tridente cada 2 segundos                                                                                                                                                                               |
+| **Witch**                                                        | Una poción arrojadiza cada 3 segundos: la que una bruja le lanzaría a la criatura que miras, o Daño instantáneo                                                                                           |
+| **Snow Golem**                                                   | Una bola de nieve cada segundo                                                                                                                                                                            |
+| **Llama**, **Trader Llama**                                      | Un escupitajo cada 2 segundos                                                                                                                                                                             |
+| **Shulker**                                                      | Una bala que sigue a la criatura que miras y la hace flotar, cada 2 segundos                                                                                                                              |
+| **Breeze**                                                       | Toma aire y luego lanza una carga de viento, más o menos cada 1.5 segundos                                                                                                                                |
+| **Ender Dragon**                                                 | Una bola de fuego de dragón que deja una nube de aliento, cada 3 segundos                                                                                                                                 |
+| **Warden**                                                       | Se carga durante 1.7 segundos y luego suelta un estallido sónico que atraviesa paredes hasta la criatura a la que apuntaste, hasta 15 bloques, cada 5 segundos                                            |
+| **Evoker**                                                       | Levanta los brazos, y un segundo después 16 colmillos muerden desde el suelo en línea hacia la criatura a la que apuntaste, o en dos anillos a tu alrededor si está a menos de 3 bloques, cada 5 segundos |
+| **Guardian**, **Elder Guardian**                                 | Un rayo sobre la criatura que miras, que la golpea a los 4 segundos (3 en un Elder Guardian) si no la pierdes de vista                                                                                    |
+| **Creeper**                                                      | Sisea durante 1.5 segundos y luego explota a tu alrededor, cada 3 segundos. Sigues siendo un creeper                                                                                                      |
+
+Tus golpes con clic izquierdo también hacen lo que hace el golpe de la criatura: el de un Wither Skeleton da Descomposición, el de una Cave Spider y el de una Bee dan Veneno (salvo en Fácil), el de un Iron Golem lanza a las criaturas hacia arriba, y el de un Hoglin y el de un Zoglin las arrojan. Con la mano vacía, el de un Husk da Hambre, y el de un zombi en llamas puede prenderles fuego.
+
+Tus ataques nunca te lastiman a ti ni a otros jugadores, y las flechas y los tridentes que disparas no se pueden recoger. Sus explosiones rompen bloques salvo que la regla de juego `mobGriefing` esté desactivada, y las bolas de fuego de un Blaze prenden fuego.
+
+## Comando
+
+Usa un paso de comando para todo lo demás, como títulos o sonidos:
+
+```
+say {username} sent {count} {gift}!
+```
+
+Escríbelo para la edición de la acción, porque algunos comandos cambian de una a otra. Si la criatura o el objeto no existe, no se ejecuta nada.
+
+Puede usar las [variables](/es/docs/features/games/#variables) de la acción.

@@ -39,11 +39,13 @@ Cada perfil tiene sus propias alertas, pero tus sonidos, imágenes y videos son 
 
 </Steps>
 
-Los cambios se guardan solos. Para buscar una alerta, haz clic en el botón de búsqueda junto a **Agregar alerta**.
+Cada alerta tiene su propio interruptor en su fila, e **Inicio** cuenta cuántas están activas.
+
+Para buscar una alerta, haz clic en el botón de búsqueda junto a **Agregar alerta**.
 
 ## Activadores
 
-Elige el **Evento**: Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Super Fan, Caja de Super Fan, Entrada de Super Fan, Entrada de espectador o Cambio de canción (una canción nueva de los [pedidos de canciones](/es/docs/features/music-requests/)).
+Elige el **Evento**: Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Super Fan, Caja de Super Fan, Entrada de Super Fan, Entrada de espectador o Cambio de canción (una canción nueva de los [pedidos de canciones](/es/docs/features/music-requests/)). Una alerta de Me gusta suena con cada tanda de Me gusta que envía TikTok, de cualquier espectador.
 
 En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene solo con ellos. Solo Chat, Emote y Regalo tienen esta opción, porque TikTok envía los roles de un espectador solo con esos eventos.
 
@@ -64,7 +66,6 @@ Arrastra los controles de la forma de onda para recortar el inicio o el final, o
 <summary>Más sobre los recortes</summary>
 
 - Con un control enfocado, las flechas del teclado lo mueven una décima de segundo, o un segundo con Shift.
-- Un sonido recortado antes de su final se apaga con un fundido corto, así no se oye un clic.
 - El archivo queda completo, así que otras alertas pueden recortarlo a su manera.
 - La fila de la alerta muestra la duración del recorte, y su botón de reproducir reproduce solo el recorte.
 
@@ -72,7 +73,7 @@ Arrastra los controles de la forma de onda para recortar el inicio o el final, o
 
 ## Mensajes hablados
 
-En la pestaña **Texto a voz** del selector de sonidos, escribe un mensaje, elige una voz y presiona **Usar texto a voz**.
+En la pestaña **Texto a voz** del selector de sonidos, escribe un mensaje, elige una voz y presiona **Usar texto a voz**. El mensaje tiene su propia **Velocidad** y su propio **Tono**, que empiezan con los de la página TTS.
 
 <Screenshot
   name="alerts-tts"
@@ -89,7 +90,9 @@ Haz clic en una variable para agregar los datos del evento:
 | `{count}`                | Me gusta (los Me gusta enviados)                         |
 | `{song}`                 | Cambio de canción                                        |
 
-También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/). Si el espectador está en la lista de bloqueados, el mensaje no se lee, pero la imagen o el video de la alerta se muestra igual.
+También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/). Una palabra prohibida en lo que completa una variable, como un nombre o un comentario, omite toda la alerta, con su imagen o video.
+
+Con un espectador en la lista de bloqueados es distinto: el mensaje no se lee, pero la imagen o el video de la alerta se muestra igual.
 
 ## Imágenes y videos
 
@@ -115,7 +118,7 @@ Copia la URL aquí o desde la fila de la alerta, [agrégala a tu app de streamin
 - **Recortar** conserva una parte, igual que el recorte de un sonido.
 - Un video que no indica su duración no se puede recortar: define su **Duración**.
 - Un video reproduce su propio sonido, con su propio **Volumen**.
-- En una pestaña del navegador, haz clic una vez en el overlay para oír los videos. OBS reproduce el sonido sin necesidad de clic.
+- Para oír los videos en una pestaña del navegador, mira [Fuentes y sonido](/es/docs/guides/adding-an-overlay/#fuentes-y-sonido).
 
 </details>
 

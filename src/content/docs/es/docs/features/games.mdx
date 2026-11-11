@@ -99,10 +99,9 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
 <Steps>
 
 1. Elige la pestaña de la edición de tu juego.
-2. Haz clic en **Agregar acción**, debajo de sus acciones.
-3. Elige el activador.
-4. Haz clic en **Agregar paso** y elige qué pasa.
-5. Haz clic en el botón de reproducir para probarla.
+2. Haz clic en **Agregar acción**, debajo de sus acciones. Empieza como una de Seguir que genera un Zombie.
+3. Elige el activador, cambia el paso y haz clic en **Agregar paso** para agregar más.
+4. Haz clic en el botón de reproducir para probarla.
 
 </Steps>
 
@@ -111,13 +110,25 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
   alt="La pestaña Bedrock de Acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
 />
 
-**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña. Si le cambias la edición a una acción, se mueve a la otra pestaña, y sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond. En Bedrock, que no tiene los pasos de Java, **Meteorito** pasa a ser **Caída de TNT**, los láseres pasan a ser **Rayo**, y **Convertirse en criatura** y **Volver a la normalidad** se quitan.
+Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar acción** la quita enseguida, sin preguntar, y **Quitar paso** hace lo mismo con cada paso.
+
+**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña.
 
 **Duplicar acción** pone una copia justo después de la acción. Cámbiale la edición para ejecutar los mismos pasos en el otro juego.
 
+<details>
+<summary>Cambiar la edición de una acción</summary>
+
+- La acción se mueve a la otra pestaña.
+- Sus criaturas y objetos pasan a los de la otra edición, o a un Zombie o un Diamond si esa edición no tiene uno igual.
+- En Bedrock, **Meteorito** pasa a ser **Caída de TNT**, los láseres pasan a ser **Rayo**, y **Convertirse en criatura** y **Volver a la normalidad** se quitan.
+- Las ejecuciones que esperaban con su edición anterior se cancelan.
+
+</details>
+
 Haz clic en **Acciones** para plegar las acciones y darle más espacio al overlay. Se vuelven a abrir la próxima vez que entres a **Juegos**.
 
-Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción.
+Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**.
 
 | Activador    | Opciones                                                                                                                                   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -130,155 +141,19 @@ Las acciones se ejecutan mientras **Minecraft** está activado y hay un juego de
 
 ## Pasos
 
-Los pasos se ejecutan en orden, como tú y donde estés.
+Los pasos se ejecutan en orden, como tú y donde estés. En [Pasos de Minecraft](/es/docs/features/minecraft-steps/) está lo que hace cada uno en el juego.
 
-| Paso                        | Qué hace                                                                                                        |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **Generar criatura**        | De 1 a 100 de una criatura, con un nombre opcional                                                              |
-| **Convertirse en criatura** | Solo en Java: te conviertes en una criatura, hasta **Volver a la normalidad** o durante los segundos que elijas |
-| **Volver a la normalidad**  | Solo en Java: termina **Convertirse en criatura**                                                               |
-| **Dar objeto**              | De 1 a 100 de un objeto, para ti                                                                                |
-| **Clima**                   | **Despejado**, **Lluvia** o **Tormenta**                                                                        |
-| **Hora del día**            | **Día**, **Mediodía**, **Noche** o **Medianoche**                                                               |
-| **Peligro**                 | Algo que intenta matarte o te estorba                                                                           |
-| **Ayuda**                   | Algo que te ayuda a sobrevivir                                                                                  |
-| **Comando**                 | Cualquier comando, como lo escribirías en el chat, con barra o sin ella                                         |
-
-### Generar criatura
-
-La lista tiene todas las criaturas que el juego puede invocar, y además **Chicken Jockey**: un zombi bebé montado en una gallina. El nombre va en el zombi.
-
-Si son varias, aparecen de una en una, con un cuarto de segundo entre cada una.
-
-Las criaturas que generas no se queman con la luz del día, y las hostiles van por ti.
-
-- En Java, la versión más reciente del mod de Tokio se encarga de las dos cosas. Durante su primer segundo no atacan a nadie, así que un grupo no puede matarte apenas aparece.
-- En Bedrock, las que se quemarían reciben resistencia al fuego. Las hostiles te atacan cuando te ven, como siempre, y las arañas de cueva aparecen enojadas. Los endermen, los piglins zombificados y las arañas de día no te atacan hasta que los golpeas.
-
-### Dar objeto
-
-La lista tiene todos los objetos que el juego puede dar. El objeto va a tu inventario, o cae a tus pies si está lleno.
-
-Marca **reemplazando los tuyos** y primero se van los que ya tienes de ese objeto, encantados o no, para que los regalos no te llenen el inventario.
-
-En Java, la armadura, las armas, las herramientas, los escudos, las elytras y las cañas de pescar tienen una casilla **con encantamientos**. Márcala y el objeto llega con los mejores encantamientos que puede tener, cada uno en su nivel más alto, y el paso los muestra debajo.
-
-Una espada de netherita lleva Filo V, Barrido III, Aspecto de fuego II, Empuje II, Saqueo III, Irrompibilidad III y Reparación.
-
-<details>
-<summary>Qué encantamientos</summary>
-
-- Cuando dos no pueden ir juntos, el objeto lleva Protección (no Protección contra el fuego, contra explosiones ni contra proyectiles), Filo (no Castigo ni Perdición de los artrópodos), Densidad (no Fisura), Fortuna (no Toque de seda), Agilidad acuática (no Paso helado), Multidisparo (no Perforación), y Lealtad y Conductividad (no Propulsión acuática).
-- Un arco lleva Infinidad, que no puede ir con Reparación. Aun así necesita una flecha en tu inventario para disparar, así que quizá te convenga dar una con él.
-- Ningún objeto lleva maldiciones.
-- **Reemplazando los tuyos** en una pieza de armadura también se lleva la que tienes puesta, y la nueva va a tu inventario.
-- Bedrock no puede dar objetos encantados: su `give` no acepta encantamientos, y su `enchant` solo funciona con el objeto que tienes en la mano. Por eso las acciones de Bedrock no tienen la casilla.
-
-</details>
-
-### Peligros
-
-| Peligro                      | Qué pasa                                                                                                      |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Caída de TNT**             | Cae TNT encendida desde 10 bloques de altura, con la mecha que elijas                                         |
-| **Anillo de TNT**            | 8 TNT encendidas a tu alrededor                                                                               |
-| **Rayo**                     | Cae donde estás, de 1 a 100 veces                                                                             |
-| **Creeper cargado**          | Aparecen de 1 a 100 junto a ti, de uno en uno                                                                 |
-| **Colmillos de evocador**    | Muerden desde debajo de ti, de 1 a 100 veces                                                                  |
-| **Caída de yunque**          | Cae un yunque desde 20 bloques de altura                                                                      |
-| **Daño instantáneo**         | Te quita 6 corazones                                                                                          |
-| **Lanzar al cielo**          | Rompe los bloques que tienes encima y te lanza hasta 300 bloques hacia arriba (50 al principio), y luego caes |
-| **Lanzar + agua**            | Lo mismo, pero antes te da una cubeta con agua                                                                |
-| **Congelar**                 | No puedes caminar durante los segundos que elijas (10 al principio)                                           |
-| **Apagón**                   | Oscuridad durante los segundos que elijas                                                                     |
-| **Mareo**                    | Tu pantalla se tambalea durante los segundos que elijas                                                       |
-| **Dar la vuelta**            | Quedas mirando hacia el otro lado                                                                             |
-| **Teletransporte aleatorio** | A algún lugar dentro de la distancia que elijas (1,000 bloques al principio)                                  |
-| **Trampa de telarañas**      | Las telarañas llenan el aire a tu alrededor y encima de ti                                                    |
-| **Trampa de miel**           | Una caja de miel te encierra: caminas despacio y no puedes saltar                                             |
-| **Prisión de obsidiana**     | Una caja de obsidiana te encierra y tienes que cavar para salir                                               |
-| **Lago de lava**             | El suelo a tu alrededor se vuelve lava y te quedas sobre un bloque de obsidiana                               |
-| **Hoyo debajo**              | El suelo bajo tus pies se abre, tan hondo como elijas (10 bloques al principio, hasta 64)                     |
-| **Vaciar el inventario**     | Pierdes todo lo que tienes en el inventario                                                                   |
-| **Jefe al azar**             | Aparece junto a ti un Guardia (Warden), un Wither, un Devastador o un Evocador, elegido de nuevo cada vez     |
-| **Meteorito**                | Caen del cielo de 1 a 100 rocas en llamas, la primera donde estás y las demás a tu alrededor                  |
-| **Láser**                    | Un haz rojo te sigue durante 2 segundos, luego dispara y abre un hoyo donde se detuvo                         |
-| **Súper láser**              | Cae la noche en tu pantalla, caen rayos a tu alrededor y abre un túnel de 60 bloques hacia abajo              |
-| **Súper duper láser**        | Un súper láser que antes atraviesa todo el suelo que tienes encima                                            |
-
-Java tiene cuatro peligros más, del mod de Tokio: **Meteorito**, **Láser**, **Súper láser** y **Súper duper láser**. Sus explosiones rompen bloques y causan incendios como la TNT, salvo que la regla de juego `tnt_explodes` esté desactivada.
-
-<details>
-<summary>Los detalles</summary>
-
-- La TNT de Bedrock solo tiene dos mechas: 4 s, o una al azar de 0.5 a 2 s cuando eliges 2 s o menos.
-- El yunque necesita aire 20 bloques más arriba, y se queda en el mundo después de caer.
-- Un lanzamiento tarda los segundos que elijas, así que con menos segundos va más rápido. Por encima de unos 190 bloques, 1 segundo es demasiado rápido y tarda un poco más.
-- Un lanzamiento primero abre un hueco de 3×3 hasta donde sube, bedrock incluido, así que en el Nether atraviesas el techo. Los bloques que quita no sueltan nada. Cerca del tope del mundo, la parte de arriba no se puede abrir, y **Probar** la muestra como fallida.
-- La trampa de telarañas solo llena el aire, así que no rompe nada. Las cajas de miel y de obsidiana reemplazan los bloques donde van sus paredes, su piso y su techo, y dejan lo que hay adentro.
-- Para salir de la isla del lago de lava, salta el anillo de lava, de 2 bloques de ancho, o construye una salida. Si caes, te prendes fuego.
-- El hoyo nunca rompe el bedrock del fondo del mundo: tan cerca de él, no cava nada. En el End, un hoyo bastante hondo atraviesa la isla.
-- En un combo de regalos, cada regalo trae un jefe al azar nuevo. El Ender Dragon no es uno de ellos: fuera del End vuela al centro del mundo y te deja en paz.
-- En un mundo LAN, los vexes de un evocador y el rugido de un devastador también pueden alcanzar a otros jugadores.
-- Un meteorito cae en el suelo debajo de ti aunque estés volando, y tienes 2 segundos para quitarte de ahí.
-- La noche de un súper láser solo se ve en tu pantalla: la hora del mundo no cambia.
-- Las partículas de los meteoritos y los láseres siguen tu ajuste de **Partículas** en Minecraft: menos con **Disminuidas**, ninguna con **Mínimas**.
-
-</details>
-
-### Ayuda
-
-- **Armadura de netherita**: un set completo, puesto de una vez. Pierdes la armadura que llevabas. En Java, marca **con encantamientos** y cada pieza lleva los mejores encantamientos que puede tener, como en **Dar objeto**.
-- **Kit de netherita**: la misma armadura, más una espada, un pico y un hacha de netherita, un arco y 64 flechas. En Java todo lleva los mejores encantamientos, el arco con Infinidad. Marca **reemplazando los tuyos** para que más kits no te llenen el inventario.
-- **Curación completa**: te llena la salud y el hambre.
-- **Regeneración** II, **Absorción** IV, **Resistencia** IV, **Resistencia al fuego**, **Velocidad** II, **Impulso en salto** II, **Fuerza** II, **Caída lenta**, **Respiración acuática**, **Visión nocturna** e **Invisibilidad**: durante los segundos que elijas (30 al principio).
-
-### Convertirse en criatura
-
-Te conviertes en la criatura, cualquiera que esté viva, jefes incluidos: tienes su tamaño, su salud, su daño, su armadura y su salto, y en tercera persona te ves como la criatura. Solo las acciones de Java lo tienen, gracias al mod de Tokio.
-
-Dura hasta un paso **Volver a la normalidad**, o los segundos que elijas. También vuelves a la normalidad si cierras el mundo. Si mueres, reapareces como la criatura por el tiempo que te quedaba: su tiempo se detiene mientras estás muerto. Mientras eres una criatura por un tiempo fijo, un nuevo **Convertirse en criatura** espera a que se acabe ese tiempo y luego empieza con sus propios segundos, en el orden en que llegaron. Una criatura sin segundos le cede el lugar a la siguiente enseguida, y **Volver a la normalidad** también descarta las que esperaban. Conservas la misma parte de tus corazones: con la mitad de tu salud de jugador, tienes la mitad de los 100 de un Iron Golem.
-
-Caminas al paso de la criatura, entre la mitad y una vez y media tu paso normal. Las criaturas voladoras despegan enseguida y vuelan como en el modo creativo: los ghasts y los blazes más despacio, y los phantoms, los vexes y el Ender Dragon más rápido. Las criaturas acuáticas respiran bajo el agua, y los peces se ahogan en tierra. Las criaturas resistentes al fuego no se queman, los zombis y los esqueletos se prenden fuego al sol, los endermen y los blazes se lastiman con el agua, y las arañas trepan paredes. Haces los sonidos de la criatura al recibir daño, al morir, al caminar y cuando está quieta.
-
-El Ender Dragon destruye lo que atraviesa volando, salvo que la regla de juego `mobGriefing` esté desactivada. Los invitados de tu mundo LAN necesitan el mod para ver la criatura.
-
-#### Ataques
-
-Presiona **R** para usar el ataque de la criatura hacia donde miras, y mantenla presionada para seguir atacando a su ritmo. La tecla es **Mob attack**, en **Tokio**, dentro de **Opciones → Controles → Asignación de teclas**. Las criaturas que solo muerden o golpean, como los zombis y las arañas, no tienen nada en la R: golpean con clic izquierdo, con el daño de la criatura.
-
-| Criatura                                                         | Qué hace la R                                                                                                                                                                                             |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Wither**                                                       | Un cráneo de Wither de cada una de sus cabezas por turnos, uno cada 0.75 segundos                                                                                                                         |
-| **Ghast**                                                        | Abre la boca un segundo y luego lanza una bola de fuego que explota, cada 3 segundos                                                                                                                      |
-| **Blaze**                                                        | Tres bolas de fuego seguidas, cada 5.6 segundos                                                                                                                                                           |
-| **Skeleton**, **Stray**, **Bogged**, **Parched**, **Illusioner** | Una flecha cada segundo, cada 2.5 en el Bogged. La de un Stray da Lentitud, la de un Bogged Veneno y la de un Parched Debilidad                                                                           |
-| **Pillager**, **Piglin**                                         | Una flecha de ballesta cada 2 segundos                                                                                                                                                                    |
-| **Drowned**                                                      | Un tridente cada 2 segundos                                                                                                                                                                               |
-| **Witch**                                                        | Una poción arrojadiza cada 3 segundos: la que una bruja le lanzaría a la criatura que miras, o Daño instantáneo                                                                                           |
-| **Snow Golem**                                                   | Una bola de nieve cada segundo                                                                                                                                                                            |
-| **Llama**, **Trader Llama**                                      | Un escupitajo cada 2 segundos                                                                                                                                                                             |
-| **Shulker**                                                      | Una bala que sigue a la criatura que miras y la hace flotar, cada 2 segundos                                                                                                                              |
-| **Breeze**                                                       | Toma aire y luego lanza una carga de viento, más o menos cada 1.5 segundos                                                                                                                                |
-| **Ender Dragon**                                                 | Una bola de fuego de dragón que deja una nube de aliento, cada 3 segundos                                                                                                                                 |
-| **Warden**                                                       | Se carga durante 1.7 segundos y luego suelta un estallido sónico que atraviesa paredes hasta la criatura a la que apuntaste, hasta 15 bloques, cada 5 segundos                                            |
-| **Evoker**                                                       | Levanta los brazos, y un segundo después 16 colmillos muerden desde el suelo en línea hacia la criatura a la que apuntaste, o en dos anillos a tu alrededor si está a menos de 3 bloques, cada 5 segundos |
-| **Guardian**, **Elder Guardian**                                 | Un rayo sobre la criatura que miras, que la golpea a los 4 segundos (3 en un Elder Guardian) si no la pierdes de vista                                                                                    |
-| **Creeper**                                                      | Sisea durante 1.5 segundos y luego explota a tu alrededor, cada 3 segundos. Sigues siendo un creeper                                                                                                      |
-
-Tus golpes con clic izquierdo también hacen lo que hace el golpe de la criatura: el de un Wither Skeleton da Descomposición, el de una Cave Spider y el de una Bee dan Veneno (salvo en Fácil), el de un Iron Golem lanza a las criaturas hacia arriba, y el de un Hoglin y el de un Zoglin las arrojan. Con la mano vacía, el de un Husk da Hambre, y el de un zombi en llamas puede prenderles fuego.
-
-Tus ataques nunca te lastiman a ti ni a otros jugadores. Sus explosiones rompen bloques salvo que la regla de juego `mobGriefing` esté desactivada, y las bolas de fuego de un Blaze prenden fuego. Las flechas y los tridentes que disparas no se pueden recoger.
-
-### Comando
-
-Usa un paso de comando para todo lo demás, como títulos o sonidos:
-
-```
-say {username} sent {count} {gift}!
-```
-
-Escríbelo para la edición de la acción, porque algunos comandos cambian de una a otra. Si la criatura o el objeto no existe, no se ejecuta nada.
+| Paso                                                                                      | Qué hace                                                                                                        |
+| ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [**Generar criatura**](/es/docs/features/minecraft-steps/#generar-criatura)               | De 1 a 100 de una criatura, con un nombre opcional                                                              |
+| [**Convertirse en criatura**](/es/docs/features/minecraft-steps/#convertirse-en-criatura) | Solo en Java: te conviertes en una criatura, hasta **Volver a la normalidad** o durante los segundos que elijas |
+| [**Volver a la normalidad**](/es/docs/features/minecraft-steps/#convertirse-en-criatura)  | Solo en Java: termina **Convertirse en criatura**                                                               |
+| [**Dar objeto**](/es/docs/features/minecraft-steps/#dar-objeto)                           | De 1 a 100 de un objeto, para ti                                                                                |
+| **Clima**                                                                                 | **Despejado**, **Lluvia** o **Tormenta**                                                                        |
+| **Hora del día**                                                                          | **Día**, **Mediodía**, **Noche** o **Medianoche**                                                               |
+| [**Peligro**](/es/docs/features/minecraft-steps/#peligros)                                | Algo que intenta matarte o te estorba                                                                           |
+| [**Ayuda**](/es/docs/features/minecraft-steps/#ayuda)                                     | Algo que te ayuda a sobrevivir                                                                                  |
+| [**Comando**](/es/docs/features/minecraft-steps/#comando)                                 | Cualquier comando, como lo escribirías en el chat, con barra o sin ella                                         |
 
 ## Variables
 
@@ -332,7 +207,7 @@ La sección **Overlay** les muestra a los espectadores qué hace cada evento, co
 http://tokio-app.local:37891/games/minecraft/
 ```
 
-Divídelo en hasta 4 **Columnas**, o **Filas** si es horizontal, para repartirlo por la pantalla: cada una tiene su propia dirección en **URLs del overlay**, como `http://tokio-app.local:37891/games/minecraft/2/`. El overlay ocupa toda su fuente de navegador y se achica para caber.
+Divídelo en hasta 4 **Columnas**, o **Filas** si es horizontal, para repartirlo por la pantalla. Cada una tiene su propia dirección en **URLs del overlay**, como `http://tokio-app.local:37891/games/minecraft/2/`, y ocupa toda su fuente de navegador, achicándose para caber.
 
 ### Filas
 
@@ -349,7 +224,7 @@ Cada acción tiene una fila, en el mismo orden que las acciones:
 
 Tokio no puede incluir las imágenes de Minecraft, así que tú agregas las tuyas: png, jpg, gif o webp, de hasta 50 MB. Haz clic en el cuadrado y luego en **Elegir archivos...** para agregar una o varias.
 
-Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minecraft` de la carpeta de la app de Tokio. **Limpiar** le quita la imagen a una acción. Su botón de eliminar en el selector se la quita a todas las acciones y elimina el archivo.
+Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minecraft` dentro de la [carpeta `.tokio`](/es/docs/features/profiles-and-settings/#tus-archivos) de tu carpeta de usuario. **Limpiar** le quita la imagen a una acción. Su botón de eliminar en el selector se la quita a todas las acciones y elimina el archivo.
 
 ### Apariencia
 
@@ -367,16 +242,16 @@ Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minec
   alt="El diseño Horizontal: el ícono de seguir, una flecha y una cabeza de zombi, y luego una Rose, una flecha y un bloque de TNT, en una sola línea"
 />
 
-| Opción                               | Qué hace                                                                                                                                         |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Diseño**                           | **Vertical** muestra todas las acciones de arriba abajo, y **Horizontal** una al lado de la otra; **Una a la vez** cambia cada 3 segundos        |
-| **Columnas**                         | Reparte las acciones en 1 a 4 overlays, que se llaman **Filas** si es horizontal                                                                 |
-| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes**                                                                  |
-| **Cantidades**                       | El tamaño de los números en la esquina de las imágenes, la cantidad de una acción y la de los Me gusta: **Pequeñas**, **Medianas** o **Grandes** |
-| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                                                                                           |
-| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                                                                                           |
-| **Fuente**                           | Una fuente de tu computadora; la predeterminada es Archivo. Instálala también donde está tu app de streaming                                     |
-| **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la acción iluminada y de las flechas                                                                               |
+| Opción                               | Qué hace                                                                                                                                                            |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Diseño**                           | **Vertical** muestra todas las acciones de arriba abajo, y **Horizontal** una al lado de la otra; **Una a la vez** cambia cada 3 segundos                           |
+| **Columnas**                         | Reparte las acciones en 1 a 4 overlays, que se llaman **Filas** si es horizontal                                                                                    |
+| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes**                                                                                     |
+| **Cantidades**                       | El tamaño de los números en la esquina de las imágenes, la cantidad de una acción y la de los Me gusta: **Pequeñas**, **Medianas** o **Grandes**                    |
+| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                                                                                                              |
+| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                                                                                                              |
+| **Fuente**                           | Una fuente de tu computadora; la predeterminada es Archivo. [Instálala también donde está tu app de streaming](/es/docs/guides/adding-an-overlay/#fuentes-y-sonido) |
+| **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la acción iluminada y de las flechas                                                                                                  |
 
 ### Iluminación
 
@@ -389,17 +264,17 @@ El botón de reproducir de **Overlay** ilumina la siguiente acción, en la vista
 
 - Con **Cada regalo** se ejecuta cada regalo, y con **Me gusta** cada cuenta, por muchos que lleguen a la vez.
 - Las acciones de otros eventos guardan como máximo 100 ejecuciones en espera. Las que pasen de ahí se omiten hasta que el juego se ponga al día, así que un chat muy activo no las deja minutos atrasadas.
-- Cuando se acumulan ejecuciones, Tokio envía las de cada acción a 10 por segundo para que el juego no se atrase. Las demás acciones no esperan.
-- Si apagas o quitas una acción, o el juego se desconecta, sus ejecuciones en espera se cancelan. Desconectarte del LIVE no las cancela.
+- Las ejecuciones de una acción van de una en una, y las demás acciones no las esperan. Un **Generar criatura** grande retiene su acción: 100 criaturas tardan unos 25 segundos.
+- Si apagas o quitas una acción, le cambias la edición, desactivas **Minecraft** o el juego se desconecta, sus ejecuciones en espera se cancelan. Desconectarte del LIVE no las cancela.
 
 </details>
 
 <details>
 <summary>Avisos</summary>
 
-- **Minecraft Java Edition no está conectado** (o **Bedrock Edition**): una acción se ejecutó sin un juego de su edición conectado. Como mucho, una vez por minuto.
-- **Un comando de la acción “…” falló en Minecraft**: el juego rechazó un comando, y el aviso trae su respuesta. Como mucho, una vez cada 30 segundos por acción.
-- **La acción “…” tiene 100 ejecuciones en espera**: las nuevas se omiten hasta que Minecraft se ponga al día. Como mucho, una vez cada 30 segundos por acción.
-- **Tokio no pudo esperar conexiones de Minecraft**: el puerto estaba en uso cuando Tokio se inició.
+- **Minecraft Java Edition no está conectado, así que la acción “…” no se ejecutó.** (o Bedrock Edition): una acción se ejecutó sin un juego de su edición conectado. Como mucho, una vez por minuto.
+- **Un comando de la acción “…” falló en Minecraft:** y luego la respuesta del juego. Como mucho, una vez cada 30 segundos por acción.
+- **La acción “…” tiene 100 ejecuciones en espera, así que las nuevas se omiten hasta que Minecraft se ponga al día.** Como mucho, una vez cada 30 segundos por acción.
+- **Tokio no pudo esperar conexiones de Minecraft. Puede que el puerto 37892 esté en uso.**: el puerto estaba en uso cuando Tokio se inició.
 
 </details>

@@ -1,21 +1,21 @@
 ---
-title: Music requests
+title: Music
 description: Let viewers request songs from chat, played from YouTube or Spotify.
 ---
 
 import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-Viewers request songs from chat. YouTube songs play in Tokio's own player window, and Spotify songs in your Spotify app. Both need a Premium account.
+Viewers request songs from chat. YouTube songs play in Tokio's own player window, and Spotify songs in your Spotify app.
 
 ## Providers
 
-Pick one under **Provider** on the **Music** page, then turn on **Music** under **Active features** on **Home**.
+Pick one under **Provider** on the **Music** page, then turn on **Music** under **Active features** on **Home**. Music doesn't reconnect when Tokio starts, so click **Connect** each time you open it.
 
 <Tabs>
 <TabItem label="YouTube">
 
-You need **YouTube Premium** or **YouTube Music Premium**. On a free account, ads play between songs and can delay them or cut them short.
+A free Google account works, but ads play between songs and can delay them or cut them short. **YouTube Premium** or **YouTube Music Premium** skips them.
 
 <Steps>
 
@@ -71,7 +71,7 @@ Before your LIVE, open Spotify and play a song, so Tokio has a device to play on
 | Command   | Action                                   |
 | --------- | ---------------------------------------- |
 | `!play`   | Request a song                           |
-| `!next`   | Skip the song playing                    |
+| `!next`   | Play the next waiting request            |
 | `!last`   | Go back to the last song                 |
 | `!revoke` | Remove a song from the queue by its name |
 
@@ -80,21 +80,23 @@ Before your LIVE, open Spotify and play a song, so Tokio has a device to play on
   alt="The Controls section, where each chat command can be renamed or turned off"
 />
 
-Rename or turn off each one under **Controls**; viewers can type them in any case. `!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue. A song that's playing or already played can't be revoked.
+Rename or turn off each one under **Controls**; viewers can type them in any case.
 
-With **Limit Next, Last and Revoke** on (the default), `!next` and `!last` work for you and your moderators, who can also revoke any song. Viewers can skip a song they asked for while it plays, and revoke only their own requests.
+`!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue. A song that's playing or already played can't be revoked.
+
+A request waits for the song playing to end. A request without a song name, one that finds nothing, or one past **Max queue length** is ignored, and `!next` does nothing with no request waiting.
+
+**Limit Next, Last and Revoke**, on by default, keeps `!next`, `!last` and revoking other viewers' songs to you and your moderators; turn it off to open them to every viewer **Permissions** allows. With it on, viewers can still skip a song they asked for while it plays, and revoke their own requests.
 
 ## Who can request
 
-Music has its own **Permissions** and **Protection**, set like [text-to-speech's](/docs/features/text-to-speech/#permissions). The cooldown is shared: after any command, every command waits until it passes.
+Music has its own **Permissions** and **Protection**, set like [text-to-speech's](/docs/features/text-to-speech/#permissions). The cooldown is for all of chat: a command sent before it passes is dropped.
 
 <Screenshot
   name="music-protection"
   alt="The Protection section on the Music page, with One request per viewer on"
 />
 
-**One request per viewer** ignores a viewer's next `!play` while their song waits. A song that's already playing or waiting isn't added again.
-
-**Limit Next, Last and Revoke**, on by default, keeps `!next`, `!last` and revoking other viewers' songs to you and your moderators. Turn it off to let every viewer allowed by **Permissions** use them.
+**One request per viewer** ignores a viewer's next `!play` while their song waits, and doesn't add a song that's already playing or waiting.
 
 Song changes are a LIVE event too, so they can trigger an [alert](/docs/features/alerts/) or update an [overlay](/docs/features/overlays/).

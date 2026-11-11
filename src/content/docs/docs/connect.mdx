@@ -32,6 +32,10 @@ Set everything up before you go live. Tokio can only connect once your LIVE has 
      alt="Active features on the Home page, with TTS and Alerts on and the overlay server running"
    />
 
+   For music, click **Connect** on **Music** every time you start Tokio. It doesn't reconnect on its own, and **Home** shows "YouTube · not connected" until you do.
+
+   For [games](/docs/features/games/), turn on the **Minecraft** switch on **Games** and paste its command in your world's chat.
+
 4. **Go live and connect**
 
    Start your LIVE on TikTok. Then enter your `@username` on **Home** and click **Connect**.
@@ -45,25 +49,31 @@ Set everything up before you go live. Tokio can only connect once your LIVE has 
 
 ## While you're LIVE
 
-**Home** shows your LIVE's numbers and an **Activity** feed of what viewers do. The feed stays after the LIVE ends, until the next one.
+**Home** shows how long you've been LIVE, **Viewers**, **Likes** and **Total views**, then **New followers**, **Shares**, **Gifts** and **Coins**. While you're connected, a rose line lights up at the top of the title bar.
 
 <Screenshot
   name="dashboard"
   alt="The Home page during a LIVE: how long it's been on, the viewers, likes and views, the features that are on, and the activity feed"
 />
 
-The gear next to **Activity** picks which events the feed shows.
+The **Activity** feed keeps the last 100 events. It stays after the LIVE ends, until the next one.
+
+**Feed settings**, the gear next to **Activity**, picks which events the feed shows, and **Save** keeps your choice. Hidden events still count in the totals.
 
 <Screenshot
   name="home-feed-settings"
   alt="The Activity feed window, with a switch for each kind of event"
 />
 
-Turning a feature off during the LIVE stops what it has queued.
+Viewers can also type [chat commands](/docs/features/chat-commands/), like `!play` to request a song.
+
+Turning a feature off during the LIVE stops what it has queued. For music, that clears the requests, and the song playing keeps playing.
 
 ## When something fails
 
-If Tokio can't connect, it tells you why. If the connection drops, it reconnects on its own.
+If Tokio can't connect, it tells you why. If the connection drops, it reconnects on its own, and tells you "Unable to reconnect to the LIVE. Connect again from Home." when it can't.
+
+When the LIVE ends, Tokio disconnects with "The LIVE has ended." Any disconnect drops what TTS, alerts and music had queued, and the song playing keeps playing.
 
 <details>
 <summary>Why a connect fails</summary>

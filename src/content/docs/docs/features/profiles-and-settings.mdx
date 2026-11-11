@@ -9,19 +9,23 @@ Profiles keep each stream's setup apart, and **Settings** holds what they all sh
 
 ## Profiles
 
-Each profile has its own TTS, music, alerts, game actions, countdown timer, [Coin stats](/docs/features/coin-stats/) and [fans](/docs/features/fans/), and remembers the username you last connected with. Switch profiles from the title bar while you're not connected.
+Each profile has its own TTS, music, alerts, game actions, countdown, [Coin stats](/docs/features/coin-stats/) and [fans](/docs/features/fans/), and remembers the username you last connected with. Switch profiles from the title bar, or under **Active profile** in **Settings → Live profiles**, while you're not connected.
 
 <Screenshot
   name="profiles-menu"
   alt="The profile menu in the title bar, with two profiles"
 />
 
-In **Settings → Live profiles**, **New** creates a blank profile and **Clone** copies one you have. **Import** and **Export** move a profile between computers as a file.
+Every profile shares the installed overlays, Overlay Studio's overlays, the libraries, the test overlays, Home's **Active features** and **Activity feed**, and the Minecraft connection.
+
+In **Settings → Live profiles**, **New** creates a blank profile and **Clone** copies one you have, without its Coin stats or fans. Names need 3 or more characters and must be unique, and profiles can't be renamed or deleted.
 
 <Screenshot
   name="settings-profiles"
   alt="Settings → Live profiles, with the active profile and the New, Clone, Import and Export buttons"
 />
+
+**Export** saves the active profile's settings as a file, and **Import** adds one as a new profile. The file holds no sounds, images, videos, game pictures, Coin stats or fans, so on another computer its alerts report a missing sound until you pick it again.
 
 ## Settings
 
@@ -39,22 +43,43 @@ In **Settings → Live profiles**, **New** creates a blank profile and **Clone**
   alt="Settings: the Euler Stream API key, the overlay server with its network address, the language, updates and the tray"
 />
 
+Opening Tokio while it's already running brings its window to the front. **About**, in the sidebar, shows Tokio's version, its license and the third-party notices, and has **Check for updates**.
+
 ## Libraries
 
-**Sound library** and **Media library** hold the sounds, images and videos your alerts use, in every profile. Upload and preview them there. Deleting one removes it from every alert, after you confirm.
+**Sound library** and **Media library** hold the sounds, images and videos your alerts use, in every profile. Upload and preview them there.
 
 <Screenshot
   name="settings-libraries"
   alt="The Sound library with four sounds and the Media library with one image"
 />
 
+Deleting a sound removes it from every alert, after you confirm. Deleting an image or video also empties the Overlay Studio elements that showed it.
+
 **Overlay library** holds the [overlays you import](/docs/features/overlays/#import-your-own).
 
 ## Notifications
 
-When something fails, such as a voice that can't be made or a missing sound, Tokio tells you what went wrong. The bell in the title bar keeps the session's list.
+When something fails, such as a voice that can't be made or a missing sound, Tokio tells you what went wrong. The bell in the title bar keeps the session's last 50, and **Clear all** empties it.
 
 <Screenshot
   name="notifications"
   alt="The notifications menu, listing what happened this session"
 />
+
+## Your files
+
+Tokio keeps everything in the `.tokio` folder in your user folder: `C:\Users\<you>\.tokio` on Windows, `~/.tokio` on macOS and Linux.
+
+| Folder            | What's in it                              |
+| ----------------- | ----------------------------------------- |
+| `settings`        | Settings, and what every profile shares   |
+| `profiles`        | Each profile's settings                   |
+| `sounds`, `media` | The Sound library and Media library       |
+| `overlays`        | The overlays you installed or imported    |
+| `games/minecraft` | The Minecraft pictures                    |
+| `fans`            | Each profile's fans                       |
+| `history`         | Each profile's past LIVEs, for Coin stats |
+| `logs`            | What Tokio did, for bug reports           |
+
+To report a bug, open an [issue on GitHub](https://github.com/tokio-app/tokio/issues) and attach the files in `.tokio/logs`. They include your TikTok username.

@@ -1,21 +1,21 @@
 ---
-title: Pedidos de canciones
+title: Música
 description: Deja que los espectadores pidan desde el chat canciones que suenan en YouTube o Spotify.
 ---
 
 import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-Los espectadores piden canciones desde el chat. Las de YouTube suenan en la ventana del reproductor de Tokio, y las de Spotify en tu app de Spotify. Los dos necesitan una cuenta Premium.
+Los espectadores piden canciones desde el chat. Las de YouTube suenan en la ventana del reproductor de Tokio, y las de Spotify en tu app de Spotify.
 
 ## Proveedores
 
-Elige uno en **Proveedor**, en la página **Música**. Luego, en **Inicio**, activa **Música** en **Funciones activas**.
+Elige uno en **Proveedor**, en la página **Música**. Luego, en **Inicio**, activa **Música** en **Funciones activas**. La música no se reconecta cuando Tokio abre, así que haz clic en **Conectar** cada vez que lo abras.
 
 <Tabs>
 <TabItem label="YouTube">
 
-Necesitas **YouTube Premium** o **YouTube Music Premium**. Con una cuenta gratis, entre canciones salen anuncios que pueden retrasarlas o cortarlas.
+Una cuenta gratis de Google funciona, pero entre canciones salen anuncios que pueden retrasarlas o cortarlas. Con **YouTube Premium** o **YouTube Music Premium** no salen.
 
 <Steps>
 
@@ -71,7 +71,7 @@ Antes de tu LIVE, abre Spotify y pon una canción, así Tokio tiene un dispositi
 | Comando   | Acción                                      |
 | --------- | ------------------------------------------- |
 | `!play`   | Pedir una canción                           |
-| `!next`   | Saltar la canción que suena                 |
+| `!next`   | Pasar al siguiente pedido en espera         |
 | `!last`   | Volver a la canción anterior                |
 | `!revoke` | Quitar una canción de la cola por su nombre |
 
@@ -80,21 +80,23 @@ Antes de tu LIVE, abre Spotify y pon una canción, así Tokio tiene un dispositi
   alt="La sección Controles, donde cada comando de chat se puede renombrar o desactivar"
 />
 
-Cambia el nombre de cada uno o desactívalo en **Controles**; los espectadores pueden escribirlos en mayúsculas o minúsculas. `!play One More Time` agrega esa canción, y `!revoke` acepta su nombre tal como se escribió o como aparece en la cola. No se puede retirar una canción que está sonando o que ya sonó.
+Cambia el nombre de cada uno o desactívalo en **Controles**; los espectadores pueden escribirlos en mayúsculas o minúsculas.
 
-Con **Limitar Siguiente, Anterior y Retirar** activado (lo predeterminado), `!next` y `!last` funcionan para ti y tus moderadores, que además pueden retirar cualquier canción. Los espectadores pueden saltar una canción que pidieron mientras suena, y solo pueden retirar sus propios pedidos.
+`!play One More Time` agrega esa canción, y `!revoke` acepta su nombre tal como se escribió o como aparece en la cola. No se puede retirar una canción que está sonando o que ya sonó.
+
+Un pedido espera a que termine la canción que suena. Se ignora un pedido sin nombre de canción, uno que no encuentra nada o uno que pasa el **Largo máximo de la cola**, y `!next` no hace nada si no hay pedidos en espera.
+
+**Limitar Siguiente, Anterior y Retirar**, activado por defecto, deja `!next`, `!last` y retirar canciones de otros espectadores solo para ti y tus moderadores; desactívalo para que los use cualquier espectador al que **Permisos** deje pedir. Con la opción activada, los espectadores igual pueden saltar una canción que pidieron mientras suena y retirar sus propios pedidos.
 
 ## Quién puede pedir
 
-La música tiene sus propios **Permisos** y **Protección**, que se configuran como los del [texto a voz](/es/docs/features/text-to-speech/#permisos). El tiempo de espera es compartido: después de cualquier comando, todos los comandos esperan a que pase.
+La música tiene sus propios **Permisos** y **Protección**, que se configuran como los del [texto a voz](/es/docs/features/text-to-speech/#permisos). El tiempo de espera es para todo el chat: un comando enviado antes de que pase se descarta.
 
 <Screenshot
   name="music-protection"
   alt="La sección Protección de la página Música, con Un pedido por espectador activado"
 />
 
-**Un pedido por espectador** ignora el siguiente `!play` de un espectador mientras su canción espera. Una canción que ya suena o está en espera no se vuelve a agregar.
-
-**Limitar Siguiente, Anterior y Retirar**, activado por defecto, deja `!next`, `!last` y retirar canciones de otros espectadores solo para ti y tus moderadores. Desactívalo para que los use cualquier espectador al que **Permisos** deje pedir.
+**Un pedido por espectador** ignora el siguiente `!play` de un espectador mientras su canción espera, y no agrega una canción que ya suena o está en espera.
 
 Los cambios de canción también son un evento del LIVE, así que pueden activar una [alerta](/es/docs/features/alerts/) o actualizar un [overlay](/es/docs/features/overlays/).

@@ -23,9 +23,13 @@ En **Overlays**, haz clic en **Overlays oficiales** y luego en **Instalar** en e
 
 Cuando sale una versión nueva, aparece un punto en **Overlays oficiales**: haz clic en **Actualizar**. Se conserva la configuración que todavía encaje; después, actualiza el overlay en tu app de streaming.
 
+La dirección de un overlay oficial termina en su propio nombre, como `/gift-jar/`, así que no cambia si lo quitas y lo vuelves a instalar.
+
 ## Importa los tuyos
 
-Importa la carpeta de un overlay en **Configuración → Biblioteca de overlays**. Aparece marcado como **Externo** y no recibe actualizaciones.
+Importa la carpeta de un overlay en **Configuración → Biblioteca de overlays**. Aparece marcado como **Externo** y no recibe actualizaciones. Lo que necesita la carpeta está en [Crear un overlay](/es/docs/developers/building-an-overlay/).
+
+Tokio guarda una copia, así que lo que cambies después en la carpeta no le llega. Si importas la carpeta otra vez, se crea un segundo overlay, con otra dirección y la configuración predeterminada.
 
 <Screenshot
   name="settings-overlay-library"
@@ -34,7 +38,9 @@ Importa la carpeta de un overlay en **Configuración → Biblioteca de overlays*
 
 ## Configúralo
 
-Haz clic en **Personalizar** para cambiar los colores, el texto o los regalos de un overlay. La vista previa muestra tus cambios y **Guardar** los envía a tu stream.
+Haz clic en **Personalizar** para cambiar los colores, el texto o los regalos de un overlay; solo aparece en los overlays que tienen configuración. La vista previa muestra tus cambios y **Guardar** los envía a tu stream.
+
+El botón **Probar** de **Personalizar** se queda en su vista previa. Los overlays no siguen el idioma de Tokio.
 
 <Screenshot
   name="overlays-customize"
@@ -43,7 +49,7 @@ Haz clic en **Personalizar** para cambiar los colores, el texto o los regalos de
 
 ## Agrégalo a tu stream
 
-Copia la dirección desde la tarjeta del overlay; **Probar** le envía eventos de ejemplo. Lo demás está en [Agregar un overlay](/es/docs/guides/adding-an-overlay/).
+Copia la dirección desde la tarjeta del overlay. Su **Probar** envía eventos de ejemplo a la vista previa y al overlay de tu stream. Lo demás está en [Agregar un overlay](/es/docs/guides/adding-an-overlay/).
 
 <Screenshot
   name="overlays-card"
@@ -56,4 +62,4 @@ Usa el botón de la papelera en su tarjeta en **Overlays oficiales**, o en **Con
 
 ## Crea el tuyo
 
-Créalo en la app con [Overlay Studio](/es/docs/features/overlay-studio/), con texto, imágenes y los overlays que tienes. O escríbelo a mano o con cualquier framework: consulta [Crear un overlay](/es/docs/developers/building-an-overlay/).
+Créalo en la app con [Overlay Studio](/es/docs/features/overlay-studio/), con texto, imágenes y los overlays que tienes; los que creas se quedan ahí. O escríbelo a mano o con cualquier framework: consulta [Crear un overlay](/es/docs/developers/building-an-overlay/).

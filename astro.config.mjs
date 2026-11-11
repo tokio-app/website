@@ -37,7 +37,7 @@ export default defineConfig({
     starlight({
       title: "Tokio",
       description:
-        "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts, a countdown timer and overlays.",
+        "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays.",
       logo: { src: "./src/assets/icon.png", alt: "Tokio" },
       favicon: "/favicon.ico",
       locales,
@@ -75,36 +75,56 @@ export default defineConfig({
       lastUpdated: true,
       // Pages show their title in their language. Groups and links take a
       // `translations` per language. Starlight adds /<code> to the links.
+      // Features and Tools follow the app's sidebar and its Tools page. A
+      // `child` sits under the page above it (starlight.css): a group would
+      // turn the parent into a heading that isn't a link.
       sidebar: [
         {
           label: "Getting started",
           translations: { es: "Primeros pasos" },
-          items: ["docs", "docs/install", "docs/connect"],
+          items: [
+            "docs",
+            "docs/install",
+            "docs/connect",
+            "docs/guides/adding-an-overlay",
+            "docs/features/profiles-and-settings",
+          ],
         },
         {
           label: "Features",
           translations: { es: "Funciones" },
           items: [
-            "docs/features/text-to-speech",
-            "docs/features/music-requests",
-            "docs/features/alerts",
-            "docs/features/games",
             "docs/features/overlays",
-            "docs/features/countdown-timer",
-            "docs/features/overlay-studio",
-            "docs/features/coin-stats",
-            "docs/features/fans",
-            "docs/features/profiles-and-settings",
+            "docs/features/text-to-speech",
+            "docs/features/alerts",
+            "docs/features/music-requests",
+            "docs/features/games",
+            {
+              slug: "docs/features/minecraft-steps",
+              attrs: { class: "child" },
+            },
+            "docs/features/chat-commands",
           ],
         },
         {
-          label: "Guides",
-          translations: { es: "Guías" },
-          items: ["docs/guides/adding-an-overlay"],
+          label: "Tools",
+          translations: { es: "Herramientas" },
+          items: [
+            "docs/features/countdown-timer",
+            "docs/features/overlay-studio",
+            // Under Overlay Studio, its own name is enough, in every language
+            {
+              slug: "docs/features/overlay-studio-editor",
+              label: "Editor",
+              attrs: { class: "child" },
+            },
+            "docs/features/coin-stats",
+            "docs/features/fans",
+          ],
         },
         {
-          label: "Overlay developers",
-          translations: { es: "Desarrollo de overlays" },
+          label: "Developers",
+          translations: { es: "Desarrollo" },
           items: [
             "docs/developers/building-an-overlay",
             "docs/developers/events",

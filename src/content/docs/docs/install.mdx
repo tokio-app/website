@@ -7,7 +7,7 @@ import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 import DownloadTable from "../../../components/DownloadTable.astro";
 import Screenshot from "../../../components/Screenshot.astro";
 
-Tokio runs on Windows, macOS 13 or later, and Linux. Get it here or from the [latest release](https://github.com/tokio-app/tokio/releases/latest).
+Tokio runs on Windows 10 or later, macOS 13 or later, and Linux. Get it here or from the [latest release](https://github.com/tokio-app/tokio/releases/latest).
 
 <DownloadTable />
 
@@ -27,7 +27,7 @@ Tokio runs on Windows, macOS 13 or later, and Linux. Get it here or from the [la
 <Steps>
 
 1. Unzip the download and move **Tokio** to your Applications folder.
-2. Tokio isn't notarized yet. If macOS blocks it, right-click it in Finder and choose **Open**, or allow it in **System Settings → Privacy & Security**.
+2. Tokio isn't notarized yet, so macOS blocks it the first time. Open it once, then in **System Settings → Privacy & Security**, click **Open Anyway** and confirm.
 
 </Steps>
 
@@ -46,24 +46,26 @@ Tokio runs on Windows, macOS 13 or later, and Linux. Get it here or from the [la
 
 Everything works on every system, except the system voices, which only Windows has.
 
-## Your Euler Stream key
+<details>
+<summary>Uninstall</summary>
 
-Tokio connects through [Euler Stream](https://www.eulerstream.com) with your own API key: [sign up](https://www.eulerstream.com/register) for free and paste it in **Settings → TikTok LIVE**. Your [plan](https://www.eulerstream.com/pricing) sets how often you can connect.
+On Windows, uninstall Tokio from **Settings → Apps**. On macOS, move Tokio from Applications to the Trash, and on Linux, delete the AppImage.
 
-<Screenshot
-  name="settings-tiktok-live"
-  alt="The Euler Stream API key field in Settings → TikTok LIVE"
-/>
+Your settings and files stay in the `.tokio` folder. Delete it too to remove everything, see [Your files](/docs/features/profiles-and-settings/#your-files).
+
+</details>
 
 ## Updates
 
-Tokio checks for new versions when it starts and every few hours. On Windows and Linux it downloads them for you: click **Restart to update** in the title bar. On macOS, **Download update** opens the release page.
+Tokio checks for new versions when it starts and every few hours. On Windows and Linux it downloads them, and installs them when you quit Tokio.
+
+To update right away, click **Restart to update** in the title bar. While you're connected it asks first, since Tokio disconnects from the LIVE to restart.
 
 <Screenshot
   name="update-button"
   alt="The title bar with the profile menu and the Restart to update button"
 />
 
-Turn the checks off in **Settings → Updates**, or check any time from **About**.
+On macOS, **Download update** opens the release page. Turn the checks off in **Settings → Updates**, or check any time from **About**.
 
-The first time Tokio opens after an update, **What's new** shows the main changes in the new version, with a link to its full release notes on GitHub.
+After an update, **What's new** shows the new version's main changes, when it has notes, with a link to its full release notes on GitHub.

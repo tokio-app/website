@@ -20,15 +20,15 @@ Any other files in the folder (scripts, styles, images) are served next to `inde
 
 ```yaml
 name: Likes Counter
-version: 1.0.0
+version: "1.0.0"
 config: true
 ```
 
-| Key       | Description                                                                        |
-| --------- | ---------------------------------------------------------------------------------- |
-| `name`    | Shown in the gallery.                                                              |
-| `version` | Your overlay's version.                                                            |
-| `config`  | Required: `true` when the overlay has a `config.yaml` with settings, else `false`. |
+| Key       | Description                                                                           |
+| --------- | ------------------------------------------------------------------------------------- |
+| `name`    | Shown in the gallery.                                                                 |
+| `version` | Your overlay's version, in quotes: YAML reads `1.0` as a number, which Tokio refuses. |
+| `config`  | Required: `true` when the overlay has a `config.yaml` with settings, else `false`.    |
 
 ### The setup block
 
@@ -44,11 +44,13 @@ config: true
 - `window.__OVERLAY_ID__` is required. Pass it to `tokio.connect`, never a hard-coded ID: Tokio's previews only reach the overlay through its own ID.
 - `window.__OVERLAY_CONFIG__` is only for overlays with settings (`config: true`). Give it the defaults from `config.yaml`, see [Settings](#settings).
 
-Tokio refuses to import an overlay without the block. It fills the block with the overlay's ID and saved settings, and adds a script that sends the overlay's WebSocket to the right computer when a streaming app on another computer opens it.
+Tokio refuses to import an overlay without the block. It replaces everything inside the block with the overlay's ID, its saved settings and a script that sends the overlay's WebSocket to the right computer, so put nothing else in it.
 
 ## Listening to events
 
-[`@tokioapp/overlay`](https://www.npmjs.com/package/@tokioapp/overlay) (MIT) connects to Tokio and hands you the events. Overlays you import need it, since Tokio's previews post their events to the overlay's frame and the library receives them. It has no dependencies, and ships an ES module, a CommonJS build and a browser build with TypeScript types.
+[`@tokioapp/overlay`](https://www.npmjs.com/package/@tokioapp/overlay) (MIT) connects to Tokio and hands you the events. Overlays you import need it, since Tokio's previews post their events to the overlay's frame and the library receives them.
+
+It has no dependencies, and ships an ES module, a CommonJS build and a browser build with TypeScript types.
 
 - `tokio.on(event, callback)` subscribes to an event and returns a function that unsubscribes.
 - `tokio.off(event, callback)` removes a callback.
@@ -138,16 +140,7 @@ Import the build output folder (for example `dist/`) into Tokio.
 
 ## Settings
 
-When `info.yaml` has `config: true`, the [setup block](#the-setup-block) also sets `window.__OVERLAY_CONFIG__`, and Tokio fills it in with the overlay's saved settings:
-
-```html
-<script id="tokio-setup">
-  window.__OVERLAY_CONFIG__ = { title: "Likes", main_color: "#ffffff" };
-  window.__OVERLAY_ID__ = "my-overlay";
-</script>
-```
-
-`config.yaml` describes the settings, which the streamer changes in the overlay's **Customize** window. Fields are grouped in sections, and each field's `id` becomes a key of `__OVERLAY_CONFIG__`:
+When `info.yaml` has `config: true`, Tokio writes the overlay's saved settings into `window.__OVERLAY_CONFIG__`, in the [setup block](#the-setup-block). `config.yaml` describes the settings, which the streamer changes in the overlay's **Customize** window. Fields are grouped in sections, and each field's `id` becomes a key of `__OVERLAY_CONFIG__`:
 
 ```yaml
 sections:
@@ -188,11 +181,17 @@ Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and
 
 `mode`, `options`, a table's `columns`, and a slider's `min` and `max` are required; `multiple` and `searchable` default to `false`. Each section's `id` must be unique, and each field's `section` must name one.
 
+A `gifts` value is `undefined`, or `[]` with `multiple`, while Tokio has no gift list, and gift IDs it doesn't know are left out.
+
 ![The Gift Jar's Customize window: its settings, grouped in sections, next to a live preview](../../../../assets/screenshots/overlays-customize.png)
 
 ### Fonts
 
-A `font` setting lets the streamer pick one of the fonts installed on the Tokio computer. Its value is the font's name, up to 60 characters, and `""` means your overlay's own font. The streaming app draws the overlay, so the font has to be installed on the computer that runs it too. Without it, the browser uses the next font in the list.
+A `font` setting lets the streamer pick one of the fonts installed on the Tokio computer. Its value is the font's name, up to 60 characters, and `""` means your overlay's own font.
+
+The streaming app draws the overlay, so the font has to be installed on the computer that runs it too. Without it, the browser uses the next font in the list.
+
+The streamer's side is in [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
 
 Tokio gives the overlay the font's name. Put it in quotes and add your own font after it:
 
@@ -253,9 +252,13 @@ window.__OVERLAY_CONFIG__ = {
 - `max` is the most rows the streamer can add, an integer of 1 or more. Without it, there's no limit.
 - Every row has one value per column, keyed by the column's `id`, of a kind that column's `default` could be. A row can't have any other key.
 
-Cells are read like fields: colors have their `#`, and a `gifts` cell is a gift object. That cell can be `undefined` when Tokio has no gift list, so check it before you use it.
+Cells are read like fields: colors have their `#`, and a `gifts` cell is a gift object. Like a `gifts` field, that cell can be `undefined`, so check it before you use it.
 
-When the streamer updates your overlay, Tokio keeps their rows, up to the new `max`. A cell stays when its column keeps its `id` and `type` and the value still fits, like a dropdown option that's still there. The others take their column's `default`, so keep column ids stable across versions.
+Only official overlays get updates. When one updates, Tokio keeps the streamer's rows, up to the new `max`.
+
+A cell stays when its column keeps its `id` and `type` and the value still fits, like a dropdown option that's still there. The others take their column's `default`, so keep column ids stable across versions.
+
+An imported overlay never updates: importing a new version makes a second overlay, with default settings.
 
 ## Testing without importing
 
@@ -268,6 +271,8 @@ While you build an overlay, test it from the **Tools** page instead of importing
 
 ![Tools → Test overlays, with a test ID created for an overlay, its Test button and the buttons that copy the ID and the WebSocket URL](../../../../assets/screenshots/tools-test-overlays.png)
 
+Tests from **Tools** never send `tokio:config`, so the overlay keeps the settings in its own setup block.
+
 If Tokio says "No overlay connected with this ID.", check that the page is open and connected with the same ID.
 
 ## Import it
@@ -276,7 +281,11 @@ When it's ready, import the folder in **Settings → Overlay library**. Tokio gi
 
 ## Without the library
 
-Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe. A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address. Opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay server**). Each message is JSON with the event name and its data:
+Overlays you import into Tokio need the library, since Tokio's previews post their events to the overlay's iframe.
+
+A page you don't import can connect a WebSocket itself, to `ws://localhost:37891/?id=<overlay ID>`. Tokio doesn't serve that page, so nothing rewrites its address.
+
+Opened on another computer, it must connect to the Tokio PC instead of `localhost`: to `tokio-app.local` pointed at it, or to its network address (shown in **Settings → Overlay server**). Each message is JSON with the event name and its data:
 
 ```json
 {

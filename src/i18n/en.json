@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tokio: make your TikTok LIVE react",
-    "description": "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, sound alerts and overlays."
+    "description": "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
   },
   "header": {
     "nav": "Main",
@@ -76,12 +76,11 @@
   },
   "home": {
     "title": "Make your TikTok LIVE react.",
-    "lead": "Tokio reads chat aloud, takes song requests, plays sounds and shows videos when someone follows or sends a gift, and drives the overlays in OBS, TikTok LIVE Studio or any streaming app that can show a web page.",
+    "lead": "Tokio turns chat, gifts and follows into voices, songs, alerts and overlays on your stream.",
     "readDocs": "Read the docs",
     "meta": "Free and open source, for Windows, macOS and Linux.",
     "version": "Version {version}.",
     "featuresTitle": "What Tokio does",
-    "featuresText": "Turn each feature on or off for the session.",
     "features": {
       "tts": {
         "title": "Text-to-speech",
@@ -89,7 +88,7 @@
         "example": "{username} says {comment}\n→ Lucia says hi from Lima!"
       },
       "music": {
-        "title": "Music requests",
+        "title": "Music",
         "text": "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
         "example": "!play One More Time\n!next  !last  !revoke"
       },
@@ -109,15 +108,15 @@
       },
       "overlays": {
         "title": "Overlays",
-        "text": "Install the official overlays or import your own, then add each with one link.",
+        "text": "Install the official overlays, import your own or build one in Overlay Studio.",
         "example": [
           { "name": "Gift Jar", "value": "Verified", "verified": true },
-          { "name": "Top Likes", "value": "Verified", "verified": true },
-          { "name": "My chat box", "value": "External" }
+          { "name": "My chat box", "value": "External" },
+          { "name": "My overlay", "value": "4 elements" }
         ]
       },
       "timer": {
-        "title": "Countdown timer",
+        "title": "Countdown",
         "text": "A subathon clock on your stream that gifts, likes, follows and chat add time to.",
         "example": [
           { "name": "Coins", "value": "1 second per coin" },
@@ -132,15 +131,6 @@
           { "name": "Leo", "value": "21,987 coins" },
           { "name": "Maya", "value": "14,768 coins" },
           { "name": "Sunny Fox", "value": "11,330 coins" }
-        ]
-      },
-      "profiles": {
-        "title": "Profiles",
-        "text": "Separate settings for different streams, switched from the title bar.",
-        "example": [
-          { "name": "Just chatting" },
-          { "name": "Music night", "current": true },
-          { "name": "Gaming" }
         ]
       }
     },
@@ -200,8 +190,8 @@
     "linux": "Tokio comes as an AppImage. Make it executable with <code>chmod +x</code> (or in the file's properties) and run it. AppImages need FUSE.",
     "mac": "Unzip it and move <strong>Tokio</strong> to your Applications folder. macOS may block it the first time, since Tokio isn't notarized yet.",
     "macMore": [
-      "To open it anyway, right-click it in Finder and choose <strong>Open</strong>, or allow it in <strong>System Settings → Privacy &amp; Security</strong>.",
-      "When an update is out, Tokio opens its release page so you can download the new zip.",
+      "To open it anyway, go to <strong>System Settings → Privacy &amp; Security</strong>, click <strong>Open Anyway</strong> and confirm.",
+      "When an update is out, <strong>Download update</strong> in the title bar opens its release page, where you get the new zip.",
       "Not sure which Mac you have? Apple menu → <strong>About This Mac</strong>: \"Apple M…\" chips are Apple Silicon, \"Intel\" ones are Intel."
     ]
   },
@@ -224,7 +214,7 @@
     "title": "About and license",
     "description": "Who makes Tokio, how it's licensed, the online services it uses and how your data is handled.",
     "heading": "About Tokio",
-    "intro": "Tokio is a free, open-source desktop app that connects to your TikTok LIVE and reacts to it with text-to-speech, music requests, alerts, a countdown timer and overlays. It's made by Italo Alfaro and contributors and developed in the open on <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio is a free, open-source desktop app that connects to your TikTok LIVE and reacts to it with text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays, including ones you build yourself. It's made by Italo Alfaro and contributors and developed in the open on <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro and contributors.",
     "licenseTitle": "License",
     "license": [
@@ -233,7 +223,7 @@
       "The full notices for every component are in <a href=\"{files}/THIRD_PARTY_NOTICES.md\">THIRD_PARTY_NOTICES.md</a>. The <strong>About</strong> page inside the app shows the same notices and the licenses of every package it ships."
     ],
     "sourceTitle": "Source code",
-    "source": "The complete source code of every version is available at <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Each release is tagged (for example <code>v0.1.0-alpha.3</code>), so you can get the exact source of the version you installed. You may modify Tokio and share your changes under the terms of its licenses.",
+    "source": "The complete source code of every version is available at <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Each release is tagged with its version, so you can get the exact source of the one you installed. You may modify Tokio and share your changes under the terms of its licenses.",
     "warrantyTitle": "No warranty",
     "warranty": "Tokio is provided \"as is\", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. See the licenses for the full terms.",
     "servicesTitle": "Online services",
@@ -271,7 +261,11 @@
     ],
     "privacyTitle": "Privacy",
     "privacy": [
-      "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved on your computer, and so are the fans Tokio sees in your LIVEs: their name, @handle, TikTok ID, fan level, whether they're a Super Fan, and when Tokio last saw them. Each profile also keeps the coins and gifts of every LIVE and the viewers who sent them: their name, @handle, TikTok ID, profile picture link, and the coins and gifts they sent and when. To connect to TikTok LIVE you need your own Euler Stream account: Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok. Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
+      "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved there.",
+      "So are the fans Tokio sees in your LIVEs: their name, @handle, TikTok ID, fan level, whether they're a Super Fan, and when Tokio last saw them. Each profile also keeps the coins and gifts of every LIVE and the viewers who sent them: their name, @handle, TikTok ID, profile picture link, and the coins and gifts they sent and when.",
+      "To connect to TikTok LIVE you need your own Euler Stream account. Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok.",
+      "A camera you add in Overlay Studio goes only to the overlays Tokio serves, at an address that changes each time the overlay server starts. Tokio doesn't save its video.",
+      "Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
       "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
     ],
     "trademarksTitle": "Trademarks",

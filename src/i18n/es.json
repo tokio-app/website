@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tokio: haz que tu LIVE de TikTok reaccione",
-    "description": "Haz que tu LIVE de TikTok reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas de sonido y overlays."
+    "description": "Haz que tu LIVE de TikTok reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
   },
   "header": {
     "nav": "Principal",
@@ -85,12 +85,11 @@
   },
   "home": {
     "title": "Haz que tu LIVE de TikTok reaccione.",
-    "lead": "Tokio lee el chat en voz alta, recibe pedidos de canciones, reproduce sonidos y muestra videos cuando alguien te sigue o envía un regalo, y controla los overlays en OBS, TikTok LIVE Studio o cualquier app de streaming que pueda mostrar una página web.",
+    "lead": "Tokio convierte el chat, los regalos y los seguidores en voces, canciones, alertas y overlays para tu stream.",
     "readDocs": "Lee la documentación",
     "meta": "Gratis y de código abierto, para Windows, macOS y Linux.",
     "version": "Versión {version}.",
     "featuresTitle": "Lo que hace Tokio",
-    "featuresText": "Activa o desactiva cada función para la sesión.",
     "features": {
       "tts": {
         "title": "Texto a voz",
@@ -98,7 +97,7 @@
         "example": "{username} dice {comment}\n→ Lucia dice ¡hola desde Lima!"
       },
       "music": {
-        "title": "Pedidos de canciones",
+        "title": "Música",
         "text": "Los espectadores piden canciones desde el chat, y suenan en el reproductor de YouTube de Tokio o en tu app de Spotify.",
         "example": "!play One More Time\n!next  !last  !revoke"
       },
@@ -127,7 +126,7 @@
       },
       "overlays": {
         "title": "Overlays",
-        "text": "Instala los overlays oficiales o importa los tuyos, y agrega cada uno con un enlace.",
+        "text": "Instala los overlays oficiales, importa los tuyos o crea uno en Overlay Studio.",
         "example": [
           {
             "name": "Gift Jar",
@@ -135,13 +134,12 @@
             "verified": true
           },
           {
-            "name": "Top Likes",
-            "value": "Verificado",
-            "verified": true
-          },
-          {
             "name": "Mi chat",
             "value": "Externo"
+          },
+          {
+            "name": "Mi overlay",
+            "value": "4 elementos"
           }
         ]
       },
@@ -164,7 +162,7 @@
         ]
       },
       "coinStats": {
-        "title": "Estadísticas de monedas",
+        "title": "Monedas",
         "text": "Las monedas y los regalos de cada LIVE, y quienes los enviaron. Los overlays pueden mostrar quienes más te regalan.",
         "example": [
           {
@@ -178,22 +176,6 @@
           {
             "name": "Sunny Fox",
             "value": "11,330 monedas"
-          }
-        ]
-      },
-      "profiles": {
-        "title": "Perfiles",
-        "text": "Una configuración para cada tipo de stream, que cambias desde la barra de título.",
-        "example": [
-          {
-            "name": "Charlando"
-          },
-          {
-            "name": "Noche de música",
-            "current": true
-          },
-          {
-            "name": "Jugando"
           }
         ]
       }
@@ -254,8 +236,8 @@
     "linux": "Tokio viene como AppImage. Hazlo ejecutable con <code>chmod +x</code> (o en las propiedades del archivo) y ábrelo. Los AppImage necesitan FUSE.",
     "mac": "Descomprímelo y mueve <strong>Tokio</strong> a tu carpeta Aplicaciones. La primera vez, macOS puede bloquearlo, porque Tokio todavía no está notarizado.",
     "macMore": [
-      "Para abrirlo igual, haz clic derecho sobre él en Finder y elige <strong>Abrir</strong>, o permítelo en <strong>Configuración del Sistema → Privacidad y seguridad</strong>.",
-      "Cuando sale una actualización, Tokio abre la página de la versión para que descargues el zip nuevo.",
+      "Para abrirlo igual, ve a <strong>Configuración del Sistema → Privacidad y seguridad</strong>, haz clic en <strong>Abrir igualmente</strong> y confirma.",
+      "Cuando sale una actualización, <strong>Descargar actualización</strong> en la barra de título abre la página de la versión, donde descargas el zip nuevo.",
       "¿No sabes qué Mac tienes? Menú Apple → <strong>Acerca de esta Mac</strong>: los chips \"Apple M…\" son Apple Silicon y los \"Intel\" son Intel."
     ]
   },
@@ -278,7 +260,7 @@
     "title": "Acerca de y licencia",
     "description": "Quién hace Tokio, su licencia, los servicios en línea que usa y qué pasa con tus datos.",
     "heading": "Acerca de Tokio",
-    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, un temporizador y overlays. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays, incluidos los que creas tú. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro y colaboradores.",
     "licenseTitle": "Licencia",
     "license": [
@@ -287,7 +269,7 @@
       "Los avisos completos de cada componente están en <a href=\"{files}/THIRD_PARTY_NOTICES.md\">THIRD_PARTY_NOTICES.md</a>. La página <strong>Acerca de</strong> de la app muestra los mismos avisos y las licencias de cada paquete que incluye."
     ],
     "sourceTitle": "Código fuente",
-    "source": "El código fuente completo de cada versión está disponible en <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Cada versión tiene su etiqueta (por ejemplo <code>v0.1.0-alpha.3</code>), así que puedes obtener el código exacto de la versión que instalaste. Puedes modificar Tokio y compartir tus cambios según los términos de sus licencias.",
+    "source": "El código fuente completo de cada versión está disponible en <a href=\"{repo}\">github.com/tokio-app/tokio</a>. Cada versión tiene su etiqueta, así que puedes obtener el código exacto de la que instalaste. Puedes modificar Tokio y compartir tus cambios según los términos de sus licencias.",
     "warrantyTitle": "Sin garantía",
     "warranty": "Tokio se proporciona \"tal cual\", sin garantía de ningún tipo, expresa o implícita, incluidas, entre otras, las garantías de comerciabilidad, idoneidad para un fin determinado y no infracción. Consulta las licencias para ver los términos completos.",
     "servicesTitle": "Servicios en línea",
@@ -328,7 +310,11 @@
     ],
     "privacyTitle": "Privacidad",
     "privacy": [
-      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan en tu computadora, igual que los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil también guarda las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo. Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream: Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok. Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
+      "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan ahí.",
+      "También se guardan los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil guarda además las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo.",
+      "Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream. Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok.",
+      "Una cámara que agregas en Overlay Studio solo llega a los overlays que sirve Tokio, en una dirección que cambia cada vez que se inicia el servidor de overlays. Tokio no guarda su video.",
+      "Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",

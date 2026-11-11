@@ -39,11 +39,13 @@ Alerts belong to the profile; your sounds and media are shared by all profiles.
 
 </Steps>
 
-Changes save as you go. To find an alert, click the search button next to **Add alert**.
+Each alert's row has its own on/off switch, and **Home** counts how many are on.
+
+To find an alert, click the search button next to **Add alert**.
 
 ## Triggers
 
-Pick the **Event**: Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan join, Member join or Music change (a new song from [music requests](/docs/features/music-requests/)).
+Pick the **Event**: Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan join, Member join or Music change (a new song from [music requests](/docs/features/music-requests/)). A Like alert plays for every batch of likes TikTok sends, from any viewer.
 
 Under **From**, check **Followers**, **Moderators** or **Super Fans** to play only for them. Only Chat, Emote and Gift have it, since TikTok sends a viewer's roles only with those.
 
@@ -64,7 +66,6 @@ Drag the waveform's handles to cut the start or the end, or type the seconds in 
 <summary>More on cuts</summary>
 
 - With a handle focused, the arrow keys move it by a tenth of a second, or a second with Shift.
-- A sound cut before its end fades out quickly, so it doesn't click.
 - The file stays whole, so other alerts can cut it their own way.
 - The alert's row shows the cut's length, and its play button plays only the cut.
 
@@ -72,7 +73,7 @@ Drag the waveform's handles to cut the start or the end, or type the seconds in 
 
 ## Spoken messages
 
-On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and press **Use text-to-speech**.
+On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and press **Use text-to-speech**. The message has its own **Speed** and **Pitch**, which start from the TTS page's.
 
 <Screenshot
   name="alerts-tts"
@@ -89,7 +90,9 @@ Click a variable to add the event's details:
 | `{count}`                | Like (the likes sent)                            |
 | `{song}`                 | Music change                                     |
 
-The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A viewer on the block list isn't read, but the alert's image or video still shows.
+The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A banned word in what a variable fills in, like a name or a comment, skips the whole alert, image or video included.
+
+For a viewer on the block list, the message isn't read, but the alert's image or video still shows.
 
 ## Images and videos
 
@@ -115,7 +118,7 @@ Copy it here or from the alert's row, [add it to your streaming app](/docs/guide
 - **Cut** keeps part of it, like a sound's cut.
 - A video that doesn't say its length can't be cut: set its **Duration** instead.
 - A video plays its own sound, at its own **Volume**.
-- In a browser tab, click the overlay once to hear videos. OBS plays the sound without a click.
+- To hear videos in a browser tab, see [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
 
 </details>
 

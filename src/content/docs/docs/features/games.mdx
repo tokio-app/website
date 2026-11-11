@@ -99,10 +99,9 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
 <Steps>
 
 1. Pick the tab of your game's edition.
-2. Click **Add action** under its actions.
-3. Pick the trigger.
-4. Click **Add step** and pick what happens.
-5. Click the play button to test it.
+2. Click **Add action** under its actions. It starts as a Follow that spawns one Zombie.
+3. Pick the trigger, change the step, and click **Add step** for more.
+4. Click the play button to test it.
 
 </Steps>
 
@@ -111,13 +110,25 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
   alt="The Bedrock tab of Actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
 />
 
-**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition. Changing an action's edition moves it to the other tab, and its mobs and items to the other edition's, or to a zombie or a diamond. On Bedrock, which has no Java-only steps, **Meteor** becomes **Falling TNT**, the lasers become **Lightning bolt**, and **Turn into mob** and **Back to normal** go away.
+Each action has its own on/off switch. **Remove action** and each step's **Remove step** delete at once, without asking.
 
-**Duplicate** puts a copy right after the action: change its edition to run the same steps in the other game.
+**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition.
+
+**Duplicate action** puts a copy right after the action: change its edition to run the same steps in the other game.
+
+<details>
+<summary>Changing an action's edition</summary>
+
+- The action moves to the other tab.
+- Its mobs and items become the other edition's, or a zombie or a diamond when that edition has none like them.
+- On Bedrock, **Meteor** becomes **Falling TNT**, the lasers become **Lightning bolt**, and **Turn into mob** and **Back to normal** go away.
+- Runs still waiting for its old edition are dropped.
+
+</details>
 
 Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
 
-Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes.
+Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**.
 
 | Trigger   | Options                                                                                                               |
 | --------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -130,155 +141,19 @@ Actions run while **Minecraft** is on and a game of their edition is connected, 
 
 ## Steps
 
-Steps run in order, as you, where you stand.
+Steps run in order, as you, where you stand. [Minecraft steps](/docs/features/minecraft-steps/) has what each one does in the game.
 
-| Step               | What it does                                                                     |
-| ------------------ | -------------------------------------------------------------------------------- |
-| **Spawn mob**      | 1 to 100 of a mob, with an optional name                                         |
-| **Turn into mob**  | Java only: you become a mob, until **Back to normal** or for the seconds you set |
-| **Back to normal** | Java only: ends **Turn into mob**                                                |
-| **Give item**      | 1 to 100 of an item, to you                                                      |
-| **Weather**        | **Clear**, **Rain** or **Thunder**                                               |
-| **Time of day**    | **Day**, **Noon**, **Night** or **Midnight**                                     |
-| **Hazard**         | Something that tries to kill you or gets in your way                             |
-| **Help**           | Something that helps you survive                                                 |
-| **Command**        | Any command, as you'd type it in chat, slash or not                              |
-
-### Spawn mob
-
-The list has every mob the game can summon, plus **Chicken Jockey**: a baby zombie riding a chicken. A name goes on the zombie.
-
-Several mobs come one at a time, a quarter of a second apart.
-
-Mobs you spawn don't burn in daylight, and hostile ones come after you.
-
-- On Java, the latest Tokio mod does both. For their first second they attack no one, so a crowd can't kill you the moment it appears.
-- On Bedrock, mobs that would burn get fire resistance. Hostile mobs attack when they see you, as usual, and cave spiders spawn angry. Endermen, zombified piglins and spiders in daylight stay calm until you hit them.
-
-### Give item
-
-The list has every item the game can give. It goes into your inventory, or drops at your feet when that's full.
-
-Check **replacing yours** and the ones you already have of that item go first, enchanted or not, so gifts don't fill your inventory.
-
-On Java, armor, weapons, tools, shields, elytras and fishing rods have an **enchanted** box. Check it and the item comes with the best enchantments it can have, each at its highest level, listed under the step.
-
-A netherite sword gets Sharpness V, Sweeping Edge III, Fire Aspect II, Knockback II, Looting III, Unbreaking III and Mending.
-
-<details>
-<summary>Which enchantments</summary>
-
-- Where two can't go together, the item gets Protection (not Fire, Blast or Projectile Protection), Sharpness (not Smite or Bane of Arthropods), Density (not Breach), Fortune (not Silk Touch), Depth Strider (not Frost Walker), Multishot (not Piercing), and Loyalty and Channeling (not Riptide).
-- A bow gets Infinity, which can't go with Mending. It still needs an arrow in your inventory to shoot, so you may want to give one with it.
-- No item gets a curse.
-- **Replacing yours** on armor takes the piece you wear too, and the new one goes to your inventory.
-- Bedrock can't give enchanted items: its `give` takes no enchantments, and its `enchant` only works on the item in your hand. So Bedrock actions have no box.
-
-</details>
-
-### Hazards
-
-| Hazard                  | What happens                                                                                   |
-| ----------------------- | ---------------------------------------------------------------------------------------------- |
-| **Falling TNT**         | Lit TNT drops from 10 blocks up, with the fuse you set                                         |
-| **TNT ring**            | 8 lit TNT around you                                                                           |
-| **Lightning bolt**      | Strikes where you stand, 1 to 100 times                                                        |
-| **Charged creeper**     | 1 to 100 appear next to you, one at a time                                                     |
-| **Evoker fangs**        | Bite up from under you, 1 to 100 times                                                         |
-| **Anvil drop**          | An anvil falls from 20 blocks up                                                               |
-| **Harming**             | Takes 6 hearts                                                                                 |
-| **Launch into the sky** | Breaks through the blocks over you and flies you up to 300 blocks (50 to start), then you fall |
-| **Launch + water**      | The same, with a water bucket first                                                            |
-| **Freeze**              | You can't walk, for the seconds you set (10 to start)                                          |
-| **Lights out**          | Darkness, for the seconds you set                                                              |
-| **Dizzy**               | Your screen wobbles, for the seconds you set                                                   |
-| **Turn around**         | You face the other way                                                                         |
-| **Random teleport**     | Somewhere within the distance you set (1,000 blocks to start)                                  |
-| **Cobweb trap**         | Cobwebs fill the air around you and over you                                                   |
-| **Honey trap**          | A box of honey shuts you in: you walk slowly and can't jump                                    |
-| **Obsidian prison**     | A box of obsidian shuts you in, and you have to dig out                                        |
-| **Lava lake**           | The ground around you turns to lava, and you're left on one block of obsidian                  |
-| **Hole below**          | The ground under you opens, as deep as you set (10 blocks to start, up to 64)                  |
-| **Clear inventory**     | Everything in your inventory is gone                                                           |
-| **Random boss**         | A Warden, a Wither, a Ravager or an Evoker appears next to you, a new pick each time           |
-| **Meteor**              | 1 to 100 burning rocks fall from the sky, the first where you stand and the rest around you    |
-| **Laser**               | A red beam follows you for 2 seconds, then fires and blasts a hole where it stopped            |
-| **Super laser**         | Night falls on your screen, lightning strikes around you, and it bores a tunnel 60 blocks down |
-| **Super duper laser**   | A super laser that first burns down through the ground over you                                |
-
-Java has four more hazards, from the Tokio mod: **Meteor**, **Laser**, **Super laser** and **Super duper laser**. Their blasts break blocks and start fires like TNT, unless the `tnt_explodes` game rule is off.
-
-<details>
-<summary>The finer points</summary>
-
-- Bedrock's TNT has only two fuses: 4 s, or a random 0.5 to 2 s when you set 2 s or less.
-- The anvil needs air 20 blocks up, and it stays in the world after it lands.
-- A launch takes the seconds you set: fewer is faster. Above about 190 blocks, 1 second is too fast, so it takes a little longer.
-- A launch first clears a 3×3 shaft as high as it goes, bedrock too, so in the Nether you go through the roof. The blocks it takes drop nothing. Near the top of the world, the part above it can't be cleared, and **Test** shows it failed.
-- The cobweb trap only fills air, so it breaks nothing. The honey and obsidian boxes replace the blocks where their walls, floor and roof go, and leave what's inside.
-- To get off the lava lake's island, jump the ring of lava, 2 blocks wide, or build your way out. Fall in and you catch fire.
-- The hole never breaks the bedrock at the bottom of the world: that close to it, it digs nothing. In the End, a deep enough hole goes through the island.
-- A gift streak gets a new random boss for every gift. The Ender Dragon isn't one of them: outside the End it flies to the world's center and leaves you alone.
-- In a LAN world, an Evoker's vexes and a Ravager's roar can reach other players too.
-- A meteor lands on the ground under you even when you fly, and you have 2 seconds to get out of the way.
-- A super laser's night only shows on your screen: the world's time doesn't change.
-- The meteors' and lasers' particles follow your **Particles** setting in Minecraft: fewer on **Decreased**, none on **Minimal**.
-
-</details>
-
-### Help
-
-- **Netherite armor**: a whole set, put on at once. The armor you wear is lost. On Java, check **enchanted** and each piece gets the best enchantments it can have, as with **Give item**.
-- **Netherite kit**: the same armor, plus a netherite sword, pickaxe and axe, a bow and 64 arrows. On Java it all comes with the best enchantments, the bow with Infinity. Check **replacing yours** so more kits don't fill your inventory.
-- **Full heal**: fills your health and hunger.
-- **Regeneration** II, **Absorption** IV, **Resistance** IV, **Fire resistance**, **Speed** II, **Jump boost** II, **Strength** II, **Slow falling**, **Water breathing**, **Night vision** and **Invisibility**: for the seconds you set (30 to start).
-
-### Turn into mob
-
-You become the mob, any living one, bosses too: you're its size, you have its health, damage, armor and jump, and you see yourself as the mob in third person. Only Java actions have it, through the Tokio mod.
-
-It lasts until a **Back to normal** step, or for the seconds you set. Closing the world turns you back too. If you die, you respawn as the mob for the time you had left: its time stops while you're dead. While you're a mob for a set time, a new **Turn into mob** waits until that time is up, then starts with its own seconds, in the order they came. A mob without seconds gives way to the next one at once, and **Back to normal** also drops the ones waiting. You keep the same share of your hearts, so half your health as a player is half an iron golem's 100.
-
-You walk at the mob's pace, from half to one and a half times your usual walk. Flying mobs take off at once and fly as in creative mode: ghasts and blazes slower, phantoms, vexes and the Ender Dragon faster. Water mobs breathe underwater, and fish drown on land. Fireproof mobs don't burn, zombies and skeletons catch fire in the sun, endermen and blazes get hurt by water, and spiders climb walls. You make the mob's hurt, death, step and idle sounds.
-
-The Ender Dragon smashes through what it flies into, unless the `mobGriefing` game rule is off. Guests in your LAN world need the mod to see the mob.
-
-#### Attacks
-
-Press **R** to use the mob's own attack where you look, and hold it to keep attacking at the mob's pace. The key is **Mob attack**, under **Tokio** in **Options → Controls → Key Binds**. Mobs that only bite or punch, like zombies and spiders, have nothing on R: they hit with left-click, for the mob's damage.
-
-| Mob                                                              | What R does                                                                                                                                                       |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Wither**                                                       | A wither skull from each of its heads in turn, one every 0.75 seconds                                                                                             |
-| **Ghast**                                                        | Opens its mouth for a second, then fires a fireball that explodes, every 3 seconds                                                                                |
-| **Blaze**                                                        | Three fireballs in a row, every 5.6 seconds                                                                                                                       |
-| **Skeleton**, **Stray**, **Bogged**, **Parched**, **Illusioner** | An arrow every second, every 2.5 for the Bogged. A Stray's slows, a Bogged's poisons, a Parched's weakens                                                         |
-| **Pillager**, **Piglin**                                         | A crossbow arrow every 2 seconds                                                                                                                                  |
-| **Drowned**                                                      | A trident every 2 seconds                                                                                                                                         |
-| **Witch**                                                        | A splash potion every 3 seconds: what a witch would throw at the mob you look at, or Harming                                                                      |
-| **Snow Golem**                                                   | A snowball every second                                                                                                                                           |
-| **Llama**, **Trader Llama**                                      | Spit every 2 seconds                                                                                                                                              |
-| **Shulker**                                                      | A bullet that follows the mob you look at and makes it float, every 2 seconds                                                                                     |
-| **Breeze**                                                       | Breathes in, then fires a wind charge, about every 1.5 seconds                                                                                                    |
-| **Ender Dragon**                                                 | A dragon fireball that leaves a cloud of breath, every 3 seconds                                                                                                  |
-| **Warden**                                                       | Charges for 1.7 seconds, then a sonic boom that goes through walls to the mob you aimed at, up to 15 blocks, every 5 seconds                                      |
-| **Evoker**                                                       | Raises its arms, and a second later 16 fangs bite up in a line toward the mob you aimed at, or in two rings around you when it's within 3 blocks, every 5 seconds |
-| **Guardian**, **Elder Guardian**                                 | A beam on the mob you look at, which hits after 4 seconds (3 for an Elder Guardian) if you keep it in sight                                                       |
-| **Creeper**                                                      | Hisses for 1.5 seconds, then explodes around you, every 3 seconds. You live on as a creeper                                                                       |
-
-Your left-click hits also do what the mob's own hit does: a Wither Skeleton's gives Wither, a Cave Spider's and a Bee's give Poison (not on Easy), an Iron Golem's tosses mobs up, and a Hoglin's and a Zoglin's throw them. Bare-handed, a Husk's makes mobs hungry, and a burning zombie's may set them on fire.
-
-Your attacks never hurt you or other players. Their blasts break blocks unless the `mobGriefing` game rule is off, and a Blaze's fireballs start fires. The arrows and tridents you fire can't be picked up.
-
-### Command
-
-Use a command step for anything else, like titles or sounds:
-
-```
-say {username} sent {count} {gift}!
-```
-
-Write it for the action's edition, since some commands differ. A mob or item that doesn't exist runs nothing.
+| Step                                                                | What it does                                                                     |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [**Spawn mob**](/docs/features/minecraft-steps/#spawn-mob)          | 1 to 100 of a mob, with an optional name                                         |
+| [**Turn into mob**](/docs/features/minecraft-steps/#turn-into-mob)  | Java only: you become a mob, until **Back to normal** or for the seconds you set |
+| [**Back to normal**](/docs/features/minecraft-steps/#turn-into-mob) | Java only: ends **Turn into mob**                                                |
+| [**Give item**](/docs/features/minecraft-steps/#give-item)          | 1 to 100 of an item, to you                                                      |
+| **Weather**                                                         | **Clear**, **Rain** or **Thunder**                                               |
+| **Time of day**                                                     | **Day**, **Noon**, **Night** or **Midnight**                                     |
+| [**Hazard**](/docs/features/minecraft-steps/#hazards)               | Something that tries to kill you or gets in your way                             |
+| [**Help**](/docs/features/minecraft-steps/#help)                    | Something that helps you survive                                                 |
+| [**Command**](/docs/features/minecraft-steps/#command)              | Any command, as you'd type it in chat, slash or not                              |
 
 ## Variables
 
@@ -332,13 +207,13 @@ The **Overlay** section shows viewers what each event does, with a picture and n
 http://tokio-app.local:37891/games/minecraft/
 ```
 
-Split it into up to 4 **Columns**, or **Rows** when it's horizontal, to spread it over the screen: each gets its own address under **Overlay URLs**, like `http://tokio-app.local:37891/games/minecraft/2/`. It fills its source and shrinks to fit.
+Split it into up to 4 **Columns**, or **Rows** when it's horizontal, to spread it over the screen. Each gets its own address under **Overlay URLs**, like `http://tokio-app.local:37891/games/minecraft/2/`, and fills its source, shrinking to fit.
 
 ### Rows
 
 Each action has a row, in the actions' order:
 
-- **Show** puts it on the overlay. It needs the action on, and a picture or a name.
+- **Show on the overlay** puts it on the overlay. It needs the action on, and a picture or a name.
 - The event shows a gift's or emote's picture, or Tokio's own pixel icon. Type over its text to change it; empty it to go back.
 - The square picks the picture.
 - The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
@@ -349,7 +224,7 @@ Each action has a row, in the actions' order:
 
 Tokio can't include Minecraft's pictures, so you add your own: png, jpg, gif or webp, up to 50 MB. Click the square, then **Browse files...** to add one or several.
 
-All profiles share the library, in the `games/minecraft` folder of Tokio's app folder. **Clear** takes the picture off an action; its delete button in the picker takes it off every action and deletes the file.
+All profiles share the library, in the `games/minecraft` folder inside the [`.tokio` folder](/docs/features/profiles-and-settings/#your-files) in your user folder. **Clear** takes the picture off an action; its delete button in the picker takes it off every action and deletes the file.
 
 ### Look
 
@@ -367,16 +242,16 @@ All profiles share the library, in the `games/minecraft` folder of Tokio's app f
   alt="The Horizontal layout: a follow icon, an arrow and a zombie head, then a rose, an arrow and a TNT block, on one line"
 />
 
-| Option                          | What it does                                                                                                           |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Layout**                      | **Vertical** shows every action top to bottom and **Horizontal** side by side; **One at a time** turns every 3 seconds |
-| **Columns**                     | Splits the actions into 1 to 4 overlays, called **Rows** when horizontal                                               |
-| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons                                                             |
-| **Counts**                      | **Small**, **Medium** or **Large** numbers on the pictures' corners: an action's amount and the likes' count           |
-| **Pictures only**               | Hides the texts next to pictures                                                                                       |
-| **Text below pictures**         | Puts the texts under the pictures                                                                                      |
-| **Font**                        | A font on your computer, Archivo by default. Your streaming app's computer needs it too                                |
-| **Text**, **Accent**, **Arrow** | The colors of the texts, a lit action and the arrows                                                                   |
+| Option                          | What it does                                                                                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Layout**                      | **Vertical** shows every action top to bottom and **Horizontal** side by side; **One at a time** turns every 3 seconds                       |
+| **Columns**                     | Splits the actions into 1 to 4 overlays, called **Rows** when horizontal                                                                     |
+| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons                                                                                   |
+| **Counts**                      | **Small**, **Medium** or **Large** numbers on the pictures' corners: an action's amount and the likes' count                                 |
+| **Pictures only**               | Hides the texts next to pictures                                                                                                             |
+| **Text below pictures**         | Puts the texts under the pictures                                                                                                            |
+| **Font**                        | A font on your computer, Archivo by default. [Install it where your streaming app runs too](/docs/guides/adding-an-overlay/#fonts-and-sound) |
+| **Text**, **Accent**, **Arrow** | The colors of the texts, a lit action and the arrows                                                                                         |
 
 ### Light-up
 
@@ -389,17 +264,17 @@ The play button on **Overlay** lights up the next action, in the preview and on 
 
 - Every gift on **Every gift** and every count on **Like** runs, however many come at once.
 - Actions on other events keep at most 100 runs waiting. More are skipped until the game catches up, so a busy chat can't put them minutes behind.
-- When runs pile up, Tokio sends each action's 10 a second, so the game keeps up. Other actions don't wait.
-- Turning an action off, removing it or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
+- An action's runs go one at a time, and other actions don't wait for them. A big **Spawn mob** holds its action: 100 mobs take about 25 seconds.
+- Turning an action off, removing it, changing its edition, turning **Minecraft** off or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
 
 </details>
 
 <details>
 <summary>Notices</summary>
 
-- **Minecraft Java Edition isn't connected** (or **Bedrock Edition**): an action ran with no game of its edition. At most once a minute.
-- **A command failed in Minecraft**: the game refused a command, with its answer. At most once every 30 seconds per action.
-- **The action has 100 runs waiting**: new ones are skipped until Minecraft catches up. At most once every 30 seconds per action.
-- **Tokio couldn't listen for Minecraft**: the port was in use when Tokio started.
+- **Minecraft Java Edition isn't connected, so the … action didn't run.** (or Bedrock Edition): an action ran with no game of its edition. At most once a minute.
+- **A command of the … action failed in Minecraft:** then the game's answer. At most once every 30 seconds per action.
+- **The … action has 100 runs waiting, so new ones are skipped until Minecraft catches up.** At most once every 30 seconds per action.
+- **Tokio couldn't listen for Minecraft. Port 37892 may be in use.**: the port was in use when Tokio started.
 
 </details>

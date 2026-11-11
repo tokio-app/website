@@ -23,9 +23,13 @@ On **Overlays**, click **Official overlays**, then **Install** on the one you wa
 
 When a new version is out, a dot shows on **Official overlays**: click **Update**. Your settings are kept where they still fit; refresh the overlay in your streaming app afterwards.
 
+An official overlay's address ends in its own name, like `/gift-jar/`, so it stays the same if you remove and install it again.
+
 ## Import your own
 
-Import an overlay's folder in **Settings → Overlay library**. It shows marked **External** and gets no updates.
+Import an overlay's folder in **Settings → Overlay library**. It shows marked **External** and gets no updates. See [Building an overlay](/docs/developers/building-an-overlay/) for what the folder needs.
+
+Tokio keeps a copy, so later edits to the folder don't reach it. Importing the folder again makes a second overlay, with a new address and default settings.
 
 <Screenshot
   name="settings-overlay-library"
@@ -34,7 +38,9 @@ Import an overlay's folder in **Settings → Overlay library**. It shows marked 
 
 ## Set it up
 
-Click **Customize** to change an overlay's colors, text or gifts. The preview shows your changes, and **Save** sends them to your stream.
+Click **Customize** to change an overlay's colors, text or gifts; it shows only on overlays with settings. The preview shows your changes, and **Save** sends them to your stream.
+
+The **Test** in **Customize** stays in its preview. Overlays don't follow Tokio's language.
 
 <Screenshot
   name="overlays-customize"
@@ -43,7 +49,7 @@ Click **Customize** to change an overlay's colors, text or gifts. The preview sh
 
 ## Add it to your stream
 
-Copy the address from the overlay's card; **Test** sends it sample events. See [Adding an overlay](/docs/guides/adding-an-overlay/) for the rest.
+Copy the address from the overlay's card. Its **Test** sends sample events to the preview and to the overlay on your stream. See [Adding an overlay](/docs/guides/adding-an-overlay/) for the rest.
 
 <Screenshot
   name="overlays-card"
@@ -56,4 +62,4 @@ Use the trash button on its card in **Official overlays**, or in **Settings → 
 
 ## Make your own
 
-Build one in the app with [Overlay Studio](/docs/features/overlay-studio/), from text, images and the overlays you have. Or write one by hand or with any framework: see [Building an overlay](/docs/developers/building-an-overlay/).
+Build one in the app with [Overlay Studio](/docs/features/overlay-studio/), from text, images and the overlays you have; the ones you build live there. Or write one by hand or with any framework: see [Building an overlay](/docs/developers/building-an-overlay/).

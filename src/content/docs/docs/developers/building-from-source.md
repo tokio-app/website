@@ -3,7 +3,7 @@ title: Building Tokio from source
 description: Build and run Tokio from its source code.
 ---
 
-Tokio's source is on [GitHub](https://github.com/tokio-app/tokio). Building it requires Node.js 24.18 or later and Yarn 1.22.
+Tokio's source is on [GitHub](https://github.com/tokio-app/tokio). Building it requires Node.js 24.18 or later and Yarn 1.22.22 or later.
 
 ```sh
 git clone https://github.com/tokio-app/tokio.git

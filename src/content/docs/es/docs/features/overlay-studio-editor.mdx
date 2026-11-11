@@ -1,0 +1,171 @@
+---
+title: Editor de Overlay Studio
+description: Ubica, agrupa, recorta y corta los elementos de tus overlays de Overlay Studio.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import Screenshot from "../../../../../components/Screenshot.astro";
+
+El editor se abre cuando haces clic en un overlay en [Overlay Studio](/es/docs/features/overlay-studio/). Cada cambio se guarda mientras lo haces y llega a tu stream al instante.
+
+## Elementos y grupos
+
+La lista de **Elementos** muestra cada elemento, el de adelante arriba, con una imagen pequeña de lo que muestra. Un elemento que reacciona a un evento dice a cuál bajo su nombre.
+
+<Screenshot
+  name="studio-elements"
+  alt="La lista de Elementos: el logo solo, un grupo con la imagen de un espectador, el mensaje de seguimiento y su globo de diálogo, y un grupo con la estrella, el texto de Me gusta y el rectángulo del banner, cada uno con una imagen pequeña de lo que muestra"
+/>
+
+En el menú **+**, **Nuevo grupo** agrega un grupo delante de los demás.
+
+Un elemento nuevo va al grupo seleccionado, o al grupo del elemento seleccionado, y el menú dice cuál: **Agregar a Grupo 1**. Si no, va adelante, suelto.
+
+Arrastra el asa de una fila para cambiar el orden de grupos y elementos, o para meter un elemento en un grupo o sacarlo. Donde sueltas un elemento decide adónde va:
+
+| Si lo sueltas                                     | Va                        |
+| ------------------------------------------------- | ------------------------- |
+| Sobre la fila de un grupo                         | Adelante, en ese grupo    |
+| Cerca del borde de arriba de la fila de un grupo  | Delante del grupo, suelto |
+| Debajo de la lista, o en el hueco entre dos filas | Ahí, suelto               |
+
+También puedes enfocar el asa y usar las flechas arriba y abajo. Un elemento en el borde de su grupo sale de él, y un elemento suelto entra al grupo que encuentra.
+
+La fila de cada grupo tiene tres botones:
+
+- la flecha junto al asa pliega sus elementos en la lista;
+- **Bloquear grupo** hace que el lienzo no pueda elegir, mover, cambiar el tamaño ni girar sus elementos, y un clic pasa a lo que está debajo. Puedes cambiarlos desde la lista y su configuración;
+- **Ocultar grupo** lo saca del lienzo y del stream hasta que lo vuelvas a mostrar.
+
+La fila de cada elemento tiene su propio **Bloquear elemento** y **Ocultar elemento**, que funcionan igual solo para ese elemento. Los botones de bloquear y ocultar aparecen al pasar el puntero sobre una fila o al seleccionarla, y siguen a la vista mientras están activos.
+
+Selecciona un grupo o un elemento para ponerle nombre en su configuración. Un elemento sin nombre muestra lo que es, como su texto.
+
+Para eliminar la selección, haz clic en el botón de la papelera junto a **+**. Un grupo se elimina con sus elementos, y **Deshacer** los trae de vuelta.
+
+## En el lienzo
+
+Haz clic en un elemento para seleccionarlo, arrástralo para moverlo y arrastra cualquiera de sus esquinas para cambiar su tamaño. Para girarlo, arrastra el controlador redondo que tiene arriba.
+
+El recuadro de un texto no puede quedar más angosto que su palabra más larga ni más bajo que sus palabras. Crece para que quepan cuando cambias su texto, fuente, tamaño o negrita.
+
+**Posición y tamaño**, **Rotación (°)** y **Opacidad** definen lo mismo con números. También puedes mantener presionado un campo numérico y arrastrar a la izquierda o a la derecha para cambiar su número.
+
+**Vincular ancho y alto**, el botón entre **Ancho** y **Alto**, mantiene las proporciones al cambiar cualquiera de los dos, en los campos o arrastrando una esquina. **Alinear al lienzo** lleva el elemento a un borde del lienzo o a su centro, y **Voltear** lo refleja en horizontal o en vertical.
+
+Selecciona un grupo en la lista para cambiar todos sus elementos a la vez. Arrastra dentro de su contorno para moverlo, y arrastra sus esquinas o su controlador redondo para cambiar su tamaño o girarlo.
+
+La configuración de un grupo tiene los mismos campos que la de un elemento, y su **Opacidad** atenúa todo el grupo. Haz clic en un espacio vacío del lienzo o de la lista para quitar la selección.
+
+## Ajuste automático
+
+Cuando arrastras un elemento, un grupo o una esquina, se ajusta a los bordes y al centro del lienzo, a los bordes y centros de los otros elementos, y a las guías mientras las reglas están activadas. Una línea muestra con qué se alinea.
+
+Mantén presionada Alt mientras arrastras para colocarlo libremente. Las teclas de flecha, los campos, **Alinear al lienzo** y el giro nunca se ajustan.
+
+## Recorte
+
+Puedes recortar una imagen, un video, una cámara, un regalo o un emote. Mientras recortas se ve la imagen entera, con las partes que recortas atenuadas.
+
+<Steps>
+
+1. Haz doble clic en el elemento, o haz clic en **Recortar en el lienzo** en su configuración.
+2. Arrastra los lados o las esquinas del marco para recortarla, o arrastra dentro del marco para mover la imagen debajo.
+3. Presiona Enter o haz clic afuera para conservar el recorte, o presiona Escape para cancelar.
+
+</Steps>
+
+<Screenshot
+  name="studio-crop"
+  alt="Recortar el logo en el lienzo: se ve entero, con las partes recortadas atenuadas alrededor de un marco con un control en cada lado y esquina"
+/>
+
+Recortar nunca mueve ni cambia el tamaño de la imagen: el recuadro del elemento se ajusta a la parte que conservas. **Recorte (%)** en su configuración define el mismo recorte con números, y **Restablecer el recorte** devuelve la imagen entera.
+
+**Esquinas redondeadas** las redondea, hasta un círculo en una imagen cuadrada. Un archivo, regalo o emote nuevo empieza sin recorte.
+
+La imagen de un espectador se recorta solo desde sus campos. Eligen la parte de la imagen de cada espectador que llena su círculo.
+
+## Videos
+
+**Fragmento** conserva una parte de un video, como el [recorte de una alerta](/es/docs/features/alerts/#recortar-un-sonido): arrastra los controles o escribe los segundos de **Inicio** y **Fin**. El lienzo muestra el cuadro donde estás y luego vuelve a reproducir el fragmento, y **Restablecer el fragmento** devuelve el video entero.
+
+**Volumen** fija qué tan fuerte suena. Con **Repetir** activado, el video vuelve a empezar cuando termina su fragmento.
+
+Con **Repetir** desactivado, el video se reproduce una vez, y un elemento que aparece con un evento se va cuando termina: sus **Segundos en pantalla** dicen **Hasta que termine el video**. **Reproducir de nuevo**, junto a **Repetir**, lo reproduce otra vez en el lienzo.
+
+Un elemento que se mueve con un evento reproduce su video de nuevo cada vez. El lienzo no suena mientras editas: haz clic en **Sonido en el lienzo**, el altavoz debajo del lienzo, para oír sus videos.
+
+## Copiar, pegar y deshacer
+
+Copiar, cortar y pegar funcionan con la selección, y cada copia se pega 20 px más abajo y a la derecha que la anterior. Un elemento copiado va al grupo seleccionado, y un grupo copiado se pega como un grupo nuevo.
+
+La copia se guarda hasta que Tokio se cierra, así que puedes pegarla en otro overlay.
+
+**Deshacer** y **Rehacer**, arriba en el editor, van hacia atrás y hacia adelante por tus cambios mientras el editor está abierto. Arrastrar algo en el lienzo cuenta como un cambio, y escribir un número en un campo también.
+
+Plegar un grupo, mostrar las reglas, la selección y el zoom no son cambios. Cada cambio en las guías sí lo es.
+
+## Zoom
+
+La barra debajo del lienzo muestra su nivel de zoom. Haz zoom con sus botones, o con Ctrl y la rueda del mouse donde está el puntero.
+
+**Ajustar a la vista** vuelve a mostrar el lienzo entero. Con zoom, muévete con la rueda o las barras de desplazamiento, o mantén presionada la barra espaciadora y arrastra el lienzo.
+
+## Reglas y guías
+
+**Reglas y guías**, el botón junto al zoom, muestra reglas en los bordes de arriba e izquierdo del lienzo, en píxeles desde su esquina de arriba a la izquierda. Cada overlay recuerda si están activadas.
+
+<Screenshot
+  name="studio-guides"
+  alt="El lienzo con reglas en sus bordes superior e izquierdo y una guía en cada uno de sus centros"
+/>
+
+Mantén presionada la tecla Ctrl y arrastra desde la regla de arriba para una guía horizontal, o desde la de la izquierda para una vertical. Mantén presionada Ctrl y arrastra una guía para moverla, o de vuelta a una regla para quitarla.
+
+Sin nada seleccionado, la **Configuración del overlay** muestra las **Guías**: ahí puedes escribir sus posiciones, agregar una en el centro del lienzo, bloquearlas o quitarlas todas. Las guías se guardan con el overlay y nunca aparecen en el stream.
+
+## Atajos de teclado
+
+En una Mac, Ctrl es Cmd y Alt es Option. Mientras escribes en un campo, sus teclas funcionan en su texto.
+
+| Teclas                         | Qué hacen                                                                        |
+| ------------------------------ | -------------------------------------------------------------------------------- |
+| Supr o Retroceso               | Elimina la selección. En el lienzo, una bloqueada se queda                       |
+| Escape                         | Quita la selección, o cancela un recorte                                         |
+| Enter                          | Conserva un recorte                                                              |
+| Flechas                        | Mueven la selección 1 px, 10 px con Shift. En un asa de la lista, mueven su fila |
+| Shift al girar                 | Gira de 15° en 15°                                                               |
+| Shift al arrastrar un campo    | Cambia su número de 10 en 10                                                     |
+| Ctrl+C, Ctrl+X, Ctrl+V         | Copian, cortan y pegan                                                           |
+| Ctrl+Z                         | Deshace                                                                          |
+| Ctrl+Y o Ctrl+Shift+Z          | Rehace                                                                           |
+| Ctrl+rueda, o pellizcar        | Zoom donde está el puntero                                                       |
+| Ctrl++ y Ctrl+-                | Acercan y alejan                                                                 |
+| Ctrl+0                         | Ajusta a la vista                                                                |
+| Barra espaciadora+arrastrar    | Mueve la vista por el lienzo                                                     |
+| Ctrl+R                         | Muestra u oculta las reglas y guías                                              |
+| Ctrl+arrastrar desde una regla | Agrega una guía                                                                  |
+| Ctrl+arrastrar una guía        | La mueve, o la quita sobre una regla                                             |
+| Alt al arrastrar               | Coloca sin ajuste. En Linux, presiona Alt después de empezar a arrastrar         |
+| Doble clic                     | Recorta una imagen, un video, una cámara, un regalo o un emote                   |
+
+## Límites
+
+<details>
+<summary>Cuánto cabe en un overlay</summary>
+
+| Qué                       | Hasta                                      |
+| ------------------------- | ------------------------------------------ |
+| Elementos                 | 100 por overlay                            |
+| Grupos                    | 100 por overlay                            |
+| Un texto                  | 500 caracteres                             |
+| Un nombre                 | 60 caracteres                              |
+| El **Tamaño** de un texto | 400                                        |
+| Guías                     | 50 horizontales y 50 verticales            |
+| Zoom                      | 10 a 400 %                                 |
+| **Deshacer**              | 100 pasos, mientras el editor está abierto |
+
+Cuando un overlay está lleno, el menú **+** te lo dice.
+
+</details>

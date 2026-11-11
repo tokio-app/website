@@ -183,11 +183,12 @@ code {
 
 /* Long-form content (about page) */
 
-/* Under 80 characters a line */
+/* Its text as wide as the docs' column. It's also the .container, whose
+   gutters are inside its width. */
 .prose {
   display: grid;
   gap: var(--space-4);
-  max-width: 68ch;
+  max-width: calc(var(--content-width) + 2 * var(--gutter));
   color: var(--font-secondary);
 }
 

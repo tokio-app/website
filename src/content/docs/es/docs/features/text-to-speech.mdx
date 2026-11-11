@@ -27,7 +27,9 @@ Tokio lee en voz alta los mensajes del chat a medida que llegan.
 
 </Steps>
 
-Los cambios se guardan mientras los haces. Si tu mensaje de prueba no se leyera en el chat, por ejemplo por una palabra prohibida, verías por qué en lugar de oírlo.
+**Probar voz** aplica tus reemplazos, **Quitar emojis** y las palabras prohibidas, así que un mensaje con una palabra prohibida o sin nada que leer muestra un aviso en lugar de sonar.
+
+El formato, el largo máximo y los permisos no se aplican a la prueba, así que puede sonar un mensaje que en el chat se omitiría.
 
 ## Voces
 
@@ -50,7 +52,9 @@ Dale a algunos espectadores una voz propia: en **Usuarios especiales**, agrega s
 
 ## Formato
 
-Lee todos los mensajes, o solo los que empiezan con un punto, una barra o un comando tuyo. Al elegir **Comando personalizado** aparece `!tts`, que puedes cambiar. El comando no se lee en voz alta, y si lo dejas vacío no se lee nada.
+Lee todos los mensajes, o solo los que empiezan con un punto, una barra o un comando tuyo.
+
+Al elegir **Comando personalizado** aparece `!tts`, que puedes cambiar. El comando no se lee en voz alta, y si lo dejas vacío no se lee nada.
 
 <Screenshot
   name="tts-format"
@@ -80,7 +84,9 @@ Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una p
 
 ## Permisos
 
-Desmarca **Permitir a todos** para permitir solo a seguidores, Super Fans, moderadores o un nivel mínimo de fan. Con **Usar listas de permitidos y bloqueados**, los @usuarios de la lista de bloqueados nunca se leen, y si la lista de permitidos tiene nombres, solo ellos hablan.
+Desmarca **Permitir a todos** y marca **Solo seguidores**, **Solo Super Fans**, **Solo moderadores** o **Nivel mínimo de fan**. Hasta que marques una, todos siguen hablando, y basta con cumplir cualquiera de las marcadas.
+
+Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene nombres, solo ellos hablan. Los @usuarios de la lista de bloqueados nunca se leen, aunque estén en la de permitidos.
 
 <Screenshot
   name="tts-permissions"
@@ -89,11 +95,13 @@ Desmarca **Permitir a todos** para permitir solo a seguidores, Super Fans, moder
 
 ## Protección
 
-Un **Tiempo de espera** y un **Largo máximo de la cola** evitan que el chat sature la voz. Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos.
+El **Tiempo de espera** son los segundos entre dos mensajes, para todo el chat. Los mensajes que llegan cuando la cola ya tiene **Largo máximo de la cola** mensajes se descartan.
+
+Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos. Una palabra prohibida también cuenta dentro de otras, así que prohibir "cola" omite también "chocolate".
 
 <Screenshot
   name="tts-protection"
   alt="La sección Protección: tiempo de espera, largo máximo de la cola, largo máximo del mensaje y palabras prohibidas"
 />
 
-Los reemplazos, **Quitar emojis**, las palabras prohibidas y la lista de bloqueados también se aplican a las [alertas que hablan](/es/docs/features/alerts/#mensajes-hablados). Los [pedidos de canciones](/es/docs/features/music-requests/#quién-puede-pedir) tienen sus propios permisos.
+Los reemplazos, **Quitar emojis**, las palabras prohibidas y la lista de bloqueados también se aplican a las [alertas que hablan](/es/docs/features/alerts/#mensajes-hablados). [Música](/es/docs/features/music-requests/#quién-puede-pedir) tiene sus propios permisos.

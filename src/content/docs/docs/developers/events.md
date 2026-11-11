@@ -28,7 +28,7 @@ Tokio sends `CONFIG` (`tokio:config`) with the overlay's settings when the strea
 
 ## Fans
 
-Tokio sends `FANS` (`tokio:fans`) with the fans the streamer's profile has seen in its LIVEs, when the overlay connects and again when the list changes, at most every 5 seconds. In Tokio's previews, it comes as a sample when you click **Test**.
+Tokio sends `FANS` (`tokio:fans`) with the fans the streamer's profile has seen in its LIVEs, when the overlay connects, after a profile switch, and again when the list changes, at most every 5 seconds. In Tokio's previews, it comes as a sample when you click **Test**.
 
 TikTok only sends a viewer's fan level when they do something in the LIVE, so this list has fans your overlay hasn't seen yet. It holds up to 100, from the highest fan level down and, at the same level, the most recently seen first.
 
@@ -38,11 +38,15 @@ Tokio sends `GIFTERS` (`tokio:gifters`) with the top gifters, at most once a sec
 
 `live` is this LIVE's top 10 by coins, empty while Tokio isn't connected. `allTime` is the top 10 across every LIVE the profile kept, this one included.
 
-Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't. In Tokio's previews, it comes as a sample when you click **Test**.
+Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't.
+
+In Tokio's previews, it comes as a sample when you click **Test**.
 
 ## Music
 
-Tokio sends `MUSIC_CHANGE` with the whole song request queue each time it changes and when its last song ends. An overlay also gets it as it connects, while the queue has songs. In Tokio's previews, it comes as a sample when you click **Test**.
+Tokio sends `MUSIC_CHANGE` with the whole song request queue each time it changes and when its last song ends. An overlay also gets it as it connects, while the queue has songs.
+
+In Tokio's previews, it comes as a sample when you click **Test**.
 
 The queue is in order: the songs already played, the one playing (`playing: true`), then the ones waiting. When no song is playing, the queue is empty or its last song ended.
 
@@ -63,7 +67,7 @@ These come from `@tokioapp/overlay` itself, about its WebSocket. They don't fire
 Most events include the viewer who triggered them:
 
 ```ts
-interface User {
+interface UserData {
   username: string; // display name
   handle: string; // @handle
   profilePictures: string[];
@@ -78,6 +82,8 @@ interface User {
 
 `fanBadge` is the picture TikTok shows for the fan level: a heart that changes every 10 levels, without the number, so draw `fanLevel` next to it. It's empty for a viewer who isn't a fan.
 
+`follower`, `moderator` and `superfan` are only real on `CHAT` and `GIFT`. Every other event sends `false`, even `FOLLOW`.
+
 | Event                                                  | Data                                                                      |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
 | `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                            |
@@ -86,12 +92,16 @@ interface User {
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
 | `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd, image } }` |
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | none                                                                      |
-| `ROOM_USER`                                            | `{ views, viewers, ranks: (User & { score, position })[] }`               |
+| `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
 Each chat emote is `{ emoteID, index, images }`, and a comment made only of emotes has an empty `content`. A gift's `image` is the URL of its picture.
+
+`gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
+
+`totalLikes` can drop for a while, so keep the highest you've seen. In `ROOM_USER`, `viewers` is how many watch now and `views` the LIVE's total, and each of `ranks` is `{ username, handle, profilePictures, userId, score, position }`.
 
 :::tip[Gift combos]
 A gift streak sends several `GIFT` events with a growing `comboCount`. The last one has `repeatEnd: true`; react to that one for a single reaction per combo.

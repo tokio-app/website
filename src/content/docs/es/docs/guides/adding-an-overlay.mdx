@@ -62,6 +62,23 @@ Tokio ofrece sus overlays como páginas web, y tu app de streaming los muestra s
 
 Los overlays usan `tokio-app.local` porque TikTok LIVE Studio no acepta enlaces a `localhost`.
 
+<details>
+<summary>Si el overlay no aparece</summary>
+
+- Tokio está cerrado, o **Activar el servidor** está apagado. Los overlays solo aparecen mientras Tokio está abierto con el servidor activado.
+- "No se pudo configurar la dirección de los overlays. Acepta el aviso de administrador para agregarla." Vuelve a activar **Activar el servidor** y acepta el aviso.
+- "El servidor de overlays no pudo iniciarse. Puede que el puerto 37891 esté en uso." Otro programa usa ese puerto: ciérralo y vuelve a activar el servidor. Si pasa al abrir Tokio, dice "El servidor de overlays no pudo iniciarse, así que Tokio lo apagó. Puede que el puerto 37891 esté en uso."
+- Un overlay se actualizó y la fuente de navegador sigue mostrando el anterior. Actualiza la fuente: en OBS, abre sus propiedades y haz clic en **Actualizar caché de la página actual**.
+- Tu app de streaming está en otra computadora: consulta [En otra computadora](#en-otra-computadora).
+
+</details>
+
+## Fuentes y sonido
+
+La fuente que elijas para un overlay, en el overlay de juegos, el temporizador, Overlay Studio o la configuración de un overlay, tiene que estar instalada en la computadora donde está tu app de streaming. Si no, el overlay muestra otra fuente, Archivo en los overlays propios de Tokio.
+
+OBS reproduce el sonido de un overlay por sí solo. En una pestaña del navegador, haz clic una vez en la página para que pueda reproducir sonido.
+
 ## En otra computadora
 
 Si tu app de streaming está en otra computadora de tu red, haz que `tokio-app.local` apunte desde ahí a la computadora que tiene Tokio.

@@ -28,7 +28,7 @@ Tokio serves its overlays as web pages, and your streaming app shows them over y
    | ------------------------------------------------------------------------------------- | ----------------------- |
    | An [overlay's](/docs/features/overlays/) card on **Overlays**                         | `/<overlay-id>/`        |
    | An [alert's](/docs/features/alerts/#images-and-videos) **Media** tab                  | `/alerts/<alert-id>/`   |
-   | The [countdown timer](/docs/features/countdown-timer/) in **Tools**                   | `/timer/`               |
+   | The [countdown](/docs/features/countdown-timer/) in **Tools**                         | `/timer/`               |
    | An overlay in [Overlay Studio](/docs/features/overlay-studio/), in **Tools**          | `/studio/<overlay-id>/` |
    | **Games**, for the [games overlay](/docs/features/games/#show-your-actions-on-stream) | `/games/minecraft/`     |
    | **Games**, for its column or row 2                                                    | `/games/minecraft/2/`   |
@@ -61,6 +61,23 @@ Tokio serves its overlays as web pages, and your streaming app shows them over y
 </Tabs>
 
 Overlays use `tokio-app.local` because TikTok LIVE Studio doesn't accept `localhost` links.
+
+<details>
+<summary>If the overlay doesn't show</summary>
+
+- Tokio is closed, or **Enable server** is off. Overlays show only while Tokio runs with the server on.
+- "Unable to set up the overlay address. Accept the administrator prompt to add it." Turn on **Enable server** again and accept the prompt.
+- "The overlay server couldn't start. Port 37891 may be in use." Another program has the port: close it and turn the server on again. When this happens as Tokio starts, it reads "The overlay server couldn't start, so Tokio turned it off. Port 37891 may be in use."
+- An overlay was updated and the browser source still shows the old one. Refresh the source: in OBS, open its properties and click **Refresh cache of current page**.
+- Your streaming app runs on another computer: see [On another computer](#on-another-computer).
+
+</details>
+
+## Fonts and sound
+
+A font you pick for an overlay, on the games overlay, the countdown, Overlay Studio or an overlay's settings, must be installed on the computer that runs your streaming app. Otherwise the overlay shows another font, Archivo on Tokio's own overlays.
+
+OBS plays an overlay's sound on its own. In a browser tab, click the page once before it can play sound.
 
 ## On another computer
 

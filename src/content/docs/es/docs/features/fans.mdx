@@ -5,7 +5,7 @@ description: Los espectadores con nivel de fan que Tokio vio en tus LIVEs.
 
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-**Fans**, en **Herramientas**, muestra los espectadores con nivel de fan que Tokio vio en tus LIVEs. Primero va el nivel más alto y, con el mismo nivel, el fan que se vio más recientemente. Cada fila muestra la insignia y el nivel de fan de TikTok, el nombre y el @usuario, y cuándo fue su última visita a tus LIVEs.
+**Fans**, en **Herramientas**, muestra los espectadores con nivel de fan que Tokio vio en tus LIVEs. Primero va el nivel más alto y, con el mismo nivel, el fan que se vio más recientemente. Cada fila muestra la insignia y el nivel de fan de TikTok, el nombre y el @usuario, y cuándo lo vio Tokio por última vez.
 
 <Screenshot
   name="fans"
@@ -13,6 +13,8 @@ import Screenshot from "../../../../../components/Screenshot.astro";
 />
 
 TikTok solo envía el nivel de fan de un espectador cuando hace algo en el LIVE, como entrar, escribir en el chat, dar Me gusta, enviar un regalo, compartir o seguirte. Un fan entra en la lista la primera vez que lo hace, y su nivel y su nombre se actualizan cada vez que vuelve.
+
+Los fans no se pueden quitar. Uno que dejó tu club de fans sigue en la lista con su último nivel.
 
 **Super Fan** después de un nombre marca a un fan que se suscribe a ti. Activa **Solo Super Fans** para ver solo a esos fans. Tokio lo sabe cuando escriben en el chat, envían un regalo, se hacen Super Fan o entran a tu LIVE como Super Fan.
 
@@ -24,5 +26,7 @@ Los overlays pueden mostrar tus fans: reciben los 100 niveles más altos. Consul
 <summary>Cómo se guardan los fans</summary>
 
 Cada perfil guarda sus propios fans en tu computadora, hasta 5,000. Pasado ese número, se va el fan que Tokio lleva más tiempo sin ver. Tokio los guarda cada 30 segundos y cuando termina un LIVE.
+
+Las exportaciones no incluyen a los fans, y un perfil clonado o importado empieza sin ninguno.
 
 </details>

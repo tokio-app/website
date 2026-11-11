@@ -12,9 +12,7 @@ const t = textOf(lang).home;
 const release = await getLatestRelease();
 
 // Code, or rows drawn the way the app draws them
-type Example =
-  | string
-  | { name: string; value?: string; current?: boolean; verified?: boolean }[];
+type Example = string | { name: string; value?: string; verified?: boolean }[];
 
 // Each feature shows a small, real example of what it does: code, or the
 // app's own rows (the gallery's tags, Time added's settings), in its words.
@@ -32,7 +30,6 @@ const FEATURES: {
     ["overlays", "/docs/features/overlays/"],
     ["timer", "/docs/features/countdown-timer/"],
     ["coinStats", "/docs/features/coin-stats/"],
-    ["profiles", "/docs/features/profiles-and-settings/"],
   ] as const
 ).map(([id, href]) => ({ ...t.features[id], href: localize(href, lang) }));
 
@@ -76,7 +73,6 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     <div class="container">
       <div class="section-head">
         <h2>{t.featuresTitle}</h2>
-        <p>{t.featuresText}</p>
       </div>
       <ul class="features">
         {FEATURES.map((feature) => (
@@ -90,7 +86,7 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
             ) : (
               <ul class="example" aria-hidden="true">
                 {feature.example.map((row) => (
-                  <li class:list={{ current: row.current }}>
+                  <li>
                     {row.name}
                     {row.value && (
                       <span>
@@ -98,7 +94,6 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
                         {row.value}
                       </span>
                     )}
-                    {row.current && <Icon name="check" size={14} />}
                   </li>
                 ))}
               </ul>
@@ -318,15 +313,6 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     color: var(--success);
   }
 
-  /* A menu marks its current row, like the app's profile menu */
-  .example:has(.current) li:not(.current) {
-    color: var(--font-secondary);
-  }
-
-  .example .current :global(svg) {
-    color: var(--accent-primary);
-  }
-
   .overlay-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -451,6 +437,9 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     background: var(--background-primary);
     font-size: var(--font-md);
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    /* Archivo's digits ride high in a line box: this centers them */
+    padding-top: 0.15em;
   }
 
   .steps li:last-child .step-number {

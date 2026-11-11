@@ -9,19 +9,23 @@ Los perfiles separan la configuración de cada stream, y **Configuración** guar
 
 ## Perfiles
 
-Cada perfil tiene su propio TTS, música, alertas, acciones de juego, temporizador, [Estadísticas de monedas](/es/docs/features/coin-stats/) y [fans](/es/docs/features/fans/), y recuerda el usuario con el que te conectaste por última vez. Cambia de perfil desde la barra de título cuando no estés conectado.
+Cada perfil tiene su propio TTS, música, alertas, acciones de juego, temporizador, [historial de monedas](/es/docs/features/coin-stats/) y [fans](/es/docs/features/fans/), y recuerda el usuario con el que te conectaste por última vez. Cambia de perfil desde la barra de título, o en **Perfil activo** dentro de **Configuración → Perfiles de LIVE**, cuando no estés conectado.
 
 <Screenshot
   name="profiles-menu"
   alt="El menú de perfiles en la barra de título, con dos perfiles"
 />
 
-En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y **Clonar** copia uno que ya tienes. **Importar** y **Exportar** pasan un perfil de una computadora a otra como archivo.
+Todos los perfiles comparten los overlays instalados, los overlays de Overlay Studio, las bibliotecas, los overlays de prueba, las **Funciones activas** y el **Feed de actividad** de Inicio, y la conexión con Minecraft.
+
+En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y **Clonar** copia uno que ya tienes, sin su historial de monedas ni sus fans. Los nombres necesitan 3 caracteres o más y no se pueden repetir, y los perfiles no se pueden renombrar ni eliminar.
 
 <Screenshot
   name="settings-profiles"
   alt="Configuración → Perfiles de LIVE, con el perfil activo y los botones Nuevo, Clonar, Importar y Exportar"
 />
+
+**Exportar** guarda la configuración del perfil activo en un archivo, e **Importar** agrega uno como perfil nuevo. El archivo no lleva sonidos, imágenes, videos, imágenes de juegos, historial de monedas ni fans, así que en otra computadora sus alertas avisan que falta un sonido hasta que lo vuelvas a elegir.
 
 ## Configuración
 
@@ -39,22 +43,43 @@ En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y
   alt="Configuración: la clave de API de Euler Stream, el servidor de overlays con su dirección de red, el idioma, las actualizaciones y la bandeja del sistema"
 />
 
+Si abres Tokio cuando ya está abierto, su ventana pasa al frente. **Acerca de**, en la barra lateral, muestra la versión de Tokio, su licencia y los avisos de terceros, y tiene **Buscar actualizaciones**.
+
 ## Bibliotecas
 
-**Biblioteca de sonidos** y **Biblioteca multimedia** guardan los sonidos, imágenes y videos que usan tus alertas, en todos los perfiles. Ahí puedes subirlos y previsualizarlos. Si eliminas uno, se quita de todas las alertas, después de que confirmes.
+**Biblioteca de sonidos** y **Biblioteca multimedia** guardan los sonidos, imágenes y videos que usan tus alertas, en todos los perfiles. Ahí puedes subirlos y previsualizarlos.
 
 <Screenshot
   name="settings-libraries"
   alt="La Biblioteca de sonidos con cuatro sonidos y la Biblioteca multimedia con una imagen"
 />
 
+Si eliminas un sonido, se quita de todas las alertas, después de que confirmes. Si eliminas una imagen o un video, también se vacían los elementos de Overlay Studio que lo mostraban.
+
 **Biblioteca de overlays** guarda los [overlays que importas](/es/docs/features/overlays/#importa-los-tuyos).
 
 ## Notificaciones
 
-Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, Tokio te dice qué salió mal. La campana de la barra de título guarda la lista de la sesión.
+Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, Tokio te dice qué salió mal. La campana de la barra de título guarda las últimas 50 de la sesión, y **Borrar todas** la vacía.
 
 <Screenshot
   name="notifications"
   alt="El menú de notificaciones, con lo que pasó en esta sesión"
 />
+
+## Tus archivos
+
+Tokio guarda todo en la carpeta `.tokio` de tu carpeta de usuario: `C:\Users\<tú>\.tokio` en Windows, `~/.tokio` en macOS y Linux.
+
+| Carpeta           | Qué guarda                                             |
+| ----------------- | ------------------------------------------------------ |
+| `settings`        | La configuración y lo que comparten todos los perfiles |
+| `profiles`        | La configuración de cada perfil                        |
+| `sounds`, `media` | La Biblioteca de sonidos y la Biblioteca multimedia    |
+| `overlays`        | Los overlays que instalaste o importaste               |
+| `games/minecraft` | Las imágenes de Minecraft                              |
+| `fans`            | Los fans de cada perfil                                |
+| `history`         | Los LIVE anteriores de cada perfil, para **Monedas**   |
+| `logs`            | Lo que hizo Tokio, para reportar errores               |
+
+Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta los archivos de `.tokio/logs`. Incluyen tu usuario de TikTok.
