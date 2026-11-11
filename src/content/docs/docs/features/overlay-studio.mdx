@@ -154,7 +154,7 @@ If you remove an official overlay you embedded, its element shows nothing until 
 
 The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, elements with sample values, in the editor and on your stream. An element that shows on an event plays its entrance, its seconds on screen and its exit, then comes back to the canvas.
 
-Embedded overlays don't get the samples. Tokio doesn't keep them either, so a reload shows the real last event again.
+Embedded overlays don't get the samples. Tokio keeps them only while their element is on screen, so after that a reload shows the real last event again.
 
 ## Notes
 
