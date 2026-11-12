@@ -16,7 +16,7 @@ Each profile has its own TTS, music, alerts, game actions, countdown, [Coin stat
   alt="The profile menu in the title bar, with two profiles"
 />
 
-Every profile shares the installed overlays, Overlay Studio's overlays, the libraries, the test overlays, Home's **Active features** and **Activity feed**, and the Minecraft connection.
+Every profile shares the installed overlays, Overlay Studio's overlays, the [Library](/docs/features/alerts/#library), the test overlays, Home's **Active features** and **Activity feed**, and the Minecraft connection.
 
 In **Settings → Live profiles**, **New** creates a blank profile and **Clone** copies one you have, without its Coin stats or fans. Names need 3 or more characters and must be unique, and profiles can't be renamed or deleted.
 
@@ -46,19 +46,6 @@ In **Settings → Live profiles**, **New** creates a blank profile and **Clone**
 
 Opening Tokio while it's already running brings its window to the front. **About**, in the sidebar, shows Tokio's version, its license and the third-party notices, and has **Check for updates** and **Take the tour**.
 
-## Libraries
-
-**Sound library** and **Media library** hold the sounds, images and videos your alerts use, in every profile. Upload and preview them there.
-
-<Screenshot
-  name="settings-libraries"
-  alt="The Sound library with four sounds and the Media library with one image"
-/>
-
-Deleting a sound removes it from every alert, after you confirm. Deleting an image or video also empties the Overlay Studio elements that showed it.
-
-**Overlay library** holds the [overlays you import](/docs/features/overlays/#import-your-own).
-
 ## Notifications
 
 When something fails, such as a voice that can't be made or a missing sound, Tokio tells you what went wrong. The bell in the title bar keeps the session's last 50, and **Clear all** empties it.
@@ -76,7 +63,7 @@ Tokio keeps everything in the `.tokio` folder in your user folder: `C:\Users\<yo
 | ----------------- | ----------------------------------------- |
 | `settings`        | Settings, and what every profile shares   |
 | `profiles`        | Each profile's settings                   |
-| `sounds`, `media` | The Sound library and Media library       |
+| `sounds`, `media` | The Library's sounds, images and videos   |
 | `overlays`        | The overlays you installed or imported    |
 | `games/minecraft` | The Minecraft pictures                    |
 | `fans`            | Each profile's fans                       |

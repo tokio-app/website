@@ -254,7 +254,7 @@
     "downloadZip": "Descargar el zip",
     "loadFailed": "No se pudo cargar la lista de overlays.",
     "seeOnGitHub": "Verlos en GitHub",
-    "byHand": "¿Prefieres hacerlo a mano? Extrae un zip e importa la carpeta en <strong>Configuración → Biblioteca de overlays</strong>. Los overlays importados no reciben actualizaciones. Los overlays son de código abierto y están en <a href=\"{repo}\">tokio-app/overlays</a>."
+    "byHand": "¿Prefieres hacerlo a mano? Extrae un zip e importa la carpeta con <strong>Overlays → Importar overlay</strong> en Tokio. Los overlays importados no reciben actualizaciones. Los overlays son de código abierto y están en <a href=\"{repo}\">tokio-app/overlays</a>."
   },
   "about": {
     "title": "Acerca de y licencia",

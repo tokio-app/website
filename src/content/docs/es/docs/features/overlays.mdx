@@ -9,7 +9,7 @@ Los overlays son páginas web en tu stream que reaccionan a tu LIVE, como un fra
 
 <Screenshot
   name="overlays-gallery"
-  alt="Dos overlays instalados en la página de Overlays, Gift Jar y Top Likes, cada uno marcado como Verificado, con Probar y Personalizar, una vista previa y su dirección"
+  alt="Dos overlays instalados en la página de Overlays, Gift Jar y Top Likes, cada uno marcado como Verificado, con Probar, Personalizar y Quitar, una vista previa y su dirección"
 />
 
 ## Instala un overlay oficial
@@ -21,20 +21,24 @@ En **Overlays**, haz clic en **Overlays oficiales** y luego en **Instalar** en e
   alt="La tarjeta de un overlay oficial en Overlays oficiales, con su vista previa y el botón Instalar"
 />
 
+Para encontrar uno, haz clic en el botón de búsqueda: revisa los nombres y las descripciones de los overlays.
+
 Cuando sale una versión nueva, aparece un punto en **Overlays oficiales**: haz clic en **Actualizar**. Se conserva la configuración que todavía encaje; después, actualiza el overlay en tu app de streaming.
 
 La dirección de un overlay oficial termina en su propio nombre, como `/gift-jar/`, así que no cambia si lo quitas y lo vuelves a instalar.
 
 ## Importa los tuyos
 
-Importa la carpeta de un overlay en **Configuración → Biblioteca de overlays**. Aparece marcado como **Externo** y no recibe actualizaciones. Lo que necesita la carpeta está en [Crear un overlay](/es/docs/developers/building-an-overlay/).
-
-Tokio guarda una copia, así que lo que cambies después en la carpeta no le llega. Si importas la carpeta otra vez, se crea un segundo overlay, con otra dirección y la configuración predeterminada.
+En **Overlays**, haz clic en **+** (**Importar overlay**) y elige la carpeta de un overlay. Lo que necesita la carpeta está en [Crear un overlay](/es/docs/developers/building-an-overlay/).
 
 <Screenshot
-  name="settings-overlay-library"
-  alt="La Biblioteca de overlays en Configuración, con un overlay importado"
+  name="overlays-import"
+  alt="El encabezado de la página de Overlays, con los botones de búsqueda, Overlays oficiales e Importar overlay"
 />
+
+El overlay aparece marcado como **Externo** y no recibe actualizaciones. Tokio guarda una copia, así que lo que cambies después en la carpeta no le llega.
+
+Si importas la carpeta otra vez, se crea un segundo overlay, con otra dirección y la configuración predeterminada.
 
 ## Configúralo
 
@@ -53,12 +57,12 @@ Copia la dirección desde la tarjeta del overlay. Su **Probar** envía eventos d
 
 <Screenshot
   name="overlays-card"
-  alt="Un overlay instalado en la galería, con Probar, Personalizar, su vista previa y su URL"
+  alt="Un overlay instalado en la galería, con Probar, Personalizar, Quitar, su vista previa y su URL"
 />
 
 ## Quita un overlay
 
-Usa el botón de la papelera en su tarjeta en **Overlays oficiales**, o en **Configuración → Biblioteca de overlays** si lo importaste. Se elimina junto con su configuración, después de que confirmes.
+Usa el botón de la papelera en su tarjeta, en la galería o en **Overlays oficiales**. Se elimina junto con su configuración, después de que confirmes.
 
 ## Crea el tuyo
 
