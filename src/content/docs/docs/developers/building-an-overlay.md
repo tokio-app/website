@@ -277,7 +277,7 @@ If Tokio says "No overlay connected with this ID.", check that the page is open 
 
 ## Import it
 
-When it's ready, import the folder in **Settings → Overlay library**. Tokio gives it an ID, writes its settings into the page and serves it. See [Overlays](/docs/features/overlays/).
+When it's ready, import the folder with **Overlays → Import overlay** (the **+**). Tokio gives it an ID, writes its settings into the page and serves it. See [Overlays](/docs/features/overlays/#import-your-own).
 
 ## Without the library
 

@@ -277,7 +277,7 @@ Si Tokio dice "No hay ningún overlay conectado con este ID.", revisa que la pá
 
 ## Impórtalo
 
-Cuando esté listo, importa la carpeta en **Configuración → Biblioteca de overlays**. Tokio le da un ID, escribe su configuración en la página y la sirve. Más detalles en [Overlays](/es/docs/features/overlays/).
+Cuando esté listo, importa la carpeta con **Overlays → Importar overlay** (el **+**). Tokio le da un ID, escribe su configuración en la página y la sirve. Más detalles en [Overlays](/es/docs/features/overlays/#importa-los-tuyos).
 
 ## Sin la biblioteca
 

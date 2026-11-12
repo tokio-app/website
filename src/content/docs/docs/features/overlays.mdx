@@ -9,7 +9,7 @@ Overlays are web pages on your stream that react to your LIVE, like a gift jar o
 
 <Screenshot
   name="overlays-gallery"
-  alt="Two installed overlays on the Overlays page, Gift Jar and Top Likes, each marked Verified with Test and Customize, a preview and its address"
+  alt="Two installed overlays on the Overlays page, Gift Jar and Top Likes, each marked Verified with Test, Customize and Remove, a preview and its address"
 />
 
 ## Install an official overlay
@@ -21,20 +21,24 @@ On **Overlays**, click **Official overlays**, then **Install** on the one you wa
   alt="An official overlay's card in Official overlays, with its preview and the Install button"
 />
 
+To find one, click the search button: it looks in the overlays' names and descriptions.
+
 When a new version is out, a dot shows on **Official overlays**: click **Update**. Your settings are kept where they still fit; refresh the overlay in your streaming app afterwards.
 
 An official overlay's address ends in its own name, like `/gift-jar/`, so it stays the same if you remove and install it again.
 
 ## Import your own
 
-Import an overlay's folder in **Settings → Overlay library**. It shows marked **External** and gets no updates. See [Building an overlay](/docs/developers/building-an-overlay/) for what the folder needs.
-
-Tokio keeps a copy, so later edits to the folder don't reach it. Importing the folder again makes a second overlay, with a new address and default settings.
+On **Overlays**, click **+** (**Import overlay**) and pick an overlay's folder. [Building an overlay](/docs/developers/building-an-overlay/) says what the folder needs.
 
 <Screenshot
-  name="settings-overlay-library"
-  alt="The Overlay library in Settings, with one imported overlay"
+  name="overlays-import"
+  alt="The Overlays page's header, with the search, Official overlays and Import overlay buttons"
 />
+
+The overlay shows marked **External** and gets no updates. Tokio keeps a copy, so later edits to the folder don't reach it.
+
+Importing the folder again makes a second overlay, with a new address and default settings.
 
 ## Set it up
 
@@ -53,12 +57,12 @@ Copy the address from the overlay's card. Its **Test** sends sample events to th
 
 <Screenshot
   name="overlays-card"
-  alt="An installed overlay in the gallery, with Test, Customize, its preview and its URL"
+  alt="An installed overlay in the gallery, with Test, Customize, Remove, its preview and its URL"
 />
 
 ## Remove an overlay
 
-Use the trash button on its card in **Official overlays**, or in **Settings → Overlay library** for one you imported. It's deleted with its settings, after you confirm.
+Use the trash button on its card, in the gallery or in **Official overlays**. It's deleted with its settings, after you confirm.
 
 ## Make your own
 
