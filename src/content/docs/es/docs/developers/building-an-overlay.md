@@ -165,7 +165,7 @@ fields:
       default: ffffff
 ```
 
-Cada campo tiene un `name`, un `id` único, una `section` (el `id` de una sección) y un `type`. Sus `attributes` siempre incluyen un `value` y un `default` del mismo tipo. Las columnas de una tabla solo tienen un `default`.
+Cada campo tiene un `name`, un `id` único, una `section` (el `id` de una sección) y un `type`. Sus `attributes` siempre incluyen un `value` y un `default` del mismo tipo. Las columnas de una tabla solo tienen un `default`. Un campo también puede aparecer solo con algunos valores de otro ([Campos condicionales](#campos-condicionales)), y cada nombre se puede traducir ([Traducciones](#traducciones)).
 
 | Tipo       | Otros atributos                                                                       | Valor en `__OVERLAY_CONFIG__`                                        |
 | ---------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -259,6 +259,77 @@ Solo los overlays oficiales reciben actualizaciones. Cuando uno se actualiza, To
 Una celda se queda cuando su columna conserva su `id` y su `type` y el valor todavía sirve, como una opción de la lista que sigue existiendo. Las demás toman el `default` de su columna, así que mantén estables los `id` de las columnas entre versiones.
 
 Un overlay importado nunca se actualiza: importar una versión nueva crea un segundo overlay, con la configuración predeterminada.
+
+### Campos condicionales
+
+Un campo con `when` aparece en **Personalizar** solo mientras otros campos tienen ciertos valores. Así, una opción que importa para una sola elección no estorba hasta que alguien la elige:
+
+```yaml
+- name: Seconds the message stays
+  id: message_seconds
+  type: slider
+  section: message
+  when:
+    show_message: true
+  attributes: { min: 2, max: 15, value: 5, default: 5 }
+```
+
+`when` relaciona el `id` de un campo con los valores que necesita:
+
+- Un valor, como `show_message: true` o `layout: one`.
+- Una lista, para cualquiera de ellos: `visibility: [interval, command]`.
+- `not`, para ninguno de ellos: `next_count: { not: 0 }`.
+
+Con más de un campo, todos tienen que coincidir. Un campo que guarda una lista, como un `dropdown` con `multiple`, cumple la condición cuando alguno de sus elementos coincide. Un campo cuya condición nombra un campo oculto también se oculta, igual que una sección sin campos a la vista.
+
+- `when` solo puede nombrar campos que estén antes en `fields`, y no tablas. Las columnas de una tabla no pueden tenerlo.
+- Cada valor tiene que ser uno que el campo nombrado pueda tener: una de las opciones de un `dropdown`, un número dentro del rango de un `slider`, `true` o `false` para un `toggle` o un `check`.
+
+Ocultar un campo solo cambia la ventana **Personalizar**. El campo conserva su valor y tu overlay lo sigue recibiendo en `__OVERLAY_CONFIG__`, así que revisa también en tu código la opción que lo controla (`if (config.show_message)`).
+
+### Traducciones
+
+Tokio muestra tu configuración en su idioma cuando la traduces. Agrega `translations` junto al texto, con el texto de cada idioma bajo su código:
+
+```yaml
+sections:
+  - name: Songs
+    id: songs
+    translations: { es: Canciones }
+fields:
+  - name: Text before the next songs
+    id: next_label
+    type: input
+    section: songs
+    translations: { es: Texto antes de las siguientes canciones }
+    attributes:
+      mode: text
+      placeholder: Up next
+      translations: { es: A continuación }
+      value: Up next
+      default: Up next
+  - name: Layout
+    id: layout
+    type: dropdown
+    section: songs
+    translations: { es: Diseño }
+    attributes:
+      value: list
+      default: list
+      options:
+        - value: list
+          label: List
+          translations: { es: Lista }
+        - value: covers
+          label: Covers only
+          translations: { es: Solo portadas }
+```
+
+- Las `translations` de una sección, un campo o una columna de tabla traducen su `name`. Las de una opción traducen su `label`, y las que van en los `attributes` de un `input` traducen su `placeholder`.
+- Usa el código del idioma: `es` cubre el español. Tokio busca primero su idioma exacto (`es-419`) y después el código antes del `-`. Un texto sin traducción se muestra como lo escribiste.
+- Solo cambia la ventana **Personalizar**. Los valores, como `Up next` arriba, quedan como los escribiste hasta que el streamer los cambie, y tu overlay no recibe el idioma de Tokio.
+
+Las versiones de Tokio anteriores a estas claves muestran todos los campos, en inglés.
 
 ## Probar sin importar
 

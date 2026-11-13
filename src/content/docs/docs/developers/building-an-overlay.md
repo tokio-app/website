@@ -165,7 +165,7 @@ fields:
       default: ffffff
 ```
 
-Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and a `type`. Its `attributes` always include a `value` and a `default` of the same type. A table's columns have only a `default`.
+Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and a `type`. Its `attributes` always include a `value` and a `default` of the same type. A table's columns have only a `default`. A field can also show only for some values of another ([Conditional fields](#conditional-fields)), and every name can be translated ([Translations](#translations)).
 
 | Type       | Other attributes                                                       | Value in `__OVERLAY_CONFIG__`                                    |
 | ---------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -259,6 +259,77 @@ Only official overlays get updates. When one updates, Tokio keeps the streamer's
 A cell stays when its column keeps its `id` and `type` and the value still fits, like a dropdown option that's still there. The others take their column's `default`, so keep column ids stable across versions.
 
 An imported overlay never updates: importing a new version makes a second overlay, with default settings.
+
+### Conditional fields
+
+A field with `when` shows in **Customize** only while other fields have certain values, so a setting that matters for one choice stays out of the way until it's picked:
+
+```yaml
+- name: Seconds the message stays
+  id: message_seconds
+  type: slider
+  section: message
+  when:
+    show_message: true
+  attributes: { min: 2, max: 15, value: 5, default: 5 }
+```
+
+`when` maps a field's `id` to the values it needs:
+
+- One value, such as `show_message: true` or `layout: one`.
+- A list, for any of them: `visibility: [interval, command]`.
+- `not`, for none of them: `next_count: { not: 0 }`.
+
+With more than one field, all of them must match. A field that holds a list, like a `dropdown` with `multiple`, matches when any of its items does. A field whose condition names a hidden field is hidden too, and so is a section with no field showing.
+
+- `when` can only name fields listed before it in `fields`, and not tables. Table columns can't have one.
+- Each value must be one the named field can have: one of a dropdown's options, a number within a slider's range, `true` or `false` for a toggle or a check.
+
+Hiding a field only changes the **Customize** window. The field keeps its value, and your overlay still gets it in `__OVERLAY_CONFIG__`, so check the setting that controls it in your code too (`if (config.show_message)`).
+
+### Translations
+
+Tokio shows your settings in its language when you translate them. Add `translations` next to the text, with the text for each language under its code:
+
+```yaml
+sections:
+  - name: Songs
+    id: songs
+    translations: { es: Canciones }
+fields:
+  - name: Text before the next songs
+    id: next_label
+    type: input
+    section: songs
+    translations: { es: Texto antes de las siguientes canciones }
+    attributes:
+      mode: text
+      placeholder: Up next
+      translations: { es: A continuación }
+      value: Up next
+      default: Up next
+  - name: Layout
+    id: layout
+    type: dropdown
+    section: songs
+    translations: { es: Diseño }
+    attributes:
+      value: list
+      default: list
+      options:
+        - value: list
+          label: List
+          translations: { es: Lista }
+        - value: covers
+          label: Covers only
+          translations: { es: Solo portadas }
+```
+
+- The `translations` of a section, a field or a table column translate its `name`. An option's translate its `label`, and the ones in an `input`'s `attributes` translate its `placeholder`.
+- Use the language's code: `es` covers Spanish. Tokio looks for its exact language first (`es-419`), then for the code before the `-`. A text without a translation shows as you wrote it.
+- Only the **Customize** window changes. Values, like `Up next` above, stay as you wrote them until the streamer changes them, and your overlay doesn't get Tokio's language.
+
+Tokio versions from before these keys show every field, in English.
 
 ## Testing without importing
 
