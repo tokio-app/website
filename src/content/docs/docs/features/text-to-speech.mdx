@@ -1,6 +1,6 @@
 ---
 title: Text-to-speech
-description: Read chat messages aloud with TikTok, Edge, system or ElevenLabs voices, your own cloned voice included.
+description: Read chat messages aloud with TikTok, Edge or system voices, or voices from ElevenLabs, Fish Audio, Cartesia or Inworld, your own cloned voice included.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
@@ -33,36 +33,46 @@ The format, the length limit and the permissions don't apply to the test, so it 
 
 ## Voices
 
-| Engine         | Notes                                                                                                                                                                                                                                            |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **TikTok**     | TikTok's voices. They go through `ottsy.weilbyte.dev`, a proxy run by a third party, which gets the text of every message they read. Add your TikTok session ID in **Settings → Voice engines** to skip it.                                      |
-| **Edge**       | Microsoft Edge's voices.                                                                                                                                                                                                                         |
-| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included.                                                                                                                                                                         |
-| **ElevenLabs** | The voices in your ElevenLabs account, cloned ones included, with your own API key in **Settings → Voice engines**. They speak all of ElevenLabs' languages and use your account's credits. ElevenLabs gets the text of every message they read. |
+| Engine         | Notes                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok**     | TikTok's voices. They go through `ottsy.weilbyte.dev`, a proxy run by a third party, which gets the text of every message they read. Add your TikTok session ID in **Settings → Voice engines** to skip it.                                                                                                               |
+| **Edge**       | Microsoft Edge's voices.                                                                                                                                                                                                                                                                                                  |
+| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included.                                                                                                                                                                                                                                                  |
+| **ElevenLabs** | The voices in your ElevenLabs account, cloned ones included, with your own API key in **Settings → Voice engines**. They speak all of ElevenLabs' languages and use your account's credits. ElevenLabs gets the text of every message they read.                                                                          |
+| **Fish Audio** | The voices in your Fish Audio account, cloned ones included, and the library voices Fish Audio licensed from their owners, with your own API key in **Settings → Voice engines**. They speak all of Fish Audio's languages and are paid from your account's balance. Fish Audio gets the text of every message they read. |
+| **Cartesia**   | Cartesia's voices and the ones you cloned, with your own API key in **Settings → Voice engines**. Each speaks the language it was made for, and they use your account's credits. Cartesia gets the text of every message they read.                                                                                       |
+| **Inworld**    | Inworld's voices and the ones you cloned, with your own API key in **Settings → Voice engines**: its Base64 value from Inworld's Portal. They're paid from your Inworld account. Inworld gets the text of every message they read.                                                                                        |
 
 Search the list, filter it by engine and language, and play any voice before you pick it.
 
 ## Clone your voice
 
-Have chat read in your own voice, cloned with ElevenLabs. Cloning needs a paid ElevenLabs plan.
+Have chat read in your own voice, cloned with ElevenLabs, Fish Audio, Cartesia or Inworld.
 
 <Steps>
 
-1. Create an API key in your ElevenLabs account and paste it in **Settings → Voice engines**. Give the key access to Text to Speech, and read and write access to Voices.
-2. On the **TTS** page, click **Clone a voice**, the microphone next to **Voice**. It shows once your ElevenLabs key is set. Name the voice and add samples: audio files, or a recording you make there with **Record**.
+1. Create an API key in your account with one of them. In **Settings → Voice engines**, add the service with **+** and paste the key there. The table below says what each one needs.
+2. On the **TTS** page, click **Clone a voice**, the microphone next to **Voice**. It shows once a key is set, and with more than one you pick the **Engine** first. Name the voice and add samples: audio files, or a recording you make there with **Record**.
 3. Check that the voice is yours or that you have the speaker's permission, then click **Clone voice**.
-4. Give the new voice to a special user under [Special users](#special-users), and keep a free voice for the rest of chat. It also works for all of chat or an alert's message, but every message it reads spends credits.
+4. Give the new voice to a special user under [Special users](#special-users), and keep a free voice for the rest of chat. It also works for all of chat or an alert's message, but you pay for every message it reads.
 
 </Steps>
 
-Samples work best with 1 to 2 minutes of one person speaking clearly, without music or background noise. A recording stops by itself at 3 minutes.
+| Engine         | To clone, you need                                                                       | Best samples     |
+| -------------- | ---------------------------------------------------------------------------------------- | ---------------- |
+| **ElevenLabs** | A paid plan, and a key with access to Text to Speech and read and write access to Voices | 1 to 2 minutes   |
+| **Fish Audio** | Balance in your account, which is pay as you go                                          | 10 to 60 seconds |
+| **Cartesia**   | The Pro plan or a higher one                                                             | 10 to 60 seconds |
+| **Inworld**    | A key with write access. Paste its Base64 value from Inworld's Portal.                   | 10 to 30 seconds |
+
+Samples work best with one person speaking clearly, without music or background noise. A recording stops by itself at the longest length in the table. Cartesia and Inworld learn from a single clip, so Tokio joins your samples into one, up to that length.
 
 <details>
-<summary>Credits, limits and deleting a voice</summary>
+<summary>Costs, limits and deleting a voice</summary>
 
-Every message an ElevenLabs voice reads spends credits from your account. On a busy LIVE, reading all of chat can spend 30,000 credits in an hour or less, while one special user's messages last many LIVEs. To cap what a LIVE can spend, set a credit limit on the API key in ElevenLabs. When the credits run out, Tokio tells you, and the voice stays quiet until you add more or pick another one.
+Every message a voice from these services reads is paid from your account with it. On a busy LIVE, reading all of chat with ElevenLabs can spend 30,000 credits in an hour or less, while one special user's messages last many LIVEs. To cap what a LIVE can spend there, set a credit limit on the API key in ElevenLabs. When your credits or balance run out, Tokio tells you, and the voice stays quiet until you add more or pick another one.
 
-A voice takes up to 10 samples of up to 25 MB each: MP3, WAV, M4A, OGG, FLAC or WebM files. Tokio sends them only to ElevenLabs and doesn't keep them. To rename or delete a cloned voice, use the ElevenLabs website.
+A voice takes up to 10 samples of up to 25 MB each: MP3, WAV, M4A, OGG, FLAC or WebM files. Tokio sends them only to the service you clone with and doesn't keep them. To rename or delete a cloned voice, use that service's website.
 
 </details>
 
