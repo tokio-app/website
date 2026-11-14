@@ -93,7 +93,7 @@
     "features": {
       "tts": {
         "title": "Texto a voz",
-        "text": "El chat se lee en voz alta a medida que llega, con las voces de TikTok, de Microsoft Edge o de tu sistema.",
+        "text": "El chat se lee en voz alta a medida que llega, con las voces de TikTok, de Microsoft Edge o de tu sistema, o con tu propia voz clonada en ElevenLabs.",
         "example": "{username} dice {comment}\n→ Lucia dice ¡hola desde Lima!"
       },
       "music": {
@@ -292,6 +292,10 @@
         "note": "El servicio Leer en voz alta de Edge (las voces de Edge), que no es una API pública oficial."
       },
       {
+        "name": "ElevenLabs",
+        "note": "Las voces de ElevenLabs y la clonación de voces (api.elevenlabs.io), con la clave de API de cada usuario. Recibe el texto de cada mensaje que lee y las muestras de una voz que se clona."
+      },
+      {
         "name": "Spotify y YouTube",
         "note": "Pedidos de canciones."
       },
@@ -312,13 +316,13 @@
     "privacy": [
       "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan ahí.",
       "También se guardan los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil guarda además las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo.",
-      "Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream. Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok.",
+      "Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream. Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok, y una clave de API de ElevenLabs, solo a ElevenLabs. Las muestras de una voz que clonas solo se envían a ElevenLabs, y Tokio no las guarda.",
       "Una cámara que agregas en Overlay Studio solo llega a los overlays que sirve Tokio, en una dirección que cambia cada vez que se inicia el servidor de overlays. Tokio no guarda su video.",
       "Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",
-    "trademarks": "Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Spotify, YouTube, OBS Studio y Microsoft Edge son marcas comerciales de sus respectivos dueños.",
+    "trademarks": "Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Spotify, YouTube, OBS Studio, Microsoft Edge y ElevenLabs son marcas comerciales de sus respectivos dueños.",
     "websiteTitle": "Este sitio web",
     "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }
