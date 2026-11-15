@@ -312,6 +312,14 @@
         "note": "Pedidos de canciones."
       },
       {
+        "name": "Listas de filtros de uBlock Origin",
+        "note": "El bloqueador de anuncios del reproductor de YouTube, cuando Bloquear anuncios está activado (ublockorigin.github.io, y si falla, sus espejos ublockorigin.pages.dev y cdn.jsdelivr.net). Las listas de uBlock Origin y sus copias de EasyList y EasyPrivacy son de sus autores, están bajo la GPL-3.0 o la CC BY-SA 3.0 y no las cubre la licencia de Tokio. Tokio las descarga en la computadora de cada usuario y no las incluye."
+      },
+      {
+        "name": "Public Suffix List",
+        "note": "El mismo bloqueador de anuncios, para distinguir un sitio de sus subdominios (publicsuffix.org). La lista de Mozilla está bajo la MPL-2.0, y Tokio la descarga en vez de incluirla."
+      },
+      {
         "name": "GitHub",
         "note": "La búsqueda y descarga de actualizaciones, desde las versiones de Tokio, y los overlays oficiales (su lista, vistas previas y descargas), desde las versiones de tokio-app/overlays."
       },
