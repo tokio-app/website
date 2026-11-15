@@ -86,7 +86,7 @@ interface UserData {
 
 | Event                                                  | Data                                                                      |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
-| `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                            |
+| `CHAT`                                                 | `{ user, comment: { content, emotes, lang, translation? } }`              |
 | `FOLLOW`, `SUPER_FAN`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | `{ user }`                                                                |
 | `SHARE`                                                | `{ user, shareCount }`                                                    |
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
@@ -98,6 +98,8 @@ interface UserData {
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
 Each chat emote is `{ emoteID, index, images }`, and a comment made only of emotes has an empty `content`. A gift's `image` is the URL of its picture.
+
+A chat's `content` is what the viewer typed, and `lang` is the language TikTok tagged it with, empty when it didn't. With [Chat translation](/docs/features/chat-translation/) on, a message tagged with another language than the streamer's comes with `translation`: `{ text, from, to }`, the translated text and both languages as lowercase codes, like `en` and `es`. Messages already in the streamer's language, chat commands and messages Tokio couldn't translate come without it, so fall back to `content`. An emote's `index` points into `content`, not the translation.
 
 `gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
 

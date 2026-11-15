@@ -82,13 +82,14 @@ On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and 
 
 Click a variable to add the event's details:
 
-| Variable                 | Triggers                                         |
-| ------------------------ | ------------------------------------------------ |
-| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change |
-| `{comment}`              | Chat and Emote                                   |
-| `{gift}`, `{count}`      | Gift (`{count}` is the combo size)               |
-| `{count}`                | Like (the likes sent)                            |
-| `{song}`                 | Music change                                     |
+| Variable                 | Triggers                                                                                                                         |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                 |
+| `{comment}`              | Chat and Emote                                                                                                                   |
+| `{translation}`          | Chat and Emote, with [Chat translation](/docs/features/chat-translation/) on: the message's translation, or the message as typed |
+| `{gift}`, `{count}`      | Gift (`{count}` is the combo size)                                                                                               |
+| `{count}`                | Like (the likes sent)                                                                                                            |
+| `{song}`                 | Music change                                                                                                                     |
 
 The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A banned word in what a variable fills in, like a name or a comment, skips the whole alert, image or video included.
 

@@ -308,6 +308,10 @@
         "note": "Las voces de Inworld y la clonación de voces (api.inworld.ai), con la clave de API de cada usuario. Recibe el texto de cada mensaje que lee y las muestras de una voz que se clona."
       },
       {
+        "name": "Google",
+        "note": "La traducción del chat, con el servicio web de Google Translate (translate.googleapis.com), que no es una API pública oficial. Recibe el texto de cada mensaje que traduce."
+      },
+      {
         "name": "Spotify y YouTube",
         "note": "Pedidos de canciones."
       },

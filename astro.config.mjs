@@ -104,6 +104,7 @@ export default defineConfig({
               attrs: { class: "child" },
             },
             "docs/features/chat-commands",
+            "docs/features/chat-translation",
           ],
         },
         {

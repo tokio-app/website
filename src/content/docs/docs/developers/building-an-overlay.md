@@ -24,11 +24,12 @@ version: "1.0.0"
 config: true
 ```
 
-| Key       | Description                                                                           |
-| --------- | ------------------------------------------------------------------------------------- |
-| `name`    | Shown in the gallery.                                                                 |
-| `version` | Your overlay's version, in quotes: YAML reads `1.0` as a number, which Tokio refuses. |
-| `config`  | Required: `true` when the overlay has a `config.yaml` with settings, else `false`.    |
+| Key        | Description                                                                                                 |
+| ---------- | ----------------------------------------------------------------------------------------------------------- |
+| `name`     | Shown in the gallery.                                                                                       |
+| `version`  | Your overlay's version, in quotes: YAML reads `1.0` as a number, which Tokio refuses.                       |
+| `config`   | Required: `true` when the overlay has a `config.yaml` with settings, else `false`.                          |
+| `commands` | Optional: the [chat commands](#chat-commands) your overlay answers that no setting holds, like `["!join"]`. |
 
 ### The setup block
 
@@ -330,6 +331,24 @@ fields:
 - Only the **Customize** window changes. Values, like `Up next` above, stay as you wrote them until the streamer changes them, and your overlay doesn't get Tokio's language.
 
 Tokio versions from before these keys show every field, in English.
+
+### Chat commands
+
+When your overlay answers a chat command, tell Tokio, so [Chat translation](/docs/features/chat-translation/) leaves the messages that start with it as typed. For a command the streamer sets, add `command: true` to its `input` field's `attributes`:
+
+```yaml
+- name: Chat command
+  id: command
+  type: input
+  section: main
+  attributes:
+    mode: text
+    command: true
+    value: "!socials"
+    default: "!socials"
+```
+
+A table's `input` column takes it too. A command that never changes goes in `info.yaml`'s `commands`. Tokio versions from before these keys ignore them.
 
 ## Testing without importing
 

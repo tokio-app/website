@@ -24,11 +24,12 @@ version: "1.0.0"
 config: true
 ```
 
-| Clave     | Descripción                                                                                     |
-| --------- | ----------------------------------------------------------------------------------------------- |
-| `name`    | Se muestra en la galería.                                                                       |
-| `version` | La versión de tu overlay, entre comillas: YAML lee `1.0` como un número, y Tokio lo rechaza.    |
-| `config`  | Obligatoria: `true` cuando el overlay tiene un `config.yaml` con configuración; si no, `false`. |
+| Clave      | Descripción                                                                                                                  |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `name`     | Se muestra en la galería.                                                                                                    |
+| `version`  | La versión de tu overlay, entre comillas: YAML lee `1.0` como un número, y Tokio lo rechaza.                                 |
+| `config`   | Obligatoria: `true` cuando el overlay tiene un `config.yaml` con configuración; si no, `false`.                              |
+| `commands` | Opcional: los [comandos del chat](#comandos-del-chat) que responde tu overlay y que ninguna opción guarda, como `["!join"]`. |
 
 ### El bloque tokio-setup
 
@@ -330,6 +331,24 @@ fields:
 - Solo cambia la ventana **Personalizar**. Los valores, como `Up next` arriba, quedan como los escribiste hasta que el streamer los cambie, y tu overlay no recibe el idioma de Tokio.
 
 Las versiones de Tokio anteriores a estas claves muestran todos los campos, en inglés.
+
+### Comandos del chat
+
+Cuando tu overlay responde a un comando del chat, avísale a Tokio, para que la [Traducción del chat](/es/docs/features/chat-translation/) deje tal cual los mensajes que empiezan con él. Para un comando que elige el streamer, agrega `command: true` a los `attributes` de su campo `input`:
+
+```yaml
+- name: Chat command
+  id: command
+  type: input
+  section: main
+  attributes:
+    mode: text
+    command: true
+    value: "!socials"
+    default: "!socials"
+```
+
+Una columna `input` de una tabla también lo acepta. Un comando que nunca cambia va en los `commands` de `info.yaml`. Las versiones de Tokio anteriores a estas claves las ignoran.
 
 ## Probar sin importar
 

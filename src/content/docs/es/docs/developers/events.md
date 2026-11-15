@@ -86,7 +86,7 @@ interface UserData {
 
 | Evento                                                 | Datos                                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
-| `CHAT`                                                 | `{ user, comment: { content, emotes, lang } }`                            |
+| `CHAT`                                                 | `{ user, comment: { content, emotes, lang, translation? } }`              |
 | `FOLLOW`, `SUPER_FAN`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | `{ user }`                                                                |
 | `SHARE`                                                | `{ user, shareCount }`                                                    |
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
@@ -98,6 +98,8 @@ interface UserData {
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
 
 Cada emote del chat es `{ emoteID, index, images }`, y un comentario hecho solo de emotes tiene el `content` vacío. El `image` de un regalo es la URL de su imagen.
+
+El `content` de un chat es lo que escribió el espectador, y `lang` es el idioma con que TikTok lo marcó, vacío cuando no lo marcó. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje marcado con otro idioma que el del streamer trae `translation`: `{ text, from, to }`, el texto traducido y los dos idiomas como códigos en minúsculas, como `en` y `es`. Los mensajes que ya están en el idioma del streamer, los comandos del chat y los que Tokio no pudo traducir llegan sin ella, así que usa `content` en su lugar. El `index` de un emote apunta a `content`, no a la traducción.
 
 `gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
 

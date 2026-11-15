@@ -98,13 +98,16 @@ Al elegir **Comando personalizado** aparece `!tts`, que puedes cambiar. El coman
 
 La **Plantilla del mensaje** define lo que se lee:
 
-| Marcador     | Se reemplaza por                      |
-| ------------ | ------------------------------------- |
-| `{username}` | El nombre visible del espectador      |
-| `{handle}`   | El usuario del espectador, sin la `@` |
-| `{comment}`  | El mensaje del chat                   |
+| Marcador        | Se reemplaza por                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `{username}`    | El nombre visible del espectador                                                                                    |
+| `{handle}`      | El usuario del espectador, sin la `@`                                                                               |
+| `{comment}`     | El mensaje del chat                                                                                                 |
+| `{translation}` | La [traducción](/es/docs/features/chat-translation/) del mensaje, o el mensaje tal como se escribió cuando no tiene |
 
 `{username} {comment}` lee "Lucia ¡hola desde Lima!". **Quitar emojis** deja fuera los emojis y omite los mensajes que solo tienen emojis.
+
+**Leer las traducciones** lee la traducción de un mensaje en lugar de `{comment}`, cuando la [Traducción del chat](/es/docs/features/chat-translation/) le dio una. Esta opción y `{translation}` aparecen cuando eliges un idioma en **Configuración → Traducción del chat**.
 
 Un mensaje sin nada que leer se omite: pasa cuando la plantilla ya completada no tiene ninguna letra, número ni emoji, como `{comment}` con un "?" solo.
 

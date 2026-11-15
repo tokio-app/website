@@ -98,13 +98,16 @@ Choosing **Custom command** fills in `!tts`, which you can change. The command i
 
 The **Message template** sets what's read:
 
-| Placeholder  | Replaced with                        |
-| ------------ | ------------------------------------ |
-| `{username}` | The viewer's display name            |
-| `{handle}`   | The viewer's handle, without the `@` |
-| `{comment}`  | The chat message                     |
+| Placeholder     | Replaced with                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------- |
+| `{username}`    | The viewer's display name                                                                               |
+| `{handle}`      | The viewer's handle, without the `@`                                                                    |
+| `{comment}`     | The chat message                                                                                        |
+| `{translation}` | The message's [translation](/docs/features/chat-translation/), or the message as typed when it has none |
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove emojis** leaves emojis out, and skips messages that are only emojis.
+
+**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. It and `{translation}` are there once you pick a language in **Settings → Chat translation**.
 
 A message is skipped when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
 
