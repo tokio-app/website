@@ -105,6 +105,7 @@ export default defineConfig({
             },
             "docs/features/chat-commands",
             "docs/features/chat-translation",
+            "docs/features/live-controls",
           ],
         },
         {

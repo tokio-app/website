@@ -1,0 +1,29 @@
+---
+title: Live controls
+description: Skip a song, stop TTS, replay an alert or pause everything from any app.
+---
+
+Four controls work while Tokio stays in the background, so you don't have to switch windows during your LIVE.
+
+| Control               | What it does                                                                                                                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Skip song**         | Plays the next song request. With none waiting, the player skips to its own next song.                                                                                                                  |
+| **Stop TTS**          | Stops the chat message being read and drops the ones waiting. New messages are read as usual.                                                                                                           |
+| **Replay last alert** | Plays the last event's alerts again, once: its sounds, spoken messages, images and videos. It works with alerts turned off too.                                                                         |
+| **Pause everything**  | Stops TTS and alerts, then ignores chat TTS, alerts, song requests and game actions until you resume. Nothing from the pause plays later. The music keeps playing, and overlays keep showing your LIVE. |
+
+## Shortcuts
+
+In **Settings → Shortcuts**, click a control's field and press the keys. **Backspace** removes a shortcut, and **Esc** cancels.
+
+A shortcut works in every app, and the other apps lose those keys, so Tokio only takes combinations they rarely use:
+
+- **F13** to **F24** and media keys like **Play/Pause** work alone. Macro pads and Stream Deck hotkey actions send them. A media key you pick stops working in your other players.
+- Any other key needs **Ctrl** and one more modifier, like **Ctrl + Shift + S**. On macOS, that's **Command** or **Control** and one more.
+- On Windows and Linux, **Ctrl + Alt** also needs **Shift**. On many keyboards it's AltGr, which types characters like @ and €.
+
+Shortcuts start empty. When another app already uses one, Tokio tells you and shows **In use by another app** under it: pick a different one.
+
+## Pause
+
+While Tokio is paused, Home says so at the top. Click **Resume** there, or press the shortcut again. Connecting to a LIVE resumes too, so a new LIVE never starts paused. Restarting Tokio also resumes.
