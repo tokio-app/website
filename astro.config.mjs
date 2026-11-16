@@ -131,6 +131,7 @@ export default defineConfig({
             "docs/developers/building-an-overlay",
             "docs/developers/events",
             "docs/developers/control-api",
+            "docs/developers/mcp",
             "docs/developers/building-from-source",
           ],
         },

@@ -1,0 +1,120 @@
+---
+title: MCP
+description: Let AI assistants like Claude Code set up Tokio and drive it for you.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+Tokio has an MCP server, so an AI assistant on the computer running Tokio can do what you'd do in the app: pick TTS voices, create alerts, add sounds from MyInstants, request songs, switch profiles, run the countdown, pause everything and more.
+
+## Turn it on
+
+<Steps>
+
+1. In **Settings → Remote control**, check **Enable remote control**. The overlay server must be on too.
+
+2. Click **Show QR code and key**. Under it are the MCP address, `http://127.0.0.1:37891/mcp`, and a command for Claude Code with your key in it.
+
+</Steps>
+
+The MCP server only answers on the computer running Tokio, and every request needs the key. The button next to **Remote control**'s title makes a new key, so update your assistant's setup after using it.
+
+## Connect your assistant
+
+<Tabs>
+<TabItem label="Claude Code">
+
+Copy the command from **Settings → Remote control** and run it in a terminal:
+
+```sh
+claude mcp add --transport http tokio http://127.0.0.1:37891/mcp --header "Authorization: Bearer <key>"
+```
+
+</TabItem>
+<TabItem label="Cursor">
+
+Add this to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "tokio": {
+      "url": "http://127.0.0.1:37891/mcp",
+      "headers": { "Authorization": "Bearer <key>" }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem label="VS Code">
+
+Add this to your `mcp.json`:
+
+```json
+{
+  "servers": {
+    "tokio": {
+      "type": "http",
+      "url": "http://127.0.0.1:37891/mcp",
+      "headers": { "Authorization": "Bearer <key>" }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem label="Claude Desktop">
+
+Claude Desktop starts local MCP servers as programs, so it reaches Tokio through [mcp-remote](https://github.com/geelen/mcp-remote), which needs [Node.js](https://nodejs.org). Add this to `claude_desktop_config.json`, then restart Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "tokio": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://127.0.0.1:37891/mcp",
+        "--allow-http",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": { "AUTH_HEADER": "Bearer <key>" }
+    }
+  }
+}
+```
+
+Keep `Authorization:` without a space after it: on Windows, Claude Desktop splits the arguments at spaces. Claude Desktop's own connectors can't reach a server on your computer.
+
+</TabItem>
+</Tabs>
+
+## What it can do
+
+| Tool                                          | What it's for                                                                                                                                   |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_status`                                  | The connection, the LIVE's numbers, the active features, the pause, the profile, the music, Minecraft and the countdown                         |
+| `get_activity`                                | The LIVE's recent chat, gifts and follows, and its top gifters                                                                                  |
+| `get_settings`, `describe`, `update_settings` | TTS, music, alerts, active features, the activity feed, the app's settings, shortcuts, the countdown, the games overlay and Minecraft           |
+| `list`, `get`, `save_item`, `test`, `remove`  | Alerts, game actions, Overlay Studio overlays, test overlays, overlays, sounds, images and videos, Minecraft pictures, profiles, fans and LIVEs |
+| `control`                                     | Skip the song, stop TTS, replay the last alert, pause and resume                                                                                |
+| `live`                                        | Connect to your LIVE or disconnect                                                                                                              |
+| `profile`                                     | Switch, create or clone profiles                                                                                                                |
+| `music`                                       | Request, remove, skip or go back to songs, and connect or disconnect the player                                                                 |
+| `timer`                                       | Start, pause, stop or reset the countdown, and add or remove time                                                                               |
+| `list_voices`                                 | Find voices by engine, language or name                                                                                                         |
+| `search_sounds`, `add_to_library`             | Find sounds on MyInstants, and add sounds, images, videos or Minecraft pictures                                                                 |
+| `install_overlay`, `save_overlay_settings`    | Install or update official overlays, and change an overlay's settings                                                                           |
+| `set_key`                                     | Set your Euler Stream, voice engine or Spotify keys                                                                                             |
+| `get_gifters`, `clear_history`                | Coin stats' top gifters, and clearing your LIVE history                                                                                         |
+
+## Good to know
+
+- Tools that delete or overwrite, like removing an alert or a sound, are marked so your assistant asks you first, if it asks for confirmation (most do).
+- Chat, names and gift names reach the assistant as viewer data. Tokio tells it not to follow instructions in them, but keep an eye on what it does with them.
+- It can't read your keys, open file dialogs, export files, turn off the overlay server or change remote control.
+- Changes it makes show in Tokio as you'd see your own, notices included.
+- From WSL2, `127.0.0.1` reaches Windows only with [mirrored networking](https://learn.microsoft.com/windows/wsl/networking#mirrored-mode-networking).

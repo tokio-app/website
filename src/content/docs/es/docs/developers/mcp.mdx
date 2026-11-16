@@ -1,0 +1,120 @@
+---
+title: MCP
+description: Deja que asistentes de IA como Claude Code configuren Tokio y lo manejen por ti.
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+Tokio tiene un servidor MCP, así que un asistente de IA en la computadora con Tokio puede hacer lo que harías tú en la app: elegir voces de TTS, crear alertas, agregar sonidos de MyInstants, pedir canciones, cambiar de perfil, manejar el temporizador, pausar todo y más.
+
+## Actívalo
+
+<Steps>
+
+1. En **Configuración → Control remoto**, marca **Activar el control remoto**. El servidor de overlays también tiene que estar activado.
+
+2. Haz clic en **Mostrar código QR y clave**. Debajo están la dirección MCP, `http://127.0.0.1:37891/mcp`, y un comando para Claude Code con tu clave.
+
+</Steps>
+
+El servidor MCP solo responde en la computadora con Tokio, y cada solicitud necesita la clave. El botón junto al título de **Control remoto** crea una clave nueva, así que actualiza la configuración de tu asistente después de usarlo.
+
+## Conecta tu asistente
+
+<Tabs>
+<TabItem label="Claude Code">
+
+Copia el comando de **Configuración → Control remoto** y ejecútalo en una terminal:
+
+```sh
+claude mcp add --transport http tokio http://127.0.0.1:37891/mcp --header "Authorization: Bearer <clave>"
+```
+
+</TabItem>
+<TabItem label="Cursor">
+
+Agrega esto a `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "tokio": {
+      "url": "http://127.0.0.1:37891/mcp",
+      "headers": { "Authorization": "Bearer <clave>" }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem label="VS Code">
+
+Agrega esto a tu `mcp.json`:
+
+```json
+{
+  "servers": {
+    "tokio": {
+      "type": "http",
+      "url": "http://127.0.0.1:37891/mcp",
+      "headers": { "Authorization": "Bearer <clave>" }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem label="Claude Desktop">
+
+Claude Desktop inicia los servidores MCP locales como programas, así que llega a Tokio a través de [mcp-remote](https://github.com/geelen/mcp-remote), que necesita [Node.js](https://nodejs.org). Agrega esto a `claude_desktop_config.json` y reinicia Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "tokio": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://127.0.0.1:37891/mcp",
+        "--allow-http",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": { "AUTH_HEADER": "Bearer <clave>" }
+    }
+  }
+}
+```
+
+Deja `Authorization:` sin espacio después: en Windows, Claude Desktop separa los argumentos en los espacios. Los conectores de Claude Desktop no llegan a un servidor en tu computadora.
+
+</TabItem>
+</Tabs>
+
+## Qué puede hacer
+
+| Herramienta                                   | Para qué sirve                                                                                                                                                  |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_status`                                  | La conexión, los números del LIVE, las funciones activas, la pausa, el perfil, la música, Minecraft y el temporizador                                           |
+| `get_activity`                                | El chat, los regalos y los seguidores recientes del LIVE, y quienes más regalaron                                                                               |
+| `get_settings`, `describe`, `update_settings` | TTS, música, alertas, funciones activas, el feed de actividad, la configuración de la app, los atajos, el temporizador, el overlay de juegos y Minecraft        |
+| `list`, `get`, `save_item`, `test`, `remove`  | Alertas, acciones de juego, overlays de Overlay Studio, overlays de prueba, overlays, sonidos, imágenes y videos, imágenes de Minecraft, perfiles, fans y LIVEs |
+| `control`                                     | Saltar la canción, detener el TTS, repetir la última alerta, pausar y reanudar                                                                                  |
+| `live`                                        | Conectarse a tu LIVE o desconectarse                                                                                                                            |
+| `profile`                                     | Cambiar, crear o clonar perfiles                                                                                                                                |
+| `music`                                       | Pedir, quitar, saltar o volver a canciones, y conectar o desconectar el reproductor                                                                             |
+| `timer`                                       | Iniciar, pausar, detener o reiniciar el temporizador, y sumar o restar tiempo                                                                                   |
+| `list_voices`                                 | Buscar voces por motor, idioma o nombre                                                                                                                         |
+| `search_sounds`, `add_to_library`             | Buscar sonidos en MyInstants, y agregar sonidos, imágenes, videos o imágenes de Minecraft                                                                       |
+| `install_overlay`, `save_overlay_settings`    | Instalar o actualizar overlays oficiales, y cambiar la configuración de un overlay                                                                              |
+| `set_key`                                     | Poner tus claves de Euler Stream, de motores de voz o de Spotify                                                                                                |
+| `get_gifters`, `clear_history`                | Quienes más regalaron, de Monedas, y borrar tu historial de LIVEs                                                                                               |
+
+## Bueno saber
+
+- Las herramientas que borran o reemplazan, como quitar una alerta o un sonido, están marcadas para que tu asistente te pregunte antes, si pide confirmación (la mayoría lo hace).
+- El chat, los nombres y los nombres de los regalos llegan al asistente como datos de los espectadores. Tokio le indica que no siga instrucciones que vengan en ellos, pero fíjate en lo que hace con ellos.
+- No puede leer tus claves, abrir diálogos de archivos, exportar archivos, apagar el servidor de overlays ni cambiar el control remoto.
+- Los cambios que hace se ven en Tokio como los tuyos, con sus avisos.
+- Desde WSL2, `127.0.0.1` llega a Windows solo con las [redes en modo reflejado](https://learn.microsoft.com/windows/wsl/networking#mirrored-mode-networking).
