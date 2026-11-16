@@ -70,7 +70,7 @@ Samples work best with one person speaking clearly, without music or background 
 <details>
 <summary>Costs, limits and deleting a voice</summary>
 
-Every message a voice from these services reads is paid from your account with it. On a busy LIVE, reading all of chat with ElevenLabs can spend 30,000 credits in an hour or less, while one special user's messages last many LIVEs. To cap what a LIVE can spend there, set a credit limit on the API key in ElevenLabs. When your credits or balance run out, Tokio tells you, and the voice stays quiet until you add more or pick another one.
+Every message a voice from these services reads is paid from your account with it. On a busy LIVE, reading all of chat with ElevenLabs can spend 30,000 credits in an hour or less, while one special user's messages last many LIVEs. To cap what a LIVE can spend there, set a credit limit on the API key in ElevenLabs. When your credits or balance run out, Tokio tells you, and the voice stays quiet until you add more or pick another one. Meanwhile, Tokio tries that service again once a minute, or right away when you change its key.
 
 A voice takes up to 10 samples of up to 25 MB each: MP3, WAV, M4A, OGG, FLAC or WebM files. Tokio sends them only to the service you clone with and doesn't keep them. To rename or delete a cloned voice, use that service's website.
 
@@ -135,7 +135,7 @@ With **Use allow and block lists**, an allow list with names lets only them talk
 
 The **Cooldown** is the seconds between two messages, for all of chat. Messages that come while the queue holds **Max queue length** messages are dropped.
 
-Messages over the **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters or hidden characters. A banned word also matches inside other words, so banning "ass" skips "class" too.
+Messages over the **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters or hidden characters. So is a message whose [translation](/docs/features/chat-translation/) is over that length. A banned word also matches inside other words, so banning "ass" skips "class" too.
 
 <Screenshot
   name="tts-protection"
