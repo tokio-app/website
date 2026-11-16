@@ -168,17 +168,17 @@ fields:
 
 Cada campo tiene un `name`, un `id` único, una `section` (el `id` de una sección) y un `type`. Sus `attributes` siempre incluyen un `value` y un `default` del mismo tipo. Las columnas de una tabla solo tienen un `default`. Un campo también puede aparecer solo con algunos valores de otro ([Campos condicionales](#campos-condicionales)), y cada nombre se puede traducir ([Traducciones](#traducciones)).
 
-| Tipo       | Otros atributos                                                                       | Valor en `__OVERLAY_CONFIG__`                                        |
-| ---------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `input`    | `mode` (`text` o `number`), `placeholder`                                             | El texto o el número                                                 |
-| `dropdown` | `options` (`value`, `label`, `img` opcional), `multiple`, `searchable`                | El valor elegido, o una lista con `multiple`                         |
-| `color`    | ninguno; los valores son códigos hex sin `#`, de 6 u 8 caracteres                     | El color con `#`, por ejemplo `"#ffffff"`                            |
-| `check`    | ninguno                                                                               | `true` o `false`                                                     |
-| `toggle`   | ninguno                                                                               | `true` o `false`                                                     |
-| `slider`   | `min`, `max`                                                                          | El número                                                            |
-| `gifts`    | `multiple`; los valores son IDs de regalos de TikTok                                  | Un regalo `{ value, label, img, coins }`, o una lista con `multiple` |
-| `font`     | ninguno; los valores son el nombre de una fuente, o `""` para la fuente de tu overlay | El nombre de la fuente, o `""` ([Fuentes](#fuentes))                 |
-| `table`    | `columns`, `max` opcional; los valores son listas de filas                            | Una lista de filas, un objeto por fila ([Tablas](#tablas))           |
+| Tipo       | Otros atributos                                                                                                    | Valor en `__OVERLAY_CONFIG__`                                        |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| `input`    | `mode` (`text` o `number`), `placeholder`                                                                          | El texto o el número                                                 |
+| `dropdown` | `options` (`value`, `label`, `img` opcional), `multiple`, `searchable`                                             | El valor elegido, o una lista con `multiple`                         |
+| `color`    | ninguno; los valores son códigos hex sin `#`, de 6 u 8 caracteres, entre comillas si son solo dígitos (`"000000"`) | El color con `#`, por ejemplo `"#ffffff"`                            |
+| `check`    | ninguno                                                                                                            | `true` o `false`                                                     |
+| `toggle`   | ninguno                                                                                                            | `true` o `false`                                                     |
+| `slider`   | `min`, `max`                                                                                                       | El número                                                            |
+| `gifts`    | `multiple`; los valores son IDs de regalos de TikTok                                                               | Un regalo `{ value, label, img, coins }`, o una lista con `multiple` |
+| `font`     | ninguno; los valores son el nombre de una fuente, o `""` para la fuente de tu overlay                              | El nombre de la fuente, o `""` ([Fuentes](#fuentes))                 |
+| `table`    | `columns`, `max` opcional; los valores son listas de filas                                                         | Una lista de filas, un objeto por fila ([Tablas](#tablas))           |
 
 `mode`, `options`, las `columns` de una tabla y el `min` y el `max` de un slider son obligatorios; `multiple` y `searchable` son `false` si no los pones. El `id` de cada sección debe ser único, y la `section` de cada campo debe nombrar una de ellas.
 
@@ -367,7 +367,7 @@ Si Tokio dice "No hay ningún overlay conectado con este ID.", revisa que la pá
 
 ## Impórtalo
 
-Cuando esté listo, importa la carpeta con **Overlays → Importar overlay** (el **+**). Tokio le da un ID, escribe su configuración en la página y la sirve. Más detalles en [Overlays](/es/docs/features/overlays/#importa-los-tuyos).
+Cuando esté listo, importa la carpeta con **Overlays → Importar overlay** (el **+**). Tokio le da un ID, escribe su configuración en la página y la sirve. Si Tokio lo rechaza, `logs/overlays.log` en la carpeta `.tokio` dice por qué. Más detalles en [Overlays](/es/docs/features/overlays/#importa-los-tuyos).
 
 ## Sin la biblioteca
 

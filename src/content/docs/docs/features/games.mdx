@@ -137,7 +137,7 @@ Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, e
 | **Like**  | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
 | **Emote** | The emotes, or any                                                                                                    |
 
-Actions run while **Minecraft** is on and a game of their edition is connected, whatever's on at **Home**.
+Actions run while **Minecraft** is on, a game of their edition is connected and Tokio isn't [paused](/docs/features/live-controls/#pause), whatever's on at **Home**.
 
 ## Steps
 
@@ -172,7 +172,7 @@ Viewers pick their own names and messages, so Tokio cleans what a variable adds 
 <details>
 <summary>What it removes</summary>
 
-Quotes (`"` and `'`), backslashes, brackets and braces (`[ ] { }`), `§`, `@` and control characters. It also cuts the text to 100 characters. Your own text in the step stays as you wrote it.
+Quotes (`"` and `'`), backslashes, brackets and braces (`[ ] { }`), `§`, `@`, `*` and control characters, and line breaks become spaces. It also cuts the text to 100 characters. Your own text in a **Command** step stays as you wrote it, but a **Spawn mob** name is cleaned whole, yours included.
 
 </details>
 
@@ -215,7 +215,7 @@ Split it into up to 4 **Columns**, or **Rows** when it's horizontal, to spread i
 Each action has a row, in the actions' order:
 
 - **Show on the overlay** puts it on the overlay. It needs the action on, and a picture or a name.
-- The event shows a gift's or emote's picture, or Tokio's own pixel icon. Type over its text to change it; empty it to go back.
+- The event shows a gift's or emote's picture, or Tokio's own pixel icon. On **Chat**, and on a gift or emote action with none picked, type over its text to change it; empty it to go back.
 - The square picks the picture.
 - The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
 - **Column** (**Row** when horizontal) picks where it shows, with more than one.
@@ -263,10 +263,10 @@ The play button on **Overlay** lights up the next action, in the preview and on 
 <details>
 <summary>Limits</summary>
 
-- Every gift on **Every gift** and every count on **Like** runs, however many come at once.
+- Every run of a **Gift** or **Like** action goes out, however many come at once.
 - Actions on other events keep at most 100 runs waiting. More are skipped until the game catches up, so a busy chat can't put them minutes behind.
 - An action's runs go one at a time, and other actions don't wait for them. A big **Spawn mob** holds its action: 100 mobs take about 25 seconds.
-- Turning an action off, removing it, changing its edition, turning **Minecraft** off, switching profiles or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
+- Turning an action off, removing it, changing its edition, turning **Minecraft** off, switching profiles, pausing Tokio or the game leaving stops its waiting runs. Disconnecting from the LIVE doesn't.
 
 </details>
 

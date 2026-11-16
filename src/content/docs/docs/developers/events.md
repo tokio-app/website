@@ -7,20 +7,20 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 
 ## LIVE events
 
-| Constant         | Event name                 | Sent when                               |
-| ---------------- | -------------------------- | --------------------------------------- |
-| `CHAT`           | `tokio:event:chat`         | A viewer sends a chat message           |
-| `FOLLOW`         | `tokio:event:follow`       | A viewer follows you                    |
-| `SHARE`          | `tokio:event:share`        | A viewer shares the LIVE                |
-| `LIKE`           | `tokio:event:like`         | A viewer likes the LIVE                 |
-| `GIFT`           | `tokio:event:gift`         | A viewer sends a gift                   |
-| `ENVELOPE`       | `tokio:event:envelope`     | A treasure envelope is sent             |
-| `SUPER_FAN`      | `tokio:event:superfan`     | A viewer becomes a Super Fan            |
-| `SUPER_FAN_BOX`  | `tokio:event:superfanbox`  | A Super Fan box is sent                 |
-| `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | A Super Fan joins the LIVE              |
-| `MEMBER_JOIN`    | `tokio:event:memberjoin`   | A viewer joins the LIVE                 |
-| `ROOM_USER`      | `tokio:event:roomuser`     | The viewer count and top viewers change |
-| `MUSIC_CHANGE`   | `tokio:event:music:change` | The music request queue changes         |
+| Constant         | Event name                 | Sent when                                      |
+| ---------------- | -------------------------- | ---------------------------------------------- |
+| `CHAT`           | `tokio:event:chat`         | A viewer sends a chat message                  |
+| `FOLLOW`         | `tokio:event:follow`       | A viewer follows you                           |
+| `SHARE`          | `tokio:event:share`        | A viewer shares the LIVE                       |
+| `LIKE`           | `tokio:event:like`         | A viewer likes the LIVE                        |
+| `GIFT`           | `tokio:event:gift`         | A viewer sends a gift                          |
+| `ENVELOPE`       | `tokio:event:envelope`     | A treasure envelope or a Super Fan box is sent |
+| `SUPER_FAN`      | `tokio:event:superfan`     | A viewer becomes a Super Fan                   |
+| `SUPER_FAN_BOX`  | `tokio:event:superfanbox`  | A Super Fan box is sent, before its `ENVELOPE` |
+| `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | A Super Fan joins the LIVE                     |
+| `MEMBER_JOIN`    | `tokio:event:memberjoin`   | A viewer joins the LIVE                        |
+| `ROOM_USER`      | `tokio:event:roomuser`     | The viewer count and top viewers change        |
+| `MUSIC_CHANGE`   | `tokio:event:music:change` | The music request queue changes                |
 
 ## Settings
 

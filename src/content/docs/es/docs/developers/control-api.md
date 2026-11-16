@@ -39,7 +39,7 @@ Desde la computadora con Tokio, envía las solicitudes a `http://localhost:37891
 
 Las demás solicitudes responden `{ "done": true, "paused": false }`: `paused` es el estado después de la solicitud, y `done` es `false` cuando no había nada que hacer, como cuando todavía no hay una alerta que repetir, la música no está conectada o Tokio ya estaba en pausa.
 
-Sin cuerpo, `pause` alterna entre pausa y reanudación. Envía `{ "paused": true }` o `{ "paused": false }` como JSON para fijarlo sin importar cómo estaba.
+Sin cuerpo, `pause` alterna entre pausa y reanudación. Envía `{ "paused": true }` o `{ "paused": false }` como JSON, con `Content-Type: application/json`, para fijarlo sin importar cómo estaba. Sin ese encabezado, Tokio ignora el cuerpo y alterna.
 
 ```sh
 curl -X POST http://localhost:37891/remote/api/pause \
@@ -50,10 +50,10 @@ curl -X POST http://localhost:37891/remote/api/pause \
 
 ## Errores
 
-| Estado   | Qué pasó                                                                                |
-| -------- | --------------------------------------------------------------------------------------- |
-| 401      | Falta la clave o es incorrecta. Si creaste una clave nueva en Tokio, vuelve a copiarla. |
-| 403      | El control remoto está desactivado en **Configuración → Control remoto**.               |
-| 400, 413 | El cuerpo no es JSON válido, tiene campos además de `paused` o es demasiado grande.     |
-| 404      | No existe esa solicitud.                                                                |
-| 500      | El control falló. El `error` de la respuesta dice por qué.                              |
+| Estado   | Qué pasó                                                                                                                         |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Falta la clave o es incorrecta. Si creaste una clave nueva en Tokio, vuelve a copiarla.                                          |
+| 403      | El control remoto está desactivado en **Configuración → Control remoto**.                                                        |
+| 400, 413 | El cuerpo no es JSON válido, tiene campos además de `paused`, tiene un `paused` que no es `true` ni `false`, o pesa más de 1 KB. |
+| 404      | No existe esa solicitud.                                                                                                         |
+| 500      | El control falló. El `error` de la respuesta dice por qué.                                                                       |

@@ -7,20 +7,20 @@ Suscríbete con `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Con un WebSocket dire
 
 ## Eventos del LIVE
 
-| Constante        | Nombre del evento          | Se envía cuando                                |
-| ---------------- | -------------------------- | ---------------------------------------------- |
-| `CHAT`           | `tokio:event:chat`         | Un espectador escribe en el chat               |
-| `FOLLOW`         | `tokio:event:follow`       | Un espectador te sigue                         |
-| `SHARE`          | `tokio:event:share`        | Un espectador comparte el LIVE                 |
-| `LIKE`           | `tokio:event:like`         | Un espectador le da Me gusta al LIVE           |
-| `GIFT`           | `tokio:event:gift`         | Un espectador envía un regalo                  |
-| `ENVELOPE`       | `tokio:event:envelope`     | Alguien envía un cofre                         |
-| `SUPER_FAN`      | `tokio:event:superfan`     | Un espectador se hace Super Fan                |
-| `SUPER_FAN_BOX`  | `tokio:event:superfanbox`  | Alguien envía una Caja de Super Fan            |
-| `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | Un Super Fan entra al LIVE                     |
-| `MEMBER_JOIN`    | `tokio:event:memberjoin`   | Un espectador entra al LIVE                    |
-| `ROOM_USER`      | `tokio:event:roomuser`     | Cambian el número de espectadores o el ranking |
-| `MUSIC_CHANGE`   | `tokio:event:music:change` | Cambia la cola de pedidos de canciones         |
+| Constante        | Nombre del evento          | Se envía cuando                                             |
+| ---------------- | -------------------------- | ----------------------------------------------------------- |
+| `CHAT`           | `tokio:event:chat`         | Un espectador escribe en el chat                            |
+| `FOLLOW`         | `tokio:event:follow`       | Un espectador te sigue                                      |
+| `SHARE`          | `tokio:event:share`        | Un espectador comparte el LIVE                              |
+| `LIKE`           | `tokio:event:like`         | Un espectador le da Me gusta al LIVE                        |
+| `GIFT`           | `tokio:event:gift`         | Un espectador envía un regalo                               |
+| `ENVELOPE`       | `tokio:event:envelope`     | Alguien envía un cofre o una Caja de Super Fan              |
+| `SUPER_FAN`      | `tokio:event:superfan`     | Un espectador se hace Super Fan                             |
+| `SUPER_FAN_BOX`  | `tokio:event:superfanbox`  | Alguien envía una Caja de Super Fan, antes de su `ENVELOPE` |
+| `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | Un Super Fan entra al LIVE                                  |
+| `MEMBER_JOIN`    | `tokio:event:memberjoin`   | Un espectador entra al LIVE                                 |
+| `ROOM_USER`      | `tokio:event:roomuser`     | Cambian el número de espectadores y el ranking              |
+| `MUSIC_CHANGE`   | `tokio:event:music:change` | Cambia la cola de pedidos de canciones                      |
 
 ## Configuración
 

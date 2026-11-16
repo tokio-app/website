@@ -3,18 +3,25 @@ title: Live controls
 description: Skip a song, stop TTS, replay an alert or pause everything from any app.
 ---
 
+import Screenshot from "../../../../components/Screenshot.astro";
+
 Four controls work while Tokio stays in the background, so you don't have to switch windows during your LIVE.
 
-| Control               | What it does                                                                                                                                                                                            |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skip song**         | Plays the next song request. With none waiting, the player skips to its own next song.                                                                                                                  |
-| **Stop TTS**          | Stops the chat message being read and drops the ones waiting. New messages are read as usual.                                                                                                           |
-| **Replay last alert** | Plays the last event's alerts again, once: its sounds, spoken messages, images and videos. It works with alerts turned off too.                                                                         |
-| **Pause everything**  | Stops TTS and alerts, then ignores chat TTS, alerts, song requests and game actions until you resume. Nothing from the pause plays later. The music keeps playing, and overlays keep showing your LIVE. |
+| Control               | What it does                                                                                                                                                                                                                             |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Skip song**         | Plays the next song request. With none waiting, the player skips to its own next song.                                                                                                                                                   |
+| **Stop TTS**          | Stops the chat message being read and drops the ones waiting. New messages are read as usual.                                                                                                                                            |
+| **Replay last alert** | Plays the last event's alerts again, once: its sounds, spoken messages, images and videos. It works with alerts turned off too.                                                                                                          |
+| **Pause everything**  | Stops TTS and alerts, then ignores chat TTS, alerts, song requests and game actions until you resume. Nothing from the pause plays later. The music keeps playing, the countdown keeps adding time, and overlays keep showing your LIVE. |
 
 ## Shortcuts
 
 In **Settings → Shortcuts**, click a control's field and press the keys. **Backspace** removes a shortcut, and **Esc** cancels.
+
+<Screenshot
+  name="settings-shortcuts"
+  alt="Settings → Shortcuts, with F13, F14, F15 and F16 for the four controls"
+/>
 
 A shortcut works in every app, and the other apps lose those keys, so Tokio only takes combinations they rarely use:
 
@@ -28,11 +35,26 @@ Shortcuts start empty. When another app already uses one, Tokio tells you and sh
 
 While Tokio is paused, Home says so at the top. Click **Resume** there, or press the shortcut again. Connecting to a LIVE resumes too, so a new LIVE never starts paused. Restarting Tokio also resumes.
 
+<Screenshot
+  name="home-paused"
+  alt="Home's banner saying Tokio is paused, with Resume"
+/>
+
 ## From your phone or another computer
 
 In **Settings → Remote control**, check **Enable remote control** and click **Show QR code and key**. Scan the code with a phone on the same Wi-Fi, or open the **Link** on another computer on your network. Bookmark the page to open it again.
 
+<Screenshot
+  name="settings-remote"
+  alt="Remote control turned on, with the QR code, the link and the key"
+/>
+
 The page shows the @username of the LIVE Tokio is on, the song playing, and when Tokio is paused. A control with nothing to do, like **Skip song** while music isn't connected, is grayed out and says why. On a computer, a tablet or a phone turned sideways, the controls sit in a row with **Pause everything** under them.
+
+<Screenshot
+  name="remote"
+  alt="The remote on a phone: the LIVE's @username, the song playing, Skip song, Stop TTS, Replay last alert and Pause everything"
+/>
 
 The page reaches Tokio through the overlay server, so check **Enable server** in **Settings → Overlay server** too. If Windows asks whether to allow Tokio through the firewall, allow it, or the page [can't connect](/docs/guides/adding-an-overlay/#on-another-computer).
 

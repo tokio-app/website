@@ -74,7 +74,7 @@ Each element's and group's **When** sets how it reacts:
 
 A group moves as one: one that shows on an event brings all its elements in and out together, and one that moves carries them with it. Its elements keep their own **When**, so an element can bounce on each gift while its group floats.
 
-The **Trigger** picker has the same events and filters as [alerts](/docs/features/alerts/#triggers). On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger.
+The **Trigger** picker has the same events and filters as [alerts](/docs/features/alerts/#triggers), without **Worth at least** and **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger. The count starts over when you disconnect.
 
 If its trigger fires again while it shows or leaves, it starts over with the newest event's values.
 
@@ -96,7 +96,7 @@ They're shortened in Tokio's language (**Settings → Language**), like 12.8K in
 
 A text that reacts to an event can also use that event's values, like `Thanks {username}!` on a gift or `{username} sent {count} {gift}`. Like has no viewer or count of its own, since its likes come from every viewer: `{likes}` shows the LIVE's total.
 
-The variables a text can use are listed under its **Text**: the LIVE numbers, then the event's when it reacts to one. On Chat, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
+The variables a text can use are listed under its **Text**: the LIVE numbers, then the event's when it reacts to one. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
 
 <Screenshot
   name="studio-text"
@@ -134,7 +134,7 @@ Once a camera has been on, Tokio uses about 100 MB more memory until you quit it
 
 Other computers on your network can't open your camera: only the overlays Tokio serves get its address, which changes every time the overlay server starts.
 
-If a camera can't start, Tokio tells you why and tries again every 5 seconds:
+If a camera can't start, Tokio tries again every 5 seconds, and tells you why once your stream uses it:
 
 - Another app may be using it, like OBS's own **Video Capture Device** for the same camera. Use the camera in one app at a time.
 - On Windows, turn on **Let desktop apps access your camera** in **Settings → Privacy & security → Camera**.

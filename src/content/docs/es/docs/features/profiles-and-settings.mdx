@@ -44,7 +44,7 @@ En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco y
 
 <Screenshot
   name="settings"
-  alt="Configuración: la clave de API de Euler Stream, el servidor de overlays con su dirección de red, el idioma, las actualizaciones y la bandeja del sistema"
+  alt="Configuración: la clave de API de Euler Stream, el servidor de overlays con su dirección de red, el idioma, la traducción del chat y las actualizaciones"
 />
 
 Si abres Tokio cuando ya está abierto, su ventana pasa al frente. **Acerca de**, en la barra lateral, muestra la versión de Tokio, su licencia y los avisos de terceros, y tiene **Buscar actualizaciones** y **Hacer el recorrido**.
@@ -60,17 +60,20 @@ Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, To
 
 ## Tus archivos
 
-Tokio guarda todo en la carpeta `.tokio` de tu carpeta de usuario: `C:\Users\<tú>\.tokio` en Windows, `~/.tokio` en macOS y Linux.
+Tokio guarda tu configuración y tus archivos en la carpeta `.tokio` de tu carpeta de usuario: `C:\Users\<tú>\.tokio` en Windows, `~/.tokio` en macOS y Linux.
 
-| Carpeta           | Qué guarda                                             |
-| ----------------- | ------------------------------------------------------ |
-| `settings`        | La configuración y lo que comparten todos los perfiles |
-| `profiles`        | La configuración de cada perfil                        |
-| `sounds`, `media` | Los sonidos, imágenes y videos de la Biblioteca        |
-| `overlays`        | Los overlays que instalaste o importaste               |
-| `games/minecraft` | Las imágenes de Minecraft                              |
-| `fans`            | Los fans de cada perfil                                |
-| `history`         | Los LIVE anteriores de cada perfil, para **Monedas**   |
-| `logs`            | Lo que hizo Tokio, para reportar errores               |
+| Carpeta           | Qué guarda                                                                                                                                |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `settings`        | La configuración y lo que comparten todos los perfiles                                                                                    |
+| `profiles`        | La configuración de cada perfil                                                                                                           |
+| `sounds`, `media` | Los sonidos, imágenes y videos de la Biblioteca                                                                                           |
+| `overlays`        | Los overlays que instalaste o importaste                                                                                                  |
+| `games/minecraft` | Las imágenes de Minecraft                                                                                                                 |
+| `fans`            | Los fans de cada perfil                                                                                                                   |
+| `history`         | Los LIVE anteriores de cada perfil, para **Monedas**                                                                                      |
+| `extra`           | La lista de regalos de TikTok, los regalos que enviaron los espectadores y no están en ella, y las listas de filtros de Bloquear anuncios |
+| `logs`            | Lo que hizo Tokio, para reportar errores                                                                                                  |
+
+Tus sesiones de YouTube y Spotify se guardan aparte, en la carpeta de datos de Tokio: `%APPDATA%\tokio` en Windows, `~/Library/Application Support/tokio` en macOS y `~/.config/tokio` en Linux.
 
 Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta el .zip que guarda **Exportar registros** en **Configuración → Registros**. Los registros incluyen tu usuario de TikTok y, con **Registros detallados** activado, también los de tus espectadores.

@@ -168,17 +168,17 @@ fields:
 
 Every field has a `name`, a unique `id`, a `section` (the `id` of a section) and a `type`. Its `attributes` always include a `value` and a `default` of the same type. A table's columns have only a `default`. A field can also show only for some values of another ([Conditional fields](#conditional-fields)), and every name can be translated ([Translations](#translations)).
 
-| Type       | Other attributes                                                       | Value in `__OVERLAY_CONFIG__`                                    |
-| ---------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `input`    | `mode` (`text` or `number`), `placeholder`                             | The text or number                                               |
-| `dropdown` | `options` (`value`, `label`, optional `img`), `multiple`, `searchable` | The selected value, or a list when `multiple`                    |
-| `color`    | none; values are hex codes without `#`, 6 or 8 characters              | The color with `#`, for example `"#ffffff"`                      |
-| `check`    | none                                                                   | `true` or `false`                                                |
-| `toggle`   | none                                                                   | `true` or `false`                                                |
-| `slider`   | `min`, `max`                                                           | The number                                                       |
-| `gifts`    | `multiple`; values are TikTok gift IDs                                 | A gift `{ value, label, img, coins }`, or a list when `multiple` |
-| `font`     | none; values are a font's name, or `""` for your overlay's own font    | The font's name, or `""` ([Fonts](#fonts))                       |
-| `table`    | `columns`, optional `max`; values are lists of rows                    | A list of rows, one object per row ([Tables](#tables))           |
+| Type       | Other attributes                                                                                       | Value in `__OVERLAY_CONFIG__`                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `input`    | `mode` (`text` or `number`), `placeholder`                                                             | The text or number                                               |
+| `dropdown` | `options` (`value`, `label`, optional `img`), `multiple`, `searchable`                                 | The selected value, or a list when `multiple`                    |
+| `color`    | none; values are hex codes without `#`, 6 or 8 characters, quoted when they're all digits (`"000000"`) | The color with `#`, for example `"#ffffff"`                      |
+| `check`    | none                                                                                                   | `true` or `false`                                                |
+| `toggle`   | none                                                                                                   | `true` or `false`                                                |
+| `slider`   | `min`, `max`                                                                                           | The number                                                       |
+| `gifts`    | `multiple`; values are TikTok gift IDs                                                                 | A gift `{ value, label, img, coins }`, or a list when `multiple` |
+| `font`     | none; values are a font's name, or `""` for your overlay's own font                                    | The font's name, or `""` ([Fonts](#fonts))                       |
+| `table`    | `columns`, optional `max`; values are lists of rows                                                    | A list of rows, one object per row ([Tables](#tables))           |
 
 `mode`, `options`, a table's `columns`, and a slider's `min` and `max` are required; `multiple` and `searchable` default to `false`. Each section's `id` must be unique, and each field's `section` must name one.
 
@@ -367,7 +367,7 @@ If Tokio says "No overlay connected with this ID.", check that the page is open 
 
 ## Import it
 
-When it's ready, import the folder with **Overlays → Import overlay** (the **+**). Tokio gives it an ID, writes its settings into the page and serves it. See [Overlays](/docs/features/overlays/#import-your-own).
+When it's ready, import the folder with **Overlays → Import overlay** (the **+**). Tokio gives it an ID, writes its settings into the page and serves it. If Tokio refuses it, `logs/overlays.log` in the `.tokio` folder says why. See [Overlays](/docs/features/overlays/#import-your-own).
 
 ## Without the library
 

@@ -137,7 +137,7 @@ Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activa
 | **Me gusta** | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
 | **Emote**    | Los emotes, o cualquiera                                                                                                                   |
 
-Las acciones se ejecutan mientras **Minecraft** está activado y hay un juego de su edición conectado, sin importar qué esté activado en **Inicio**.
+Las acciones se ejecutan mientras **Minecraft** está activado, hay un juego de su edición conectado y Tokio no está en [pausa](/es/docs/features/live-controls/#pausa), sin importar qué esté activado en **Inicio**.
 
 ## Pasos
 
@@ -172,7 +172,7 @@ Los espectadores eligen sus propios nombres y mensajes, así que Tokio limpia lo
 <details>
 <summary>Qué quita</summary>
 
-Las comillas (`"` y `'`), las barras invertidas, los corchetes y las llaves (`[ ] { }`), `§`, `@` y los caracteres de control. También corta el texto a 100 caracteres. El texto que tú escribes en el paso queda tal cual.
+Las comillas (`"` y `'`), las barras invertidas, los corchetes y las llaves (`[ ] { }`), `§`, `@`, `*` y los caracteres de control, y los saltos de línea pasan a ser espacios. También corta el texto a 100 caracteres. El texto que tú escribes en un paso **Comando** queda tal cual, pero el nombre de un **Generar criatura** se limpia entero, incluido lo que escribiste.
 
 </details>
 
@@ -215,7 +215,7 @@ Divídelo en hasta 4 **Columnas**, o **Filas** si es horizontal, para repartirlo
 Cada acción tiene una fila, en el mismo orden que las acciones:
 
 - **Mostrar en el overlay** la pone en el overlay. Necesita la acción activada, y una imagen o un nombre.
-- El evento muestra la imagen del regalo o del emote, o el ícono pixelado de Tokio. Escribe sobre su texto para cambiarlo, o bórralo para volver al original.
+- El evento muestra la imagen del regalo o del emote, o el ícono pixelado de Tokio. Con **Chat**, y con una acción de regalo o de emote sin ninguno elegido, escribe sobre su texto para cambiarlo, o bórralo para volver al original.
 - El cuadrado elige la imagen.
 - El nombre sale de los pasos, como **Zombie**. Escribe el tuyo, o bórralo para volver al original.
 - **Columna** (**Fila** si es horizontal) elige dónde se muestra, si hay más de una.
@@ -263,10 +263,10 @@ El botón de reproducir de **Overlay** ilumina la siguiente acción, en la vista
 <details>
 <summary>Límites</summary>
 
-- Con **Cada regalo** se ejecuta cada regalo, y con **Me gusta** cada cuenta, por muchos que lleguen a la vez.
+- Cada ejecución de una acción de **Regalo** o de **Me gusta** se envía, por muchas que lleguen a la vez.
 - Las acciones de otros eventos guardan como máximo 100 ejecuciones en espera. Las que pasen de ahí se omiten hasta que el juego se ponga al día, así que un chat muy activo no las deja minutos atrasadas.
 - Las ejecuciones de una acción van de una en una, y las demás acciones no las esperan. Un **Generar criatura** grande retiene su acción: 100 criaturas tardan unos 25 segundos.
-- Si apagas o quitas una acción, le cambias la edición, desactivas **Minecraft**, cambias de perfil o el juego se desconecta, sus ejecuciones en espera se cancelan. Desconectarte del LIVE no las cancela.
+- Si apagas o quitas una acción, le cambias la edición, desactivas **Minecraft**, cambias de perfil, pausas Tokio o el juego se desconecta, sus ejecuciones en espera se cancelan. Desconectarte del LIVE no las cancela.
 
 </details>
 

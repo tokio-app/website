@@ -3,18 +3,25 @@ title: Controles del LIVE
 description: Salta una canción, detén el TTS, repite una alerta o pausa todo desde cualquier app.
 ---
 
+import Screenshot from "../../../../../components/Screenshot.astro";
+
 Cuatro controles funcionan mientras Tokio sigue en segundo plano, así no tienes que cambiar de ventana durante tu LIVE.
 
-| Control                      | Qué hace                                                                                                                                                                                                                                                |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Saltar canción**           | Pone el siguiente pedido de canción. Si no hay ninguno en espera, el reproductor salta a su propia siguiente canción.                                                                                                                                   |
-| **Detener TTS**              | Detiene el mensaje del chat que se está leyendo y descarta los que esperan. Los mensajes nuevos se leen como siempre.                                                                                                                                   |
-| **Repetir la última alerta** | Vuelve a reproducir las alertas del último evento, una vez: sus sonidos, mensajes hablados, imágenes y videos. Funciona aunque las alertas estén desactivadas.                                                                                          |
-| **Pausar todo**              | Detiene el TTS y las alertas, y luego ignora el TTS del chat, las alertas, los pedidos de canciones y las acciones de juego hasta que reanudes. Nada de la pausa se reproduce después. La música sigue sonando y los overlays siguen mostrando tu LIVE. |
+| Control                      | Qué hace                                                                                                                                                                                                                                                                                      |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Saltar canción**           | Pone el siguiente pedido de canción. Si no hay ninguno en espera, el reproductor salta a su propia siguiente canción.                                                                                                                                                                         |
+| **Detener TTS**              | Detiene el mensaje del chat que se está leyendo y descarta los que esperan. Los mensajes nuevos se leen como siempre.                                                                                                                                                                         |
+| **Repetir la última alerta** | Vuelve a reproducir las alertas del último evento, una vez: sus sonidos, mensajes hablados, imágenes y videos. Funciona aunque las alertas estén desactivadas.                                                                                                                                |
+| **Pausar todo**              | Detiene el TTS y las alertas, y luego ignora el TTS del chat, las alertas, los pedidos de canciones y las acciones de juego hasta que reanudes. Nada de la pausa se reproduce después. La música sigue sonando, el temporizador sigue sumando tiempo y los overlays siguen mostrando tu LIVE. |
 
 ## Atajos de teclado
 
 En **Configuración → Atajos de teclado**, haz clic en el campo de un control y presiona las teclas. **Retroceso** quita un atajo y **Esc** cancela.
+
+<Screenshot
+  name="settings-shortcuts"
+  alt="Configuración → Atajos de teclado, con F13, F14, F15 y F16 para los cuatro controles"
+/>
 
 Un atajo funciona en todas las apps, y las demás apps pierden esas teclas, así que Tokio solo acepta combinaciones que casi no usan:
 
@@ -28,11 +35,26 @@ Los atajos empiezan vacíos. Si otra app ya usa uno, Tokio te avisa y muestra **
 
 Mientras Tokio está en pausa, Inicio lo indica arriba. Haz clic en **Reanudar** ahí o vuelve a presionar el atajo. Conectarte a un LIVE también reanuda, así que un LIVE nuevo nunca empieza en pausa. Reiniciar Tokio también reanuda.
 
+<Screenshot
+  name="home-paused"
+  alt="El aviso de Inicio de que Tokio está en pausa, con Reanudar"
+/>
+
 ## Desde tu celular u otra computadora
 
 En **Configuración → Control remoto**, marca **Activar el control remoto** y haz clic en **Mostrar código QR y clave**. Escanea el código con un celular conectado al mismo Wi-Fi, o abre el **Enlace** en otra computadora de tu red. Guarda la página en tus marcadores para volver a abrirla.
 
+<Screenshot
+  name="settings-remote"
+  alt="El control remoto activado, con el código QR, el enlace y la clave"
+/>
+
 La página muestra el @usuario del LIVE al que está conectado Tokio, la canción que suena y cuando Tokio está en pausa. Un control que no tiene nada que hacer, como **Saltar canción** cuando la música no está conectada, aparece en gris y dice por qué. En una computadora, una tablet o un celular de lado, los controles van en fila, con **Pausar todo** debajo.
+
+<Screenshot
+  name="remote"
+  alt="El control remoto en un celular: el @usuario del LIVE, la canción que suena, Saltar canción, Detener TTS, Repetir la última alerta y Pausar todo"
+/>
 
 La página llega a Tokio a través del servidor de overlays, así que marca también **Activar el servidor** en **Configuración → Servidor de overlays**. Si Windows pregunta si quieres permitir Tokio en el firewall, permítelo, o la página [no podrá conectarse](/es/docs/guides/adding-an-overlay/#en-otra-computadora).
 

@@ -20,7 +20,7 @@ Overlay Studio crea tus propios overlays con texto, imágenes, tus cámaras, reg
 
 </Steps>
 
-Los cambios se guardan mientras los haces y llegan a tu stream al instante. Todos los perfiles comparten los mismos overlays, pero lo que [pones dentro](#overlays-dentro-de-otro) de las alertas, el temporizador y el overlay de juegos sigue al perfil activo.
+Los cambios se guardan mientras los haces y llegan a tu stream al instante. Todos los perfiles comparten los mismos overlays, pero las alertas, el temporizador y el overlay de juegos que [pones dentro](#overlays-dentro-de-otro) de un overlay siguen al perfil activo.
 
 Los overlays nuevos son **Vertical**, de 1080 × 1920. Sin nada seleccionado, **Configuración del overlay** cambia el nombre y el **Lienzo**, a **Horizontal** de 1920 × 1080.
 
@@ -43,7 +43,7 @@ Un overlay se arma con elementos, lo que se ve:
 | **Imagen o video**        | Un archivo de la biblioteca multimedia que usas en las [alertas](/es/docs/features/alerts/#imágenes-y-videos). Un video se reproduce con su sonido.                                                                                                                                                                                                                                                            |
 | **Cámara**                | Una cámara de esta computadora, en vivo. Mira [Cámaras](#cámaras).                                                                                                                                                                                                                                                                                                                                             |
 | **Regalo**                | La imagen del regalo que envía un espectador, o de un regalo que eliges. El regalo enviado necesita el activador **Regalo**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                                                    |
-| **Emote**                 | El emote que envía un espectador en el chat, o uno que eliges entre los que usaron. El emote enviado necesita el activador **Emote**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                                           |
+| **Emote**                 | El emote que envía un espectador en el chat, o uno que eliges entre los que usaron los espectadores. El emote enviado necesita el activador **Emote**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                          |
 | **Forma**                 | Un rectángulo, una elipse, un polígono, una estrella, una flecha, un corazón o un globo de diálogo, que llena su recuadro, con un **Relleno** y un **Borde**, cada uno de su color. Puedes quitar cualquiera de los dos. El **Grosor del borde** va de 1 a 100. Un polígono tiene de 3 a 12 **Lados**, una estrella de 3 a 12 **Puntas**, y un rectángulo o un globo de diálogo, un **Radio de las esquinas**. |
 | **Imagen del espectador** | La foto de perfil del espectador que activó el elemento, o su inicial si no tiene. No puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**, y solo reacciona a eventos que envía un espectador: no a un cofre, una Caja de Super Fan ni un cambio de canción.                                                                                                                                    |
 | **Overlay**               | Un overlay instalado, el temporizador, el overlay de juegos o el overlay de una alerta. Mira [Overlays dentro de otro](#overlays-dentro-de-otro).                                                                                                                                                                                                                                                              |
@@ -74,7 +74,7 @@ El **Cuándo** de cada elemento y de cada grupo define cómo reacciona:
 
 Un grupo se mueve como un todo: uno que aparece con un evento hace entrar y salir a todos sus elementos juntos, y uno que se mueve los lleva consigo. Sus elementos conservan su propio **Cuándo**, así que un elemento puede rebotar con cada regalo mientras su grupo flota.
 
-El selector de **Activador** tiene los mismos eventos y filtros que las [alertas](/es/docs/features/alerts/#activadores). Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador.
+El selector de **Activador** tiene los mismos eventos y filtros que las [alertas](/es/docs/features/alerts/#activadores), sin **Valor mínimo** ni **De**. Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador. La cuenta vuelve a empezar cuando te desconectas.
 
 Si su activador llega otra vez mientras se muestra o sale, empieza de nuevo con los valores del evento más reciente.
 
@@ -96,7 +96,7 @@ Se acortan en el idioma de Tokio (**Configuración → Idioma**), como 12.8 k en
 
 Un texto que reacciona a un evento también puede usar los valores de ese evento, como `¡Gracias, {username}!` con un regalo o `{username} envió {count} {gift}`. Me gusta no tiene espectador ni cantidad propios, porque sus Me gusta vienen de todos los espectadores: `{likes}` muestra el total del LIVE.
 
-Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y, si reacciona a un evento, las del evento. Con Chat, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje mientras la Traducción del chat está activada.
+Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y, si reacciona a un evento, las del evento. Con Chat y Emote, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje mientras la Traducción del chat está activada.
 
 <Screenshot
   name="studio-text"
@@ -134,7 +134,7 @@ Una vez que una cámara estuvo encendida, Tokio usa unos 100 MB más de memoria 
 
 Otras computadoras de tu red no pueden abrir tu cámara: solo los overlays que sirve Tokio reciben su dirección, que cambia cada vez que se inicia el servidor de overlays.
 
-Si una cámara no puede iniciar, Tokio te dice por qué y lo vuelve a intentar cada 5 segundos:
+Si una cámara no puede iniciar, Tokio lo vuelve a intentar cada 5 segundos, y te dice por qué cuando tu stream la usa:
 
 - Puede que otra app la esté usando, como el **Dispositivo de captura de video** de OBS con la misma cámara. Usa la cámara en una sola app a la vez.
 - En Windows, activa **Permitir que las aplicaciones de escritorio accedan a la cámara** en **Configuración → Privacidad y seguridad → Cámara**.

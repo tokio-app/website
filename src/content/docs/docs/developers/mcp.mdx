@@ -4,6 +4,7 @@ description: Let AI assistants like Claude Code set up Tokio and drive it for yo
 ---
 
 import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Screenshot from "../../../../components/Screenshot.astro";
 
 Tokio has an MCP server, so an AI assistant on the computer running Tokio can do what you'd do in the app: pick TTS voices, create alerts, add sounds from MyInstants, request songs, switch profiles, run the countdown, pause everything and more.
 
@@ -14,6 +15,11 @@ Tokio has an MCP server, so an AI assistant on the computer running Tokio can do
 1. In **Settings → Remote control**, check **Enable remote control**. The overlay server must be on too.
 
 2. Click **Show QR code and key**. Under the code are the MCP address, `http://127.0.0.1:37891/mcp`, and the setup for the assistant you pick under **AI assistant**, with your key in it.
+
+   <Screenshot
+     name="settings-mcp"
+     alt="The MCP address, and Claude Code picked under AI assistant with its setup"
+   />
 
 </Steps>
 
@@ -118,27 +124,27 @@ Keep `Authorization:` without a space after it: on Windows, Claude Desktop split
 
 ## What it can do
 
-| Tool                                          | What it's for                                                                                                                                   |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_status`                                  | The connection, the LIVE's numbers, the active features, the pause, the profile, the music, Minecraft and the countdown                         |
-| `get_activity`                                | The LIVE's recent chat, gifts and follows, and its top gifters                                                                                  |
-| `get_settings`, `describe`, `update_settings` | TTS, music, alerts, active features, the activity feed, the app's settings, shortcuts, the countdown, the games overlay and Minecraft           |
-| `list`, `get`, `save_item`, `test`, `remove`  | Alerts, game actions, Overlay Studio overlays, test overlays, overlays, sounds, images and videos, Minecraft pictures, profiles, fans and LIVEs |
-| `control`                                     | Skip the song, stop TTS, replay the last alert, pause and resume                                                                                |
-| `live`                                        | Connect to your LIVE or disconnect                                                                                                              |
-| `profile`                                     | Switch, create or clone profiles                                                                                                                |
-| `music`                                       | Request, remove, skip or go back to songs, and connect or disconnect the player                                                                 |
-| `timer`                                       | Start, pause, stop or reset the countdown, and add or remove time                                                                               |
-| `list_voices`                                 | Find voices by engine, language or name                                                                                                         |
-| `search_sounds`, `add_to_library`             | Find sounds on MyInstants, and add sounds, images, videos or Minecraft pictures                                                                 |
-| `install_overlay`, `save_overlay_settings`    | Install or update official overlays, and change an overlay's settings                                                                           |
-| `set_key`                                     | Set your Euler Stream, voice engine or Spotify keys                                                                                             |
-| `get_gifters`, `clear_history`                | Coin stats' top gifters, and clearing your LIVE history                                                                                         |
+| Tool                                          | What it's for                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_status`                                  | The connection, the LIVE's numbers, the active features, the pause, the profile, the music, Minecraft, the countdown, the overlay server and app updates                                                                                                                                                                                      |
+| `get_activity`                                | The LIVE's recent chat, gifts, follows, shares, Super Fans and joins, and its top gifters                                                                                                                                                                                                                                                     |
+| `get_settings`, `describe`, `update_settings` | TTS, music, alerts, active features, the activity feed, the app's settings, shortcuts, the countdown, the games overlay and Minecraft                                                                                                                                                                                                         |
+| `list`, `get`, `save_item`, `test`, `remove`  | Alerts, game actions and the games overlay's rows, Overlay Studio overlays, test overlays, overlays with their settings and the official catalog, sounds, images and videos, Minecraft pictures, profiles, fans, LIVEs and the song queue. They also list the gifts, emotes and voice engines to pick from, and test a voice or a translation |
+| `control`                                     | Skip the song, stop TTS, replay the last alert, pause and resume                                                                                                                                                                                                                                                                              |
+| `live`                                        | Connect to your LIVE or disconnect                                                                                                                                                                                                                                                                                                            |
+| `profile`                                     | Switch, create or clone profiles                                                                                                                                                                                                                                                                                                              |
+| `music`                                       | Request, remove, skip or go back to songs, and connect or disconnect the player                                                                                                                                                                                                                                                               |
+| `timer`                                       | Start, pause, stop or reset the countdown, and add or remove time                                                                                                                                                                                                                                                                             |
+| `list_voices`                                 | Find voices by engine, language or name                                                                                                                                                                                                                                                                                                       |
+| `search_sounds`, `add_to_library`             | Find sounds on MyInstants, and add sounds, images, videos or Minecraft pictures                                                                                                                                                                                                                                                               |
+| `install_overlay`, `save_overlay_settings`    | Install or update official overlays, and change an overlay's settings                                                                                                                                                                                                                                                                         |
+| `set_key`                                     | Set your Euler Stream, voice engine or Spotify keys                                                                                                                                                                                                                                                                                           |
+| `get_gifters`, `clear_history`                | Coin stats' top gifters, and clearing your LIVE history                                                                                                                                                                                                                                                                                       |
 
 ## Good to know
 
 - Tools that delete or overwrite, like removing an alert or a sound, are marked so your assistant asks you first, if it asks for confirmation (most do).
 - Chat, names and gift names reach the assistant as viewer data. Tokio tells it not to follow instructions in them, but keep an eye on what it does with them.
-- It can't read your keys, open file dialogs, export files, turn off the overlay server or change remote control.
+- It can't read your keys, open file dialogs, export files, clone a voice, install a Tokio update, turn off the overlay server or change remote control.
 - Changes it makes show in Tokio as you'd see your own, notices included.
 - From WSL2, `127.0.0.1` reaches Windows only with [mirrored networking](https://learn.microsoft.com/windows/wsl/networking#mirrored-mode-networking).

@@ -39,7 +39,7 @@ From the computer running Tokio, send requests to `http://localhost:37891`. From
 
 Every other request answers `{ "done": true, "paused": false }`: `paused` is the state after it, and `done` is `false` when there was nothing to do, such as no alert to replay yet, music not connected, or a pause that was already on.
 
-Without a body, `pause` switches between paused and not. Send `{ "paused": true }` or `{ "paused": false }` as JSON to set it whatever it was.
+Without a body, `pause` switches between paused and not. Send `{ "paused": true }` or `{ "paused": false }` as JSON, with `Content-Type: application/json`, to set it whatever it was. Without that header, Tokio ignores the body and switches.
 
 ```sh
 curl -X POST http://localhost:37891/remote/api/pause \
@@ -50,10 +50,10 @@ curl -X POST http://localhost:37891/remote/api/pause \
 
 ## Errors
 
-| Status   | What happened                                                             |
-| -------- | ------------------------------------------------------------------------- |
-| 401      | The key is missing or wrong. After a new key in Tokio, copy it again.     |
-| 403      | Remote control is off in **Settings → Remote control**.                   |
-| 400, 413 | The body isn't valid JSON, has fields other than `paused`, or is too big. |
-| 404      | No such request.                                                          |
-| 500      | The control failed. The answer's `error` says why.                        |
+| Status   | What happened                                                                                                            |
+| -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 401      | The key is missing or wrong. After a new key in Tokio, copy it again.                                                    |
+| 403      | Remote control is off in **Settings → Remote control**.                                                                  |
+| 400, 413 | The body isn't valid JSON, has fields other than `paused`, has a `paused` that isn't `true` or `false`, or is over 1 KB. |
+| 404      | No such request.                                                                                                         |
+| 500      | The control failed. The answer's `error` says why.                                                                       |

@@ -52,7 +52,19 @@ Have chat read in your own voice, cloned with ElevenLabs, Fish Audio, Cartesia o
 <Steps>
 
 1. Create an API key in your account with one of them. In **Settings → Voice engines**, add the service with **+** and paste the key there. The table below says what each one needs.
+
+   <Screenshot
+     name="settings-voice-engines"
+     alt="Settings → Voice engines, with TikTok's session ID and the + menu listing ElevenLabs, Fish Audio, Cartesia and Inworld"
+   />
+
 2. On the **TTS** page, click **Clone a voice**, the microphone next to **Voice**. It shows once a key is set, and with more than one you pick the **Engine** first. Name the voice and add samples: audio files, or a recording you make there with **Record**.
+
+   <Screenshot
+     name="tts-clone"
+     alt="Clone a voice with ElevenLabs: the voice's name, one sample and the permission checked"
+   />
+
 3. Check that the voice is yours or that you have the speaker's permission, then click **Clone voice**.
 4. Give the new voice to a special user under [Special users](#special-users), and keep a free voice for the rest of chat. It also works for all of chat or an alert's message, but you pay for every message it reads.
 
@@ -93,7 +105,7 @@ Choosing **Custom command** fills in `!tts`, which you can change. The command i
 
 <Screenshot
   name="tts-format"
-  alt="The Format section: which messages get read, the message template and Remove emojis"
+  alt="The Format section: which messages get read, the message template, Remove emojis and Read translations"
 />
 
 The **Message template** sets what's read:
@@ -107,7 +119,7 @@ The **Message template** sets what's read:
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove emojis** leaves emojis out, and skips messages that are only emojis.
 
-**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. It and `{translation}` are there once you pick a language in **Settings → Chat translation**.
+**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. Until you pick a language in **Settings → Chat translation**, it's grayed out and `{translation}` isn't offered.
 
 A message is skipped when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
 
