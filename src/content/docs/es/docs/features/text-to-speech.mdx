@@ -70,7 +70,7 @@ Las muestras funcionan mejor con una sola persona hablando con claridad, sin mú
 <details>
 <summary>Costos, límites y cómo eliminar una voz</summary>
 
-Cada mensaje que lee una voz de estos servicios se paga desde tu cuenta en ese servicio. En un LIVE con mucho chat, leer todos los mensajes con ElevenLabs puede gastar 30,000 créditos en una hora o menos, mientras que los mensajes de un usuario especial duran muchos LIVEs. Para limitar lo que puede gastar un LIVE ahí, ponle un límite de créditos a la clave de API en ElevenLabs. Cuando se acaban tus créditos o tu saldo, Tokio te avisa y la voz deja de leer hasta que agregues más o elijas otra.
+Cada mensaje que lee una voz de estos servicios se paga desde tu cuenta en ese servicio. En un LIVE con mucho chat, leer todos los mensajes con ElevenLabs puede gastar 30,000 créditos en una hora o menos, mientras que los mensajes de un usuario especial duran muchos LIVEs. Para limitar lo que puede gastar un LIVE ahí, ponle un límite de créditos a la clave de API en ElevenLabs. Cuando se acaban tus créditos o tu saldo, Tokio te avisa y la voz deja de leer hasta que agregues más o elijas otra. Mientras tanto, Tokio vuelve a probar ese servicio una vez por minuto, o en el momento si cambias su clave.
 
 Una voz acepta hasta 10 muestras de hasta 25 MB cada una: archivos MP3, WAV, M4A, OGG, FLAC o WebM. Tokio solo las envía al servicio con el que clonas y no las guarda. Para cambiarle el nombre a una voz clonada o eliminarla, usa el sitio web de ese servicio.
 
@@ -135,7 +135,7 @@ Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene 
 
 El **Tiempo de espera** son los segundos entre dos mensajes, para todo el chat. Los mensajes que llegan cuando la cola ya tiene **Largo máximo de la cola** mensajes se descartan.
 
-Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos. Una palabra prohibida también cuenta dentro de otras, así que prohibir "cola" omite también "chocolate".
+Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos. También se omite un mensaje cuya [traducción](/es/docs/features/chat-translation/) pasa ese largo. Una palabra prohibida también cuenta dentro de otras, así que prohibir "cola" omite también "chocolate".
 
 <Screenshot
   name="tts-protection"
