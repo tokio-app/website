@@ -13,7 +13,7 @@ Tokio tiene un servidor MCP, así que un asistente de IA en la computadora con T
 
 1. En **Configuración → Control remoto**, marca **Activar el control remoto**. El servidor de overlays también tiene que estar activado.
 
-2. Haz clic en **Mostrar código QR y clave**. Debajo están la dirección MCP, `http://127.0.0.1:37891/mcp`, y un comando para Claude Code con tu clave.
+2. Haz clic en **Mostrar código QR y clave**. Debajo del código están la dirección MCP, `http://127.0.0.1:37891/mcp`, y la configuración del asistente que elijas en **Asistente de IA**, con tu clave.
 
 </Steps>
 
@@ -21,19 +21,43 @@ El servidor MCP solo responde en la computadora con Tokio, y cada solicitud nece
 
 ## Conecta tu asistente
 
+En **Configuración → Control remoto**, elige tu asistente en **Asistente de IA** y haz clic en su configuración para copiarla. Dónde va depende del asistente:
+
 <Tabs>
 <TabItem label="Claude Code">
 
-Copia el comando de **Configuración → Control remoto** y ejecútalo en una terminal:
+Ejecútalo en una terminal:
 
 ```sh
 claude mcp add --transport http tokio http://127.0.0.1:37891/mcp --header "Authorization: Bearer <clave>"
 ```
 
 </TabItem>
+<TabItem label="Codex">
+
+Agrégalo a `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.tokio]
+url = "http://127.0.0.1:37891/mcp"
+
+[mcp_servers.tokio.http_headers]
+Authorization = "Bearer <clave>"
+```
+
+</TabItem>
+<TabItem label="Gemini CLI">
+
+Ejecútalo en una terminal. `--scope user` agrega Tokio para todas las carpetas:
+
+```sh
+gemini mcp add --scope user --transport http --header "Authorization: Bearer <clave>" tokio http://127.0.0.1:37891/mcp
+```
+
+</TabItem>
 <TabItem label="Cursor">
 
-Agrega esto a `~/.cursor/mcp.json`:
+Agrégalo a `~/.cursor/mcp.json`:
 
 ```json
 {
@@ -49,7 +73,7 @@ Agrega esto a `~/.cursor/mcp.json`:
 </TabItem>
 <TabItem label="VS Code">
 
-Agrega esto a tu `mcp.json`:
+En VS Code, ejecuta **MCP: Open User Configuration** desde la paleta de comandos y agrégalo ahí:
 
 ```json
 {
@@ -66,7 +90,7 @@ Agrega esto a tu `mcp.json`:
 </TabItem>
 <TabItem label="Claude Desktop">
 
-Claude Desktop inicia los servidores MCP locales como programas, así que llega a Tokio a través de [mcp-remote](https://github.com/geelen/mcp-remote), que necesita [Node.js](https://nodejs.org). Agrega esto a `claude_desktop_config.json` y reinicia Claude Desktop:
+Claude Desktop inicia los servidores MCP locales como programas, así que llega a Tokio a través de [mcp-remote](https://github.com/geelen/mcp-remote), que necesita [Node.js](https://nodejs.org). Agrégalo a `claude_desktop_config.json` y reinicia Claude Desktop:
 
 ```json
 {

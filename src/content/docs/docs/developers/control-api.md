@@ -15,15 +15,29 @@ From the computer running Tokio, send requests to `http://localhost:37891`. From
 
 ## Requests
 
-| Request                         | What it does                    |
-| ------------------------------- | ------------------------------- |
-| `GET /remote/api/state`         | Says whether Tokio is paused    |
-| `POST /remote/api/skip-song`    | Skips the song                  |
-| `POST /remote/api/stop-tts`     | Stops the message being read    |
-| `POST /remote/api/replay-alert` | Replays the last event's alerts |
-| `POST /remote/api/pause`        | Pauses Tokio, or resumes it     |
+| Request                         | What it does                                                        |
+| ------------------------------- | ------------------------------------------------------------------- |
+| `GET /remote/api/state`         | Says whether Tokio is paused, the LIVE it's on and the song playing |
+| `POST /remote/api/skip-song`    | Skips the song                                                      |
+| `POST /remote/api/stop-tts`     | Stops the message being read                                        |
+| `POST /remote/api/replay-alert` | Replays the last event's alerts                                     |
+| `POST /remote/api/pause`        | Pauses Tokio, or resumes it                                         |
 
-`state` answers `{ "paused": false }`. Every other request answers `{ "done": true, "paused": false }`: `paused` is the state after it, and `done` is `false` when there was nothing to do, such as no alert to replay yet, music not connected, or a pause that was already on.
+`state` answers what the [phone page](/docs/features/live-controls/#from-your-phone-or-another-computer) shows:
+
+```json
+{
+  "paused": false,
+  "live": "lucia.lima",
+  "music": true,
+  "song": { "title": "Midnight Drive - Luna Park", "thumbnail": "https://..." },
+  "canReplay": true
+}
+```
+
+`live` is the @username of the LIVE Tokio is on, or `null`. `music` says whether a music player is connected, and `song` is the song it plays, or `null`. `canReplay` says whether **Replay last alert** has an alert to play. New fields may come later, so read the ones you need.
+
+Every other request answers `{ "done": true, "paused": false }`: `paused` is the state after it, and `done` is `false` when there was nothing to do, such as no alert to replay yet, music not connected, or a pause that was already on.
 
 Without a body, `pause` switches between paused and not. Send `{ "paused": true }` or `{ "paused": false }` as JSON to set it whatever it was.
 

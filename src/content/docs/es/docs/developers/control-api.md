@@ -15,15 +15,29 @@ Desde la computadora con Tokio, envía las solicitudes a `http://localhost:37891
 
 ## Solicitudes
 
-| Solicitud                       | Qué hace                               |
-| ------------------------------- | -------------------------------------- |
-| `GET /remote/api/state`         | Dice si Tokio está en pausa            |
-| `POST /remote/api/skip-song`    | Salta la canción                       |
-| `POST /remote/api/stop-tts`     | Detiene el mensaje que se está leyendo |
-| `POST /remote/api/replay-alert` | Repite las alertas del último evento   |
-| `POST /remote/api/pause`        | Pausa Tokio, o lo reanuda              |
+| Solicitud                       | Qué hace                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| `GET /remote/api/state`         | Dice si Tokio está en pausa, el LIVE al que está conectado y la canción que suena |
+| `POST /remote/api/skip-song`    | Salta la canción                                                                  |
+| `POST /remote/api/stop-tts`     | Detiene el mensaje que se está leyendo                                            |
+| `POST /remote/api/replay-alert` | Repite las alertas del último evento                                              |
+| `POST /remote/api/pause`        | Pausa Tokio, o lo reanuda                                                         |
 
-`state` responde `{ "paused": false }`. Las demás solicitudes responden `{ "done": true, "paused": false }`: `paused` es el estado después de la solicitud, y `done` es `false` cuando no había nada que hacer, como cuando todavía no hay una alerta que repetir, la música no está conectada o Tokio ya estaba en pausa.
+`state` responde lo que muestra la [página del celular](/es/docs/features/live-controls/#desde-tu-celular-u-otra-computadora):
+
+```json
+{
+  "paused": false,
+  "live": "lucia.lima",
+  "music": true,
+  "song": { "title": "Midnight Drive - Luna Park", "thumbnail": "https://..." },
+  "canReplay": true
+}
+```
+
+`live` es el @usuario del LIVE al que está conectado Tokio, o `null`. `music` dice si hay un reproductor de música conectado, y `song` es la canción que suena, o `null`. `canReplay` dice si **Repetir la última alerta** tiene una alerta para reproducir. Pueden llegar campos nuevos más adelante, así que lee los que necesites.
+
+Las demás solicitudes responden `{ "done": true, "paused": false }`: `paused` es el estado después de la solicitud, y `done` es `false` cuando no había nada que hacer, como cuando todavía no hay una alerta que repetir, la música no está conectada o Tokio ya estaba en pausa.
 
 Sin cuerpo, `pause` alterna entre pausa y reanudación. Envía `{ "paused": true }` o `{ "paused": false }` como JSON para fijarlo sin importar cómo estaba.
 
