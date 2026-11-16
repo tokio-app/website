@@ -27,3 +27,11 @@ Los atajos empiezan vacíos. Si otra app ya usa uno, Tokio te avisa y muestra **
 ## Pausa
 
 Mientras Tokio está en pausa, Inicio lo indica arriba. Haz clic en **Reanudar** ahí o vuelve a presionar el atajo. Conectarte a un LIVE también reanuda, así que un LIVE nuevo nunca empieza en pausa. Reiniciar Tokio también reanuda.
+
+## Desde tu celular
+
+En **Configuración → Control remoto**, marca **Activar el control remoto**, haz clic en **Mostrar código QR y clave** y escanea el código con un celular conectado al mismo Wi-Fi. La página que se abre tiene los mismos cuatro controles y muestra cuando Tokio está en pausa. Guárdala en tus marcadores para volver a abrirla.
+
+El celular llega a Tokio a través del servidor de overlays, así que marca también **Activar el servidor** en **Configuración → Servidor de overlays**. Si Windows pregunta si quieres permitir Tokio en el firewall, permítelo, o el celular [no podrá conectarse](/es/docs/guides/adding-an-overlay/#en-otra-computadora).
+
+Cualquiera en tu red que tenga el enlace puede usar los controles. El botón junto al título de **Control remoto** crea una clave nueva: los celulares con el enlace anterior dejan de funcionar hasta que escanees el código nuevo. Para usar los controles desde un Stream Deck o un script, consulta [API de control](/es/docs/developers/control-api/).

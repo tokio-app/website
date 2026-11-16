@@ -130,6 +130,7 @@ export default defineConfig({
           items: [
             "docs/developers/building-an-overlay",
             "docs/developers/events",
+            "docs/developers/control-api",
             "docs/developers/building-from-source",
           ],
         },

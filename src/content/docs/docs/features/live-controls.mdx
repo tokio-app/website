@@ -27,3 +27,11 @@ Shortcuts start empty. When another app already uses one, Tokio tells you and sh
 ## Pause
 
 While Tokio is paused, Home says so at the top. Click **Resume** there, or press the shortcut again. Connecting to a LIVE resumes too, so a new LIVE never starts paused. Restarting Tokio also resumes.
+
+## From your phone
+
+In **Settings → Remote control**, check **Enable remote control**, click **Show QR code and key**, and scan the code with a phone on the same Wi-Fi. The page that opens has the same four controls and shows when Tokio is paused. Bookmark it to open it again.
+
+The phone reaches Tokio through the overlay server, so check **Enable server** in **Settings → Overlay server** too. If Windows asks whether to allow Tokio through the firewall, allow it, or the phone [can't connect](/docs/guides/adding-an-overlay/#on-another-computer).
+
+Anyone on your network with the link can use the controls. The button next to **Remote control**'s title makes a new key: phones with the old link stop working until you scan the new code. To press the controls from a Stream Deck or a script, see [Control API](/docs/developers/control-api/).
