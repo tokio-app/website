@@ -48,6 +48,8 @@ An overlay is made of elements, the things that show:
 | **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                                                                                                          |
 | **Shape**            | A rectangle, an ellipse, a polygon, a star, an arrow, a heart or a speech bubble, filling its box, with a **Fill** and a **Border**, each in its own color. Turn either one off. With **Gradient**, the fill fades into a second color at the angle you set. **Border width** goes from 1 to 100. A polygon has 3 to 12 **Sides**, a star 3 to 12 **Points**, and a rectangle or speech bubble a **Corner radius**. |
 | **Viewer's picture** | The profile picture of the viewer who set the element off, or their initial when they have none. It can't be **Always on screen** or **Moves all the time**, and only reacts to events a viewer sends: not an envelope, a Super Fan Box or a music change.                                                                                                                                                          |
+| **Goal bar**         | A bar that fills as a LIVE number or a [counter](#counters) comes to its goal. See [Goal bars](#goal-bars).                                                                                                                                                                                                                                                                                                         |
+| **List**             | Rows of this LIVE's top gifters, or its newest followers, gifts or chat messages. See [Lists](#lists).                                                                                                                                                                                                                                                                                                              |
 | **Overlay**          | An installed overlay, the countdown, the games overlay or an alert's overlay. See [Embedding overlays](#embedding-overlays).                                                                                                                                                                                                                                                                                        |
 
 To order, lock, hide and move elements together, put them in a group. The [Overlay Studio editor](/docs/features/overlay-studio-editor/) page covers groups, placing, cropping and the keyboard shortcuts.
@@ -134,6 +136,32 @@ A text shows it as `{roses}`, and **Goal reached** can wait for it. What each ev
 Counters start at 0 when you connect, keep counting when Tokio recovers a dropped connection, and read 0 while you're not LIVE. In the editor, each one shows 12.
 
 A name takes only letters without accents, numbers and `_`, up to 24 characters. The editor warns you when a counter has no name, the same name as another counter, or the name of a LIVE number or an event's value, like `likes` or `username`.
+
+## Goal bars
+
+A **Goal bar** fills as its **Number** comes to its **Goal**. The number is a LIVE number, like `{likes}` or `{coins}`, or one of the overlay's [counters](#counters). The bar is full past its goal, and empty while you're not LIVE.
+
+- **Fill** is the bar's color. With **Gradient**, it fades into a second color across the whole bar, so the second color shows as it fills.
+- **Background** is the color of the part still to fill.
+- **Round corners** goes from square to round ends, which is where it starts.
+- **Vertical, filling from the bottom** stands the bar up where it is.
+
+The fill slides to each new number. A bar shows no words: put a text on or next to it, like `{roses} / 10 roses`. In the editor, every bar shows 60% full.
+
+## Lists
+
+A **List** shows a row per viewer or event of what it **Shows**:
+
+| Shows                     | Its rows                                                                                     |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| **Top gifters this LIVE** | The viewers who sent the most coins this LIVE, with their coins, the most first              |
+| **New followers**         | The newest followers, the newest first. One who follows again moves up                       |
+| **Latest gifts**          | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends |
+| **Chat**                  | The newest messages, the newest at the bottom. Messages of emotes alone don't show           |
+
+Each row has the viewer's picture, or their initial, then their name. Chat puts the message after the name, and the coins and counts sit on the right, in **Number color**. **Rows** sets how many show, up to 10, and **Space between rows** the gap, in pixels of the canvas. Turn off **Viewers' pictures** to show names alone.
+
+Lists are empty while you're not LIVE and start over when you connect. What doesn't fit in the box is cut off at its edge, chat's oldest at the top. The editor shows sample rows.
 
 ## Shadow and blur
 

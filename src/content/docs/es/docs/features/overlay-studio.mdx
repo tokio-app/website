@@ -48,6 +48,8 @@ Un overlay se arma con elementos, lo que se ve:
 | **Emote**                 | El emote que envía un espectador en el chat, o uno que eliges entre los que usaron los espectadores. El emote enviado necesita el activador **Emote**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                                                                                                         |
 | **Forma**                 | Un rectángulo, una elipse, un polígono, una estrella, una flecha, un corazón o un globo de diálogo, que llena su recuadro, con un **Relleno** y un **Borde**, cada uno de su color. Puedes quitar cualquiera de los dos. Con **Degradado**, el relleno pasa a un segundo color en el ángulo que elijas. El **Grosor del borde** va de 1 a 100. Un polígono tiene de 3 a 12 **Lados**, una estrella de 3 a 12 **Puntas**, y un rectángulo o un globo de diálogo, un **Radio de las esquinas**. |
 | **Imagen del espectador** | La foto de perfil del espectador que activó el elemento, o su inicial si no tiene. No puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**, y solo reacciona a eventos que envía un espectador: no a un cofre, una Caja de Super Fan ni un cambio de canción.                                                                                                                                                                                                                   |
+| **Barra de meta**         | Una barra que se llena a medida que un número del LIVE o un [contador](#contadores) llega a su meta. Mira [Barras de meta](#barras-de-meta).                                                                                                                                                                                                                                                                                                                                                  |
+| **Lista**                 | Filas con quienes más regalaron en este LIVE, o con sus seguidores, regalos o mensajes del chat más nuevos. Mira [Listas](#listas).                                                                                                                                                                                                                                                                                                                                                           |
 | **Overlay**               | Un overlay instalado, el temporizador, el overlay de juegos o el overlay de una alerta. Mira [Overlays dentro de otro](#overlays-dentro-de-otro).                                                                                                                                                                                                                                                                                                                                             |
 
 Para ordenar, bloquear, ocultar y mover elementos juntos, ponlos en un grupo. La página [Editor de Overlay Studio](/es/docs/features/overlay-studio-editor/) explica los grupos, cómo ubicar y recortar, y los atajos de teclado.
@@ -134,6 +136,32 @@ Un texto lo muestra como `{rosas}`, y **Meta alcanzada** puede esperarlo. Lo que
 Los contadores empiezan en 0 al conectarte, siguen contando cuando Tokio recupera una conexión caída y marcan 0 mientras no estás en LIVE. En el editor, cada uno muestra 12.
 
 Un nombre solo admite letras sin tildes ni ñ, números y `_`, hasta 24 caracteres. El editor te avisa cuando un contador no tiene nombre, tiene el mismo que otro contador o el de un número del LIVE o un dato del evento, como `likes` o `username`.
+
+## Barras de meta
+
+Una **Barra de meta** se llena a medida que su **Número** llega a su **Meta**. El número es un número del LIVE, como `{likes}` o `{coins}`, o uno de los [contadores](#contadores) del overlay. La barra queda llena al pasar la meta, y vacía mientras no estás en LIVE.
+
+- **Relleno** es el color de la barra. Con **Degradado**, pasa a un segundo color a lo largo de toda la barra, así que el segundo color aparece a medida que se llena.
+- **Fondo** es el color de la parte que falta llenar.
+- **Esquinas redondeadas** va de esquinas rectas a extremos redondos, que es como empieza.
+- **Vertical, se llena desde abajo** pone la barra de pie en el mismo lugar.
+
+El relleno se desliza hasta cada número nuevo. Una barra no muestra palabras: pon un texto encima o al lado, como `{rosas} / 10 rosas`. En el editor, toda barra se ve llena al 60 %.
+
+## Listas
+
+Una **Lista** muestra una fila por espectador o evento de lo que **Muestra**:
+
+| Muestra                                | Sus filas                                                                                               |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Quienes más regalaron en este LIVE** | Los espectadores que más monedas enviaron en este LIVE, con sus monedas, primero quien más envió        |
+| **Seguidores nuevos**                  | Los seguidores más nuevos, primero el último. Quien te vuelve a seguir sube                             |
+| **Últimos regalos**                    | Los regalos más nuevos, con el regalo y su cantidad, primero el último. Un combo aparece cuando termina |
+| **Chat**                               | Los mensajes más nuevos, el último abajo. Los mensajes que solo tienen emotes no aparecen               |
+
+Cada fila tiene la imagen del espectador, o su inicial, y luego su nombre. El chat pone el mensaje después del nombre, y las monedas y cantidades van a la derecha, en **Color de los números**. **Filas** define cuántas se ven, hasta 10, y **Espacio entre filas** la separación, en píxeles del lienzo. Desactiva **Imágenes de los espectadores** para mostrar solo los nombres.
+
+Las listas están vacías mientras no estás en LIVE y empiezan de nuevo al conectarte. Lo que no cabe en el recuadro se corta en su borde: en el chat, lo más viejo arriba. El editor muestra filas de ejemplo.
 
 ## Sombra y desenfoque
 
