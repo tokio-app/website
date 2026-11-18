@@ -78,6 +78,12 @@ A group moves as one: one that shows on an event brings all its elements in and 
 
 The **Trigger** picker has the same events and filters as [alerts](/docs/features/alerts/#triggers), without **Worth at least** and **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger. The count starts over when you disconnect.
 
+**Add a trigger** adds another one under **Or**, up to 5 in all, each with its own filters. The element reacts to any of them.
+
+**Goal reached** reacts once per LIVE, the first time a number reaches its goal. Pick a LIVE number, like `{likes}` or `{coins}`, or one of the overlay's [counters](#counters), then the goal. If you change the goal, it can react again in the same LIVE.
+
+**Delay (s)** makes an element or group that shows or moves on an event wait up to 10 seconds after its trigger, for example until an alert is over. Another trigger during the wait changes the event it shows, but doesn't restart the wait.
+
 If its trigger fires again while it shows or leaves, it starts over with the newest event's values.
 
 In the editor, an element or group that shows on an event stays on the canvas with a dashed outline, so you can place it. What moves all the time moves on the canvas too.
@@ -86,19 +92,23 @@ In the editor, an element or group that shows on an event stays on the canvas wi
 
 A text element can show live numbers from your LIVE, written in braces:
 
-| Variable      | Shows                           |
-| ------------- | ------------------------------- |
-| `{likes}`     | The LIVE's likes                |
-| `{viewers}`   | The viewers watching now        |
-| `{followers}` | New followers during this LIVE  |
-| `{shares}`    | Shares during this LIVE         |
-| `{coins}`     | Coins received during this LIVE |
+| Variable      | Shows                                    |
+| ------------- | ---------------------------------------- |
+| `{likes}`     | The LIVE's likes                         |
+| `{viewers}`   | The viewers watching now                 |
+| `{followers}` | New followers during this LIVE           |
+| `{shares}`    | Shares during this LIVE                  |
+| `{coins}`     | Coins received during this LIVE          |
+| `{gifts}`     | Gifts received during this LIVE          |
+| `{uptime}`    | How long you've been LIVE, like 01:02:03 |
 
-They're shortened in Tokio's language (**Settings → Language**), like 12.8K in English, and read 0 while you're not LIVE. The editor shows sample numbers.
+They're shortened in Tokio's language (**Settings → Language**), like 12.8K in English, and read 0 while you're not LIVE (`{uptime}` reads 00:00:00). The editor shows sample numbers. A text also shows the overlay's [counters](#counters), like `{roses}`.
 
 A text that reacts to an event can also use that event's values, like `Thanks {username}!` on a gift or `{username} sent {count} {gift}`. Like has no viewer or count of its own, since its likes come from every viewer: `{likes}` shows the LIVE's total.
 
-The variables a text can use are listed under its **Text**: the LIVE numbers, then the event's when it reacts to one. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
+With several triggers, a text can use the values of each. One that the event doesn't have is empty, like `{gift}` on a follow.
+
+The variables a text can use are listed under its **Text**: the LIVE numbers and the counters, then the event's when it reacts to one. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
 
 <Screenshot
   name="studio-text"
@@ -110,6 +120,20 @@ An element keeps its last event's values until Tokio closes, so `Last follower: 
 Hidden elements, and the elements of a hidden group, keep reacting, so they show the latest event when you show them again.
 
 **Gradient** fades a text's color into a second one, at the angle you set: 90 runs left to right, 180 top to bottom. **Outline** draws a line around the letters, outside them, in its own color and width. **Letter spacing** and **Line height** are percents of the size, and line height starts at 115. A thick outline can reach past the text's box.
+
+## Counters
+
+A counter counts an event during each LIVE, like roses or follows. With nothing selected, click **Add a counter** in **Overlay settings**. Name it, like `roses`, and pick what it counts, with the same filters as a trigger. Each overlay has up to 10 of its own.
+
+A text shows it as `{roses}`, and **Goal reached** can wait for it. What each event adds:
+
+- A **Gift** adds the gifts sent: with **When streak ends**, a whole streak when it ends; with **Every gift**, each one as it comes.
+- A **Like** adds its likes.
+- Any other event adds 1.
+
+Counters start at 0 when you connect, keep counting when Tokio recovers a dropped connection, and read 0 while you're not LIVE. In the editor, each one shows 12.
+
+A name takes only letters without accents, numbers and `_`, up to 24 characters. The editor warns you when a counter has no name, the same name as another counter, or the name of a LIVE number or an event's value, like `likes` or `username`.
 
 ## Shadow and blur
 
@@ -173,7 +197,7 @@ If you remove an official overlay you embedded, its element shows nothing until 
 
 ## Test
 
-The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, elements with sample values, in the editor and on your stream. An element that shows on an event plays its entrance, its seconds on screen and its exit, then comes back to the canvas.
+The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, after its delay, elements with sample values for their first trigger, in the editor and on your stream. An element that shows on an event plays its entrance, its seconds on screen and its exit, then comes back to the canvas.
 
 Embedded overlays don't get the samples. Tokio keeps them only while their element is on screen, so after that a reload shows the real last event again.
 

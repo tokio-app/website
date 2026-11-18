@@ -78,6 +78,12 @@ Un grupo se mueve como un todo: uno que aparece con un evento hace entrar y sali
 
 El selector de **Activador** tiene los mismos eventos y filtros que las [alertas](/es/docs/features/alerts/#activadores), sin **Valor mínimo** ni **De**. Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador. La cuenta vuelve a empezar cuando te desconectas.
 
+**Agregar un activador** agrega otro debajo de **O**, hasta 5 en total, cada uno con sus propios filtros. El elemento reacciona a cualquiera de ellos.
+
+**Meta alcanzada** reacciona una vez por LIVE, la primera vez que un número llega a su meta. Elige un número del LIVE, como `{likes}` o `{coins}`, o uno de los [contadores](#contadores) del overlay, y luego la meta. Si cambias la meta, puede reaccionar otra vez en el mismo LIVE.
+
+Con **Espera (s)**, un elemento o grupo que aparece o se mueve con un evento espera hasta 10 segundos después de su activador, por ejemplo hasta que termine una alerta. Otro activador durante la espera cambia el evento que muestra, pero no reinicia la espera.
+
 Si su activador llega otra vez mientras se muestra o sale, empieza de nuevo con los valores del evento más reciente.
 
 En el editor, un elemento o grupo que aparece con un evento se queda en el lienzo con un borde punteado, para que puedas ubicarlo. Lo que se mueve todo el tiempo también se mueve en el lienzo.
@@ -93,12 +99,16 @@ Un texto puede mostrar números en vivo de tu LIVE, escritos entre llaves:
 | `{followers}` | Los seguidores nuevos durante este LIVE |
 | `{shares}`    | Los compartidos durante este LIVE       |
 | `{coins}`     | Las monedas recibidas durante este LIVE |
+| `{gifts}`     | Los regalos recibidos durante este LIVE |
+| `{uptime}`    | Cuánto llevas en LIVE, como 01:02:03    |
 
-Se acortan en el idioma de Tokio (**Configuración → Idioma**), como 12.8 k en español, y marcan 0 mientras no estás en LIVE. El editor muestra números de ejemplo.
+Se acortan en el idioma de Tokio (**Configuración → Idioma**), como 12.8 k en español, y marcan 0 mientras no estás en LIVE (`{uptime}` marca 00:00:00). El editor muestra números de ejemplo. Un texto también muestra los [contadores](#contadores) del overlay, como `{rosas}`.
 
 Un texto que reacciona a un evento también puede usar los valores de ese evento, como `¡Gracias, {username}!` con un regalo o `{username} envió {count} {gift}`. Me gusta no tiene espectador ni cantidad propios, porque sus Me gusta vienen de todos los espectadores: `{likes}` muestra el total del LIVE.
 
-Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y, si reacciona a un evento, las del evento. Con Chat y Emote, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje mientras la Traducción del chat está activada.
+Con varios activadores, un texto puede usar los valores de cada uno. El que no venga en el evento queda vacío, como `{gift}` cuando alguien te sigue.
+
+Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y los contadores y, si reacciona a un evento, las del evento. Con Chat y Emote, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje mientras la Traducción del chat está activada.
 
 <Screenshot
   name="studio-text"
@@ -110,6 +120,20 @@ Un elemento guarda los valores de su último evento hasta que Tokio se cierra, a
 Los elementos ocultos, y los de un grupo oculto, siguen reaccionando, así que muestran el último evento cuando los vuelves a mostrar.
 
 **Degradado** hace que el color del texto pase a un segundo color, en el ángulo que elijas: 90 va de izquierda a derecha y 180 de arriba abajo. **Contorno** dibuja una línea alrededor de las letras, por fuera, de su propio color y grosor. **Espacio entre letras** e **Interlineado** son porcentajes del tamaño, y el interlineado empieza en 115. Un contorno grueso puede salirse del recuadro del texto.
+
+## Contadores
+
+Un contador cuenta un evento durante cada LIVE, como las rosas o los seguidores nuevos. Sin nada seleccionado, haz clic en **Agregar un contador** en **Configuración del overlay**. Ponle un nombre, como `rosas`, y elige qué cuenta, con los mismos filtros que un activador. Cada overlay tiene hasta 10 propios.
+
+Un texto lo muestra como `{rosas}`, y **Meta alcanzada** puede esperarlo. Lo que suma cada evento:
+
+- Un **Regalo** suma los regalos enviados: con **Al terminar el combo**, todo el combo cuando termina; con **Cada regalo**, cada uno a medida que llega.
+- Un **Me gusta** suma sus Me gusta.
+- Cualquier otro evento suma 1.
+
+Los contadores empiezan en 0 al conectarte, siguen contando cuando Tokio recupera una conexión caída y marcan 0 mientras no estás en LIVE. En el editor, cada uno muestra 12.
+
+Un nombre solo admite letras sin tildes ni ñ, números y `_`, hasta 24 caracteres. El editor te avisa cuando un contador no tiene nombre, tiene el mismo que otro contador o el de un número del LIVE o un dato del evento, como `likes` o `username`.
 
 ## Sombra y desenfoque
 
@@ -173,7 +197,7 @@ Si quitas un overlay oficial que pusiste en un elemento, ese elemento no muestra
 
 ## Probar
 
-El botón de reproducir, **Probar los elementos y grupos que reaccionan a eventos**, reproduce una vez cada elemento y grupo que reacciona, los elementos con valores de ejemplo, en el editor y en tu stream. Un elemento que aparece con un evento hace su entrada, sus segundos en pantalla y su salida, y luego vuelve al lienzo.
+El botón de reproducir, **Probar los elementos y grupos que reaccionan a eventos**, reproduce una vez cada elemento y grupo que reacciona, después de su espera, los elementos con valores de ejemplo de su primer activador, en el editor y en tu stream. Un elemento que aparece con un evento hace su entrada, sus segundos en pantalla y su salida, y luego vuelve al lienzo.
 
 Los overlays que pusiste dentro no reciben los ejemplos. Tokio solo los guarda mientras su elemento está en pantalla, así que después, al recargar, vuelve a verse el último evento real.
 
