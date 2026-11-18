@@ -75,9 +75,13 @@ Si desactivas una función durante el LIVE, se detiene lo que tenía en cola. En
 
 ## Cuando algo falla
 
-Si Tokio no puede conectarse, te dice por qué. Si se cae la conexión, se vuelve a conectar solo, y si no puede, te avisa: "No se pudo reconectar al LIVE. Vuelve a conectarte desde Inicio."
+Si Tokio no puede conectarse, te dice por qué. Si el problema fue la red, antes lo intenta dos veces más, con 3 segundos entre cada intento.
 
-Cuando el LIVE termina, Tokio se desconecta y te avisa: "El LIVE terminó." Cualquier desconexión borra lo que el TTS, las alertas y la música tenían en cola, y la canción que suena sigue sonando.
+Si se cae la conexión, Tokio se vuelve a conectar solo y sigue intentándolo hasta lograrlo o hasta que hagas clic en **Desconectar**. Mientras tanto, **Inicio** dice **Reconectando…** donde estaba el tiempo del LIVE.
+
+Cuando el LIVE termina, Tokio se desconecta y te avisa: "El LIVE terminó." Si terminó mientras Tokio se reconectaba, como cuando tu conexión corta el LIVE, **Inicio** dice **Esperando el LIVE…** y Tokio lo busca durante 2 minutos. Hace lo mismo cuando no puede reconectarse por otro motivo. Si el LIVE vuelve en ese tiempo, Tokio se conecta; si no, te avisa: "No se pudo reconectar al LIVE. Vuelve a conectarte desde Inicio." **Desconectar** detiene la espera.
+
+Cualquier desconexión borra lo que el TTS, las alertas y la música tenían en cola, y la canción que suena sigue sonando.
 
 <details>
 <summary>Por qué falla una conexión</summary>

@@ -75,9 +75,13 @@ Turning a feature off during the LIVE stops what it has queued. For music, that 
 
 ## When something fails
 
-If Tokio can't connect, it tells you why. If the connection drops, it reconnects on its own, and tells you "Unable to reconnect to the LIVE. Connect again from Home." when it can't.
+If Tokio can't connect, it tells you why. When the network was the problem, it first tries twice more, 3 seconds apart.
 
-When the LIVE ends, Tokio disconnects with "The LIVE has ended." Any disconnect drops what TTS, alerts and music had queued, and the song playing keeps playing.
+If the connection drops, Tokio reconnects on its own and keeps trying until it's back or you click **Disconnect**. Meanwhile **Home** says **Reconnecting…** where the LIVE's time was.
+
+When the LIVE ends, Tokio disconnects with "The LIVE has ended." If it ended while Tokio was reconnecting, as when your connection cuts the LIVE short, **Home** says **Waiting for the LIVE…** and Tokio looks for it for 2 minutes. It does the same when it can't reconnect for another reason. If the LIVE comes back in that time, Tokio connects to it; if not, it tells you "Unable to reconnect to the LIVE. Connect again from Home." **Disconnect** stops the wait.
+
+Any disconnect drops what TTS, alerts and music had queued, and the song playing keeps playing.
 
 <details>
 <summary>Why a connect fails</summary>
