@@ -57,6 +57,21 @@ Selecciona un grupo en la lista para cambiar todos sus elementos a la vez. Arras
 
 La configuración de un grupo tiene los mismos campos que la de un elemento, y su **Opacidad** atenúa todo el grupo. Haz clic en un espacio vacío del lienzo o de la lista para quitar la selección.
 
+## Seleccionar varios
+
+Haz Shift+clic en elementos del lienzo, o Shift+clic o Ctrl+clic en filas de la lista, para seleccionar varios. Hazlo otra vez en uno para quitarlo. En el lienzo también puedes arrastrar desde un espacio vacío: se selecciona cada elemento que toque el recuadro, y se suma a lo que ya estaba seleccionado si mantienes Shift.
+
+Arrastra cualquiera para mover todos. Se ajustan como uno solo, y las flechas los mueven juntos. Eliminar, copiar, cortar y pegar se aplican a todos. Los bloqueados se quedan donde están.
+
+Con varios seleccionados, la configuración dice cuántos, con:
+
+- **Alinear entre sí**, que los alinea por su izquierda, centro, derecha, arriba, medio o abajo.
+- **Espaciar por igual**, en horizontal o en vertical, que deja la misma separación entre ellos cuando son 3 o más. Los dos de los extremos no se mueven.
+- **Ponerlos en un grupo nuevo**, que los agrupa. No está disponible si hay un grupo seleccionado, porque un grupo no puede ir dentro de otro.
+- **Eliminar la selección**.
+
+Cada una es un solo paso de **Deshacer**. No se puede cambiar el tamaño de varios ni girarlos a la vez.
+
 ## Ajuste automático
 
 Cuando arrastras un elemento, un grupo o una esquina, se ajusta a los bordes y al centro del lienzo, a los bordes y centros de los otros elementos, y a las guías mientras las reglas están activadas. Una línea muestra con qué se alinea.
@@ -129,26 +144,28 @@ Con las reglas activadas y nada seleccionado, la **Configuración del overlay** 
 
 En una Mac, Ctrl es Cmd y Alt es Option. Mientras escribes en un campo, sus teclas funcionan en su texto.
 
-| Teclas                         | Qué hacen                                                                        |
-| ------------------------------ | -------------------------------------------------------------------------------- |
-| Supr o Retroceso               | Elimina la selección. En el lienzo, una bloqueada se queda                       |
-| Escape                         | Quita la selección, o cancela un recorte                                         |
-| Enter                          | Conserva un recorte                                                              |
-| Flechas                        | Mueven la selección 1 px, 10 px con Shift. En un asa de la lista, mueven su fila |
-| Shift al girar                 | Gira de 15° en 15°                                                               |
-| Shift al arrastrar un campo    | Cambia su número de 10 en 10                                                     |
-| Ctrl+C, Ctrl+X, Ctrl+V         | Copian, cortan y pegan                                                           |
-| Ctrl+Z                         | Deshace                                                                          |
-| Ctrl+Y o Ctrl+Shift+Z          | Rehace                                                                           |
-| Ctrl+rueda, o pellizcar        | Zoom donde está el puntero                                                       |
-| Ctrl++ y Ctrl+-                | Acercan y alejan                                                                 |
-| Ctrl+0                         | Ajusta a la vista                                                                |
-| Barra espaciadora+arrastrar    | Mueve la vista por el lienzo                                                     |
-| Ctrl+R                         | Muestra u oculta las reglas y guías                                              |
-| Ctrl+arrastrar desde una regla | Agrega una guía                                                                  |
-| Ctrl+arrastrar una guía        | La mueve, o la quita sobre una regla                                             |
-| Alt al arrastrar               | Coloca sin ajuste. En Linux, presiona Alt después de empezar a arrastrar         |
-| Doble clic                     | Recorta una imagen, un video, una cámara, un regalo o un emote                   |
+| Teclas                           | Qué hacen                                                                        |
+| -------------------------------- | -------------------------------------------------------------------------------- |
+| Supr o Retroceso                 | Elimina la selección. En el lienzo, una bloqueada se queda                       |
+| Escape                           | Quita la selección, o cancela un recorte                                         |
+| Enter                            | Conserva un recorte                                                              |
+| Flechas                          | Mueven la selección 1 px, 10 px con Shift. En un asa de la lista, mueven su fila |
+| Shift+clic                       | Suma a la selección, o quita. En la lista, también Ctrl+clic                     |
+| Arrastrar desde un espacio vacío | Selecciona lo que toca el recuadro, y lo suma a la selección con Shift           |
+| Shift al girar                   | Gira de 15° en 15°                                                               |
+| Shift al arrastrar un campo      | Cambia su número de 10 en 10                                                     |
+| Ctrl+C, Ctrl+X, Ctrl+V           | Copian, cortan y pegan                                                           |
+| Ctrl+Z                           | Deshace                                                                          |
+| Ctrl+Y o Ctrl+Shift+Z            | Rehace                                                                           |
+| Ctrl+rueda, o pellizcar          | Zoom donde está el puntero                                                       |
+| Ctrl++ y Ctrl+-                  | Acercan y alejan                                                                 |
+| Ctrl+0                           | Ajusta a la vista                                                                |
+| Barra espaciadora+arrastrar      | Mueve la vista por el lienzo                                                     |
+| Ctrl+R                           | Muestra u oculta las reglas y guías                                              |
+| Ctrl+arrastrar desde una regla   | Agrega una guía                                                                  |
+| Ctrl+arrastrar una guía          | La mueve, o la quita sobre una regla                                             |
+| Alt al arrastrar                 | Coloca sin ajuste. En Linux, presiona Alt después de empezar a arrastrar         |
+| Doble clic                       | Recorta una imagen, un video, una cámara, un regalo o un emote                   |
 
 ## Límites
 

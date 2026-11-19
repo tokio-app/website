@@ -57,6 +57,21 @@ Select a group in the list to change all its elements at once. Drag inside its o
 
 A group's settings have the same fields as an element's, and its **Opacity** fades the whole group. Click an empty spot on the canvas or in the list to deselect.
 
+## Selecting several
+
+Shift-click elements on the canvas, or Shift-click or Ctrl-click rows in the list, to select several. Do it again on one to take it out. On the canvas, you can also drag from an empty spot: every element the box touches gets selected, added to what's already selected if you hold Shift.
+
+Drag any of them to move them all. They stick as one, and the arrow keys move them together. Delete, copy, cut and paste take all of them. Locked ones stay where they are.
+
+With several selected, the settings say how many, with:
+
+- **Align to each other**, which lines them up by their left, center, right, top, middle or bottom.
+- **Space evenly**, across or down, which leaves the same gap between them when there are 3 or more. The two at the ends stay put.
+- **Put them in a new group**, which groups them. It's off while a group is selected, since a group can't go inside another group.
+- **Delete the selection**.
+
+Each one is a single step for **Undo**. Several can't be resized or rotated together.
+
 ## Sticking
 
 When you drag an element, a group or a corner, it sticks to the canvas's edges and middle, the other elements' edges and middles, and the guides while the rulers are on. A line shows what it lines up with.
@@ -135,6 +150,8 @@ Ctrl is Cmd on a Mac, and Alt is Option. While you type in a field, its keys wor
 | Escape                       | Deselect, or cancel a crop                                                     |
 | Enter                        | Keep a crop                                                                    |
 | Arrow keys                   | Move the selection 1 px, 10 px with Shift. On a grip in the list, move its row |
+| Shift+click                  | Add to the selection, or take out. In the list, Ctrl+click does too            |
+| Drag from an empty spot      | Select what the box touches, adding to the selection with Shift                |
 | Shift while rotating         | Turn in steps of 15°                                                           |
 | Shift while dragging a field | Change its number 10 at a time                                                 |
 | Ctrl+C, Ctrl+X, Ctrl+V       | Copy, cut and paste                                                            |
