@@ -1,12 +1,12 @@
 ---
 title: Temporizador
-description: Una cuenta regresiva en tu stream a la que los espectadores suman tiempo con regalos, Me gusta, seguimientos y el chat.
+description: Una cuenta regresiva en tu stream a la que los espectadores suman tiempo con regalos, Me gusta, seguimientos, suscripciones, Bits y el chat.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores suman tiempo cuando envían regalos, dan Me gusta, te siguen, comparten, se hacen Super Fans o escriben en el chat.
+Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores suman tiempo cuando envían regalos, dan Me gusta, te siguen, comparten, se hacen Super Fans, se suscriben en Twitch, envían Bits o escriben en el chat.
 
 <Screenshot
   name="timer-preview"
@@ -55,16 +55,21 @@ Se pausa cuando el LIVE termina o Tokio se desconecta, salvo que desmarques **Pa
 
 Los eventos suman tiempo solo después de que presionas **Iniciar**. Por defecto:
 
-| Evento                | Suma                                       |
-| --------------------- | ------------------------------------------ |
-| **Monedas**           | 1 segundo por moneda                       |
-| **Me gusta**          | 10 segundos cada 100 Me gusta              |
-| **Seguidores nuevos** | 30 segundos cada uno                       |
-| **Compartidos**       | 10 segundos cada uno                       |
-| **Super Fans nuevos** | 300 segundos cada uno                      |
-| **Mensajes del chat** | 0, una vez por espectador cada 30 segundos |
+| Evento                      | Suma                                       |
+| --------------------------- | ------------------------------------------ |
+| **Monedas**                 | 1 segundo por moneda                       |
+| **Me gusta**                | 10 segundos cada 100 Me gusta              |
+| **Seguidores nuevos**       | 30 segundos cada uno                       |
+| **Compartidos**             | 10 segundos cada uno                       |
+| **Super Fans nuevos**       | 300 segundos cada uno                      |
+| **Mensajes del chat**       | 0, una vez por espectador cada 30 segundos |
+| **Suscripciones nuevas**    | 300 segundos cada una                      |
+| **Suscripciones regaladas** | 300 segundos por suscripción regalada      |
+| **Bits**                    | 1 segundo por Bit                          |
 
 En **Me gusta**, el segundo número define cuántos Me gusta suman tiempo juntos.
+
+**Suscripciones nuevas**, **Suscripciones regaladas** y **Bits** son de Twitch. **Suscripciones nuevas** cuenta cada suscripción o renovación, y **Suscripciones regaladas** y **Bits** cuentan cada suscripción regalada y cada Bit. Las filas, y los activadores del overlay, solo muestran lo que envían las [plataformas](/es/docs/connect/#tiktok-y-twitch-juntos) del perfil: con solo Twitch, no hay monedas, Me gusta, compartidos ni Super Fans.
 
 - Con 0 segundos, el evento no suma tiempo. **Multiplicador** multiplica todos los eventos, como 2 para una hora de tiempo doble.
 - **Tiempo máximo** deja de sumar tiempo cuando el reloj llega a ese valor. Con 0 no hay límite.

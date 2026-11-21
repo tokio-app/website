@@ -128,14 +128,15 @@ Each action has its own on/off switch. **Remove action** and each step's **Remov
 
 Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
 
-Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**.
+Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. With two or more [platforms](/docs/features/alerts/#platforms), a trigger can also pick one, and Twitch's Subscription, Gifted subs, Bits, Raid and Channel points are there too.
 
-| Trigger   | Options                                                                                                               |
-| --------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Gift**  | The gifts, and **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts)        |
-| **Chat**  | A keyword or phrase the message must have                                                                             |
-| **Like**  | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
-| **Emote** | The emotes, or any                                                                                                    |
+| Trigger            | Options                                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| **Gift**           | The gifts, and **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts)        |
+| **Chat**           | A keyword or phrase the message must have                                                                             |
+| **Like**           | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
+| **Emote**          | The emotes, or any                                                                                                    |
+| **Channel points** | A reward's title, or **Any reward**                                                                                   |
 
 Actions run while **Minecraft** is on, a game of their edition is connected and Tokio isn't [paused](/docs/features/live-controls/#pause), whatever's on at **Home**.
 
@@ -162,10 +163,12 @@ A mob's name and a command can use these. Click one to add it.
 | Variable                 | Triggers                                                                  |
 | ------------------------ | ------------------------------------------------------------------------- |
 | `{username}`, `{handle}` | All but Like                                                              |
-| `{comment}`              | Chat, Emote                                                               |
+| `{comment}`              | Chat, Emote, Subscription, Bits, Channel points                           |
 | `{translation}`          | Chat, Emote, with [Chat translation](/docs/features/chat-translation/) on |
 | `{gift}`                 | Gift                                                                      |
 | `{count}`                | Gift (the streak's size, not with **Every gift**)                         |
+| `{count}`                | Subscription (the months), Gifted subs, Bits, Raid (the viewers)          |
+| `{reward}`               | Channel points                                                            |
 
 Viewers pick their own names and messages, so Tokio cleans what a variable adds to a command.
 

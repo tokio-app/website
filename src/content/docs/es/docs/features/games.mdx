@@ -128,14 +128,15 @@ Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar
 
 Haz clic en **Acciones** para plegar las acciones y darle más espacio al overlay. Se vuelven a abrir la próxima vez que entres a **Juegos**.
 
-Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**.
+Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**. Con dos o más [plataformas](/es/docs/features/alerts/#plataformas), un activador también puede elegir una, y los de Twitch (Suscripción, Suscripciones regaladas, Bits, Raid y Puntos del canal) también están.
 
-| Activador    | Opciones                                                                                                                                   |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Regalo**   | Los regalos, y **Al terminar el combo** o **Cada regalo**, como en las [alertas de regalos](/es/docs/features/alerts/#alertas-de-regalos)  |
-| **Chat**     | Una palabra clave o frase que el mensaje debe tener                                                                                        |
-| **Me gusta** | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
-| **Emote**    | Los emotes, o cualquiera                                                                                                                   |
+| Activador            | Opciones                                                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Regalo**           | Los regalos, y **Al terminar el combo** o **Cada regalo**, como en las [alertas de regalos](/es/docs/features/alerts/#alertas-de-regalos)  |
+| **Chat**             | Una palabra clave o frase que el mensaje debe tener                                                                                        |
+| **Me gusta**         | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
+| **Emote**            | Los emotes, o cualquiera                                                                                                                   |
+| **Puntos del canal** | El título de una recompensa, o **Cualquier recompensa**                                                                                    |
 
 Las acciones se ejecutan mientras **Minecraft** está activado, hay un juego de su edición conectado y Tokio no está en [pausa](/es/docs/features/live-controls/#pausa), sin importar qué esté activado en **Inicio**.
 
@@ -162,10 +163,12 @@ El nombre de una criatura y los comandos pueden usarlas. Haz clic en una para ag
 | Variable                 | Activadores                                                                             |
 | ------------------------ | --------------------------------------------------------------------------------------- |
 | `{username}`, `{handle}` | Todos menos Me gusta                                                                    |
-| `{comment}`              | Chat, Emote                                                                             |
+| `{comment}`              | Chat, Emote, Suscripción, Bits, Puntos del canal                                        |
 | `{translation}`          | Chat, Emote, con la [Traducción del chat](/es/docs/features/chat-translation/) activada |
 | `{gift}`                 | Regalo                                                                                  |
 | `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo**)                                 |
+| `{count}`                | Suscripción (los meses), Suscripciones regaladas, Bits, Raid (los espectadores)         |
+| `{reward}`               | Puntos del canal                                                                        |
 
 Los espectadores eligen sus propios nombres y mensajes, así que Tokio limpia lo que una variable agrega a un comando.
 

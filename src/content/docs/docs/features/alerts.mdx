@@ -49,7 +49,27 @@ Pick the **Event**: Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan,
 
 To play one alert on more than one event, click **Add a trigger**. It plays on any of them, up to five, and each keeps its own filters.
 
-Under **From**, check **Followers**, **Moderators** or **Super Fans** to play only for them. Only Chat, Emote and Gift have it, since TikTok sends a viewer's roles only with those.
+Under **From**, check **Followers**, **Moderators** or **Super Fans** to play only for them. Only Chat, Emote and Gift have it, since a viewer's roles only come with those.
+
+### Platforms
+
+When the profile connects to [two or more platforms](/docs/connect/#tiktok-and-twitch-together), each trigger has a platform select before its event: **Any platform**, **TikTok** or **Twitch**. Pick one to play only for that platform's viewers, and the event list shows what it sends. Music change comes from Tokio, so it only plays on **Any platform**.
+
+With one platform, there's no select, and the events are that platform's. Chat, Emote and Follow come from both, so on **Any platform** a Follow alert plays for either.
+
+Twitch adds five triggers:
+
+| Trigger            | Plays when                                                                                          |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| **Subscription**   | A viewer subscribes or renews                                                                       |
+| **Gifted subs**    | A viewer gifts subscriptions, once for all of them                                                  |
+| **Bits**           | A viewer cheers with Bits                                                                           |
+| **Raid**           | Another channel raids you                                                                           |
+| **Channel points** | A viewer redeems a reward. Type its title to play only for it, in any case, or leave **Any reward** |
+
+Twitch only has Bits and channel points on Affiliate and Partner channels.
+
+Twitch's chat doesn't say who follows, so **From → Followers** never passes a Twitch viewer. **Moderators** includes you, and **Super Fans** are your Twitch subscribers.
 
 ## Sounds
 
@@ -87,10 +107,12 @@ Click a variable to add the event's details:
 | Variable                 | Triggers                                                                                                                         |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                 |
-| `{comment}`              | Chat and Emote                                                                                                                   |
+| `{comment}`              | Chat and Emote; Subscription and Bits (what the viewer wrote); Channel points (what they typed)                                  |
 | `{translation}`          | Chat and Emote, with [Chat translation](/docs/features/chat-translation/) on: the message's translation, or the message as typed |
 | `{gift}`, `{count}`      | Gift (`{count}` is the combo size, except on **Every gift**)                                                                     |
 | `{count}`                | Like (the likes sent)                                                                                                            |
+| `{count}`                | Subscription (the months so far), Gifted subs (the subs gifted), Bits (the Bits) and Raid (the viewers it brings)                |
+| `{reward}`               | Channel points (the reward's title)                                                                                              |
 | `{song}`                 | Music change                                                                                                                     |
 
 The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A banned word in what a variable fills in, like a name or a comment, skips the whole alert, image or video included.
