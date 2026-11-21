@@ -288,6 +288,10 @@
         "note": "Firma la conexión a TikTok LIVE con la clave de API de cada usuario."
       },
       {
+        "name": "Twitch",
+        "note": "La API oficial de Twitch (id.twitch.tv, api.twitch.tv y eventsub.wss.twitch.tv), con la cuenta de Twitch de cada usuario: el inicio de sesión, el chat y los eventos del canal (EventSub), y si está en vivo y sus espectadores."
+      },
+      {
         "name": "Microsoft",
         "note": "El servicio Leer en voz alta de Edge (las voces de Edge), que no es una API pública oficial."
       },
@@ -341,12 +345,13 @@
       "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan ahí.",
       "También se guardan los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil guarda además las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo.",
       "Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream. Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok, y una clave de API de ElevenLabs, Fish Audio, Cartesia o Inworld, solo a ese servicio. Las muestras de una voz que clonas solo se envían al servicio que la clona, y Tokio no las guarda.",
+      "Para conectarte a Twitch inicias sesión en tu propia cuenta. Tokio guarda esa sesión en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Twitch.",
       "Una cámara que agregas en Overlay Studio solo llega a los overlays que sirve Tokio, en una dirección que cambia cada vez que se inicia el servidor de overlays. Tokio no guarda su video.",
       "Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",
-    "trademarks": "Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
+    "trademarks": "Tokio no está afiliado a TikTok, ByteDance ni Twitch, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
     "websiteTitle": "Este sitio web",
     "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }

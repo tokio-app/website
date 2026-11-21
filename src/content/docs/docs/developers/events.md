@@ -20,7 +20,27 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 | `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | A Super Fan joins the LIVE                     |
 | `MEMBER_JOIN`    | `tokio:event:memberjoin`   | A viewer joins the LIVE                        |
 | `ROOM_USER`      | `tokio:event:roomuser`     | The viewer count and top viewers change        |
+| `SUBSCRIBE`      | `tokio:event:subscribe`    | A viewer subscribes or renews on Twitch        |
+| `GIFT_SUB`       | `tokio:event:giftsub`      | A viewer gifts subscriptions on Twitch         |
+| `CHEER`          | `tokio:event:cheer`        | A viewer spends Bits on Twitch                 |
+| `RAID`           | `tokio:event:raid`         | Another Twitch channel raids you               |
+| `REDEEM`         | `tokio:event:redeem`       | A viewer redeems a channel points reward       |
 | `MUSIC_CHANGE`   | `tokio:event:music:change` | The music request queue changes                |
+
+## Platforms
+
+Tokio connects to TikTok and Twitch, alone or in the same LIVE. Each platform sends some of the events:
+
+| Events                                                                                             | Come from         |
+| -------------------------------------------------------------------------------------------------- | ----------------- |
+| `CHAT`, `FOLLOW`, and chat emotes                                                                  | TikTok and Twitch |
+| `SHARE`, `LIKE`, `GIFT`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok            |
+| `SUBSCRIBE`, `GIFT_SUB`, `CHEER`, `RAID`, `REDEEM`                                                 | Twitch            |
+| `ROOM_USER`                                                                                        | Both, summed      |
+
+An overlay gets the events of every platform the profile connects to, so check `user.platform` to tell them apart. `ROOM_USER` adds up `viewers` and `views` across the platforms, which is TikTok's alone when Twitch isn't connected. Twitch has no `views`, so it adds 0, and `ranks` are TikTok's. Twitch's viewer count updates every 30 seconds.
+
+In Tokio's previews, the Twitch events come as samples when you click **Test**. Twitch only has Bits and channel points on Affiliate and Partner channels.
 
 ## Settings
 
@@ -76,13 +96,18 @@ interface UserData {
   moderator?: boolean;
   fanLevel?: number;
   fanBadge?: string; // the picture of the fan level's badge
-  userId?: string; // TikTok's id, which stays when the handle changes
+  userId?: string; // the platform's id, which stays when the handle changes
+  platform?: "tiktok" | "twitch"; // missing means TikTok
 }
 ```
 
+`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, so it never matches a TikTok one.
+
 `fanBadge` is the picture TikTok shows for the fan level: a heart that changes every 10 levels, without the number, so draw `fanLevel` next to it. It's empty for a viewer who isn't a fan.
 
-`follower`, `moderator` and `superfan` are only real on `CHAT` and `GIFT`. Every other event sends `false`, even `FOLLOW`.
+`follower`, `moderator` and `superfan` are only real on `CHAT` and `GIFT`. Every other TikTok event sends `false`, even `FOLLOW`.
+
+Twitch's chat says who moderates and who subscribes, but not who follows. On a Twitch `CHAT`, `moderator` is true for your moderators and for you, `superfan` for your subscribers, and `follower` is always `false`. A Twitch viewer has no `fanLevel` or `fanBadge`, nor profile pictures, except a raiding streamer's. Its other events leave `moderator` and `superfan` out. A cheer, subscription or gift from an anonymous viewer comes with the username `Anonymous`, and no `userId`.
 
 | Event                                                  | Data                                                                      |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
@@ -92,6 +117,11 @@ interface UserData {
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
 | `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd, image } }` |
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | none                                                                      |
+| `SUBSCRIBE`                                            | `{ user, tier, months, message }`                                         |
+| `GIFT_SUB`                                             | `{ user, count, tier }`                                                   |
+| `CHEER`                                                | `{ user, bits, message }`                                                 |
+| `RAID`                                                 | `{ user, viewers }`                                                       |
+| `REDEEM`                                               | `{ user, reward: { id, title, cost }, input }`                            |
 | `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
@@ -99,7 +129,9 @@ interface UserData {
 
 Each chat emote is `{ emoteID, index, images }`, and a comment made only of emotes has an empty `content`. A gift's `image` is the URL of its picture.
 
-A chat's `content` is what the viewer typed, and `lang` is the language TikTok tagged it with, empty when it didn't. With [Chat translation](/docs/features/chat-translation/) on, a message tagged with another language than the streamer's comes with `translation`: `{ text, from, to }`, the translated text and both languages as lowercase codes, like `en` and `es`. Messages already in the streamer's language, chat commands and messages Tokio couldn't translate come without it, so fall back to `content`. An emote's `index` points into `content`, not the translation.
+A chat's `content` is what the viewer typed, and `lang` is the language TikTok tagged it with, empty when it didn't. Twitch's chat has no language tag, so its `lang` is always empty and it never comes with `translation`. Its `content` leaves out the emotes' codes and cheermotes, and each emote's `emoteID` is `twitch:` and its id, with Twitch's picture in `images`. With [Chat translation](/docs/features/chat-translation/) on, a message tagged with another language than the streamer's comes with `translation`: `{ text, from, to }`, the translated text and both languages as lowercase codes, like `en` and `es`. Messages already in the streamer's language, chat commands and messages Tokio couldn't translate come without it, so fall back to `content`. An emote's `index` points into `content`, not the translation.
+
+On Twitch, `tier` is `"1000"`, `"2000"` or `"3000"`, or `"prime"` for a Prime subscription, and `SUBSCRIBE`'s `months` is how many months the viewer has subscribed, 1 for a new subscription. `message` is what the viewer wrote with a subscription or a cheer, without cheermotes, and empty for nothing. `GIFT_SUB`'s `count` is how many subscriptions they gave at once. `RAID`'s `user` is the raiding channel's streamer, and `viewers` the people they brought. `REDEEM`'s `input` is what the reward asked the viewer to type, empty for nothing.
 
 `gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
 
@@ -136,6 +168,7 @@ interface TopGifter {
   live: { coins: number; gifts: number }; // in this LIVE, 0 if they sent none
   allTime: { coins: number; gifts: number }; // in every LIVE the profile kept
   giftedAt: number; // when their last gift came, in ms since the epoch
+  platform?: "tiktok" | "twitch"; // missing means TikTok
 }
 ```
 

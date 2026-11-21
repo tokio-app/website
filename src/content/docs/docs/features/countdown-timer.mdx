@@ -1,12 +1,12 @@
 ---
 title: Countdown
-description: A countdown on your stream that viewers add time to with gifts, likes, follows and chat.
+description: A countdown on your stream that viewers add time to with gifts, likes, follows, subs, Bits and chat.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans and chat.
+A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans, Twitch subs and Bits, and chat.
 
 <Screenshot
   name="timer-preview"
@@ -63,8 +63,13 @@ Events add time only after you press **Start**. By default:
 | **Shares**         | 10 seconds each                     |
 | **New Super Fans** | 300 seconds each                    |
 | **Chat messages**  | 0, once per viewer every 30 seconds |
+| **New subs**       | 300 seconds each                    |
+| **Gifted subs**    | 300 seconds per gifted sub          |
+| **Bits**           | 1 second per Bit                    |
 
 On **Likes**, the second number sets how many likes add time at once.
+
+**New subs**, **Gifted subs** and **Bits** are Twitch's. A **New subs** row counts each subscription or renewal, and **Gifted subs** and **Bits** count each sub given and each Bit. The rows, and the overlay's triggers, only show what the profile's [platforms](/docs/connect/#tiktok-and-twitch-together) send: with only Twitch, there are no coins, likes, shares or Super Fans.
 
 - 0 seconds leaves an event out. **Multiplier** multiplies every event, like 2 for a double-time hour.
 - **Maximum time** stops adding time once the clock reaches it. 0 is no limit.

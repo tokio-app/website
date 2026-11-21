@@ -1,12 +1,12 @@
 ---
 title: Conéctate a tu LIVE
-description: Prepara Tokio antes de salir en vivo y luego conéctalo a tu TikTok LIVE.
+description: Prepara Tokio antes de salir en vivo y luego conéctalo a tu LIVE de TikTok o Twitch.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-Configura todo antes de salir en vivo. Tokio solo puede conectarse cuando tu LIVE ya empezó.
+Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok cuando tu LIVE ya empezó.
 
 <Steps>
 
@@ -16,7 +16,7 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse cuando tu LIV
 
 2. **Configúralo**
 
-   Pega tu clave de API gratuita de [Euler Stream](https://www.eulerstream.com/register) en **Configuración → TikTok LIVE**, una sola vez. Después configura la [voz](/es/docs/features/text-to-speech/), la [música](/es/docs/features/music-requests/), las [alertas](/es/docs/features/alerts/) y los [overlays](/es/docs/features/overlays/).
+   Pega tu clave de API gratuita de [Euler Stream](https://www.eulerstream.com/register) en **Configuración → TikTok LIVE**, una sola vez. Para Twitch, [inicia sesión](#inicia-sesión-en-twitch) en **Configuración → Twitch**. Después configura la [voz](/es/docs/features/text-to-speech/), la [música](/es/docs/features/music-requests/), las [alertas](/es/docs/features/alerts/) y los [overlays](/es/docs/features/overlays/).
 
    <Screenshot
      name="settings-tiktok-live"
@@ -38,7 +38,7 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse cuando tu LIV
 
 4. **Sal en vivo y conéctate**
 
-   Inicia tu LIVE en TikTok. Luego escribe tu `@usuario` en **Inicio** y haz clic en **Conectar**.
+   Inicia tu LIVE. En **Inicio**, haz clic en los logos de TikTok y Twitch junto al cuadro de conexión para elegir dónde transmites. Para TikTok, escribe tu `@usuario`. Luego haz clic en **Conectar**.
 
    <Screenshot
      name="home-connect"
@@ -47,9 +47,38 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse cuando tu LIV
 
 </Steps>
 
+## Inicia sesión en Twitch
+
+Tokio se conecta a tu propio canal de Twitch, así que inicias sesión una sola vez.
+
+<Steps>
+
+1. En **Configuración → Twitch**, haz clic en **Iniciar sesión con Twitch**. Tokio abre Twitch en tu navegador con el código ya escrito.
+2. Haz clic en **Activar** allí para terminar. Tokio dirá **Sesión iniciada como @tu-canal**.
+
+</Steps>
+
+Tokio oculta el código hasta que haces clic en **Mostrar**. No lo muestres en tu stream: quien lo escriba conecta Tokio a su propia cuenta.
+
+**Cerrar sesión** funciona cuando ya te desconectaste de Twitch. Si Twitch cierra la sesión de Tokio, vuelve a iniciarla.
+
+## TikTok y Twitch juntos
+
+Los logos junto al cuadro de conexión dicen dónde transmites. Activa los dos para conectarte a TikTok y Twitch en el mismo LIVE. Siempre queda uno activo, el perfil guarda tu elección y no puedes cambiarla mientras estás conectado.
+
+Con los dos activos, **Inicio** da una fila a cada plataforma: su logo, tu `@usuario` de TikTok o tu cuenta de Twitch, y cómo va: **Conectando…**, **Conectado**, **Reconectando…**, **Esperando el LIVE…** o **Sin conexión**. La clave de Euler Stream es solo para TikTok.
+
+Tokio se conecta cuando lo logra cualquiera de las dos. Si la otra falla o se cae por completo, el LIVE sigue y su fila ofrece **Reintentar**. Cuando el LIVE termina en una plataforma, Tokio sigue con la otra; se desconecta cuando cae la última.
+
+Twitch se conecta a tu canal incluso antes de que salgas en vivo. Su cantidad de espectadores se actualiza cada 30 segundos, y **Espectadores** la suma a la de TikTok.
+
+Cada plataforma envía sus propios eventos: el chat y los seguidores vienen de las dos; los regalos, los Me gusta, los compartidos y los Super Fans, de TikTok; y las suscripciones, las suscripciones regaladas, los Bits, los raids y los puntos del canal, de Twitch. Twitch no tiene regalos, así que los Bits no cuentan como monedas.
+
 ## Durante tu LIVE
 
 Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** y **Quienes más regalaron** en el LIVE.
+
+Los me gusta, las vistas totales, los compartidos, los regalos, las monedas y quienes más regalaron son de TikTok, así que con Twitch solo aparece **Seguidores nuevos** debajo de **Espectadores**.
 
 También se enciende una línea rosa arriba de la barra de título.
 
@@ -58,7 +87,7 @@ También se enciende una línea rosa arriba de la barra de título.
   alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, los espectadores con su línea, los números del LIVE y quienes más regalaron, las funciones y el feed de actividad con la canción que suena"
 />
 
-El feed de **Actividad** guarda los últimos 100 eventos. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
+El feed de **Actividad** guarda los últimos 100 eventos, de las dos plataformas. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
 
 Mientras suena una canción, **Sonando ahora** al pie de **Actividad** muestra su portada, su nombre y su artista.
 
@@ -91,6 +120,7 @@ Cualquier desconexión borra lo que el TTS, las alertas y la música tenían en 
 - Falta tu clave de Euler Stream, no fue aceptada o llegó a su límite de uso.
 - Tu [plan](https://www.eulerstream.com/pricing) de Euler Stream no incluye la conexión.
 - Euler Stream no pudo firmarla o no se puede llegar a TikTok.
+- No iniciaste sesión en Twitch, o Twitch cerró la sesión de Tokio. Vuelve a iniciarla en **Configuración → Twitch**.
 
 </details>
 

@@ -20,7 +20,27 @@ Suscríbete con `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Con un WebSocket dire
 | `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | Un Super Fan entra al LIVE                                  |
 | `MEMBER_JOIN`    | `tokio:event:memberjoin`   | Un espectador entra al LIVE                                 |
 | `ROOM_USER`      | `tokio:event:roomuser`     | Cambian el número de espectadores y el ranking              |
+| `SUBSCRIBE`      | `tokio:event:subscribe`    | Un espectador se suscribe o renueva en Twitch               |
+| `GIFT_SUB`       | `tokio:event:giftsub`      | Un espectador regala suscripciones en Twitch                |
+| `CHEER`          | `tokio:event:cheer`        | Un espectador gasta Bits en Twitch                          |
+| `RAID`           | `tokio:event:raid`         | Otro canal de Twitch te hace un raid                        |
+| `REDEEM`         | `tokio:event:redeem`       | Un espectador canjea una recompensa de puntos del canal     |
 | `MUSIC_CHANGE`   | `tokio:event:music:change` | Cambia la cola de pedidos de canciones                      |
+
+## Plataformas
+
+Tokio se conecta a TikTok y a Twitch, por separado o en el mismo LIVE. Cada plataforma envía algunos de los eventos:
+
+| Eventos                                                                                            | Vienen de        |
+| -------------------------------------------------------------------------------------------------- | ---------------- |
+| `CHAT`, `FOLLOW` y los emotes del chat                                                             | TikTok y Twitch  |
+| `SHARE`, `LIKE`, `GIFT`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok           |
+| `SUBSCRIBE`, `GIFT_SUB`, `CHEER`, `RAID`, `REDEEM`                                                 | Twitch           |
+| `ROOM_USER`                                                                                        | Las dos, sumadas |
+
+Un overlay recibe los eventos de todas las plataformas a las que se conecta el perfil, así que revisa `user.platform` para distinguirlos. `ROOM_USER` suma `viewers` y `views` de las plataformas, que son solo los de TikTok cuando Twitch no está conectado. Twitch no tiene `views`, así que suma 0, y `ranks` es el de TikTok. La cantidad de espectadores de Twitch se actualiza cada 30 segundos.
+
+En las vistas previas de Tokio, los eventos de Twitch llegan como muestras cuando haces clic en **Probar**. Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
 
 ## Configuración
 
@@ -76,13 +96,18 @@ interface UserData {
   moderator?: boolean;
   fanLevel?: number;
   fanBadge?: string; // la imagen de la insignia del nivel de fan
-  userId?: string; // id de TikTok, que no cambia cuando cambia el @usuario
+  userId?: string; // id de la plataforma, que no cambia cuando cambia el @usuario
+  platform?: "tiktok" | "twitch"; // si falta, es TikTok
 }
 ```
 
+`platform` dice dónde está el espectador, y si falta, es TikTok. El `userId` de un espectador de Twitch empieza con `twitch:`, como `twitch:1234`, así que nunca coincide con uno de TikTok.
+
 `fanBadge` es la imagen que TikTok muestra para el nivel de fan: un corazón que cambia cada 10 niveles, sin el número, así que dibuja `fanLevel` al lado. Está vacío para un espectador que no es fan.
 
-`follower`, `moderator` y `superfan` solo traen su valor real en `CHAT` y `GIFT`. Los demás eventos envían `false`, incluso `FOLLOW`.
+`follower`, `moderator` y `superfan` solo traen su valor real en `CHAT` y `GIFT`. Los demás eventos de TikTok envían `false`, incluso `FOLLOW`.
+
+El chat de Twitch dice quién modera y quién está suscrito, pero no quién sigue. En un `CHAT` de Twitch, `moderator` es verdadero para tus moderadores y para ti, `superfan` para tus suscriptores, y `follower` siempre es `false`. Un espectador de Twitch no tiene `fanLevel` ni `fanBadge`, ni fotos de perfil, salvo el streamer de un raid. Sus otros eventos no traen `moderator` ni `superfan`. Un cheer, una suscripción o un regalo de un espectador anónimo llega con el nombre `Anonymous` y sin `userId`.
 
 | Evento                                                 | Datos                                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
@@ -92,6 +117,11 @@ interface UserData {
 | `LIKE`                                                 | `{ user, likeCount, totalLikes }`                                         |
 | `GIFT`                                                 | `{ user, gift: { id, name, coins, type, comboCount, repeatEnd, image } }` |
 | `ENVELOPE`, `SUPER_FAN_BOX`                            | ninguno                                                                   |
+| `SUBSCRIBE`                                            | `{ user, tier, months, message }`                                         |
+| `GIFT_SUB`                                             | `{ user, count, tier }`                                                   |
+| `CHEER`                                                | `{ user, bits, message }`                                                 |
+| `RAID`                                                 | `{ user, viewers }`                                                       |
+| `REDEEM`                                               | `{ user, reward: { id, title, cost }, input }`                            |
 | `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | La cola: `{ title, thumbnail, playing, played }[]`                        |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
@@ -99,7 +129,9 @@ interface UserData {
 
 Cada emote del chat es `{ emoteID, index, images }`, y un comentario hecho solo de emotes tiene el `content` vacío. El `image` de un regalo es la URL de su imagen.
 
-El `content` de un chat es lo que escribió el espectador, y `lang` es el idioma con que TikTok lo marcó, vacío cuando no lo marcó. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje marcado con otro idioma que el del streamer trae `translation`: `{ text, from, to }`, el texto traducido y los dos idiomas como códigos en minúsculas, como `en` y `es`. Los mensajes que ya están en el idioma del streamer, los comandos del chat y los que Tokio no pudo traducir llegan sin ella, así que usa `content` en su lugar. El `index` de un emote apunta a `content`, no a la traducción.
+El `content` de un chat es lo que escribió el espectador, y `lang` es el idioma con que TikTok lo marcó, vacío cuando no lo marcó. El chat de Twitch no marca el idioma, así que su `lang` siempre está vacío y nunca trae `translation`. Su `content` no incluye los códigos de los emotes ni los cheermotes, y el `emoteID` de cada emote es `twitch:` y su id, con la imagen de Twitch en `images`. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje marcado con otro idioma que el del streamer trae `translation`: `{ text, from, to }`, el texto traducido y los dos idiomas como códigos en minúsculas, como `en` y `es`. Los mensajes que ya están en el idioma del streamer, los comandos del chat y los que Tokio no pudo traducir llegan sin ella, así que usa `content` en su lugar. El `index` de un emote apunta a `content`, no a la traducción.
+
+En Twitch, `tier` es `"1000"`, `"2000"` o `"3000"`, o `"prime"` para una suscripción Prime, y el `months` de `SUBSCRIBE` es cuántos meses lleva suscrito el espectador, 1 si es nueva. `message` es lo que el espectador escribió con una suscripción o un cheer, sin cheermotes, y vacío si no escribió nada. El `count` de `GIFT_SUB` es cuántas suscripciones regaló de una vez. El `user` de `RAID` es el streamer del canal que hace el raid, y `viewers` la gente que trae. El `input` de `REDEEM` es lo que la recompensa le pidió escribir al espectador, vacío si no pidió nada.
 
 `gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
 
@@ -136,6 +168,7 @@ interface TopGifter {
   live: { coins: number; gifts: number }; // en este LIVE, 0 si no envió ninguno
   allTime: { coins: number; gifts: number }; // en todos los LIVEs que guardó el perfil
   giftedAt: number; // cuándo llegó su último regalo, en ms desde 1970
+  platform?: "tiktok" | "twitch"; // si falta, es TikTok
 }
 ```
 
