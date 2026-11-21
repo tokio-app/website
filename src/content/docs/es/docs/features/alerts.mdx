@@ -53,9 +53,9 @@ En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene
 
 ### Plataformas
 
-Cuando el perfil se conecta a [dos o más plataformas](/es/docs/connect/#tiktok-y-twitch-juntos), cada activador tiene un selector de plataforma antes de su evento: **Cualquier plataforma**, **TikTok** o **Twitch**. Elige una para que suene solo con los espectadores de esa plataforma, y la lista de eventos muestra lo que ella envía. Cambio de canción viene de Tokio, así que solo suena con **Cualquier plataforma**.
+Cuando el perfil se conecta a [dos o más plataformas](/es/docs/connect/#tiktok-twitch-y-youtube-juntos), cada activador tiene un selector de plataforma antes de su evento: **Cualquier plataforma**, o una de las plataformas del perfil, **TikTok**, **Twitch** o **YouTube**. Elige una para que suene solo con los espectadores de esa plataforma, y la lista de eventos muestra lo que ella envía. Cambio de canción viene de Tokio, así que solo suena con **Cualquier plataforma**.
 
-Con una sola plataforma no hay selector, y los eventos son los de esa plataforma. Chat, Emote y Seguir vienen de las dos, así que con **Cualquier plataforma** una alerta de Seguir suena con cualquiera.
+Con una sola plataforma no hay selector, y los eventos son los de esa plataforma. Chat y Emote vienen de las tres, Seguir de TikTok y Twitch, Regalo de TikTok y YouTube, y Suscripción y Suscripciones regaladas de Twitch y YouTube. Con **Cualquier plataforma**, una alerta de Seguir suena cuando te siguen en cualquiera de las dos.
 
 Twitch agrega cinco activadores:
 
@@ -70,6 +70,10 @@ Twitch agrega cinco activadores:
 Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
 
 El chat de Twitch no dice quién sigue, así que **De → Seguidores** nunca deja pasar a un espectador de Twitch. **Moderadores** te incluye a ti, y los **Super Fans** son tus suscriptores de Twitch.
+
+YouTube agrega **Super Chat**, que suena con un Super Chat o un Super Sticker. Sus membresías hacen sonar **Suscripción**, con los miembros nuevos y con los aniversarios, y una membresía regalada hace sonar **Suscripciones regaladas** una sola vez por todo el regalo.
+
+YouTube tampoco tiene seguidores, así que **Seguidores** nunca deja pasar a un espectador de YouTube. Los **Moderadores** son los moderadores de tu canal y tú, y los **Super Fans** son sus miembros.
 
 ## Sonidos
 
@@ -107,12 +111,13 @@ Haz clic en una variable para agregar los datos del evento:
 | Variable                 | Activadores                                                                                                                                            |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                               |
-| `{comment}`              | Chat y Emote; Suscripción y Bits (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                                      |
+| `{comment}`              | Chat y Emote; Suscripción, Bits y Super Chat (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                          |
 | `{translation}`          | Chat y Emote, con la [Traducción del chat](/es/docs/features/chat-translation/) activada: la traducción del mensaje, o el mensaje tal como se escribió |
 | `{gift}`, `{count}`      | Regalo (`{count}` es el tamaño del combo, salvo con **Cada regalo**)                                                                                   |
 | `{count}`                | Me gusta (los Me gusta enviados)                                                                                                                       |
 | `{count}`                | Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits (los Bits) y Raid (los espectadores que trae)         |
 | `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                          |
+| `{amount}`               | Super Chat (lo que costó, como lo muestra YouTube, por ejemplo $4.99)                                                                                  |
 | `{song}`                 | Cambio de canción                                                                                                                                      |
 
 También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/). Una palabra prohibida en lo que completa una variable, como un nombre o un comentario, omite toda la alerta, con su imagen o video.
@@ -175,6 +180,8 @@ Luego elige cuándo suena:
 - **Cada regalo**: una vez por regalo, hasta el largo de la cola.
 
 Con **Cualquier regalo**, **Valor mínimo** define cuántas monedas debe valer un combo, o un regalo si elegiste **Cada regalo**.
+
+YouTube no dice cuánto cuestan sus Regalos, así que valen 0 monedas y solo suenan con un **Valor mínimo** de 0. Tampoco están en la lista de regalos, así que suenan con **Cualquier regalo**.
 
 <details>
 <summary>Regalos que faltan en la lista</summary>

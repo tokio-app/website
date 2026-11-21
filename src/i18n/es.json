@@ -316,8 +316,12 @@
         "note": "La traducción del chat, con el servicio web de Google Translate (translate.googleapis.com), que no es una API pública oficial. Recibe el texto de cada mensaje que traduce."
       },
       {
-        "name": "Spotify y YouTube",
+        "name": "Spotify",
         "note": "Pedidos de canciones."
+      },
+      {
+        "name": "YouTube",
+        "note": "Pedidos de canciones, y el chat, los Super Chats, las membresías, los Regalos y la cantidad de espectadores de un LIVE (www.youtube.com), leídos de las páginas públicas de YouTube como lo hace youtube.com, que no son una API oficial."
       },
       {
         "name": "Listas de filtros de uBlock Origin",
@@ -351,7 +355,7 @@
       "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",
-    "trademarks": "Tokio no está afiliado a TikTok, ByteDance ni Twitch, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
+    "trademarks": "Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube ni Google, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
     "websiteTitle": "Este sitio web",
     "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }

@@ -53,9 +53,9 @@ Under **From**, check **Followers**, **Moderators** or **Super Fans** to play on
 
 ### Platforms
 
-When the profile connects to [two or more platforms](/docs/connect/#tiktok-and-twitch-together), each trigger has a platform select before its event: **Any platform**, **TikTok** or **Twitch**. Pick one to play only for that platform's viewers, and the event list shows what it sends. Music change comes from Tokio, so it only plays on **Any platform**.
+When the profile connects to [two or more platforms](/docs/connect/#tiktok-twitch-and-youtube-together), each trigger has a platform select before its event: **Any platform**, or one of the profile's platforms, **TikTok**, **Twitch** or **YouTube**. Pick one to play only for that platform's viewers, and the event list shows what it sends. Music change comes from Tokio, so it only plays on **Any platform**.
 
-With one platform, there's no select, and the events are that platform's. Chat, Emote and Follow come from both, so on **Any platform** a Follow alert plays for either.
+With one platform, there's no select, and the events are that platform's. Chat and Emote come from all three, Follow from TikTok and Twitch, Gift from TikTok and YouTube, and Subscription and Gifted subs from Twitch and YouTube. On **Any platform**, a Follow alert plays for a follow on either.
 
 Twitch adds five triggers:
 
@@ -70,6 +70,10 @@ Twitch adds five triggers:
 Twitch only has Bits and channel points on Affiliate and Partner channels.
 
 Twitch's chat doesn't say who follows, so **From → Followers** never passes a Twitch viewer. **Moderators** includes you, and **Super Fans** are your Twitch subscribers.
+
+YouTube adds **Super Chat**, which plays for a Super Chat or a Super Sticker. Its memberships play **Subscription**, for new members and for milestones, and a gifted membership plays **Gifted subs** once for the whole gift.
+
+YouTube has no followers either, so **Followers** never passes a YouTube viewer. **Moderators** are your channel's moderators and you, and **Super Fans** are its members.
 
 ## Sounds
 
@@ -107,12 +111,13 @@ Click a variable to add the event's details:
 | Variable                 | Triggers                                                                                                                         |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                 |
-| `{comment}`              | Chat and Emote; Subscription and Bits (what the viewer wrote); Channel points (what they typed)                                  |
+| `{comment}`              | Chat and Emote; Subscription, Bits and Super Chat (what the viewer wrote); Channel points (what they typed)                      |
 | `{translation}`          | Chat and Emote, with [Chat translation](/docs/features/chat-translation/) on: the message's translation, or the message as typed |
 | `{gift}`, `{count}`      | Gift (`{count}` is the combo size, except on **Every gift**)                                                                     |
 | `{count}`                | Like (the likes sent)                                                                                                            |
 | `{count}`                | Subscription (the months so far), Gifted subs (the subs gifted), Bits (the Bits) and Raid (the viewers it brings)                |
 | `{reward}`               | Channel points (the reward's title)                                                                                              |
+| `{amount}`               | Super Chat (what it cost, as YouTube shows it, like $4.99)                                                                       |
 | `{song}`                 | Music change                                                                                                                     |
 
 The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A banned word in what a variable fills in, like a name or a comment, skips the whole alert, image or video included.
@@ -175,6 +180,8 @@ Then choose when it plays:
 - **Every gift**: once per gift, up to the queue's length.
 
 With **Any gift**, **Worth at least** sets the coins a streak, or a gift on **Every gift**, must be worth.
+
+YouTube doesn't say what its Gifts cost, so they're worth 0 coins and play only with **Worth at least** at 0. They aren't in the gift list either, so they play on **Any gift**.
 
 <details>
 <summary>Gifts missing from the list</summary>

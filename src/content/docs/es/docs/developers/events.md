@@ -20,27 +20,32 @@ Suscríbete con `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Con un WebSocket dire
 | `SUPER_FAN_JOIN` | `tokio:event:superfanjoin` | Un Super Fan entra al LIVE                                  |
 | `MEMBER_JOIN`    | `tokio:event:memberjoin`   | Un espectador entra al LIVE                                 |
 | `ROOM_USER`      | `tokio:event:roomuser`     | Cambian el número de espectadores y el ranking              |
-| `SUBSCRIBE`      | `tokio:event:subscribe`    | Un espectador se suscribe o renueva en Twitch               |
-| `GIFT_SUB`       | `tokio:event:giftsub`      | Un espectador regala suscripciones en Twitch                |
+| `SUBSCRIBE`      | `tokio:event:subscribe`    | Un espectador se suscribe, renueva o se hace miembro        |
+| `GIFT_SUB`       | `tokio:event:giftsub`      | Un espectador regala suscripciones o membresías             |
 | `CHEER`          | `tokio:event:cheer`        | Un espectador gasta Bits en Twitch                          |
 | `RAID`           | `tokio:event:raid`         | Otro canal de Twitch te hace un raid                        |
 | `REDEEM`         | `tokio:event:redeem`       | Un espectador canjea una recompensa de puntos del canal     |
+| `SUPER_CHAT`     | `tokio:event:superchat`    | Un espectador envía un Super Chat o un Super Sticker        |
 | `MUSIC_CHANGE`   | `tokio:event:music:change` | Cambia la cola de pedidos de canciones                      |
 
 ## Plataformas
 
-Tokio se conecta a TikTok y a Twitch, por separado o en el mismo LIVE. Cada plataforma envía algunos de los eventos:
+Tokio se conecta a TikTok, Twitch y YouTube, a uno solo o a varios en el mismo LIVE. Cada plataforma envía algunos de los eventos:
 
-| Eventos                                                                                            | Vienen de        |
-| -------------------------------------------------------------------------------------------------- | ---------------- |
-| `CHAT`, `FOLLOW` y los emotes del chat                                                             | TikTok y Twitch  |
-| `SHARE`, `LIKE`, `GIFT`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok           |
-| `SUBSCRIBE`, `GIFT_SUB`, `CHEER`, `RAID`, `REDEEM`                                                 | Twitch           |
-| `ROOM_USER`                                                                                        | Las dos, sumadas |
+| Eventos                                                                                    | Vienen de                |
+| ------------------------------------------------------------------------------------------ | ------------------------ |
+| `CHAT` y los emotes del chat                                                               | TikTok, Twitch y YouTube |
+| `FOLLOW`                                                                                   | TikTok y Twitch          |
+| `GIFT`                                                                                     | TikTok y YouTube         |
+| `SUBSCRIBE`, `GIFT_SUB`                                                                    | Twitch y YouTube         |
+| `SHARE`, `LIKE`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok                   |
+| `CHEER`, `RAID`, `REDEEM`                                                                  | Twitch                   |
+| `SUPER_CHAT`                                                                               | YouTube                  |
+| `ROOM_USER`                                                                                | Todas, sumadas           |
 
-Un overlay recibe los eventos de todas las plataformas a las que se conecta el perfil, así que revisa `user.platform` para distinguirlos. `ROOM_USER` suma `viewers` y `views` de las plataformas, que son solo los de TikTok cuando Twitch no está conectado. Twitch no tiene `views`, así que suma 0, y `ranks` es el de TikTok. La cantidad de espectadores de Twitch se actualiza cada 30 segundos.
+Un overlay recibe los eventos de todas las plataformas a las que se conecta el perfil, así que revisa `user.platform` para distinguirlos. `ROOM_USER` suma `viewers` y `views` de las plataformas, que son solo los de TikTok cuando no hay otra conectada. Twitch y YouTube no tienen `views`, así que suman 0, y `ranks` es el de TikTok. La cantidad de espectadores de Twitch y la de YouTube se actualizan cada 30 segundos.
 
-En las vistas previas de Tokio, los eventos de Twitch llegan como muestras cuando haces clic en **Probar**. Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
+En las vistas previas de Tokio, los eventos de Twitch y `SUPER_CHAT` llegan como muestras cuando haces clic en **Probar**. Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
 
 ## Configuración
 
@@ -56,7 +61,7 @@ TikTok solo envía el nivel de fan de un espectador cuando hace algo en el LIVE,
 
 Tokio envía `GIFTERS` (`tokio:gifters`) con quienes más regalan, como mucho una vez por segundo: cuando el overlay se conecta, después de cargar un perfil, cuando un LIVE empieza, termina o se elimina, cuando se borra el historial y con cada regalo.
 
-`live` es el top 10 de este LIVE por monedas, vacío mientras Tokio no está conectado. `allTime` es el top 10 de todos los LIVEs que guardó el perfil, este incluido.
+`live` es el top 10 de este LIVE por monedas, vacío mientras Tokio no está conectado. `allTime` es el top 10 de todos los LIVEs que guardó el perfil, este incluido. Los Regalos de YouTube no tienen precio, así que los espectadores de YouTube nunca aparecen aquí.
 
 Si hay un empate, gana quien llegó primero. Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no.
 
@@ -97,17 +102,19 @@ interface UserData {
   fanLevel?: number;
   fanBadge?: string; // la imagen de la insignia del nivel de fan
   userId?: string; // id de la plataforma, que no cambia cuando cambia el @usuario
-  platform?: "tiktok" | "twitch"; // si falta, es TikTok
+  platform?: "tiktok" | "twitch" | "youtube"; // si falta, es TikTok
 }
 ```
 
-`platform` dice dónde está el espectador, y si falta, es TikTok. El `userId` de un espectador de Twitch empieza con `twitch:`, como `twitch:1234`, así que nunca coincide con uno de TikTok.
+`platform` dice dónde está el espectador, y si falta, es TikTok. El `userId` de un espectador de Twitch empieza con `twitch:`, como `twitch:1234`, y el de uno de YouTube es `youtube:` y el id de su canal, como `youtube:UC…`, así que nunca coinciden con uno de TikTok. El chat de YouTube no da el id del canal de quien envía un Regalo, así que el suyo es `youtube:` y su @handle, como `youtube:@tokio`.
 
 `fanBadge` es la imagen que TikTok muestra para el nivel de fan: un corazón que cambia cada 10 niveles, sin el número, así que dibuja `fanLevel` al lado. Está vacío para un espectador que no es fan.
 
 `follower`, `moderator` y `superfan` solo traen su valor real en `CHAT` y `GIFT`. Los demás eventos de TikTok envían `false`, incluso `FOLLOW`.
 
 El chat de Twitch dice quién modera y quién está suscrito, pero no quién sigue. En un `CHAT` de Twitch, `moderator` es verdadero para tus moderadores y para ti, `superfan` para tus suscriptores, y `follower` siempre es `false`. Un espectador de Twitch no tiene `fanLevel` ni `fanBadge`, ni fotos de perfil, salvo el streamer de un raid. Sus otros eventos no traen `moderator` ni `superfan`. Un cheer, una suscripción o un regalo de un espectador anónimo llega con el nombre `Anonymous` y sin `userId`.
+
+En un `CHAT` de YouTube, `moderator` es verdadero para los moderadores de tu canal y para ti, `superfan` para sus miembros, y `follower` siempre es `false`, porque YouTube no tiene seguidores. Un espectador de YouTube no tiene `fanLevel` ni `fanBadge`, pero quienes escriben en el chat sí tienen fotos de perfil.
 
 | Evento                                                 | Datos                                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
@@ -122,6 +129,7 @@ El chat de Twitch dice quién modera y quién está suscrito, pero no quién sig
 | `CHEER`                                                | `{ user, bits, message }`                                                 |
 | `RAID`                                                 | `{ user, viewers }`                                                       |
 | `REDEEM`                                               | `{ user, reward: { id, title, cost }, input }`                            |
+| `SUPER_CHAT`                                           | `{ user, amount, message, sticker }`                                      |
 | `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | La cola: `{ title, thumbnail, playing, played }[]`                        |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
@@ -129,9 +137,15 @@ El chat de Twitch dice quién modera y quién está suscrito, pero no quién sig
 
 Cada emote del chat es `{ emoteID, index, images }`, y un comentario hecho solo de emotes tiene el `content` vacío. El `image` de un regalo es la URL de su imagen.
 
-El `content` de un chat es lo que escribió el espectador, y `lang` es el idioma con que TikTok lo marcó, vacío cuando no lo marcó. El chat de Twitch no marca el idioma, así que su `lang` siempre está vacío y nunca trae `translation`. Su `content` no incluye los códigos de los emotes ni los cheermotes, y el `emoteID` de cada emote es `twitch:` y su id, con la imagen de Twitch en `images`. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje marcado con otro idioma que el del streamer trae `translation`: `{ text, from, to }`, el texto traducido y los dos idiomas como códigos en minúsculas, como `en` y `es`. Los mensajes que ya están en el idioma del streamer, los comandos del chat y los que Tokio no pudo traducir llegan sin ella, así que usa `content` en su lugar. El `index` de un emote apunta a `content`, no a la traducción.
+El `content` de un chat es lo que escribió el espectador, y `lang` es el idioma con que TikTok lo marcó, vacío cuando no lo marcó. El chat de Twitch y el de YouTube no marcan el idioma, así que su `lang` siempre está vacío y nunca traen `translation`. El `content` de Twitch no incluye los códigos de los emotes ni los cheermotes, y el `emoteID` de cada emote es `twitch:` y su id, con la imagen de Twitch en `images`. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje marcado con otro idioma que el del streamer trae `translation`: `{ text, from, to }`, el texto traducido y los dos idiomas como códigos en minúsculas, como `en` y `es`. Los mensajes que ya están en el idioma del streamer, los comandos del chat y los que Tokio no pudo traducir llegan sin ella, así que usa `content` en su lugar. El `index` de un emote apunta a `content`, no a la traducción.
 
 En Twitch, `tier` es `"1000"`, `"2000"` o `"3000"`, o `"prime"` para una suscripción Prime, y el `months` de `SUBSCRIBE` es cuántos meses lleva suscrito el espectador, 1 si es nueva. `message` es lo que el espectador escribió con una suscripción o un cheer, sin cheermotes, y vacío si no escribió nada. El `count` de `GIFT_SUB` es cuántas suscripciones regaló de una vez. El `user` de `RAID` es el streamer del canal que hace el raid, y `viewers` la gente que trae. El `input` de `REDEEM` es lo que la recompensa le pidió escribir al espectador, vacío si no pidió nada.
+
+En YouTube, `SUBSCRIBE` es una membresía: un miembro nuevo, o un aniversario con sus `months`. Cada canal les pone nombre a sus propios niveles de membresía, así que `tier` siempre está vacío, igual que el de `GIFT_SUB`, y un `GIFT_SUB` llega una sola vez por todo el regalo. Un emote de YouTube es un emoji personalizado de los miembros; los emojis estándar se quedan en `content`.
+
+El `amount` de `SUPER_CHAT` es lo que pagó el espectador, como lo muestra YouTube, por ejemplo `"$4.99"`, así que no sumes montos: pueden estar en divisas distintas. `message` es lo que escribió, vacío en un Super Sticker, y `sticker` es la URL de la imagen del Super Sticker, vacía en un Super Chat.
+
+Un Regalo de YouTube, que se compra con Joyas, llega como `GIFT` con un `id` que es `youtube:` y el nombre del archivo de su imagen, como `youtube:vicecity_heart_v2`, y `coins: 0`, porque YouTube no dice cuánto cuesta. Quien lo envía nunca entra en `GIFTERS`.
 
 `gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
 

@@ -1,12 +1,12 @@
 ---
 title: Connect to your LIVE
-description: Get Tokio ready before you go live, then connect it to your TikTok or Twitch LIVE.
+description: Get Tokio ready before you go live, then connect it to your TikTok, Twitch or YouTube LIVE.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../components/Screenshot.astro";
 
-Set everything up before you go live. Tokio can only connect to TikTok once your LIVE has started.
+Set everything up before you go live. Tokio can only connect to TikTok and YouTube once your LIVE has started.
 
 <Steps>
 
@@ -16,7 +16,7 @@ Set everything up before you go live. Tokio can only connect to TikTok once your
 
 2. **Set it up**
 
-   Paste your free [Euler Stream](https://www.eulerstream.com/register) API key in **Settings → TikTok LIVE**, once. For Twitch, [sign in](#sign-in-to-twitch) in **Settings → Twitch** instead. Then set up your [voice](/docs/features/text-to-speech/), [music](/docs/features/music-requests/), [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
+   Paste your free [Euler Stream](https://www.eulerstream.com/register) API key in **Settings → TikTok LIVE**, once. For Twitch, [sign in](#sign-in-to-twitch) in **Settings → Twitch** instead. YouTube needs neither. Then set up your [voice](/docs/features/text-to-speech/), [music](/docs/features/music-requests/), [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
 
    <Screenshot
      name="settings-tiktok-live"
@@ -38,7 +38,7 @@ Set everything up before you go live. Tokio can only connect to TikTok once your
 
 4. **Go live and connect**
 
-   Start your LIVE. On **Home**, click the TikTok and Twitch logos by the connect box to pick where you stream. For TikTok, enter your `@username`. Then click **Connect**.
+   Start your LIVE. On **Home**, click the TikTok, Twitch and YouTube logos by the connect box to pick where you stream. For TikTok, enter your `@username`, and for [YouTube](#connect-to-youtube), your channel's `@handle` or a link to the LIVE. Then click **Connect**.
 
    <Screenshot
      name="home-connect"
@@ -62,23 +62,45 @@ Tokio hides the code until you click **Show**. Keep it off your stream: anyone w
 
 **Sign out** works once you're disconnected from Twitch. If Twitch signs Tokio out, sign in again.
 
-## TikTok and Twitch together
+## Connect to YouTube
 
-The logos next to the connect box say where you stream. Turn on both to connect to TikTok and Twitch in the same LIVE. One always stays on, the profile keeps your choice, and you can't change it while you're connected.
+YouTube needs no key and no sign-in. In YouTube's **@channel or LIVE link**, type your channel's `@handle`, or paste a link: the LIVE's watch, youtu.be or /live/ link, or your channel's.
 
-With both on, **Home** gives each platform a row: its logo, your TikTok `@username` or your Twitch account, and how it's doing, **Connecting…**, **Connected**, **Reconnecting…**, **Waiting for the LIVE…** or **Not connected**. The Euler Stream key is only for TikTok.
+Tokio connects once the LIVE has started. Before that, it tells you the channel isn't LIVE. If the LIVE's chat is turned off, Tokio asks you to turn it on in YouTube Studio.
 
-Tokio connects when either platform does. If the other fails or drops for good, the LIVE goes on and its row offers **Try again**. When the LIVE ends on one platform, Tokio keeps going on the other; it disconnects when the last one is down.
+Tokio reads the LIVE's chat from YouTube's public website, the way a browser does. It doesn't use an official API, so a change to YouTube's site can stop it from working until a Tokio update fixes it.
 
-Twitch connects to your channel even before you go live. Its viewer count updates every 30 seconds, and **Viewers** adds it to TikTok's.
+On YouTube, memberships count as subscriptions, gifted memberships as gifted subs, one event for the whole gift, and Gifts bought with Jewels as gifts. Super Chats and Super Stickers are their own event, **Super Chat**. YouTube doesn't send follows, since new channel subscribers don't show in its chat, nor likes, shares or total views.
 
-Each platform sends its own events: chat and follows come from both, gifts, likes, shares and Super Fans from TikTok, and subscriptions, gifted subs, Bits, raids and channel points from Twitch. Twitch has no gifts, so Bits don't count as coins.
+## TikTok, Twitch and YouTube together
+
+The logos next to the connect box say where you stream. Turn on more than one to connect to all of them in the same LIVE. One always stays on, the profile keeps your choice, and you can't change it while you're connected.
+
+With two or more on, **Home** gives each platform a row: its logo, your TikTok `@username`, your Twitch account or your YouTube channel, and how it's doing, **Connecting…**, **Connected**, **Reconnecting…**, **Waiting for the LIVE…** or **Not connected**. The Euler Stream key is only for TikTok.
+
+Tokio connects when any platform does. If another fails or drops for good, the LIVE goes on and its row offers **Try again**. When the LIVE ends on one platform, Tokio keeps going on the others; it disconnects when the last one is down.
+
+Twitch connects to your channel even before you go live. Twitch's and YouTube's viewer counts update every 30 seconds, and **Viewers** adds up every platform's.
+
+Each platform sends its own events:
+
+| Events                         | Come from                  |
+| ------------------------------ | -------------------------- |
+| Chat                           | TikTok, Twitch and YouTube |
+| Follows                        | TikTok and Twitch          |
+| Gifts                          | TikTok and YouTube         |
+| Subscriptions and gifted subs  | Twitch and YouTube         |
+| Likes, shares and Super Fans   | TikTok                     |
+| Bits, raids and channel points | Twitch                     |
+| Super Chats                    | YouTube                    |
+
+Only TikTok's gifts count as coins. Bits don't, and YouTube doesn't say what a Gift costs, so its Gifts add none.
 
 ## While you're LIVE
 
 While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** and the LIVE's **Top gifters**.
 
-Likes, total views, shares, gifts, coins and top gifters are TikTok's, so with Twitch alone only **New followers** shows below **Viewers**.
+Likes, total views and shares are TikTok's, and gifts come with TikTok or YouTube. Coins and top gifters need gifts with a price, so they're TikTok's too: YouTube's Gifts count in **Gifts**, but their senders never join **Top gifters**. With Twitch alone, only **New followers** shows below **Viewers**, and with YouTube alone only **Gifts**, since YouTube sends no follows.
 
 A rose line also lights up at the top of the title bar.
 
@@ -87,7 +109,7 @@ A rose line also lights up at the top of the title bar.
   alt="The Home page during a LIVE: how long it's been on, the viewers with their line, the LIVE's numbers and top gifters, the features, and the activity feed with the song playing"
 />
 
-The **Activity** feed keeps the last 100 events, from both platforms. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
+The **Activity** feed keeps the last 100 events, from every platform. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
 
 While a song plays, **Now playing** at the foot of **Activity** shows its cover, name and artist.
 
@@ -116,7 +138,8 @@ Any disconnect drops what TTS, alerts and music had queued, and the song playing
 <summary>Why a connect fails</summary>
 
 - The LIVE hasn't started yet.
-- The username wasn't found on TikTok.
+- The username wasn't found on TikTok, or the channel on YouTube.
+- The LIVE's chat is turned off on YouTube. Turn it on in YouTube Studio.
 - Your Euler Stream key is missing, wasn't accepted or hit its rate limit.
 - Your Euler Stream [plan](https://www.eulerstream.com/pricing) doesn't include the connection.
 - Euler Stream couldn't sign it, or TikTok can't be reached.
