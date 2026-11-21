@@ -49,7 +49,27 @@ Elige el **Evento**: Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Su
 
 Para que una alerta suene con más de un evento, haz clic en **Agregar un activador**. Suena con cualquiera de ellos, hasta cinco, y cada uno conserva sus propios filtros.
 
-En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene solo con ellos. Solo Chat, Emote y Regalo tienen esta opción, porque TikTok envía los roles de un espectador solo con esos eventos.
+En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene solo con ellos. Solo Chat, Emote y Regalo tienen esta opción, porque los roles de un espectador solo llegan con esos eventos.
+
+### Plataformas
+
+Cuando el perfil se conecta a [dos o más plataformas](/es/docs/connect/#tiktok-y-twitch-juntos), cada activador tiene un selector de plataforma antes de su evento: **Cualquier plataforma**, **TikTok** o **Twitch**. Elige una para que suene solo con los espectadores de esa plataforma, y la lista de eventos muestra lo que ella envía. Cambio de canción viene de Tokio, así que solo suena con **Cualquier plataforma**.
+
+Con una sola plataforma no hay selector, y los eventos son los de esa plataforma. Chat, Emote y Seguir vienen de las dos, así que con **Cualquier plataforma** una alerta de Seguir suena con cualquiera.
+
+Twitch agrega cinco activadores:
+
+| Activador                   | Suena cuando                                                                                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Suscripción**             | Un espectador se suscribe o renueva                                                                                                               |
+| **Suscripciones regaladas** | Un espectador regala suscripciones, una sola vez por todas                                                                                        |
+| **Bits**                    | Un espectador envía un cheer con Bits                                                                                                             |
+| **Raid**                    | Otro canal te hace un raid                                                                                                                        |
+| **Puntos del canal**        | Un espectador canjea una recompensa. Escribe su título para que suene solo con ella, sin importar las mayúsculas, o deja **Cualquier recompensa** |
+
+Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
+
+El chat de Twitch no dice quién sigue, así que **De → Seguidores** nunca deja pasar a un espectador de Twitch. **Moderadores** te incluye a ti, y los **Super Fans** son tus suscriptores de Twitch.
 
 ## Sonidos
 
@@ -87,10 +107,12 @@ Haz clic en una variable para agregar los datos del evento:
 | Variable                 | Activadores                                                                                                                                            |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                               |
-| `{comment}`              | Chat y Emote                                                                                                                                           |
+| `{comment}`              | Chat y Emote; Suscripción y Bits (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                                      |
 | `{translation}`          | Chat y Emote, con la [Traducción del chat](/es/docs/features/chat-translation/) activada: la traducción del mensaje, o el mensaje tal como se escribió |
 | `{gift}`, `{count}`      | Regalo (`{count}` es el tamaño del combo, salvo con **Cada regalo**)                                                                                   |
 | `{count}`                | Me gusta (los Me gusta enviados)                                                                                                                       |
+| `{count}`                | Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits (los Bits) y Raid (los espectadores que trae)         |
+| `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                          |
 | `{song}`                 | Cambio de canción                                                                                                                                      |
 
 También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/). Una palabra prohibida en lo que completa una variable, como un nombre o un comentario, omite toda la alerta, con su imagen o video.
