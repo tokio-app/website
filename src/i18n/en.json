@@ -269,7 +269,11 @@
         "name": "Google",
         "note": "Chat translation, through Google Translate's web service (translate.googleapis.com), which isn't an official public API. It gets the text of each message to translate."
       },
-      { "name": "Spotify and YouTube", "note": "Music requests." },
+      { "name": "Spotify", "note": "Music requests." },
+      {
+        "name": "YouTube",
+        "note": "Music requests, and a LIVE's chat, Super Chats, memberships, Gifts and viewer count (www.youtube.com), read from YouTube's public pages the way youtube.com does, which isn't an official API."
+      },
       {
         "name": "uBlock Origin's filter lists",
         "note": "The YouTube player's ad blocker, when Block ads is on (ublockorigin.github.io, then its mirrors ublockorigin.pages.dev and cdn.jsdelivr.net). uBlock Origin's own lists and its copies of EasyList and EasyPrivacy belong to their authors, are under the GPL-3.0 or CC BY-SA 3.0, and aren't covered by Tokio's license. Tokio downloads them on the user's machine and doesn't ship them."
@@ -302,7 +306,7 @@
       "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
     ],
     "trademarksTitle": "Trademarks",
-    "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance or Twitch. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",
+    "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube or Google. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",
     "websiteTitle": "This website",
     "website": "The source of this website is MIT-licensed and available at <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Its typeface is <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, by the Archivo Project Authors, under the <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }

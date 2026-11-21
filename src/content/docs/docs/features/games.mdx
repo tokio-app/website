@@ -128,7 +128,7 @@ Each action has its own on/off switch. **Remove action** and each step's **Remov
 
 Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
 
-Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. With two or more [platforms](/docs/features/alerts/#platforms), a trigger can also pick one, and Twitch's Subscription, Gifted subs, Bits, Raid and Channel points are there too.
+Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. With two or more [platforms](/docs/features/alerts/#platforms), a trigger can also pick one, and Twitch's Subscription, Gifted subs, Bits, Raid and Channel points and YouTube's Super Chat are there too.
 
 | Trigger            | Options                                                                                                               |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- |
@@ -163,12 +163,13 @@ A mob's name and a command can use these. Click one to add it.
 | Variable                 | Triggers                                                                  |
 | ------------------------ | ------------------------------------------------------------------------- |
 | `{username}`, `{handle}` | All but Like                                                              |
-| `{comment}`              | Chat, Emote, Subscription, Bits, Channel points                           |
+| `{comment}`              | Chat, Emote, Subscription, Bits, Channel points, Super Chat               |
 | `{translation}`          | Chat, Emote, with [Chat translation](/docs/features/chat-translation/) on |
 | `{gift}`                 | Gift                                                                      |
 | `{count}`                | Gift (the streak's size, not with **Every gift**)                         |
 | `{count}`                | Subscription (the months), Gifted subs, Bits, Raid (the viewers)          |
 | `{reward}`               | Channel points                                                            |
+| `{amount}`               | Super Chat (as YouTube shows it, like $4.99)                              |
 
 Viewers pick their own names and messages, so Tokio cleans what a variable adds to a command.
 

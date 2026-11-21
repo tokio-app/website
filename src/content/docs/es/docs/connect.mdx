@@ -1,12 +1,12 @@
 ---
 title: Conéctate a tu LIVE
-description: Prepara Tokio antes de salir en vivo y luego conéctalo a tu LIVE de TikTok o Twitch.
+description: Prepara Tokio antes de salir en vivo y luego conéctalo a tu LIVE de TikTok, Twitch o YouTube.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok cuando tu LIVE ya empezó.
+Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok y a YouTube cuando tu LIVE ya empezó.
 
 <Steps>
 
@@ -16,7 +16,7 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok cuan
 
 2. **Configúralo**
 
-   Pega tu clave de API gratuita de [Euler Stream](https://www.eulerstream.com/register) en **Configuración → TikTok LIVE**, una sola vez. Para Twitch, [inicia sesión](#inicia-sesión-en-twitch) en **Configuración → Twitch**. Después configura la [voz](/es/docs/features/text-to-speech/), la [música](/es/docs/features/music-requests/), las [alertas](/es/docs/features/alerts/) y los [overlays](/es/docs/features/overlays/).
+   Pega tu clave de API gratuita de [Euler Stream](https://www.eulerstream.com/register) en **Configuración → TikTok LIVE**, una sola vez. Para Twitch, [inicia sesión](#inicia-sesión-en-twitch) en **Configuración → Twitch**. YouTube no necesita ninguna de las dos. Después configura la [voz](/es/docs/features/text-to-speech/), la [música](/es/docs/features/music-requests/), las [alertas](/es/docs/features/alerts/) y los [overlays](/es/docs/features/overlays/).
 
    <Screenshot
      name="settings-tiktok-live"
@@ -38,7 +38,7 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok cuan
 
 4. **Sal en vivo y conéctate**
 
-   Inicia tu LIVE. En **Inicio**, haz clic en los logos de TikTok y Twitch junto al cuadro de conexión para elegir dónde transmites. Para TikTok, escribe tu `@usuario`. Luego haz clic en **Conectar**.
+   Inicia tu LIVE. En **Inicio**, haz clic en los logos de TikTok, Twitch y YouTube junto al cuadro de conexión para elegir dónde transmites. Para TikTok, escribe tu `@usuario`, y para [YouTube](#conéctate-a-youtube), el `@handle` de tu canal o un enlace al LIVE. Luego haz clic en **Conectar**.
 
    <Screenshot
      name="home-connect"
@@ -62,23 +62,45 @@ Tokio oculta el código hasta que haces clic en **Mostrar**. No lo muestres en t
 
 **Cerrar sesión** funciona cuando ya te desconectaste de Twitch. Si Twitch cierra la sesión de Tokio, vuelve a iniciarla.
 
-## TikTok y Twitch juntos
+## Conéctate a YouTube
 
-Los logos junto al cuadro de conexión dicen dónde transmites. Activa los dos para conectarte a TikTok y Twitch en el mismo LIVE. Siempre queda uno activo, el perfil guarda tu elección y no puedes cambiarla mientras estás conectado.
+YouTube no necesita clave ni inicio de sesión. En **@canal o enlace del LIVE** de YouTube, escribe el `@handle` de tu canal o pega un enlace: el de watch, youtu.be o /live/ del LIVE, o el de tu canal.
 
-Con los dos activos, **Inicio** da una fila a cada plataforma: su logo, tu `@usuario` de TikTok o tu cuenta de Twitch, y cómo va: **Conectando…**, **Conectado**, **Reconectando…**, **Esperando el LIVE…** o **Sin conexión**. La clave de Euler Stream es solo para TikTok.
+Tokio se conecta cuando el LIVE ya empezó. Antes de eso, te avisa que el canal no está en LIVE. Si el chat del LIVE está desactivado, Tokio te pide que lo actives en YouTube Studio.
 
-Tokio se conecta cuando lo logra cualquiera de las dos. Si la otra falla o se cae por completo, el LIVE sigue y su fila ofrece **Reintentar**. Cuando el LIVE termina en una plataforma, Tokio sigue con la otra; se desconecta cuando cae la última.
+Tokio lee el chat del LIVE desde el sitio público de YouTube, como lo hace un navegador. No usa una API oficial, así que un cambio en el sitio de YouTube puede hacer que deje de funcionar hasta que una actualización de Tokio lo arregle.
 
-Twitch se conecta a tu canal incluso antes de que salgas en vivo. Su cantidad de espectadores se actualiza cada 30 segundos, y **Espectadores** la suma a la de TikTok.
+En YouTube, las membresías cuentan como suscripciones, las membresías regaladas como suscripciones regaladas, un solo evento por todo el regalo, y los Regalos que se compran con Joyas como regalos. Los Super Chats y los Super Stickers tienen su propio evento, **Super Chat**. YouTube no envía seguidores, porque los nuevos suscriptores del canal no aparecen en su chat, ni Me gusta, compartidos o vistas totales.
 
-Cada plataforma envía sus propios eventos: el chat y los seguidores vienen de las dos; los regalos, los Me gusta, los compartidos y los Super Fans, de TikTok; y las suscripciones, las suscripciones regaladas, los Bits, los raids y los puntos del canal, de Twitch. Twitch no tiene regalos, así que los Bits no cuentan como monedas.
+## TikTok, Twitch y YouTube juntos
+
+Los logos junto al cuadro de conexión dicen dónde transmites. Activa más de uno para conectarte a todos en el mismo LIVE. Siempre queda uno activo, el perfil guarda tu elección y no puedes cambiarla mientras estás conectado.
+
+Con dos o más activos, **Inicio** da una fila a cada plataforma: su logo, tu `@usuario` de TikTok, tu cuenta de Twitch o tu canal de YouTube, y cómo va: **Conectando…**, **Conectado**, **Reconectando…**, **Esperando el LIVE…** o **Sin conexión**. La clave de Euler Stream es solo para TikTok.
+
+Tokio se conecta cuando lo logra cualquiera de ellas. Si otra falla o se cae por completo, el LIVE sigue y su fila ofrece **Reintentar**. Cuando el LIVE termina en una plataforma, Tokio sigue con las demás; se desconecta cuando cae la última.
+
+Twitch se conecta a tu canal incluso antes de que salgas en vivo. La cantidad de espectadores de Twitch y la de YouTube se actualizan cada 30 segundos, y **Espectadores** suma las de todas las plataformas.
+
+Cada plataforma envía sus propios eventos:
+
+| Eventos                                        | Vienen de                |
+| ---------------------------------------------- | ------------------------ |
+| El chat                                        | TikTok, Twitch y YouTube |
+| Los seguidores                                 | TikTok y Twitch          |
+| Los regalos                                    | TikTok y YouTube         |
+| Las suscripciones y suscripciones regaladas    | Twitch y YouTube         |
+| Los Me gusta, los compartidos y los Super Fans | TikTok                   |
+| Los Bits, los raids y los puntos del canal     | Twitch                   |
+| Los Super Chats                                | YouTube                  |
+
+Solo los regalos de TikTok cuentan como monedas. Los Bits no, y YouTube no dice cuánto cuesta un Regalo, así que sus Regalos no suman ninguna.
 
 ## Durante tu LIVE
 
 Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** y **Quienes más regalaron** en el LIVE.
 
-Los me gusta, las vistas totales, los compartidos, los regalos, las monedas y quienes más regalaron son de TikTok, así que con Twitch solo aparece **Seguidores nuevos** debajo de **Espectadores**.
+Los Me gusta, las vistas totales y los compartidos son de TikTok, y los regalos llegan con TikTok o YouTube. Las monedas y quienes más regalaron necesitan regalos con precio, así que también son de TikTok: los Regalos de YouTube cuentan en **Regalos**, pero quienes los envían nunca entran en **Quienes más regalaron**. Con Twitch como única plataforma, solo aparece **Seguidores nuevos** debajo de **Espectadores**.
 
 También se enciende una línea rosa arriba de la barra de título.
 
@@ -87,7 +109,7 @@ También se enciende una línea rosa arriba de la barra de título.
   alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, los espectadores con su línea, los números del LIVE y quienes más regalaron, las funciones y el feed de actividad con la canción que suena"
 />
 
-El feed de **Actividad** guarda los últimos 100 eventos, de las dos plataformas. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
+El feed de **Actividad** guarda los últimos 100 eventos, de todas las plataformas. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
 
 Mientras suena una canción, **Sonando ahora** al pie de **Actividad** muestra su portada, su nombre y su artista.
 
@@ -116,7 +138,8 @@ Cualquier desconexión borra lo que el TTS, las alertas y la música tenían en 
 <summary>Por qué falla una conexión</summary>
 
 - El LIVE todavía no empezó.
-- No se encontró el nombre de usuario en TikTok.
+- No se encontró el nombre de usuario en TikTok, o el canal en YouTube.
+- El chat del LIVE está desactivado en YouTube. Actívalo en YouTube Studio.
 - Falta tu clave de Euler Stream, no fue aceptada o llegó a su límite de uso.
 - Tu [plan](https://www.eulerstream.com/pricing) de Euler Stream no incluye la conexión.
 - Euler Stream no pudo firmarla o no se puede llegar a TikTok.

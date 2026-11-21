@@ -1,12 +1,12 @@
 ---
 title: Countdown
-description: A countdown on your stream that viewers add time to with gifts, likes, follows, subs, Bits and chat.
+description: A countdown on your stream that viewers add time to with gifts, likes, follows, subs, Bits, Super Chats and chat.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans, Twitch subs and Bits, and chat.
+A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans, subs, Bits, Super Chats and chat.
 
 <Screenshot
   name="timer-preview"
@@ -66,10 +66,11 @@ Events add time only after you press **Start**. By default:
 | **New subs**       | 300 seconds each                    |
 | **Gifted subs**    | 300 seconds per gifted sub          |
 | **Bits**           | 1 second per Bit                    |
+| **Super Chats**    | 300 seconds each                    |
 
 On **Likes**, the second number sets how many likes add time at once.
 
-**New subs**, **Gifted subs** and **Bits** are Twitch's. A **New subs** row counts each subscription or renewal, and **Gifted subs** and **Bits** count each sub given and each Bit. The rows, and the overlay's triggers, only show what the profile's [platforms](/docs/connect/#tiktok-and-twitch-together) send: with only Twitch, there are no coins, likes, shares or Super Fans.
+**New subs** and **Gifted subs** come from Twitch and YouTube's memberships, **Bits** from Twitch and **Super Chats** from YouTube. A **New subs** row counts each subscription or renewal, and **Gifted subs** and **Bits** count each sub given and each Bit. **Super Chats** adds the same seconds for each Super Chat or Super Sticker, whatever it cost, since currencies differ. **Coins** shows only with TikTok, since YouTube doesn't say what its Gifts cost. The rows, and the overlay's triggers, only show what the profile's [platforms](/docs/connect/#tiktok-twitch-and-youtube-together) send: with only Twitch, there are no coins, likes, shares or Super Fans.
 
 - 0 seconds leaves an event out. **Multiplier** multiplies every event, like 2 for a double-time hour.
 - **Maximum time** stops adding time once the clock reaches it. 0 is no limit.
