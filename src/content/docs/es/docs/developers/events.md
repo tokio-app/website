@@ -145,7 +145,7 @@ En YouTube, `SUBSCRIBE` es una membresía: un miembro nuevo, o un aniversario co
 
 El `amount` de `SUPER_CHAT` es lo que pagó el espectador, como lo muestra YouTube, por ejemplo `"$4.99"`, así que no sumes montos: pueden estar en divisas distintas. `message` es lo que escribió, vacío en un Super Sticker, y `sticker` es la URL de la imagen del Super Sticker, vacía en un Super Chat.
 
-Un Regalo de YouTube, que se compra con Joyas, llega como `GIFT` con un `id` que es `youtube:` y su nombre, y `coins: 0`, porque YouTube no dice cuánto cuesta. Quien lo envía nunca entra en `GIFTERS`.
+Un Regalo de YouTube, que se compra con Joyas, llega como `GIFT` con un `id` que es `youtube:` y el nombre del archivo de su imagen, como `youtube:vicecity_heart_v2`, y `coins: 0`, porque YouTube no dice cuánto cuesta. Quien lo envía nunca entra en `GIFTERS`.
 
 `gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
 

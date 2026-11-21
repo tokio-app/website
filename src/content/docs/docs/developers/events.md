@@ -145,7 +145,7 @@ On YouTube, `SUBSCRIBE` is a membership: a new member, or a milestone with its `
 
 `SUPER_CHAT`'s `amount` is what the viewer paid, as YouTube shows it, like `"$4.99"`, so don't add amounts up: they can be in different currencies. `message` is what they wrote, empty for a Super Sticker, and `sticker` is the Super Sticker's picture URL, empty for a Super Chat.
 
-A YouTube Gift, bought with Jewels, comes as `GIFT` with an `id` of `youtube:` and its name, and `coins: 0`, since YouTube doesn't say what it costs. Its sender never joins `GIFTERS`.
+A YouTube Gift, bought with Jewels, comes as `GIFT` with an `id` of `youtube:` and its picture's file name, like `youtube:vicecity_heart_v2`, and `coins: 0`, since YouTube doesn't say what it costs. Its sender never joins `GIFTERS`.
 
 `gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
 
