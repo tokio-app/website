@@ -269,6 +269,10 @@
         "name": "Google",
         "note": "Chat translation, through Google Translate's web service (translate.googleapis.com), which isn't an official public API. It gets the text of each message to translate."
       },
+      {
+        "name": "Kick",
+        "note": "A channel's chat, subscriptions, Kicks, hosts and viewer count (kick.com, web.kick.com and realtime.*.platform.kick.com), read from Kick's website and its chat feed the way kick.com's page does, which isn't an official API."
+      },
       { "name": "Spotify", "note": "Music requests." },
       {
         "name": "YouTube",
@@ -306,7 +310,7 @@
       "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
     ],
     "trademarksTitle": "Trademarks",
-    "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube or Google. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",
+    "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube, Google or Kick. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, Kick, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",
     "websiteTitle": "This website",
     "website": "The source of this website is MIT-licensed and available at <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Its typeface is <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, by the Archivo Project Authors, under the <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
   }
