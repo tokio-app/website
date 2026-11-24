@@ -80,7 +80,7 @@ El chat de Kick está abierto antes de que empiece la transmisión, así que, co
 
 Tokio lee el sitio web y el feed de chat de Kick como lo hace la propia página de kick.com, sin una API oficial. Un cambio del lado de Kick puede hacer que deje de funcionar hasta que una actualización de Tokio lo arregle, como cuando Kick cambió su feed de chat en octubre de 2026.
 
-En Kick, los Kicks cuentan como regalos, con su precio en Kicks como monedas. Las suscripciones cuentan como suscripciones, con sus meses, las suscripciones regaladas como suscripciones regaladas, un solo evento por todo el regalo, los hosts como raids, con los espectadores que traen, y las recompensas del canal como puntos del canal. Los emotes de Kick cuentan como emotes del chat. Kick no envía seguimientos, porque su feed de chat no los trae, ni Me gusta, compartidos o vistas totales.
+En Kick, los Kicks son el dinero de Kick, como los Bits de Twitch: llegan como su propio evento, **Kicks**, con cuántos envió el espectador y el mensaje que fijó, si lo hay. Kick no envía regalos. Las suscripciones cuentan como suscripciones, con sus meses, las suscripciones regaladas como suscripciones regaladas, un solo evento por todo el regalo, los hosts como raids, con los espectadores que traen, y las recompensas del canal como puntos del canal. Los emotes de Kick cuentan como emotes del chat. Kick no envía seguimientos, porque su feed de chat no los trae, ni Me gusta, compartidos o vistas totales.
 
 ## Varias plataformas juntas
 
@@ -98,22 +98,34 @@ Cada plataforma envía sus propios eventos:
 | ---------------------------------------------- | ------------------------------ |
 | El chat                                        | TikTok, Twitch, YouTube y Kick |
 | Los seguidores                                 | TikTok y Twitch                |
-| Los regalos                                    | TikTok, YouTube y Kick         |
+| Los regalos                                    | TikTok y YouTube               |
 | Las suscripciones y suscripciones regaladas    | Twitch, YouTube y Kick         |
 | Los raids y los puntos del canal               | Twitch y Kick                  |
 | Los Me gusta, los compartidos y los Super Fans | TikTok                         |
 | Los Bits                                       | Twitch                         |
 | Los Super Chats                                | YouTube                        |
+| Los Kicks                                      | Kick                           |
 
-Los regalos de TikTok y los Kicks de Kick cuentan como monedas. Los Bits no, y YouTube no dice cuánto cuesta un Regalo, así que sus Regalos no suman ninguna.
+El dinero de cada plataforma se cuenta aparte y nunca se suma al de otra: las monedas de TikTok, los Bits de Twitch, los Super Chats de YouTube y los Kicks de Kick. Los Super Chats llegan en la moneda de cada espectador, así que Tokio los suma en dólares estadounidenses, con los tipos de cambio del día de Frankfurter. YouTube no dice cuánto cuesta un Regalo, así que sus Regalos cuentan como regalos y no suman dinero.
+
+En Twitch, YouTube y Kick, las insignias del chat dicen quién modera y quién está suscrito o es miembro, con sus meses cuando la insignia los muestra. En Twitch y Kick también dicen quién es VIP.
 
 ## Durante tu LIVE
 
-Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** y **Quienes más regalaron** en el LIVE.
+Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están los números del LIVE y quienes más enviaron.
 
-Son los números de la plataforma cuya pestaña está abierta, y cada pestaña muestra junto a su nombre los espectadores de su plataforma en ese momento. Con dos o más plataformas, una pestaña **Todas** los suma. Una plataforma que desconectas conserva sus números en su pestaña hasta que termina el LIVE.
+Son los números de la plataforma cuya pestaña está abierta, y cada pestaña muestra junto a su nombre los espectadores de su plataforma en ese momento. Una plataforma que desconectas conserva sus números en su pestaña hasta que termina el LIVE. Cada pestaña muestra lo que envía su plataforma:
 
-Los Me gusta, las vistas totales y los compartidos son de TikTok, y los regalos llegan con TikTok, YouTube o Kick. Las monedas y quienes más regalaron necesitan regalos con precio, así que llegan con TikTok o Kick: los Regalos de YouTube cuentan en **Regalos**, pero quienes los envían nunca entran en **Quienes más regalaron**. Con Twitch como única plataforma, o en su pestaña, solo aparece **Seguidores nuevos** debajo de **Espectadores**; con YouTube, solo **Regalos**, porque YouTube no envía seguimientos, y con Kick, **Regalos**, **Monedas** y **Quienes más regalaron**.
+| Pestaña | Números                                                                                            | Listas                                                                         |
+| ------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| TikTok  | **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** | **Quienes más regalaron**                                                      |
+| Twitch  | **Seguidores nuevos**, **Suscripciones regaladas**, **Bits**                                       | **Quienes más Bits enviaron** y **Quienes más suscripciones regalaron**        |
+| YouTube | **Regalos**, **Suscripciones regaladas**, **Super Chats**                                          | **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
+| Kick    | **Suscripciones regaladas**, **Kicks**                                                             | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**       |
+
+Cada lista ordena una sola cosa: **Quienes más regalaron**, las monedas de TikTok; **Quienes más Bits enviaron**, **Quienes más Kicks enviaron** y **Quienes más Super Chats enviaron**, su dinero; y **Quienes más suscripciones regalaron**, las suscripciones que regaló cada espectador, aparte del dinero. Los Regalos de YouTube cuentan en **Regalos**, pero nadie entra en una lista por ellos, porque no tienen precio. **Super Chats** muestra un guion hasta que cargan los tipos de cambio.
+
+Con dos o más plataformas, una pestaña **Todas** suma los espectadores, los conteos y las suscripciones regaladas, con un recuadro para el dinero de cada plataforma. No tiene listas de quienes más enviaron, porque ordenarían un dinero contra otro.
 
 También se enciende una línea rosa arriba de la barra de título.
 
@@ -122,7 +134,7 @@ También se enciende una línea rosa arriba de la barra de título.
   alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, los espectadores con su línea, los números del LIVE y quienes más regalaron, las funciones y el feed de actividad con la canción que suena"
 />
 
-El feed de **Actividad** guarda los últimos 100 eventos, de todas las plataformas. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
+El feed de **Actividad** guarda los últimos 100 eventos, de todas las plataformas. Un regalo de TikTok muestra su precio en monedas, y los Bits y los Kicks muestran el mensaje que se envió con ellos. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
 
 Mientras suena una canción, **Sonando ahora** al pie de **Actividad** muestra su portada, su nombre y su artista.
 

@@ -80,7 +80,7 @@ Kick's chat is open before the stream starts, so, as with Twitch, Tokio connects
 
 Tokio reads Kick's website and chat feed the way kick.com's own page does, without an official API. A change on Kick's side can stop it from working until a Tokio update fixes it, as when Kick changed its chat feed in October 2026.
 
-On Kick, Kicks count as gifts, with their price in Kicks as coins. Subscriptions count as subscriptions, with their months, gifted subs as gifted subs, one event for the whole gift, hosts as raids, with the viewers they bring, and channel rewards as channel points. Kick's emotes count as chat emotes. Kick doesn't send follows, since its chat feed carries none, nor likes, shares or total views.
+On Kick, Kicks are Kick's money, like Twitch's Bits: they come as their own event, **Kicks**, with how many the viewer sent and the message they pinned, if any. Kick sends no gifts. Subscriptions count as subscriptions, with their months, gifted subs as gifted subs, one event for the whole gift, hosts as raids, with the viewers they bring, and channel rewards as channel points. Kick's emotes count as chat emotes. Kick doesn't send follows, since its chat feed carries none, nor likes, shares or total views.
 
 ## Several platforms together
 
@@ -98,22 +98,34 @@ Each platform sends its own events:
 | ----------------------------- | -------------------------------- |
 | Chat                          | TikTok, Twitch, YouTube and Kick |
 | Follows                       | TikTok and Twitch                |
-| Gifts                         | TikTok, YouTube and Kick         |
+| Gifts                         | TikTok and YouTube               |
 | Subscriptions and gifted subs | Twitch, YouTube and Kick         |
 | Raids and channel points      | Twitch and Kick                  |
 | Likes, shares and Super Fans  | TikTok                           |
 | Bits                          | Twitch                           |
 | Super Chats                   | YouTube                          |
+| Kicks                         | Kick                             |
 
-TikTok's gifts and Kick's Kicks count as coins. Bits don't, and YouTube doesn't say what a Gift costs, so its Gifts add none.
+Each platform's money counts on its own and is never added to another's: TikTok's coins, Twitch's Bits, YouTube's Super Chats and Kick's Kicks. Super Chats come in each viewer's currency, so Tokio adds them up in US dollars, at the day's exchange rates from Frankfurter. YouTube doesn't say what a Gift costs, so its Gifts count as gifts and add no money.
+
+On Twitch, YouTube and Kick, chat badges say who moderates and who subscribes or is a member, with their months when the badge shows them. On Twitch and Kick they also say who's a VIP.
 
 ## While you're LIVE
 
-While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** and the LIVE's **Top gifters**.
+While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are the LIVE's numbers and who sent the most.
 
-These are the numbers of the platform whose tab is open, and each tab shows its platform's viewers right now next to its name. On two or more platforms, an **All** tab adds them up. A platform you disconnect keeps its numbers in its tab until the LIVE ends.
+These are the numbers of the platform whose tab is open, and each tab shows its platform's viewers right now next to its name. A platform you disconnect keeps its numbers in its tab until the LIVE ends. Each tab shows what its platform sends:
 
-Likes, total views and shares are TikTok's, and gifts come with TikTok, YouTube or Kick. Coins and top gifters need gifts with a price, so they come with TikTok or Kick: YouTube's Gifts count in **Gifts**, but their senders never join **Top gifters**. With Twitch alone, or on its tab, only **New followers** shows below **Viewers**, with YouTube only **Gifts**, since YouTube sends no follows, and with Kick **Gifts**, **Coins** and **Top gifters**.
+| Tab     | Numbers                                                                         | Tops                                        |
+| ------- | ------------------------------------------------------------------------------- | ------------------------------------------- |
+| TikTok  | **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** | **Top gifters**                             |
+| Twitch  | **New followers**, **Gifted subs**, **Bits**                                    | **Top Bits** and **Top gifted subs**        |
+| YouTube | **Gifts**, **Gifted subs**, **Super Chats**                                     | **Top Super Chats** and **Top gifted subs** |
+| Kick    | **Gifted subs**, **Kicks**                                                      | **Top Kicks** and **Top gifted subs**       |
+
+Each top ranks one thing: **Top gifters** TikTok's coins, **Top Bits**, **Top Kicks** and **Top Super Chats** their money, and **Top gifted subs** the subs a viewer gifted, kept apart from the money. YouTube's Gifts count in **Gifts** but rank no one, since they have no price. **Super Chats** shows a dash until the exchange rates load.
+
+On two or more platforms, an **All** tab adds up the viewers, the counts and the gifted subs, with a tile for each platform's money. It has no tops, since they would rank one money against another.
 
 A rose line also lights up at the top of the title bar.
 
@@ -122,7 +134,7 @@ A rose line also lights up at the top of the title bar.
   alt="The Home page during a LIVE: how long it's been on, the viewers with their line, the LIVE's numbers and top gifters, the features, and the activity feed with the song playing"
 />
 
-The **Activity** feed keeps the last 100 events, from every platform. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
+The **Activity** feed keeps the last 100 events, from every platform. A TikTok gift shows its price in coins, and Bits and Kicks show the message sent with them. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
 
 While a song plays, **Now playing** at the foot of **Activity** shows its cover, name and artist.
 
