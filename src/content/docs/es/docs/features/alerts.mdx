@@ -45,17 +45,21 @@ Para buscar una alerta, haz clic en el botón de búsqueda junto a **Biblioteca*
 
 ## Activadores
 
-Elige el **Evento**: Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Super Fan, Caja de Super Fan, Entrada de Super Fan, Entrada de espectador o Cambio de canción (una canción nueva de los [pedidos de canciones](/es/docs/features/music-requests/)). Una alerta de Me gusta suena con cada tanda de Me gusta que envía TikTok, de cualquier espectador.
+Elige el **Evento**. TikTok envía Chat, Emote, Seguir, Compartir, Me gusta, Regalo, Cofre, Super Fan, Caja de Super Fan, Entrada de Super Fan y Entrada de espectador, y Cambio de canción viene de Tokio, con una canción nueva de los [pedidos de canciones](/es/docs/features/music-requests/). Una alerta de Me gusta suena con cada tanda de Me gusta que envía TikTok, de cualquier espectador.
+
+Una alerta nueva empieza en Seguir, o en Suscripción si el perfil no tiene TikTok ni Twitch, las plataformas que avisan cuando te siguen.
 
 Para que una alerta suene con más de un evento, haz clic en **Agregar un activador**. Suena con cualquiera de ellos, hasta cinco, y cada uno conserva sus propios filtros.
 
-En **De**, marca **Seguidores**, **Moderadores** o **Super Fans** para que suene solo con ellos. Solo Chat, Emote y Regalo tienen esta opción, porque los roles de un espectador solo llegan con esos eventos.
+En **De**, marca para quién suena. En TikTok son **Seguidores**, **Moderadores** o **Super Fans**. Solo Chat, Emote y los regalos de TikTok tienen esta opción, porque los roles de un espectador solo llegan con esos eventos.
 
 ### Plataformas
 
 Cuando el perfil se conecta a [dos o más plataformas](/es/docs/connect/#varias-plataformas-juntas), cada activador tiene un selector de plataforma antes de su evento: **Cualquier plataforma**, o una de las plataformas del perfil, **TikTok**, **Twitch**, **YouTube** o **Kick**. Elige una para que suene solo con los espectadores de esa plataforma, y la lista de eventos muestra lo que ella envía. Cambio de canción viene de Tokio, así que solo suena con **Cualquier plataforma**.
 
-Con una sola plataforma no hay selector, y los eventos son los de esa plataforma. Chat y Emote vienen de las cuatro, Seguir de TikTok y Twitch, Regalo de TikTok, YouTube y Kick, y Suscripción y Suscripciones regaladas de Twitch, YouTube y Kick. Con **Cualquier plataforma**, una alerta de Seguir suena cuando te siguen en cualquiera de las dos.
+Con una sola plataforma no hay selector, y los eventos son los de esa plataforma. Chat y Emote vienen de las cuatro, Seguir de TikTok y Twitch, Regalo de TikTok y YouTube, y Suscripción y Suscripciones regaladas de Twitch, YouTube y Kick. Con **Cualquier plataforma**, una alerta de Seguir suena cuando te siguen en cualquiera de las dos.
+
+Un activador ofrece solo lo que envían sus plataformas: lo de su propia plataforma o, con **Cualquier plataforma**, lo que envían para su evento las plataformas del perfil. La lista de emotes tiene sus emotes, **De** los roles que indican, y las variables son las que ellas completan. La lista de regalos de TikTok solo aparece en los activadores que pueden recibir regalos de TikTok.
 
 Twitch agrega cinco activadores:
 
@@ -69,15 +73,31 @@ Twitch agrega cinco activadores:
 
 Twitch solo tiene Bits y puntos del canal en los canales Afiliados y Socios.
 
-El chat de Twitch no dice quién sigue, así que **De → Seguidores** nunca deja pasar a un espectador de Twitch. **Moderadores** te incluye a ti, y los **Super Fans** son tus suscriptores de Twitch.
+El chat de Twitch no dice quién sigue, así que en un activador de Twitch **De** tiene **Moderadores** (también tú), **Suscriptores** (también los fundadores) y **VIPs**.
 
 YouTube agrega **Super Chat**, que suena con un Super Chat o un Super Sticker. Sus membresías hacen sonar **Suscripción**, con los miembros nuevos y con los aniversarios, y una membresía regalada hace sonar **Suscripciones regaladas** una sola vez por todo el regalo.
 
-YouTube tampoco tiene seguidores, así que **Seguidores** nunca deja pasar a un espectador de YouTube. Los **Moderadores** son los moderadores de tu canal y tú, y los **Super Fans** son sus miembros.
+YouTube tampoco tiene seguidores, así que en un activador de YouTube **De** tiene **Moderadores** (los moderadores de tu canal y tú) y **Miembros**.
 
-Kick tiene Chat, Emote, Regalo, Suscripción, Suscripciones regaladas, Raid y Puntos del canal. Un Kick hace sonar **Regalo**, con su precio en Kicks como monedas, y un host hace sonar **Raid**, con los espectadores que trae. Las suscripciones regaladas suenan una sola vez por todo el regalo.
+Kick tiene Chat, Emote, Kicks, Suscripción, Suscripciones regaladas, Raid y Puntos del canal. **Kicks** suena cuando un espectador envía Kicks, como los Bits en Twitch: `{count}` son los Kicks y `{comment}` el mensaje que fijó con ellos. Kick no envía regalos, así que una alerta de Kick creada como alerta de Regalo se carga como alerta de Kicks. Un host hace sonar **Raid**, con los espectadores que trae, y las suscripciones regaladas suenan una sola vez por todo el regalo.
 
-Kick no tiene seguidores ni niveles de fan, así que **Seguidores** nunca deja pasar a un espectador de Kick. Los **Moderadores** son tus moderadores y tú, y los **Super Fans** tus suscriptores y fundadores.
+Kick no tiene seguidores ni niveles de fan, así que en un activador de Kick **De** tiene **Moderadores** (también tú), **Suscriptores** (también los fundadores) y **VIPs**.
+
+Con **Cualquier plataforma**, **De** nombra el rol como lo llama cada plataforma del perfil, por ejemplo **Super Fans, suscriptores y miembros**. **Seguidores** solo deja pasar a los espectadores de TikTok.
+
+### Mínimos
+
+Los Bits, los Kicks, los Super Chats, las suscripciones regaladas y los regalos con **Cualquier regalo** tienen un mínimo, cada uno en su propia unidad. Con 0, suena con cualquier cantidad.
+
+| Activador                   | Mínimo                                                                                                      |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Regalo**                  | **Valor mínimo**, en monedas de TikTok: lo que vale un combo al terminar, o cada regalo con **Cada regalo** |
+| **Bits**                    | **Valor mínimo**, en Bits                                                                                   |
+| **Kicks**                   | **Valor mínimo**, en Kicks                                                                                  |
+| **Super Chat**              | **Valor mínimo**, en dólares estadounidenses (USD). Si Tokio no tiene la tasa de su moneda, suena siempre   |
+| **Suscripciones regaladas** | **Al menos**, en suscripciones regaladas de una vez                                                         |
+
+La fila de la alerta nombra la unidad, por ejemplo "de 100+ monedas" o "de $5+". Las [reacciones de Overlay Studio](/es/docs/features/overlay-studio/#cuándo) tienen los mismos mínimos.
 
 ## Sonidos
 
@@ -112,17 +132,19 @@ En la pestaña **Texto a voz** del selector de sonidos, escribe un mensaje, elig
 
 Haz clic en una variable para agregar los datos del evento:
 
-| Variable                 | Activadores                                                                                                                                            |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                               |
-| `{comment}`              | Chat y Emote; Suscripción, Bits y Super Chat (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                          |
-| `{translation}`          | Chat y Emote, con la [Traducción del chat](/es/docs/features/chat-translation/) activada: la traducción del mensaje, o el mensaje tal como se escribió |
-| `{gift}`, `{count}`      | Regalo (`{count}` es el tamaño del combo, salvo con **Cada regalo**)                                                                                   |
-| `{count}`                | Me gusta (los Me gusta enviados)                                                                                                                       |
-| `{count}`                | Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits (los Bits) y Raid (los espectadores que trae)         |
-| `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                          |
-| `{amount}`               | Super Chat (lo que costó, como lo muestra YouTube, por ejemplo $4.99)                                                                                  |
-| `{song}`                 | Cambio de canción                                                                                                                                      |
+| Variable                 | Activadores                                                                                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                                                     |
+| `{comment}`              | Chat y Emote; Suscripción (no en Kick), Bits, Kicks y Super Chat (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                            |
+| `{translation}`          | Chat y Emote, en un perfil con TikTok y la [Traducción del chat](/es/docs/features/chat-translation/) activada: la traducción del mensaje, o el mensaje tal como se escribió |
+| `{gift}`, `{count}`      | Regalo (`{count}` es el tamaño del combo, salvo con **Cada regalo**, y los Regalos de YouTube no lo tienen)                                                                  |
+| `{count}`                | Me gusta (los Me gusta enviados)                                                                                                                                             |
+| `{count}`                | Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits (los Bits), Kicks (los Kicks) y Raid (los espectadores que trae)            |
+| `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                                                |
+| `{amount}`               | Super Chat (lo que costó, como lo muestra YouTube, por ejemplo $4.99)                                                                                                        |
+| `{song}`                 | Cambio de canción                                                                                                                                                            |
+
+El editor solo ofrece las variables que completan las plataformas del activador. El botón de reproducir las completa con un espectador de muestra de la plataforma del activador, o de la primera plataforma del perfil que envía su evento.
 
 También se aplican los reemplazos, **Quitar emojis**, las palabras prohibidas, el tiempo de espera y el largo de la cola de la [página TTS](/es/docs/features/text-to-speech/). Una palabra prohibida en lo que completa una variable, como un nombre o un comentario, omite toda la alerta, con su imagen o video.
 
@@ -171,7 +193,7 @@ Si eliminas un archivo, se quita de todas las alertas, después de que confirmes
 
 ## Alertas de regalos
 
-En la pestaña **Activador**, haz clic en **Cualquier regalo** para elegir regalos. **Seleccionar los visibles** marca cada regalo que dejan los filtros.
+En la pestaña **Activador**, haz clic en **Cualquier regalo** para elegir regalos de TikTok. **Seleccionar los visibles** marca cada regalo que dejan los filtros.
 
 <Screenshot
   name="alerts-gifts"
@@ -183,9 +205,9 @@ Luego elige cuándo suena:
 - **Al terminar el combo**: una vez por combo, así que un combo de 20 rosas la hace sonar una vez. Es la opción predeterminada.
 - **Cada regalo**: una vez por regalo, hasta el largo de la cola.
 
-Con **Cualquier regalo**, **Valor mínimo** define cuántas monedas debe valer un combo, o un regalo si elegiste **Cada regalo**.
+Con **Cualquier regalo**, **Valor mínimo** define cuántas monedas debe valer un combo, o un regalo si elegiste **Cada regalo** (mira [Mínimos](#mínimos)).
 
-YouTube no dice cuánto cuestan sus Regalos, así que valen 0 monedas y solo suenan con un **Valor mínimo** de 0. Tampoco están en la lista de regalos, así que suenan con **Cualquier regalo**.
+Los Regalos de YouTube llegan de a uno y no dicen cuánto cuestan, así que un activador de YouTube no tiene opción de cuándo suena ni mínimo. Tampoco están en la lista de regalos, así que suenan con **Cualquier regalo**. Con **Cualquier plataforma** valen 0 monedas y solo suenan con un **Valor mínimo** de 0.
 
 <details>
 <summary>Regalos que faltan en la lista</summary>

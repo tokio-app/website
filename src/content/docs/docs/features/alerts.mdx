@@ -45,17 +45,21 @@ To find an alert, click the search button next to **Library**.
 
 ## Triggers
 
-Pick the **Event**: Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan join, Member join or Music change (a new song from [music requests](/docs/features/music-requests/)). A Like alert plays for every batch of likes TikTok sends, from any viewer.
+Pick the **Event**. TikTok sends Chat, Emote, Follow, Share, Like, Gift, Envelope, Super Fan, Super Fan Box, Super Fan join and Member join, and Music change comes from Tokio, for a new song from [music requests](/docs/features/music-requests/). A Like alert plays for every batch of likes TikTok sends, from any viewer.
+
+A new alert starts on Follow, or on Subscription when the profile has neither TikTok nor Twitch, the platforms that send follows.
 
 To play one alert on more than one event, click **Add a trigger**. It plays on any of them, up to five, and each keeps its own filters.
 
-Under **From**, check **Followers**, **Moderators** or **Super Fans** to play only for them. Only Chat, Emote and Gift have it, since a viewer's roles only come with those.
+Under **From**, check who it plays for. On TikTok, that's **Followers**, **Moderators** or **Super Fans**. Only Chat, Emote and TikTok's gifts have it, since a viewer's roles only come with those.
 
 ### Platforms
 
 When the profile connects to [two or more platforms](/docs/connect/#several-platforms-together), each trigger has a platform select before its event: **Any platform**, or one of the profile's platforms, **TikTok**, **Twitch**, **YouTube** or **Kick**. Pick one to play only for that platform's viewers, and the event list shows what it sends. Music change comes from Tokio, so it only plays on **Any platform**.
 
-With one platform, there's no select, and the events are that platform's. Chat and Emote come from all four, Follow from TikTok and Twitch, Gift from TikTok, YouTube and Kick, and Subscription and Gifted subs from Twitch, YouTube and Kick. On **Any platform**, a Follow alert plays for a follow on either.
+With one platform, there's no select, and the events are that platform's. Chat and Emote come from all four, Follow from TikTok and Twitch, Gift from TikTok and YouTube, and Subscription and Gifted subs from Twitch, YouTube and Kick. On **Any platform**, a Follow alert plays for a follow on either.
+
+A trigger offers only what its platforms send: its own platform's, or on **Any platform**, what the profile's platforms send for its event. The emote list has their emotes, **From** the roles they tell, and the variables are the ones they fill. TikTok's gift list only shows on triggers that can get TikTok's gifts.
 
 Twitch adds five triggers:
 
@@ -69,15 +73,31 @@ Twitch adds five triggers:
 
 Twitch only has Bits and channel points on Affiliate and Partner channels.
 
-Twitch's chat doesn't say who follows, so **From → Followers** never passes a Twitch viewer. **Moderators** includes you, and **Super Fans** are your Twitch subscribers.
+Twitch's chat doesn't say who follows, so a Twitch trigger's **From** has **Moderators** (you included), **Subscribers** (founders too) and **VIPs**.
 
 YouTube adds **Super Chat**, which plays for a Super Chat or a Super Sticker. Its memberships play **Subscription**, for new members and for milestones, and a gifted membership plays **Gifted subs** once for the whole gift.
 
-YouTube has no followers either, so **Followers** never passes a YouTube viewer. **Moderators** are your channel's moderators and you, and **Super Fans** are its members.
+YouTube has no followers either, so a YouTube trigger's **From** has **Moderators** (your channel's moderators and you) and **Members**.
 
-Kick has Chat, Emote, Gift, Subscription, Gifted subs, Raid and Channel points. A Kick plays **Gift**, worth its price in Kicks as coins, and a host plays **Raid**, with the viewers it brings. Gifted subs play once for the whole gift.
+Kick has Chat, Emote, Kicks, Subscription, Gifted subs, Raid and Channel points. **Kicks** plays when a viewer sends Kicks, as Bits do on Twitch: `{count}` is the Kicks and `{comment}` the message pinned with them. Kick sends no gifts, so a Kick alert made as a Gift alert loads as a Kicks alert. A host plays **Raid**, with the viewers it brings, and gifted subs play once for the whole gift.
 
-Kick has no followers or fan levels, so **Followers** never passes a Kick viewer. **Moderators** are your moderators and you, and **Super Fans** your subscribers and founders.
+Kick has no followers or fan levels, so a Kick trigger's **From** has **Moderators** (you included), **Subscribers** (founders too) and **VIPs**.
+
+On **Any platform**, **From** names the role as each of the profile's platforms calls it, like **Super Fans, subscribers, and members**. **Followers** only passes TikTok's viewers.
+
+### Minimums
+
+Bits, Kicks, Super Chats, gifted subs and gifts on **Any gift** take a minimum, each in its own unit. At 0, any amount plays.
+
+| Trigger         | Minimum                                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------ |
+| **Gift**        | **Worth at least**, in TikTok's coins: a streak's worth when it ends, or each gift's on **Every gift** |
+| **Bits**        | **Worth at least**, in Bits                                                                            |
+| **Kicks**       | **Worth at least**, in Kicks                                                                           |
+| **Super Chat**  | **Worth at least**, in US dollars (USD). One whose currency Tokio has no rate for always plays         |
+| **Gifted subs** | **At least**, in subs gifted at once                                                                   |
+
+The alert's row names the unit, like "worth 100+ coins" or "worth $5+". [Overlay Studio's reactions](/docs/features/overlay-studio/#when) take the same minimums.
 
 ## Sounds
 
@@ -112,17 +132,19 @@ On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and 
 
 Click a variable to add the event's details:
 
-| Variable                 | Triggers                                                                                                                         |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                 |
-| `{comment}`              | Chat and Emote; Subscription, Bits and Super Chat (what the viewer wrote); Channel points (what they typed)                      |
-| `{translation}`          | Chat and Emote, with [Chat translation](/docs/features/chat-translation/) on: the message's translation, or the message as typed |
-| `{gift}`, `{count}`      | Gift (`{count}` is the combo size, except on **Every gift**)                                                                     |
-| `{count}`                | Like (the likes sent)                                                                                                            |
-| `{count}`                | Subscription (the months so far), Gifted subs (the subs gifted), Bits (the Bits) and Raid (the viewers it brings)                |
-| `{reward}`               | Channel points (the reward's title)                                                                                              |
-| `{amount}`               | Super Chat (what it cost, as YouTube shows it, like $4.99)                                                                       |
-| `{song}`                 | Music change                                                                                                                     |
+| Variable                 | Triggers                                                                                                                                                 |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                                         |
+| `{comment}`              | Chat and Emote; Subscription (not on Kick), Bits, Kicks and Super Chat (what the viewer wrote); Channel points (what they typed)                         |
+| `{translation}`          | Chat and Emote, on a profile with TikTok and [Chat translation](/docs/features/chat-translation/) on: the message's translation, or the message as typed |
+| `{gift}`, `{count}`      | Gift (`{count}` is the combo size, except on **Every gift**, and YouTube's Gifts don't have it)                                                          |
+| `{count}`                | Like (the likes sent)                                                                                                                                    |
+| `{count}`                | Subscription (the months so far), Gifted subs (the subs gifted), Bits (the Bits), Kicks (the Kicks) and Raid (the viewers it brings)                     |
+| `{reward}`               | Channel points (the reward's title)                                                                                                                      |
+| `{amount}`               | Super Chat (what it cost, as YouTube shows it, like $4.99)                                                                                               |
+| `{song}`                 | Music change                                                                                                                                             |
+
+The editor only offers the variables the trigger's platforms fill. The play button fills them with a sample viewer from the trigger's platform, or from the profile's first platform that sends its event.
 
 The [TTS page's](/docs/features/text-to-speech/) replacements, **Remove emojis**, banned words, cooldown and queue length apply too. A banned word in what a variable fills in, like a name or a comment, skips the whole alert, image or video included.
 
@@ -171,7 +193,7 @@ Deleting a file removes it from every alert, after you confirm. Deleting an imag
 
 ## Gift alerts
 
-On the **Trigger** tab, click **Any gift** to pick gifts. **Select all shown** checks every gift the filters leave.
+On the **Trigger** tab, click **Any gift** to pick TikTok's gifts. **Select all shown** checks every gift the filters leave.
 
 <Screenshot
   name="alerts-gifts"
@@ -183,9 +205,9 @@ Then choose when it plays:
 - **When streak ends**: once per combo, so a streak of 20 roses plays it once. The default.
 - **Every gift**: once per gift, up to the queue's length.
 
-With **Any gift**, **Worth at least** sets the coins a streak, or a gift on **Every gift**, must be worth.
+With **Any gift**, **Worth at least** sets the coins a streak, or a gift on **Every gift**, must be worth (see [Minimums](#minimums)).
 
-YouTube doesn't say what its Gifts cost, so they're worth 0 coins and play only with **Worth at least** at 0. They aren't in the gift list either, so they play on **Any gift**.
+YouTube's Gifts come one at a time and don't say what they cost, so a YouTube trigger has no choice of when it plays and no minimum. They aren't in the gift list either, so they play on **Any gift**. On **Any platform**, they're worth 0 coins and play only with **Worth at least** at 0.
 
 <details>
 <summary>Gifts missing from the list</summary>
