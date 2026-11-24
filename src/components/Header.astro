@@ -107,7 +107,8 @@ const path = Astro.url.pathname;
     color: var(--font-primary);
   }
 
-  @media (max-width: 559px) {
+  /* Every link fits from 620px in Spanish, the longest language */
+  @media (max-width: 639px) {
     .wide {
       display: none;
     }
