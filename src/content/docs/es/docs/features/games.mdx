@@ -99,7 +99,7 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
 <Steps>
 
 1. Elige la pestaña de la edición de tu juego.
-2. Haz clic en **Agregar acción**, debajo de sus acciones. Empieza como una de Seguir que genera un Zombie.
+2. Haz clic en **Agregar acción**, debajo de sus acciones. Empieza como una de Seguir que genera un Zombie, o una de Suscripción si el perfil no tiene TikTok ni Twitch.
 3. Elige el activador, cambia el paso y haz clic en **Agregar paso** para agregar más.
 4. Haz clic en el botón de reproducir para probarla.
 
@@ -128,7 +128,7 @@ Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar
 
 Haz clic en **Acciones** para plegar las acciones y darle más espacio al overlay. Se vuelven a abrir la próxima vez que entres a **Juegos**.
 
-Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**. Con dos o más [plataformas](/es/docs/features/alerts/#plataformas), un activador también puede elegir una, y también están los de Twitch (Suscripción, Suscripciones regaladas, Bits, Raid y Puntos del canal), el Super Chat de YouTube y los de Kick (Suscripción, Suscripciones regaladas, Raid y Puntos del canal).
+Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**. Cada activador ofrece lo que envían sus [plataformas](/es/docs/features/alerts/#plataformas), como en las alertas: los de Twitch (Suscripción, Suscripciones regaladas, Bits, Raid y Puntos del canal), el Super Chat de YouTube y los de Kick (Kicks, Suscripción, Suscripciones regaladas, Raid y Puntos del canal) aparecen con esas plataformas, y con dos o más, un activador puede elegir una.
 
 | Activador            | Opciones                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -160,16 +160,18 @@ Los pasos se ejecutan en orden, como tú y donde estés. En [Pasos de Minecraft]
 
 El nombre de una criatura y los comandos pueden usarlas. Haz clic en una para agregarla.
 
-| Variable                 | Activadores                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------- |
-| `{username}`, `{handle}` | Todos menos Me gusta                                                                    |
-| `{comment}`              | Chat, Emote, Suscripción, Bits, Puntos del canal, Super Chat                            |
-| `{translation}`          | Chat, Emote, con la [Traducción del chat](/es/docs/features/chat-translation/) activada |
-| `{gift}`                 | Regalo                                                                                  |
-| `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo**)                                 |
-| `{count}`                | Suscripción (los meses), Suscripciones regaladas, Bits, Raid (los espectadores)         |
-| `{reward}`               | Puntos del canal                                                                        |
-| `{amount}`               | Super Chat (como lo muestra YouTube, por ejemplo $4.99)                                 |
+| Variable                 | Activadores                                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | Todos menos Me gusta                                                                                          |
+| `{comment}`              | Chat, Emote, Suscripción (no en Kick), Bits, Kicks, Puntos del canal, Super Chat                              |
+| `{translation}`          | Chat, Emote, en un perfil con TikTok y la [Traducción del chat](/es/docs/features/chat-translation/) activada |
+| `{gift}`                 | Regalo                                                                                                        |
+| `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo** y en los Regalos de YouTube)                           |
+| `{count}`                | Suscripción (los meses), Suscripciones regaladas, Bits, Kicks, Raid (los espectadores)                        |
+| `{reward}`               | Puntos del canal                                                                                              |
+| `{amount}`               | Super Chat (como lo muestra YouTube, por ejemplo $4.99)                                                       |
+
+Solo aparecen las que completan las plataformas del activador.
 
 Los espectadores eligen sus propios nombres y mensajes, así que Tokio limpia lo que una variable agrega a un comando.
 
@@ -182,7 +184,7 @@ Las comillas (`"` y `'`), las barras invertidas, los corchetes y las llaves (`[ 
 
 ## Prueba
 
-El botón de reproducir ejecuta la acción una vez con valores de ejemplo y muestra las respuestas del juego.
+El botón de reproducir ejecuta la acción una vez con valores de ejemplo, de la plataforma del activador o de la primera plataforma del perfil que envía su evento, y muestra las respuestas del juego.
 
 <Screenshot
   name="games-test"

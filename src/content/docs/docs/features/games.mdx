@@ -99,7 +99,7 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
 <Steps>
 
 1. Pick the tab of your game's edition.
-2. Click **Add action** under its actions. It starts as a Follow that spawns one Zombie.
+2. Click **Add action** under its actions. It starts as a Follow that spawns one Zombie, or a Subscription when the profile has neither TikTok nor Twitch.
 3. Pick the trigger, change the step, and click **Add step** for more.
 4. Click the play button to test it.
 
@@ -128,7 +128,7 @@ Each action has its own on/off switch. **Remove action** and each step's **Remov
 
 Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
 
-Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. With two or more [platforms](/docs/features/alerts/#platforms), a trigger can also pick one, and Twitch's Subscription, Gifted subs, Bits, Raid and Channel points, YouTube's Super Chat and Kick's Subscription, Gifted subs, Raid and Channel points are there too.
+Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. Each trigger offers what its [platforms](/docs/features/alerts/#platforms) send, as alerts' do: Twitch's Subscription, Gifted subs, Bits, Raid and Channel points, YouTube's Super Chat and Kick's Kicks, Subscription, Gifted subs, Raid and Channel points are there with those platforms, and with two or more, a trigger can pick one.
 
 | Trigger            | Options                                                                                                               |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- |
@@ -160,16 +160,18 @@ Steps run in order, as you, where you stand. [Minecraft steps](/docs/features/mi
 
 A mob's name and a command can use these. Click one to add it.
 
-| Variable                 | Triggers                                                                  |
-| ------------------------ | ------------------------------------------------------------------------- |
-| `{username}`, `{handle}` | All but Like                                                              |
-| `{comment}`              | Chat, Emote, Subscription, Bits, Channel points, Super Chat               |
-| `{translation}`          | Chat, Emote, with [Chat translation](/docs/features/chat-translation/) on |
-| `{gift}`                 | Gift                                                                      |
-| `{count}`                | Gift (the streak's size, not with **Every gift**)                         |
-| `{count}`                | Subscription (the months), Gifted subs, Bits, Raid (the viewers)          |
-| `{reward}`               | Channel points                                                            |
-| `{amount}`               | Super Chat (as YouTube shows it, like $4.99)                              |
+| Variable                 | Triggers                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | All but Like                                                                                      |
+| `{comment}`              | Chat, Emote, Subscription (not on Kick), Bits, Kicks, Channel points, Super Chat                  |
+| `{translation}`          | Chat, Emote, on a profile with TikTok and [Chat translation](/docs/features/chat-translation/) on |
+| `{gift}`                 | Gift                                                                                              |
+| `{count}`                | Gift (the streak's size, not with **Every gift** nor on YouTube's Gifts)                          |
+| `{count}`                | Subscription (the months), Gifted subs, Bits, Kicks, Raid (the viewers)                           |
+| `{reward}`               | Channel points                                                                                    |
+| `{amount}`               | Super Chat (as YouTube shows it, like $4.99)                                                      |
+
+Only the ones the trigger's platforms fill are offered.
 
 Viewers pick their own names and messages, so Tokio cleans what a variable adds to a command.
 
@@ -182,7 +184,7 @@ Quotes (`"` and `'`), backslashes, brackets and braces (`[ ] { }`), `§`, `@`, `
 
 ## Test
 
-The play button runs the action once with sample values, and lists the game's answers.
+The play button runs the action once with sample values, from the trigger's platform or the profile's first platform that sends its event, and lists the game's answers.
 
 <Screenshot
   name="games-test"
