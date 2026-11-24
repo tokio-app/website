@@ -1,50 +1,72 @@
 ---
-title: Coin stats
-description: The coins and gifts of every LIVE and the viewers who sent them.
+title: LIVE history
+description: Every LIVE, what viewers sent on each platform and who sent the most.
 ---
 
 import Screenshot from "../../../../components/Screenshot.astro";
 
-**Coin stats**, in **Tools**, keeps every LIVE you connect Tokio to: its coins and gifts, and everyone who sent them.
+**LIVE history**, in **Tools**, keeps every LIVE you connect Tokio to: what viewers sent on each platform, and who sent the most. Its row in **Tools** counts the LIVEs it keeps.
 
 <Screenshot
   name="coin-stats"
-  alt="Coin stats in Tools on All time: the coins and gifts, the top gifters, and the LIVEs with their coin bars"
+  alt="LIVE history in Tools on All time: the coins and gifts, the top gifters, and the LIVEs with their coin bars"
 />
+
+## Platforms
+
+With two or more platforms in the history, each has a tab, then **All**. A tab counts in its platform's own money, which is never added to another platform's:
+
+| Tab         | Counts                                                       | Tops                                        |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------- |
+| **TikTok**  | **Coins**, the price of its gifts, and **Gifts**             | **Top gifters**                             |
+| **Twitch**  | **Bits** and **Gifted subs**                                 | **Top Bits** and **Top gifted subs**        |
+| **YouTube** | **Super Chats** in US dollars, **Gifts** and **Gifted subs** | **Top Super Chats** and **Top gifted subs** |
+| **Kick**    | **Kicks** and **Gifted subs**                                | **Top Kicks** and **Top gifted subs**       |
+
+A tab lists only the LIVEs that were on its platform. **All** shows each platform's money side by side, with every gift and gifted sub, and lists the LIVEs by their gifts. It has no top or search: pick a platform's tab for those.
+
+<details>
+<summary>What doesn't count</summary>
+
+- Treasure chests, Super Fan subscriptions and subscriptions don't count. Gifted subs do.
+- YouTube doesn't say what its Gifts cost, so they count as gifts but not as money. Their senders only join a top with Super Chats or gifted subs.
+- A Super Chat in a currency Tokio has no exchange rate for counts as 0 dollars.
+
+</details>
 
 ## Each LIVE
 
-A LIVE joins the list when it ends, newest first, with its date, length and coins. The bar under it compares its coins with the best LIVE in the list.
+A LIVE joins the list when it ends, newest first, with its date, its length and what it made in the tab's money. The bar under it compares it with the best LIVE in the list.
 
-Select one to see its **Coins**, **Gifts** and **Gifters**, the most coins first. They count from when Tokio connected until the end.
+Select one to see its totals and its top. They count from when Tokio connected until the end.
 
-Only gifts count as coins: treasure chests and Super Fan subscriptions don't, and neither do Twitch's Bits and subscriptions or YouTube's Super Chats and memberships. Twitch has no gifts, so a LIVE on Twitch alone has none. Kick's Kicks count as gifts, with their price in Kicks as coins. YouTube doesn't say what its Gifts cost, so their senders never join the **Gifters**.
+## Tops
 
-## All time
+On Twitch, YouTube and Kick, **Rank by** switches the top between the platform's money and **Gifted subs**. A viewer who only gifted subs is only on **Top gifted subs**. TikTok's **Top gifters** ranks coins.
 
-**All time** adds up every LIVE and lists your **Top gifters**. It keeps up to 10,000 gifters, dropping the ones with the fewest coins.
+**All time** adds up every LIVE, with its tops. It keeps up to 10,000 gifters per platform, dropping the ones who sent the least.
 
-The search next to **Top gifters**, or **Gifters** on a LIVE, finds a viewer by name or @handle, with their place. **Top gifters** lists the first 100, and its search looks among everyone.
+The search next to the top finds a viewer by name or @handle, with their place. The top lists the first 100, and its search looks among everyone.
 
-Overlays can show the top 10 gifters of the LIVE and of all time: see [Gifters](/docs/developers/events/#gifters) to build one.
+Overlays can show the top 10 TikTok gifters of the LIVE and of all time: see [Gifters](/docs/developers/events/#gifters) to build one.
 
 ## Filtering by date
 
-Above the list, pick **Last 24 hours**, **Last 7 days**, **Last 30 days** or **Last 12 months**. The list shows the LIVEs in that time, and the first row adds up the coins and gifts sent in it, with its **Top gifters**.
+Above the list, pick **Last 24 hours**, **Last 7 days**, **Last 30 days** or **Last 12 months**. The list shows the LIVEs in that time, and the first row adds up what was sent in it, with its tops.
 
-A LIVE that runs past the start or the end counts only the gifts sent inside the dates, to the minute. **All time** brings back every LIVE.
+A LIVE that runs past the start or the end counts only what was sent inside the dates, to the minute. **All time** brings back every LIVE.
 
 For other dates, pick **Custom dates**, then **On**, **After**, **Before** or **Between** and the days. Each day can take a time, to the minute, except with **On**. A day without a time counts whole: **After** and **Before** leave it out, and **Between** includes it.
 
 ## Deleting
 
-- To delete a LIVE, select it and click the trash button next to its date. Its gifts come off **All time** too.
+- To delete a LIVE, select it and click the trash button next to its date. What it counted comes off **All time** too.
 - To clear the history, select **All time** and click the trash button next to its title. A LIVE you're connected to keeps counting.
 
 <details>
 <summary>How LIVEs are saved</summary>
 
-Each profile keeps its last 1,500 LIVEs on your computer. Past that, the oldest goes, and its gifts come off **All time** too.
+Each profile keeps its last 1,500 LIVEs on your computer. Past that, the oldest goes, and what it counted comes off **All time** too.
 
 Tokio saves the LIVE in progress every 30 seconds, so a crash, or closing Tokio before the LIVE ends, loses at most the last 30 seconds.
 

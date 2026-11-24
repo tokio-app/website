@@ -6,6 +6,7 @@ import {
   getOverlays,
   OVERLAYS_RELEASE_URL,
   OVERLAYS_REPO_URL,
+  PLATFORMS,
   type Overlay,
 } from "../lib/overlays";
 import { formatSize } from "../lib/release";
@@ -15,6 +16,13 @@ import { formatSize } from "../lib/release";
 const lang = langOf(Astro.currentLocale);
 const t = textOf(lang).overlays;
 const overlays = await getOverlays();
+
+// "TikTok, Twitch and Kick"
+function platformList(overlay: Overlay) {
+  const names = overlay.platforms.map((p) => PLATFORMS[p]);
+  const last = names.pop();
+  return names.length ? `${names.join(", ")} ${t.and} ${last}` : (last ?? "");
+}
 
 // Each preview is resized at build time and served from this site. One that
 // can't be fetched shows a placeholder instead of failing the build.
@@ -79,6 +87,11 @@ const items = await Promise.all(
               <div class="info">
                 <h2>{overlay.name}</h2>
                 <p class="description">{overlay.description}</p>
+                {overlay.platforms.length > 0 && (
+                  <p class="meta">
+                    {fill(t.worksOn, { platforms: platformList(overlay) })}
+                  </p>
+                )}
                 <p class="meta">
                   {fill(t.version, { version: overlay.version })}{" "}
                   <a href={overlay.url}>{t.downloadZip}</a>{" "}

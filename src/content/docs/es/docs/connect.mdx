@@ -38,11 +38,11 @@ Configura todo antes de salir en vivo. Tokio solo puede conectarse a TikTok y a 
 
 4. **Sal en vivo y conéctate**
 
-   Inicia tu LIVE. En **Inicio**, cada plataforma donde transmites tiene una fila; haz clic en **Agregar una plataforma** para sumar Twitch, YouTube o Kick. Para TikTok, escribe tu `@usuario`, para [YouTube](#conéctate-a-youtube), el `@handle` de tu canal o un enlace al LIVE, y para [Kick](#conéctate-a-kick), el nombre de tu canal o su enlace de kick.com. Luego haz clic en **Conectar**.
+   Inicia tu LIVE. En **Inicio**, cada plataforma donde transmites tiene una pestaña; el **+** que sigue a las pestañas suma Twitch, YouTube o Kick. Para TikTok, escribe tu `@usuario`, para [YouTube](#conéctate-a-youtube), el `@handle` de tu canal o un enlace al LIVE, y para [Kick](#conéctate-a-kick), el nombre de tu canal o su enlace de kick.com. Luego haz clic en **Conectar**.
 
    <Screenshot
      name="home-connect"
-     alt="El cuadro de conexión en Inicio, con @tokio.demo escrito y el botón Conectar"
+     alt="Inicio antes de conectar: Desconectado, la pestaña de TikTok con el + al lado, @tokio.demo escrito y el botón Conectar"
    />
 
 </Steps>
@@ -80,17 +80,17 @@ El chat de Kick está abierto antes de que empiece la transmisión, así que, co
 
 Tokio lee el sitio web y el feed de chat de Kick como lo hace la propia página de kick.com, sin una API oficial. Un cambio del lado de Kick puede hacer que deje de funcionar hasta que una actualización de Tokio lo arregle, como cuando Kick cambió su feed de chat en octubre de 2026.
 
-En Kick, los Kicks cuentan como regalos, con su precio en Kicks como monedas. Las suscripciones cuentan como suscripciones, con sus meses, las suscripciones regaladas como suscripciones regaladas, un solo evento por todo el regalo, los hosts como raids, con los espectadores que traen, y las recompensas del canal como puntos del canal. Los emotes de Kick cuentan como emotes del chat. Kick no envía seguimientos, porque su feed de chat no los trae, ni Me gusta, compartidos o vistas totales.
+En Kick, los Kicks son el dinero de Kick, como los Bits de Twitch: llegan como su propio evento, **Kicks**, con cuántos envió el espectador y el mensaje que fijó, si lo hay. Kick no envía regalos. Las suscripciones cuentan como suscripciones, con sus meses, las suscripciones regaladas como suscripciones regaladas, un solo evento por todo el regalo, los hosts como raids, con los espectadores que traen, y las recompensas del canal como puntos del canal. Los emotes de Kick cuentan como emotes del chat. Kick no envía seguimientos, porque su feed de chat no los trae, ni Me gusta, compartidos o vistas totales.
 
 ## Varias plataformas juntas
 
-Cada plataforma donde transmites tiene su propia fila en **Inicio**, y todas se conectan al mismo LIVE. **Agregar una plataforma** suma otra, incluso mientras estás en LIVE, y la × al final de una fila la quita una vez que esa plataforma está desconectada. El perfil guarda tu lista.
+Cada plataforma donde transmites tiene su propia pestaña arriba en **Inicio**, y todas se conectan al mismo LIVE. El **+** que sigue a las pestañas suma otra, incluso mientras estás en LIVE, y la × en la pestaña de una plataforma la quita una vez que esa plataforma está desconectada. El perfil guarda tu lista.
 
-Una fila muestra el logo y el nombre de la plataforma, tu `@usuario` de TikTok, tu cuenta de Twitch, tu canal de YouTube o tu canal de Kick, y debajo cómo va: **Conectando…**, **Conectado**, **Reconectando…**, **Esperando el LIVE…** o **Sin conexión**. La clave de Euler Stream es solo para TikTok.
+La pestaña de una plataforma tiene tu `@usuario` de TikTok, tu cuenta de Twitch, tu canal de YouTube o tu canal de Kick, y debajo cómo va: **Conectando…**, **Conectado**, **Reconectando…**, **Esperando el LIVE…** o **Sin conexión**. La clave de Euler Stream es solo para TikTok. El logo de una pestaña se pone rosa mientras su plataforma está conectada.
 
-**Conectar todo** conecta todas las plataformas que están listas, y el **Conectar** o **Desconectar** de una fila actúa solo sobre esa plataforma. Una plataforma que no está lista dice en su fila qué le falta, como **Escribe el canal primero.**, y las demás se conectan igual. Si una falla o se cae por completo, el LIVE sigue y su fila vuelve a ofrecer **Conectar**. Cuando el LIVE termina en una plataforma, Tokio sigue con las demás. **Desconectar todo** sale de todas, y Tokio se desconecta solo cuando cae la última.
+**Conectar todo**, junto al estado sobre las pestañas, conecta todas las plataformas que están listas, y el **Conectar** o **Desconectar** en la pestaña de una plataforma actúa solo sobre esa plataforma. Una plataforma que no está lista pone su pestaña en rojo y dice qué le falta, como **Escribe el canal primero.**; las demás se conectan igual, e **Inicio** te abre su pestaña. Si una falla o se cae por completo, el LIVE sigue y su pestaña vuelve a ofrecer **Conectar**. Cuando el LIVE termina en una plataforma, Tokio sigue con las demás. **Desconectar todo** sale de todas, y Tokio se desconecta solo cuando cae la última.
 
-Twitch y Kick se conectan a tu canal incluso antes de que salgas en vivo. La cantidad de espectadores de Twitch y la de YouTube se actualizan cada 30 segundos, la de Kick cada 60, y **Espectadores** suma las de todas las plataformas.
+Twitch y Kick se conectan a tu canal incluso antes de que salgas en vivo. La cantidad de espectadores de Twitch y la de YouTube se actualizan cada 30 segundos, y la de Kick cada 60.
 
 Cada plataforma envía sus propios eventos:
 
@@ -98,29 +98,43 @@ Cada plataforma envía sus propios eventos:
 | ---------------------------------------------- | ------------------------------ |
 | El chat                                        | TikTok, Twitch, YouTube y Kick |
 | Los seguidores                                 | TikTok y Twitch                |
-| Los regalos                                    | TikTok, YouTube y Kick         |
+| Los regalos                                    | TikTok y YouTube               |
 | Las suscripciones y suscripciones regaladas    | Twitch, YouTube y Kick         |
 | Los raids y los puntos del canal               | Twitch y Kick                  |
 | Los Me gusta, los compartidos y los Super Fans | TikTok                         |
 | Los Bits                                       | Twitch                         |
 | Los Super Chats                                | YouTube                        |
+| Los Kicks                                      | Kick                           |
 
-Los regalos de TikTok y los Kicks de Kick cuentan como monedas. Los Bits no, y YouTube no dice cuánto cuesta un Regalo, así que sus Regalos no suman ninguna.
+El dinero de cada plataforma se cuenta aparte y nunca se suma al de otra: las monedas de TikTok, los Bits de Twitch, los Super Chats de YouTube y los Kicks de Kick. Los Super Chats llegan en la moneda de cada espectador, así que Tokio los suma en dólares estadounidenses, con los tipos de cambio del día de Frankfurter. YouTube no dice cuánto cuesta un Regalo, así que sus Regalos cuentan como regalos y no suman dinero.
+
+En Twitch, YouTube y Kick, las insignias del chat dicen quién modera y quién está suscrito o es miembro, con sus meses cuando la insignia los muestra. En Twitch y Kick también dicen quién es VIP.
 
 ## Durante tu LIVE
 
-Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** y **Quienes más regalaron** en el LIVE.
+Mientras estás conectado, **Inicio** muestra cuánto tiempo llevas en LIVE y tus **Espectadores**, con una línea del LIVE hasta ahora y su **Pico**. Debajo están los números del LIVE y quienes más enviaron.
 
-Los Me gusta, las vistas totales y los compartidos son de TikTok, y los regalos llegan con TikTok, YouTube o Kick. Las monedas y quienes más regalaron necesitan regalos con precio, así que llegan con TikTok o Kick: los Regalos de YouTube cuentan en **Regalos**, pero quienes los envían nunca entran en **Quienes más regalaron**. Con Twitch como única plataforma, solo aparece **Seguidores nuevos** debajo de **Espectadores**, con YouTube solo, **Regalos**, porque YouTube no envía seguimientos, y con Kick solo, **Regalos**, **Monedas** y **Quienes más regalaron**.
+Son los números de la plataforma cuya pestaña está abierta, y cada pestaña muestra junto a su nombre los espectadores de su plataforma en ese momento. Una plataforma que desconectas conserva sus números en su pestaña hasta que termina el LIVE. Cada pestaña muestra lo que envía su plataforma:
+
+| Pestaña | Números                                                                                            | Listas                                                                         |
+| ------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| TikTok  | **Me gusta**, **Vistas totales**, **Seguidores nuevos**, **Compartidos**, **Regalos**, **Monedas** | **Quienes más regalaron**                                                      |
+| Twitch  | **Seguidores nuevos**, **Suscripciones regaladas**, **Bits**                                       | **Quienes más Bits enviaron** y **Quienes más suscripciones regalaron**        |
+| YouTube | **Regalos**, **Suscripciones regaladas**, **Super Chats**                                          | **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
+| Kick    | **Suscripciones regaladas**, **Kicks**                                                             | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**       |
+
+Cada lista ordena una sola cosa: **Quienes más regalaron**, las monedas de TikTok; **Quienes más Bits enviaron**, **Quienes más Kicks enviaron** y **Quienes más Super Chats enviaron**, su dinero; y **Quienes más suscripciones regalaron**, las suscripciones que regaló cada espectador, aparte del dinero. Los Regalos de YouTube cuentan en **Regalos**, pero nadie entra en una lista por ellos, porque no tienen precio. **Super Chats** muestra un guion hasta que cargan los tipos de cambio.
+
+Con dos o más plataformas, una pestaña **Todas** suma los espectadores, los conteos y las suscripciones regaladas, con un recuadro para el dinero de cada plataforma. No tiene listas de quienes más enviaron, porque ordenarían un dinero contra otro.
 
 También se enciende una línea rosa arriba de la barra de título.
 
 <Screenshot
   name="dashboard"
-  alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, los espectadores con su línea, los números del LIVE y quienes más regalaron, las funciones y el feed de actividad con la canción que suena"
+  alt="La página de Inicio durante un LIVE: cuánto tiempo lleva, la pestaña de TikTok con sus espectadores y su línea, sus números y quienes más regalaron, las funciones y el feed de actividad con la canción que suena"
 />
 
-El feed de **Actividad** guarda los últimos 100 eventos, de todas las plataformas. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
+El feed de **Actividad** guarda los últimos 100 eventos, de todas las plataformas. Un regalo de TikTok muestra su precio en monedas, y los Bits y los Kicks muestran el mensaje que se envió con ellos. Se queda al terminar el LIVE, hasta el siguiente. Con la [Traducción del chat](/es/docs/features/chat-translation/) activada, un mensaje en otro idioma muestra su traducción debajo.
 
 Mientras suena una canción, **Sonando ahora** al pie de **Actividad** muestra su portada, su nombre y su artista.
 

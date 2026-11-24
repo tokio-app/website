@@ -8,6 +8,15 @@ const CATALOG_URL = `${OVERLAYS_REPO_URL}/releases/latest/download/overlays.json
 // Zips and previews only come from that repo's releases.
 const RELEASES_PREFIX = `${OVERLAYS_REPO_URL}/releases/download/`;
 
+// The platforms Tokio connects to, in its order, with their own names
+export const PLATFORMS = {
+  tiktok: "TikTok",
+  twitch: "Twitch",
+  youtube: "YouTube",
+  kick: "Kick",
+} as const;
+export type Platform = keyof typeof PLATFORMS;
+
 export interface Overlay {
   /** Its folder name, and its path in Tokio's overlay URL. Never changes. */
   id: string;
@@ -18,6 +27,8 @@ export interface Overlay {
   url: string;
   size: number;
   preview: string | null;
+  /** Where it works, in PLATFORMS' order. */
+  platforms: Platform[];
 }
 
 let cached: Promise<Overlay[] | null> | undefined;
@@ -51,6 +62,7 @@ async function fetchOverlays(): Promise<Overlay[] | null> {
       url: overlay.url,
       size: overlay.size,
       preview: isRelease(overlay.preview) ? overlay.preview : null,
+      platforms: platformsOf(overlay.platforms),
     }));
   } catch (error) {
     console.warn(`[overlays] No overlay list: ${(error as Error).message}`);
@@ -73,8 +85,18 @@ function isOverlay(value: unknown): value is Overlay {
     typeof value.description === "string" &&
     typeof value.size === "number" &&
     isRelease(value.url) &&
-    (value.preview === null || typeof value.preview === "string")
+    (value.preview === null || typeof value.preview === "string") &&
+    (value.platforms === undefined ||
+      (Array.isArray(value.platforms) &&
+        value.platforms.every((p) => typeof p === "string")))
   );
+}
+
+// A catalog without the field means every platform, as Tokio reads it, and
+// a name this site doesn't know is left out.
+function platformsOf(list: unknown): Platform[] {
+  const all = Object.keys(PLATFORMS) as Platform[];
+  return Array.isArray(list) ? all.filter((p) => list.includes(p)) : all;
 }
 
 function isRelease(url: unknown): url is string {

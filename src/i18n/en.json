@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Tokio: make your TikTok LIVE react",
-    "description": "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
+    "title": "Tokio: make your live stream react",
+    "description": "Make your live stream react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
   },
   "header": {
     "nav": "Main",
@@ -14,7 +14,7 @@
     "language": "Language"
   },
   "footer": {
-    "intro": "Free and open source. Tokio is not affiliated with or endorsed by TikTok or ByteDance.",
+    "intro": "Free and open source. Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube, Google or Kick.",
     "product": "Product",
     "features": "Features",
     "overlays": "Overlays",
@@ -75,7 +75,7 @@
     ]
   },
   "home": {
-    "title": "Make your TikTok LIVE react.",
+    "title": "Make your live stream react.",
     "lead": "Tokio turns chat, gifts and follows into voices, songs, alerts and overlays on your stream.",
     "readDocs": "Read the docs",
     "meta": "Free and open source, for Windows, macOS and Linux.",
@@ -125,8 +125,8 @@
         ]
       },
       "coinStats": {
-        "title": "Coin stats",
-        "text": "Every LIVE's coins and gifts, and who sent them. Overlays can show your top gifters.",
+        "title": "LIVE history",
+        "text": "What viewers sent in every LIVE, each platform's money apart, and who sent it. Overlays can show your top TikTok gifters.",
         "example": [
           { "name": "Leo", "value": "21,987 coins" },
           { "name": "Maya", "value": "14,768 coins" },
@@ -204,6 +204,8 @@
     "makeYourOwn": "Make your own",
     "previewOf": "Preview of {name}",
     "noPreview": "No preview yet",
+    "worksOn": "Works on {platforms}.",
+    "and": "and",
     "version": "Version {version}.",
     "downloadZip": "Download the zip",
     "loadFailed": "The list of overlays couldn't be loaded.",
@@ -214,7 +216,7 @@
     "title": "About and license",
     "description": "Who makes Tokio, how it's licensed, the online services it uses and how your data is handled.",
     "heading": "About Tokio",
-    "intro": "Tokio is a free, open-source desktop app that connects to your TikTok LIVE and reacts to it with text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays, including ones you build yourself. It's made by Italo Alfaro and contributors and developed in the open on <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio is a free, open-source desktop app that connects to your live stream and reacts to it with text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays, including ones you build yourself. It's made by Italo Alfaro and contributors and developed in the open on <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro and contributors.",
     "licenseTitle": "License",
     "license": [
@@ -277,6 +279,10 @@
       {
         "name": "YouTube",
         "note": "Music requests, and a LIVE's chat, Super Chats, memberships, Gifts and viewer count (www.youtube.com), read from YouTube's public pages the way youtube.com does, which isn't an official API."
+      },
+      {
+        "name": "Frankfurter",
+        "note": "The US dollar's exchange rates (api.frankfurter.dev), to add up a LIVE's YouTube Super Chats in dollars, fetched at most once a day while YouTube is part of a LIVE. Central banks' public reference rates; the service is free, open source (MIT) and needs no key."
       },
       {
         "name": "uBlock Origin's filter lists",

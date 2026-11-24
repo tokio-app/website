@@ -1,12 +1,12 @@
 ---
 title: Temporizador
-description: Una cuenta regresiva en tu stream a la que los espectadores suman tiempo con regalos, Me gusta, seguimientos, suscripciones, Bits, Super Chats y el chat.
+description: Una cuenta regresiva en tu stream a la que los espectadores suman tiempo con regalos, Me gusta, seguimientos, suscripciones, Bits, Kicks, Super Chats y el chat.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores suman tiempo cuando envían regalos, dan Me gusta, te siguen, comparten, se hacen Super Fans, se suscriben, envían Bits o Super Chats o escriben en el chat.
+Una cuenta regresiva estilo subathon en tu stream, a la que los espectadores suman tiempo cuando envían regalos, dan Me gusta, te siguen, comparten, se hacen Super Fans, se suscriben, envían Bits, Kicks o Super Chats o escriben en el chat.
 
 <Screenshot
   name="timer-preview"
@@ -66,11 +66,12 @@ Los eventos suman tiempo solo después de que presionas **Iniciar**. Por defecto
 | **Suscripciones nuevas**    | 300 segundos cada una                      |
 | **Suscripciones regaladas** | 300 segundos por suscripción regalada      |
 | **Bits**                    | 1 segundo por Bit                          |
+| **Kicks**                   | 1 segundo por Kick                         |
 | **Super Chats**             | 300 segundos cada uno                      |
 
 En **Me gusta**, el segundo número define cuántos Me gusta suman tiempo juntos.
 
-**Suscripciones nuevas** y **Suscripciones regaladas** vienen de Twitch, de Kick y de las membresías de YouTube, **Bits** de Twitch y **Super Chats** de YouTube. **Suscripciones nuevas** cuenta cada suscripción o renovación, y **Suscripciones regaladas** y **Bits** cuentan cada suscripción regalada y cada Bit. **Super Chats** suma los mismos segundos por cada Super Chat o Super Sticker, sin importar cuánto costó, porque las divisas cambian de un país a otro. **Monedas** cuenta los regalos de TikTok y los Kicks de Kick por su precio, y solo aparece con TikTok o Kick, porque YouTube no dice cuánto cuestan sus Regalos. Las filas, y los activadores del overlay, solo muestran lo que envían las [plataformas](/es/docs/connect/#varias-plataformas-juntas) del perfil: con solo Twitch, no hay monedas, Me gusta, compartidos ni Super Fans.
+**Suscripciones nuevas** y **Suscripciones regaladas** vienen de Twitch, de Kick y de las membresías de YouTube, **Bits** de Twitch, **Kicks** de Kick y **Super Chats** de YouTube. **Suscripciones nuevas** cuenta cada suscripción o renovación, y **Suscripciones regaladas**, **Bits** y **Kicks** cuentan cada suscripción regalada, cada Bit y cada Kick. **Super Chats** suma los mismos segundos por cada Super Chat o Super Sticker, sin importar cuánto costó, porque las divisas cambian de un país a otro. **Monedas** cuenta los regalos de TikTok por su precio, y solo aparece con TikTok, porque YouTube no dice cuánto cuestan sus Regalos. Las filas, y los activadores del overlay, solo muestran lo que envían las [plataformas](/es/docs/connect/#varias-plataformas-juntas) del perfil: con solo Twitch, no hay monedas, Me gusta, compartidos ni Super Fans.
 
 - Con 0 segundos, el evento no suma tiempo. **Multiplicador** multiplica todos los eventos, como 2 para una hora de tiempo doble.
 - **Tiempo máximo** deja de sumar tiempo cuando el reloj llega a ese valor. Con 0 no hay límite.

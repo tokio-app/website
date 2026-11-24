@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Tokio: haz que tu LIVE de TikTok reaccione",
-    "description": "Haz que tu LIVE de TikTok reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
+    "title": "Tokio: haz que tu stream en vivo reaccione",
+    "description": "Haz que tu stream en vivo reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
   },
   "header": {
     "nav": "Principal",
@@ -14,7 +14,7 @@
     "language": "Idioma"
   },
   "footer": {
-    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo.",
+    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni Kick, ni cuenta con su respaldo.",
     "product": "Producto",
     "features": "Funciones",
     "overlays": "Overlays",
@@ -84,7 +84,7 @@
     ]
   },
   "home": {
-    "title": "Haz que tu LIVE de TikTok reaccione.",
+    "title": "Haz que tu stream en vivo reaccione.",
     "lead": "Tokio convierte el chat, los regalos y los seguidores en voces, canciones, alertas y overlays para tu stream.",
     "readDocs": "Lee la documentación",
     "meta": "Gratis y de código abierto, para Windows, macOS y Linux.",
@@ -162,8 +162,8 @@
         ]
       },
       "coinStats": {
-        "title": "Monedas",
-        "text": "Las monedas y los regalos de cada LIVE, y quienes los enviaron. Los overlays pueden mostrar quienes más te regalan.",
+        "title": "Historial de LIVEs",
+        "text": "Lo que enviaron los espectadores en cada LIVE, con el dinero de cada plataforma aparte, y quiénes lo enviaron. Los overlays pueden mostrar quienes más te regalan en TikTok.",
         "example": [
           {
             "name": "Leo",
@@ -250,6 +250,8 @@
     "makeYourOwn": "Crea el tuyo",
     "previewOf": "Vista previa de {name}",
     "noPreview": "Todavía sin vista previa",
+    "worksOn": "Funciona en {platforms}.",
+    "and": "y",
     "version": "Versión {version}.",
     "downloadZip": "Descargar el zip",
     "loadFailed": "No se pudo cargar la lista de overlays.",
@@ -260,7 +262,7 @@
     "title": "Acerca de y licencia",
     "description": "Quién hace Tokio, su licencia, los servicios en línea que usa y qué pasa con tus datos.",
     "heading": "Acerca de Tokio",
-    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays, incluidos los que creas tú. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu stream en vivo y reacciona con texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays, incluidos los que creas tú. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro y colaboradores.",
     "licenseTitle": "Licencia",
     "license": [
@@ -326,6 +328,10 @@
       {
         "name": "YouTube",
         "note": "Pedidos de canciones, y el chat, los Super Chats, las membresías, los Regalos y la cantidad de espectadores de un LIVE (www.youtube.com), leídos de las páginas públicas de YouTube como lo hace youtube.com, que no son una API oficial."
+      },
+      {
+        "name": "Frankfurter",
+        "note": "Los tipos de cambio del dólar estadounidense (api.frankfurter.dev), para sumar en dólares los Super Chats de YouTube de un LIVE, que se consultan como mucho una vez al día mientras YouTube es parte de un LIVE. Son los tipos de referencia públicos de los bancos centrales; el servicio es gratis, de código abierto (MIT) y no necesita clave."
       },
       {
         "name": "Listas de filtros de uBlock Origin",

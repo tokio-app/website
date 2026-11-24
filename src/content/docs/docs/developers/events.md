@@ -26,6 +26,7 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 | `RAID`           | `tokio:event:raid`         | Another channel raids or hosts you              |
 | `REDEEM`         | `tokio:event:redeem`       | A viewer redeems a channel points reward        |
 | `SUPER_CHAT`     | `tokio:event:superchat`    | A viewer sends a Super Chat or Super Sticker    |
+| `KICKS`          | `tokio:event:kicks`        | A viewer sends Kicks on Kick                    |
 | `MUSIC_CHANGE`   | `tokio:event:music:change` | The music request queue changes                 |
 
 ## Platforms
@@ -36,17 +37,18 @@ Tokio connects to TikTok, Twitch, YouTube and Kick, alone or several in the same
 | ------------------------------------------------------------------------------------------ | -------------------------------- |
 | `CHAT` and chat emotes                                                                     | TikTok, Twitch, YouTube and Kick |
 | `FOLLOW`                                                                                   | TikTok and Twitch                |
-| `GIFT`                                                                                     | TikTok, YouTube and Kick         |
+| `GIFT`                                                                                     | TikTok and YouTube               |
 | `SUBSCRIBE`, `GIFT_SUB`                                                                    | Twitch, YouTube and Kick         |
 | `RAID`, `REDEEM`                                                                           | Twitch and Kick                  |
 | `SHARE`, `LIKE`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok                           |
 | `CHEER`                                                                                    | Twitch                           |
 | `SUPER_CHAT`                                                                               | YouTube                          |
+| `KICKS`                                                                                    | Kick                             |
 | `ROOM_USER`                                                                                | All of them, summed              |
 
 An overlay gets the events of every platform the profile connects to, so check `user.platform` to tell them apart. `ROOM_USER` adds up `viewers` and `views` across the platforms, which is TikTok's alone when no other is connected. Twitch, YouTube and Kick have no `views`, so they add 0, and `ranks` are TikTok's. Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
 
-In Tokio's previews, the Twitch events and `SUPER_CHAT` come as samples when you click **Test**. Twitch only has Bits and channel points on Affiliate and Partner channels.
+In Tokio's previews, **Test** sends the events of the profile's platforms, each the way its platform sends it. Twitch only has Bits and channel points on Affiliate and Partner channels.
 
 ## Settings
 
@@ -54,15 +56,15 @@ Tokio sends `CONFIG` (`tokio:config`) with the overlay's settings when the strea
 
 ## Fans
 
-Tokio sends `FANS` (`tokio:fans`) with the fans the streamer's profile has seen in its LIVEs, when the overlay connects, after a profile switch, and again when the list changes, at most every 5 seconds. In Tokio's previews, it comes as a sample when you click **Test**.
+Tokio sends `FANS` (`tokio:fans`) with the TikTok fans the streamer's profile has seen in its LIVEs, when the overlay connects, after a profile switch, and again when the list changes, at most every 5 seconds. In Tokio's previews, it comes as a sample when you click **Test**.
 
-TikTok only sends a viewer's fan level when they do something in the LIVE, so this list has fans your overlay hasn't seen yet. It holds up to 100, from the highest fan level down and, at the same level, the most recently seen first.
+TikTok only sends a viewer's fan level when they do something in the LIVE, so this list has fans your overlay hasn't seen yet. It holds up to 100, from the highest fan level down and, at the same level, the most recently seen first. Twitch's and Kick's subscribers and YouTube's members stay out of it.
 
 ## Gifters
 
 Tokio sends `GIFTERS` (`tokio:gifters`) with the top gifters, at most once a second: when the overlay connects, after a profile loads, when a LIVE starts, ends or is deleted, when the history is cleared, and on gifts.
 
-`live` is this LIVE's top 10 by coins, empty while Tokio isn't connected. `allTime` is the top 10 across every LIVE the profile kept, this one included. YouTube's Gifts have no price, so YouTube viewers never show here. Kick viewers who send Kicks do, with their price in Kicks as coins.
+`live` is this LIVE's top 10 TikTok gifters by coins, empty while Tokio isn't connected. `allTime` is the top 10 across every LIVE the profile kept, this one included. Only TikTok's coins count, so Twitch's Bits, YouTube's Super Chats and Gifts and Kick's Kicks never put anyone here, and one platform's money never ranks against another's.
 
 Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't.
 
@@ -100,24 +102,28 @@ interface UserData {
   superfan?: boolean;
   follower?: boolean;
   moderator?: boolean;
+  vip?: boolean; // a VIP on Twitch or Kick
   fanLevel?: number;
   fanBadge?: string; // the picture of the fan level's badge
   userId?: string; // the platform's id, which stays when the handle changes
   platform?: "tiktok" | "twitch" | "youtube" | "kick"; // missing means TikTok
+  subMonths?: number; // months subscribed or a member, from their chat badge
 }
 ```
 
-`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. YouTube's chat doesn't give a Gift's sender's channel id, so theirs is `youtube:` and their @handle, like `youtube:@tokio`. A Kick chatter's and a Kick's sender's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions, gifted subs and hosts name people only by username, so those users have no `userId`.
+`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. YouTube's chat doesn't give a Gift's sender's channel id, so Tokio uses the one it saw on their other events in the LIVE, and otherwise `youtube:` and their @handle, like `youtube:@tokio`. A Kick viewer's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions and gifted subs name people only by username, so Tokio finds their id in the LIVE's chat or looks up their channel, and sends the event without one when that fails. Kick's hosts and channel rewards come without a `userId`.
 
 `fanBadge` is the picture TikTok shows for the fan level: a heart that changes every 10 levels, without the number, so draw `fanLevel` next to it. It's empty for a viewer who isn't a fan.
 
 `follower`, `moderator` and `superfan` are only real on `CHAT` and `GIFT`. Every other TikTok event sends `false`, even `FOLLOW`.
 
-Twitch's chat says who moderates and who subscribes, but not who follows. On a Twitch `CHAT`, `moderator` is true for your moderators and for you, `superfan` for your subscribers, and `follower` is always `false`. A Twitch viewer has no `fanLevel` or `fanBadge`, nor profile pictures, except a raiding streamer's. Its other events leave `moderator` and `superfan` out. A cheer, subscription or gift from an anonymous viewer comes with the username `Anonymous`, and no `userId`.
+Twitch's chat says who moderates and who subscribes, but not who follows. On a Twitch `CHAT`, `moderator` is true for your moderators and for you, `superfan` for your subscribers, `vip` for your VIPs, and `follower` is always `false`. A Twitch viewer has no `fanLevel` or `fanBadge`, nor profile pictures, except a raiding streamer's. Its other events leave `moderator`, `superfan` and `vip` out. A cheer, subscription or gift from an anonymous viewer comes with the username `Anonymous`, and no `userId`.
 
 On a YouTube `CHAT`, `moderator` is true for your channel's moderators and for you, `superfan` for its members, and `follower` is always `false`, since YouTube has no followers. A YouTube viewer has no `fanLevel` or `fanBadge`, but chatters do have profile pictures.
 
-On a Kick `CHAT`, `moderator` is true for your moderators and for you, `superfan` for your subscribers and founders, and `follower` is always `false`, since Kick's chat says nothing about follows. A Kick viewer has no `fanLevel` or `fanBadge`. Chatters have no profile pictures, but a Kick's sender does.
+On a Kick `CHAT`, `moderator` is true for your moderators and for you, `superfan` for your subscribers and founders, `vip` for your VIPs, and `follower` is always `false`, since Kick's chat says nothing about follows. A Kick viewer has no `fanLevel` or `fanBadge`. Chatters have no profile pictures, but a Kicks sender does.
+
+`subMonths` is how many months a Twitch or Kick subscriber, or a YouTube member, has been one, when their chat badge says so. YouTube's badge shows only a milestone, so a member of a year has 12, and a new member none. It's missing on TikTok, and on Twitch's and Kick's events other than `CHAT`.
 
 | Event                                                  | Data                                                                      |
 | ------------------------------------------------------ | ------------------------------------------------------------------------- |
@@ -132,7 +138,8 @@ On a Kick `CHAT`, `moderator` is true for your moderators and for you, `superfan
 | `CHEER`                                                | `{ user, bits, message }`                                                 |
 | `RAID`                                                 | `{ user, viewers }`                                                       |
 | `REDEEM`                                               | `{ user, reward: { id, title, cost }, input }`                            |
-| `SUPER_CHAT`                                           | `{ user, amount, message, sticker }`                                      |
+| `SUPER_CHAT`                                           | `{ user, amount, usd, message, sticker }`                                 |
+| `KICKS`                                                | `{ user, kicks, message }`                                                |
 | `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
 | `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
@@ -148,11 +155,11 @@ On YouTube, `SUBSCRIBE` is a membership: a new member, or a milestone with its `
 
 On Kick, `SUBSCRIBE`'s `months` is how many months the viewer has subscribed, `tier` is always empty, as is `GIFT_SUB`'s, and a `GIFT_SUB` comes once for the whole gift. A `RAID` is a host: its `user` is the hosting streamer, by username, and `viewers` the people they brought.
 
-`SUPER_CHAT`'s `amount` is what the viewer paid, as YouTube shows it, like `"$4.99"`, so don't add amounts up: they can be in different currencies. `message` is what they wrote, empty for a Super Sticker, and `sticker` is the Super Sticker's picture URL, empty for a Super Chat.
+`SUPER_CHAT`'s `amount` is what the viewer paid, as YouTube shows it, like `"$4.99"`, so don't add amounts up: they can be in different currencies. Add up `usd` instead, the amount in US dollars at the day's exchange rates. It's `null` when Tokio couldn't read the amount, before the rates load, or for a currency they don't have. `message` is what they wrote, empty for a Super Sticker, and `sticker` is the Super Sticker's picture URL, empty for a Super Chat.
 
 A YouTube Gift, bought with Jewels, comes as `GIFT` with an `id` of `youtube:` and its picture's file name, like `youtube:vicecity_heart_v2`, and `coins: 0`, since YouTube doesn't say what it costs. Its sender never joins `GIFTERS`.
 
-A Kick comes as `GIFT` with an `id` of `kick:` and its gift id, and `coins` is what it cost in Kicks.
+`KICKS` is Kick's money, like `CHEER`'s Bits: `kicks` is how many the viewer sent, and `message` what they pinned with them, empty for nothing. Kick sends no `GIFT`.
 
 `gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
 

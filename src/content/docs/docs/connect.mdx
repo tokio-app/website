@@ -38,11 +38,11 @@ Set everything up before you go live. Tokio can only connect to TikTok and YouTu
 
 4. **Go live and connect**
 
-   Start your LIVE. On **Home**, each platform you stream to has a row; click **Add a platform** to add Twitch, YouTube or Kick. For TikTok, enter your `@username`, for [YouTube](#connect-to-youtube), your channel's `@handle` or a link to the LIVE, and for [Kick](#connect-to-kick), your channel's name or its kick.com link. Then click **Connect**.
+   Start your LIVE. On **Home**, each platform you stream to has a tab; the **+** after them adds Twitch, YouTube or Kick. For TikTok, enter your `@username`, for [YouTube](#connect-to-youtube), your channel's `@handle` or a link to the LIVE, and for [Kick](#connect-to-kick), your channel's name or its kick.com link. Then click **Connect**.
 
    <Screenshot
      name="home-connect"
-     alt="The connect box on Home, with @tokio.demo typed in and the Connect button"
+     alt="Home before connecting: Offline, the TikTok tab with the + after it, @tokio.demo typed in and the Connect button"
    />
 
 </Steps>
@@ -80,17 +80,17 @@ Kick's chat is open before the stream starts, so, as with Twitch, Tokio connects
 
 Tokio reads Kick's website and chat feed the way kick.com's own page does, without an official API. A change on Kick's side can stop it from working until a Tokio update fixes it, as when Kick changed its chat feed in October 2026.
 
-On Kick, Kicks count as gifts, with their price in Kicks as coins. Subscriptions count as subscriptions, with their months, gifted subs as gifted subs, one event for the whole gift, hosts as raids, with the viewers they bring, and channel rewards as channel points. Kick's emotes count as chat emotes. Kick doesn't send follows, since its chat feed carries none, nor likes, shares or total views.
+On Kick, Kicks are Kick's money, like Twitch's Bits: they come as their own event, **Kicks**, with how many the viewer sent and the message they pinned, if any. Kick sends no gifts. Subscriptions count as subscriptions, with their months, gifted subs as gifted subs, one event for the whole gift, hosts as raids, with the viewers they bring, and channel rewards as channel points. Kick's emotes count as chat emotes. Kick doesn't send follows, since its chat feed carries none, nor likes, shares or total views.
 
 ## Several platforms together
 
-Each platform you stream to has its own row on **Home**, and they all connect to the same LIVE. **Add a platform** adds another, even while you're LIVE, and the × at the end of a row removes it once that platform is disconnected. The profile keeps your list.
+Each platform you stream to has its own tab at the top of **Home**, and they all connect to the same LIVE. The **+** after the tabs adds another, even while you're LIVE, and the × in a platform's tab removes it once that platform is disconnected. The profile keeps your list.
 
-A row shows the platform's logo and name, your TikTok `@username`, your Twitch account, your YouTube channel or your Kick channel, and under it how it's doing: **Connecting…**, **Connected**, **Reconnecting…**, **Waiting for the LIVE…** or **Not connected**. The Euler Stream key is only for TikTok.
+A platform's tab holds your TikTok `@username`, your Twitch account, your YouTube channel or your Kick channel, and under it how it's doing: **Connecting…**, **Connected**, **Reconnecting…**, **Waiting for the LIVE…** or **Not connected**. The Euler Stream key is only for TikTok. A tab's logo turns rose while its platform is connected.
 
-**Connect all** connects every platform that's ready, and a row's own **Connect** or **Disconnect** works on that platform alone. A platform that isn't ready says what it needs in its row, like **Type the channel first.**, and the others connect anyway. If one fails or drops for good, the LIVE goes on and its row offers **Connect** again. When the LIVE ends on one platform, Tokio keeps going on the others. **Disconnect all** leaves every platform, and Tokio disconnects on its own when the last one is down.
+**Connect all**, next to the status above the tabs, connects every platform that's ready, and the **Connect** or **Disconnect** in a platform's tab works on that platform alone. A platform that isn't ready turns its tab red and says what it needs, like **Type the channel first.**; the others connect anyway, and Home opens its tab for you. If one fails or drops for good, the LIVE goes on and its tab offers **Connect** again. When the LIVE ends on one platform, Tokio keeps going on the others. **Disconnect all** leaves every platform, and Tokio disconnects on its own when the last one is down.
 
-Twitch and Kick connect to your channel even before you go live. Twitch's and YouTube's viewer counts update every 30 seconds, Kick's every 60, and **Viewers** adds up every platform's.
+Twitch and Kick connect to your channel even before you go live. Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
 
 Each platform sends its own events:
 
@@ -98,29 +98,43 @@ Each platform sends its own events:
 | ----------------------------- | -------------------------------- |
 | Chat                          | TikTok, Twitch, YouTube and Kick |
 | Follows                       | TikTok and Twitch                |
-| Gifts                         | TikTok, YouTube and Kick         |
+| Gifts                         | TikTok and YouTube               |
 | Subscriptions and gifted subs | Twitch, YouTube and Kick         |
 | Raids and channel points      | Twitch and Kick                  |
 | Likes, shares and Super Fans  | TikTok                           |
 | Bits                          | Twitch                           |
 | Super Chats                   | YouTube                          |
+| Kicks                         | Kick                             |
 
-TikTok's gifts and Kick's Kicks count as coins. Bits don't, and YouTube doesn't say what a Gift costs, so its Gifts add none.
+Each platform's money counts on its own and is never added to another's: TikTok's coins, Twitch's Bits, YouTube's Super Chats and Kick's Kicks. Super Chats come in each viewer's currency, so Tokio adds them up in US dollars, at the day's exchange rates from Frankfurter. YouTube doesn't say what a Gift costs, so its Gifts count as gifts and add no money.
+
+On Twitch, YouTube and Kick, chat badges say who moderates and who subscribes or is a member, with their months when the badge shows them. On Twitch and Kick they also say who's a VIP.
 
 ## While you're LIVE
 
-While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** and the LIVE's **Top gifters**.
+While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are the LIVE's numbers and who sent the most.
 
-Likes, total views and shares are TikTok's, and gifts come with TikTok, YouTube or Kick. Coins and top gifters need gifts with a price, so they come with TikTok or Kick: YouTube's Gifts count in **Gifts**, but their senders never join **Top gifters**. With Twitch alone, only **New followers** shows below **Viewers**, with YouTube alone only **Gifts**, since YouTube sends no follows, and with Kick alone **Gifts**, **Coins** and **Top gifters**.
+These are the numbers of the platform whose tab is open, and each tab shows its platform's viewers right now next to its name. A platform you disconnect keeps its numbers in its tab until the LIVE ends. Each tab shows what its platform sends:
+
+| Tab     | Numbers                                                                         | Tops                                        |
+| ------- | ------------------------------------------------------------------------------- | ------------------------------------------- |
+| TikTok  | **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** | **Top gifters**                             |
+| Twitch  | **New followers**, **Gifted subs**, **Bits**                                    | **Top Bits** and **Top gifted subs**        |
+| YouTube | **Gifts**, **Gifted subs**, **Super Chats**                                     | **Top Super Chats** and **Top gifted subs** |
+| Kick    | **Gifted subs**, **Kicks**                                                      | **Top Kicks** and **Top gifted subs**       |
+
+Each top ranks one thing: **Top gifters** TikTok's coins, **Top Bits**, **Top Kicks** and **Top Super Chats** their money, and **Top gifted subs** the subs a viewer gifted, kept apart from the money. YouTube's Gifts count in **Gifts** but rank no one, since they have no price. **Super Chats** shows a dash until the exchange rates load.
+
+On two or more platforms, an **All** tab adds up the viewers, the counts and the gifted subs, with a tile for each platform's money. It has no tops, since they would rank one money against another.
 
 A rose line also lights up at the top of the title bar.
 
 <Screenshot
   name="dashboard"
-  alt="The Home page during a LIVE: how long it's been on, the viewers with their line, the LIVE's numbers and top gifters, the features, and the activity feed with the song playing"
+  alt="The Home page during a LIVE: how long it's been on, the TikTok tab with its viewers and their line, its numbers and top gifters, the features, and the activity feed with the song playing"
 />
 
-The **Activity** feed keeps the last 100 events, from every platform. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
+The **Activity** feed keeps the last 100 events, from every platform. A TikTok gift shows its price in coins, and Bits and Kicks show the message sent with them. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
 
 While a song plays, **Now playing** at the foot of **Activity** shows its cover, name and artist.
 

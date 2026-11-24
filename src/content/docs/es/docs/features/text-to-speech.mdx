@@ -119,7 +119,7 @@ La **Plantilla del mensaje** define lo que se lee:
 
 `{username} {comment}` lee "Lucia ¡hola desde Lima!". **Quitar emojis** deja fuera los emojis y omite los mensajes que solo tienen emojis.
 
-**Leer las traducciones** lee la traducción de un mensaje en lugar de `{comment}`, cuando la [Traducción del chat](/es/docs/features/chat-translation/) le dio una. Hasta que elijas un idioma en **Configuración → Traducción del chat**, esta opción aparece en gris y `{translation}` no está disponible.
+**Leer las traducciones** lee la traducción de un mensaje en lugar de `{comment}`, cuando la [Traducción del chat](/es/docs/features/chat-translation/) le dio una. Solo se traduce el chat de TikTok, así que esta opción y `{translation}` solo aparecen en un perfil con TikTok. Hasta que elijas un idioma en **Configuración → Traducción del chat**, esta opción aparece en gris y `{translation}` no está disponible.
 
 Un mensaje sin nada que leer se omite: pasa cuando la plantilla ya completada no tiene ninguna letra, número ni emoji, como `{comment}` con un "?" solo.
 
@@ -134,15 +134,19 @@ Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una p
 
 ## Permisos
 
-Desmarca **Permitir a todos** y marca **Solo seguidores**, **Solo Super Fans**, **Solo moderadores** o **Nivel mínimo de fan**. Hasta que marques una, todos siguen hablando, y basta con cumplir cualquiera de las marcadas.
+Desmarca **Permitir a todos** y marca quién puede hablar. Hasta que marques una, todos siguen hablando, y basta con cumplir cualquiera de las marcadas.
 
-Los espectadores de Twitch nunca cumplen **Solo seguidores** ni **Nivel mínimo de fan**: el chat de Twitch no dice quién sigue y no tiene niveles de fan. **Solo moderadores** te incluye a ti, y **Solo Super Fans** deja hablar a tus suscriptores de Twitch.
+Cada plataforma del perfil tiene una pestaña con sus propias reglas, porque cada chat dice cosas distintas de un espectador:
 
-Los espectadores de YouTube tampoco cumplen **Solo seguidores** ni **Nivel mínimo de fan**, porque YouTube no tiene seguidores ni niveles de fan. **Solo moderadores** deja hablar a los moderadores de tu canal y a ti, y **Solo Super Fans** a sus miembros.
+| Plataforma           | Reglas                                                                                   |
+| -------------------- | ---------------------------------------------------------------------------------------- |
+| **TikTok**           | **Solo seguidores**, **Solo Super Fans**, **Solo moderadores** y **Nivel mínimo de fan** |
+| **Twitch**, **Kick** | **Solo suscriptores**, **Solo moderadores** y **Solo VIPs**                              |
+| **YouTube**          | **Solo miembros** y **Solo moderadores**                                                 |
 
-Los espectadores de Kick tampoco cumplen **Solo seguidores** ni **Nivel mínimo de fan**, porque Kick no tiene seguidores ni niveles de fan. **Solo moderadores** deja hablar a tus moderadores y a ti, y **Solo Super Fans** a tus suscriptores y fundadores.
+**Solo moderadores** te incluye a ti, y **Solo suscriptores** incluye a los fundadores. Cada pestaña empieza con **Permitir a todos**.
 
-Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene nombres, solo ellos hablan. Los @usuarios de la lista de bloqueados nunca se leen, aunque estén en la de permitidos.
+Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene nombres, solo ellos hablan. Los @usuarios de la lista de bloqueados nunca se leen, aunque estén en la de permitidos. Las listas valen en todas las plataformas.
 
 <Screenshot
   name="tts-permissions"
