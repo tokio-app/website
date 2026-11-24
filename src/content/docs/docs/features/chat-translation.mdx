@@ -11,6 +11,8 @@ Viewers who chat in another language get translated into yours. Tokio translates
 
 In **Settings → Chat translation**, pick your language under **Translate into**. **Off**, the default, translates nothing. Google translates for free, with no account to set up.
 
+Only TikTok's chat is translated, so the section shows only on profiles with TikTok, and so do TTS's **Read translations** and `{translation}`.
+
 To try it, type a message in another language next to **Test**. Tokio shows it the way Home's feed will, and says which language it came from.
 
 <Screenshot
@@ -32,12 +34,12 @@ With a [TTS command](/docs/features/text-to-speech/#format) like `!tts`, the com
 
 ## Where it shows
 
-| Where                                   | What you get                                                                                                                                      |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Home**                                | The translation under the message, in the **Activity** feed                                                                                       |
-| **TTS**                                 | With **Read translations** checked under [Format](/docs/features/text-to-speech/#format), the translation is read in place of the message         |
-| Alerts, game actions and Overlay Studio | `{translation}` in a message or text: the translation, or the message as typed when it wasn't translated. It's offered while a language is picked |
-| Overlays                                | The chat event's `translation`, for overlays that show it. See [Events](/docs/developers/events/#data)                                            |
+| Where                                   | What you get                                                                                                                                                               |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Home**                                | The translation under the message, in the **Activity** feed                                                                                                                |
+| **TTS**                                 | With **Read translations** checked under [Format](/docs/features/text-to-speech/#format), the translation is read in place of the message                                  |
+| Alerts, game actions and Overlay Studio | `{translation}` in a message or text: the translation, or the message as typed when it wasn't translated. It's offered while a language is picked on a profile with TikTok |
+| Overlays                                | The chat event's `translation`, for overlays that show it. See [Events](/docs/developers/events/#data)                                                                     |
 
 ## Good to know
 
