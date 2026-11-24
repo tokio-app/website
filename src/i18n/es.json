@@ -14,7 +14,7 @@
     "language": "Idioma"
   },
   "footer": {
-    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok ni a ByteDance, ni cuenta con su respaldo.",
+    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni Kick, ni cuenta con su respaldo.",
     "product": "Producto",
     "features": "Funciones",
     "overlays": "Overlays",
@@ -328,6 +328,10 @@
       {
         "name": "YouTube",
         "note": "Pedidos de canciones, y el chat, los Super Chats, las membresías, los Regalos y la cantidad de espectadores de un LIVE (www.youtube.com), leídos de las páginas públicas de YouTube como lo hace youtube.com, que no son una API oficial."
+      },
+      {
+        "name": "Frankfurter",
+        "note": "Los tipos de cambio del dólar estadounidense (api.frankfurter.dev), para sumar en dólares los Super Chats de YouTube de un LIVE, que se consultan como mucho una vez al día mientras YouTube es parte de un LIVE. Son los tipos de referencia públicos de los bancos centrales; el servicio es gratis, de código abierto (MIT) y no necesita clave."
       },
       {
         "name": "Listas de filtros de uBlock Origin",
