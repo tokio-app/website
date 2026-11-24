@@ -204,6 +204,8 @@
     "makeYourOwn": "Make your own",
     "previewOf": "Preview of {name}",
     "noPreview": "No preview yet",
+    "worksOn": "Works on {platforms}.",
+    "and": "and",
     "version": "Version {version}.",
     "downloadZip": "Download the zip",
     "loadFailed": "The list of overlays couldn't be loaded.",

@@ -250,6 +250,8 @@
     "makeYourOwn": "Crea el tuyo",
     "previewOf": "Vista previa de {name}",
     "noPreview": "Todavía sin vista previa",
+    "worksOn": "Funciona en {platforms}.",
+    "and": "y",
     "version": "Versión {version}.",
     "downloadZip": "Descargar el zip",
     "loadFailed": "No se pudo cargar la lista de overlays.",
