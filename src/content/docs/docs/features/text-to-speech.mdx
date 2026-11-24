@@ -119,7 +119,7 @@ The **Message template** sets what's read:
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove emojis** leaves emojis out, and skips messages that are only emojis.
 
-**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. Until you pick a language in **Settings → Chat translation**, it's grayed out and `{translation}` isn't offered.
+**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. Only TikTok's chat is translated, so it and `{translation}` only show on a profile with TikTok. Until you pick a language in **Settings → Chat translation**, it's grayed out and `{translation}` isn't offered.
 
 A message is skipped when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
 
@@ -134,15 +134,19 @@ Teach the voice to say acronyms, slang and names. Each one swaps a whole word, i
 
 ## Permissions
 
-Uncheck **Allow everyone**, then check **Followers only**, **Super Fans only**, **Moderators only** or **Minimum fan level**. Until you check one, everyone still talks, and a viewer who matches any checked one gets through.
+Uncheck **Allow everyone**, then check who can talk. Until you check one, everyone still talks, and a viewer who matches any checked one gets through.
 
-Twitch chatters never pass **Followers only** or **Minimum fan level**: Twitch's chat doesn't say who follows, and has no fan levels. **Moderators only** includes you, and **Super Fans only** lets your Twitch subscribers talk.
+Each of the profile's platforms has a tab with its own rules, since each chat tells different things about a viewer:
 
-YouTube chatters never pass **Followers only** or **Minimum fan level** either, since YouTube has no followers or fan levels. **Moderators only** lets your channel's moderators and you talk, and **Super Fans only** its members.
+| Platform             | Rules                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| **TikTok**           | **Followers only**, **Super Fans only**, **Moderators only** and **Minimum fan level** |
+| **Twitch**, **Kick** | **Subscribers only**, **Moderators only** and **VIPs only**                            |
+| **YouTube**          | **Members only** and **Moderators only**                                               |
 
-Kick chatters never pass **Followers only** or **Minimum fan level** either, since Kick has no followers or fan levels. **Moderators only** lets your moderators and you talk, and **Super Fans only** your subscribers and founders.
+**Moderators only** includes you, and **Subscribers only** includes founders. Each tab starts on **Allow everyone**.
 
-With **Use allow and block lists**, an allow list with names lets only them talk. @handles on the block list are never read, even when they're on the allow list.
+With **Use allow and block lists**, an allow list with names lets only them talk. @handles on the block list are never read, even when they're on the allow list. The lists apply on every platform.
 
 <Screenshot
   name="tts-permissions"
