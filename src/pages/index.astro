@@ -218,6 +218,14 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     gap: var(--space-3);
   }
 
+  /* Stacked on phones, both as wide as the text, where they don't fit side by
+     side */
+  @media (max-width: 559px) {
+    .hero .actions {
+      display: grid;
+    }
+  }
+
   .meta {
     color: var(--font-secondary);
     font-size: var(--font-sm);
