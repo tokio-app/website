@@ -113,6 +113,7 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 
 - `/overlays/` lists the official overlays from the catalog that `tokio-app/overlays` (locally `../tokio-overlays`) publishes with every release, `releases/latest/download/overlays.json` (format in that repo's `README.md`). `getOverlays()` in `src/lib/overlays.ts` reads it once per build. It needs no API call, so no token or rate limit.
 - It returns `null` when the catalog can't be read, and the page links to the overlays' latest release instead. Entries that don't validate, or whose zip or preview isn't under `https://github.com/tokio-app/overlays/releases/download/`, are left out. Schema 1 is the format read; a new schema renames or removes fields, and the site must then read both.
+- An entry's optional `platforms` lists where the overlay works, shown on its card. Missing means every platform, unknown names are dropped, and a value that isn't a list of strings leaves the entry out, as Tokio's `CatalogOverlaySchema` reads it.
 - Previews go through `getImage` (`inferSize`, `layout: "constrained"`, webp), so they're resized and served from this site. Astro checks every redirect against `image.remotePatterns` in `astro.config.mjs`, and GitHub redirects downloads to `release-assets.githubusercontent.com`, so both hosts are allowed. A preview that fails shows a placeholder instead of failing the build.
 - Don't show an overlay's URL on the page. Tokio generates it (`http://tokio-app.local:37891/<overlay-id>/`), and streamers copy it from the gallery.
 - Local rebuilds may warn "An error was encountered while revalidating a cached remote asset". Astro 7.4 revalidates cached images without the image config, so it rejects GitHub's redirect and keeps the cached preview. That's harmless, since a release's files never change, and CI builds have no cache. Don't loosen `remotePatterns` for it.
@@ -185,7 +186,7 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
 - Tokio's source and the distributed app are MIT, except `drm-v2.ts` (LGPL-3.0-only). It connects to TikTok LIVE through `@tokioapp/connector` (MIT, `tokio-app/connector`). The About page must keep stating this, along with the copyright (`© 2026 Italo Alfaro and contributors`), the no-warranty notice and where to get the source.
 - `about.services` in `src/i18n/<lang>.json` mirrors the Services list in the app's `THIRD_PARTY_NOTICES.md`. Keep them in sync.
 - Check licenses when adding or upgrading a dependency. Ask before adding anything copyleft (GPL, AGPL, LGPL, MPL, CC BY-SA), including fonts and icon sets.
-- Tokio is not affiliated with TikTok or ByteDance. Keep that notice in the footer and on the About page, and don't use TikTok's logo or branding.
+- Tokio is not affiliated with TikTok, ByteDance, Twitch, YouTube, Google or Kick. Keep that notice in the footer and on the About page, and don't use TikTok's logo or branding.
 
 ## Deployment
 
