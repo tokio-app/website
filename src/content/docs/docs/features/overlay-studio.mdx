@@ -44,12 +44,12 @@ An overlay is made of elements, the things that show:
 | **Text**             | Your text, with its **Font**, **Size**, **Color**, **Gradient**, **Outline**, **Letter spacing**, **Line height**, **Alignment**, **Bold**, **Italic**, **All caps** and **Dark halo**. See [Text](#text).                                                                                                                                                                                                          |
 | **Image or video**   | A file from the media library you use for [alerts](/docs/features/alerts/#images-and-videos). A video plays with its sound.                                                                                                                                                                                                                                                                                         |
 | **Camera**           | A camera on this computer, live. See [Cameras](#cameras).                                                                                                                                                                                                                                                                                                                                                           |
-| **Gift**             | The picture of the gift a viewer sends, or of one gift you pick. The gift sent needs the **Gift** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                                                                                                                           |
-| **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                                                                                                          |
+| **Gift**             | The picture of the gift a viewer sends, or of one of TikTok's gifts you pick. Only with TikTok or YouTube, whose gifts have pictures, and the pick only with TikTok. The gift sent needs the **Gift** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                       |
+| **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers of the profile's platforms have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                                                                               |
 | **Shape**            | A rectangle, an ellipse, a polygon, a star, an arrow, a heart or a speech bubble, filling its box, with a **Fill** and a **Border**, each in its own color. Turn either one off. With **Gradient**, the fill fades into a second color at the angle you set. **Border width** goes from 1 to 100. A polygon has 3 to 12 **Sides**, a star 3 to 12 **Points**, and a rectangle or speech bubble a **Corner radius**. |
 | **Viewer's picture** | The profile picture of the viewer who set the element off, or their initial when they have none. It can't be **Always on screen** or **Moves all the time**, and only reacts to events a viewer sends: not an envelope, a Super Fan Box or a music change.                                                                                                                                                          |
 | **Goal bar**         | A bar that fills as a LIVE number or a [counter](#counters) comes to its goal. See [Goal bars](#goal-bars).                                                                                                                                                                                                                                                                                                         |
-| **List**             | Rows of this LIVE's top gifters, or its newest followers, gifts or chat messages. See [Lists](#lists).                                                                                                                                                                                                                                                                                                              |
+| **List**             | Rows of this LIVE's top gifters or top gifted subs, or its newest followers, gifts or chat messages. See [Lists](#lists).                                                                                                                                                                                                                                                                                           |
 | **Overlay**          | An installed overlay, the countdown, the games overlay or an alert's overlay. See [Embedding overlays](#embedding-overlays).                                                                                                                                                                                                                                                                                        |
 
 To order, lock, hide and move elements together, put them in a group. The [Overlay Studio editor](/docs/features/overlay-studio-editor/) page covers groups, placing, cropping and the keyboard shortcuts.
@@ -57,6 +57,8 @@ To order, lock, hide and move elements together, put them in a group. The [Overl
 A font that isn't installed on the computer that runs your streaming app shows as Archivo, and a browser tab plays a video's sound only after a click on it. See [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
 
 If you delete a file from the media library, it also leaves every element that showed it, and those elements stay empty.
+
+Every profile shares the overlays, but the editor offers only what the active profile's platforms send: the triggers, the LIVE numbers and goals, the lists and the emotes. What an overlay already has from another platform stays until you change it. A new element starts on Follow, or on Subscription when the profile has neither TikTok nor Twitch.
 
 ## When
 
@@ -78,7 +80,7 @@ Each element's and group's **When** sets how it reacts:
 
 A group moves as one: one that shows on an event brings all its elements in and out together, and one that moves carries them with it. Its elements keep their own **When**, so an element can bounce on each gift while its group floats.
 
-The **Trigger** picker has the same events and filters as [alerts](/docs/features/alerts/#triggers), without **Worth at least** and **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger. The count starts over when you disconnect.
+The **Trigger** picker has the same events, filters and [minimums](/docs/features/alerts/#minimums) as [alerts](/docs/features/alerts/#triggers), without **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger. The count starts over when you disconnect.
 
 **Add a trigger** adds another one under **Or**, up to 5 in all, each with its own filters. The element reacts to any of them.
 
@@ -94,23 +96,27 @@ In the editor, an element or group that shows on an event stays on the canvas wi
 
 A text element can show live numbers from your LIVE, written in braces:
 
-| Variable      | Shows                                    |
-| ------------- | ---------------------------------------- |
-| `{likes}`     | The LIVE's likes                         |
-| `{viewers}`   | The viewers watching now                 |
-| `{followers}` | New followers during this LIVE           |
-| `{shares}`    | Shares during this LIVE                  |
-| `{coins}`     | Coins received during this LIVE          |
-| `{gifts}`     | Gifts received during this LIVE          |
-| `{uptime}`    | How long you've been LIVE, like 01:02:03 |
+| Variable       | Shows                                                |
+| -------------- | ---------------------------------------------------- |
+| `{likes}`      | The LIVE's likes                                     |
+| `{viewers}`    | The viewers watching now                             |
+| `{followers}`  | New followers during this LIVE                       |
+| `{shares}`     | Shares during this LIVE                              |
+| `{coins}`      | TikTok coins received during this LIVE               |
+| `{kicks}`      | Kicks received during this LIVE                      |
+| `{bits}`       | Bits received during this LIVE                       |
+| `{superchats}` | Super Chats received during this LIVE, in US dollars |
+| `{gifts}`      | Gifts received during this LIVE                      |
+| `{giftsubs}`   | Subs gifted during this LIVE                         |
+| `{uptime}`     | How long you've been LIVE, like 01:02:03             |
 
-They're shortened in Tokio's language (**Settings → Language**), like 12.8K in English, and read 0 while you're not LIVE (`{uptime}` reads 00:00:00). The editor shows sample numbers. A text also shows the overlay's [counters](#counters), like `{roses}`.
+They're shortened in Tokio's language (**Settings → Language**), like 12.8K in English, and read 0 while you're not LIVE (`{uptime}` reads 00:00:00). `{superchats}` shows a dash until Tokio has the exchange rates. The editor shows sample numbers, and only the ones the profile's platforms send, like `{bits}` with Twitch. A text also shows the overlay's [counters](#counters), like `{roses}`.
 
 A text that reacts to an event can also use that event's values, like `Thanks {username}!` on a gift or `{username} sent {count} {gift}`. Like has no viewer or count of its own, since its likes come from every viewer: `{likes}` shows the LIVE's total.
 
 With several triggers, a text can use the values of each. One that the event doesn't have is empty, like `{gift}` on a follow.
 
-The variables a text can use are listed under its **Text**: the LIVE numbers and the counters, then the event's when it reacts to one. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
+The variables a text can use are listed under its **Text**: the LIVE numbers and the counters, then the event's when it reacts to one. Both offer only what the profile's platforms fill. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
 
 <Screenshot
   name="studio-text"
@@ -125,7 +131,7 @@ Hidden elements, and the elements of a hidden group, keep reacting, so they show
 
 ## Counters
 
-A counter counts an event during each LIVE, like roses or follows. With nothing selected, click **Add a counter** in **Overlay settings**. Name it, like `roses`, and pick what it counts, with the same filters as a trigger. Each overlay has up to 10 of its own.
+A counter counts an event during each LIVE, like roses or follows. With nothing selected, click **Add a counter** in **Overlay settings**. Name it, like `roses`, and pick what it counts, with the same filters as a trigger. A new counter counts gifts, or, on a profile without gifts, starts on the same event as a new element. Each overlay has up to 10 of its own.
 
 A text shows it as `{roses}`, and **Goal reached** can wait for it. What each event adds:
 
@@ -152,16 +158,21 @@ The fill slides to each new number. A bar shows no words: put a text on or next 
 
 A **List** shows a row per viewer or event of what it **Shows**:
 
-| Shows                     | Its rows                                                                                     |
-| ------------------------- | -------------------------------------------------------------------------------------------- |
-| **Top gifters this LIVE** | The viewers who sent the most coins this LIVE, with their coins, the most first              |
-| **New followers**         | The newest followers, the newest first. One who follows again moves up                       |
-| **Latest gifts**          | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends |
-| **Chat**                  | The newest messages, the newest at the bottom. Messages of emotes alone don't show           |
+| Shows                         | Its rows                                                                                                                                                                                                                                  |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Top gifters this LIVE**     | The viewers who sent the most this LIVE on the list's **Platform**, in its money, the most first. Its name follows the money: **Top Bits this LIVE** on Twitch, **Top Kicks this LIVE** on Kick, **Top Super Chats this LIVE** on YouTube |
+| **Top gifted subs this LIVE** | The viewers who gifted the most subs this LIVE, on Twitch, YouTube or Kick, the most first                                                                                                                                                |
+| **New followers**             | The newest followers, the newest first. One who follows again moves up                                                                                                                                                                    |
+| **Latest gifts**              | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends                                                                                                                                              |
+| **Chat**                      | The newest messages, the newest at the bottom. Messages of emotes alone don't show                                                                                                                                                        |
 
-Each row has the viewer's picture, or their initial, then their name. Chat puts the message after the name, and the coins and counts sit on the right, in **Number color**. **Rows** sets how many show, up to 10, and **Space between rows** the gap, in pixels of the canvas. Turn off **Viewers' pictures** to show names alone.
+Each row has the viewer's picture, or their initial, then their name. Chat puts the message after the name, and the amounts and counts sit on the right, in **Number color**. YouTube's amounts are in US dollars. **Rows** sets how many show, up to 10, and **Space between rows** the gap, in pixels of the canvas. Turn off **Viewers' pictures** to show names alone.
 
-YouTube's Gifts have no price, so their senders never show in **Top gifters this LIVE**. Kick's Kicks do, with their price in Kicks as coins. Lists are empty while you're not LIVE and start over when you connect. What doesn't fit in the box is cut off at its edge, chat's oldest at the top. The editor shows sample rows.
+A top lists only the viewers who sent some of its money or gifted subs, so YouTube's Gifts, which have no price, never put their senders on it.
+
+With a platform besides TikTok in the profile, a top picks its **Platform**, and a new list starts on the profile's first platform. **New followers** shows only with a platform that sends follows, and **Latest gifts** with one that sends gifts.
+
+Lists are empty while you're not LIVE and start over when you connect. What doesn't fit in the box is cut off at its edge, chat's oldest at the top. The editor shows sample rows.
 
 ## Shadow and blur
 
@@ -226,6 +237,8 @@ If you remove an official overlay you embedded, its element shows nothing until 
 ## Test
 
 The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, after its delay, elements with sample values for their first trigger, in the editor and on your stream. An element that shows on an event plays its entrance, its seconds on screen and its exit, then comes back to the canvas.
+
+The samples come from the profile's platforms, so one event's elements show the same viewer, and a top's rows are its platform's.
 
 Embedded overlays don't get the samples. Tokio keeps them only while their element is on screen, so after that a reload shows the real last event again.
 
