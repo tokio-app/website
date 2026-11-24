@@ -42,46 +42,74 @@
   "modDownload": {
     "label": "el mod de Tokio"
   },
-  "liveFeed": {
-    "label": "Ejemplo: la página Inicio de Tokio durante un LIVE y lo que hace con cada evento",
-    "title": "Panel",
-    "stats": [
-      {
-        "label": "Espectadores",
-        "value": "312"
-      },
-      {
-        "label": "Me gusta",
-        "value": "48.2 k"
-      },
-      {
-        "label": "Vistas totales",
-        "value": "15.2 k"
-      }
-    ],
+  "hero": {
+    "label": "Ejemplo: la página Inicio de Tokio durante un LIVE en cuatro plataformas, con los espectadores, números y actividad de cada una",
+    "platforms": "Plataformas",
+    "all": "Todas",
+    "viewers": "Espectadores",
+    "peak": "Pico",
+    "stats": {
+      "likes": "Me gusta",
+      "views": "Vistas totales",
+      "followers": "Seguidores nuevos",
+      "shares": "Compartidos",
+      "gifts": "Regalos",
+      "giftSubs": "Suscripciones regaladas",
+      "coins": "Monedas",
+      "kicks": "Kicks",
+      "bits": "Bits",
+      "superChats": "Super Chats"
+    },
+    "tops": {
+      "coins": "Quienes más regalaron",
+      "bits": "Quienes más Bits enviaron",
+      "superChats": "Quienes más Super Chats enviaron",
+      "kicks": "Quienes más Kicks enviaron",
+      "subs": "Quienes más suscripciones regalaron"
+    },
+    "coins": "{count} monedas",
+    "bits": "{count} Bits",
+    "kicks": "{count} Kicks",
+    "giftSub": "{count} suscripción regalada",
+    "giftSubs": "{count} suscripciones regaladas",
+    "activity": "Actividad",
     "events": [
       {
-        "name": "Lucia",
-        "message": "¡hola desde Lima!",
-        "reaction": "Se leyó en voz alta con la voz de Edge"
+        "name": "Maya",
+        "message": "esta canción es un temazo"
       },
       {
-        "name": "Marco",
-        "action": "envió Rose ×5",
-        "coins": "5 monedas",
-        "reaction": "Se reprodujo applause.mp3"
+        "name": "Leo",
+        "action": "envió Galaxy",
+        "amount": "1,000 monedas"
+      },
+      {
+        "name": "Kai",
+        "action": "envió 500 Bits"
+      },
+      {
+        "name": "Sunny Fox",
+        "action": "te siguió"
+      },
+      {
+        "name": "Pixel Panda",
+        "message": "!play Blinding Lights"
+      },
+      {
+        "name": "Noor",
+        "action": "envió un Super Chat de $5.00"
+      },
+      {
+        "name": "Theo",
+        "action": "envió 100 Kicks"
       },
       {
         "name": "Ana",
-        "message": "!play One More Time",
-        "reaction": "Se agregó a la cola de música"
-      },
-      {
-        "name": "Sam",
-        "action": "te siguió",
-        "reaction": "Banner de seguidor nuevo en el overlay"
+        "action": "envió Rose ×5",
+        "amount": "5 monedas"
       }
-    ]
+    ],
+    "playing": "Sonando ahora"
   },
   "home": {
     "title": "Haz que tu stream en vivo reaccione.",
@@ -367,6 +395,6 @@
     "trademarksTitle": "Marcas comerciales",
     "trademarks": "Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni Kick, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, Kick, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
     "websiteTitle": "Este sitio web",
-    "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
+    "website": "El código de este sitio web tiene licencia MIT y está disponible en <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Su tipografía es <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, de The Archivo Project Authors, bajo la <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>. Los logos de las plataformas en la página de inicio son los que usa la app: los de TikTok, Twitch y YouTube vienen de <a href=\"https://fontawesome.com\">Font Awesome Free</a>, bajo la <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>, y el de Kick de <a href=\"https://simpleicons.org\">Simple Icons</a>, bajo CC0. Cada logo es una marca de su dueño."
   }
 }
