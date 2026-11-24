@@ -162,8 +162,8 @@
         ]
       },
       "coinStats": {
-        "title": "Monedas",
-        "text": "Las monedas y los regalos de cada LIVE, y quienes los enviaron. Los overlays pueden mostrar quienes más te regalan.",
+        "title": "Historial de LIVEs",
+        "text": "Lo que enviaron los espectadores en cada LIVE, con el dinero de cada plataforma aparte, y quiénes lo enviaron. Los overlays pueden mostrar quienes más te regalan en TikTok.",
         "example": [
           {
             "name": "Leo",

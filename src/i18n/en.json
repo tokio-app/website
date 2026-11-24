@@ -125,8 +125,8 @@
         ]
       },
       "coinStats": {
-        "title": "Coin stats",
-        "text": "Every LIVE's coins and gifts, and who sent them. Overlays can show your top gifters.",
+        "title": "LIVE history",
+        "text": "What viewers sent in every LIVE, each platform's money apart, and who sent it. Overlays can show your top TikTok gifters.",
         "example": [
           { "name": "Leo", "value": "21,987 coins" },
           { "name": "Maya", "value": "14,768 coins" },
