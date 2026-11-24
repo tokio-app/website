@@ -1,50 +1,72 @@
 ---
-title: Monedas
-description: Las monedas y regalos de cada LIVE y los espectadores que los enviaron.
+title: Historial de LIVEs
+description: Cada LIVE, lo que enviaron los espectadores en cada plataforma y quiénes enviaron más.
 ---
 
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-**Monedas**, en **Herramientas**, guarda cada LIVE al que conectas Tokio: sus monedas y regalos, y quienes los enviaron.
+**Historial de LIVEs**, en **Herramientas**, guarda cada LIVE al que conectas Tokio: lo que enviaron los espectadores en cada plataforma, y quiénes enviaron más. Su fila en **Herramientas** cuenta los LIVEs que guarda.
 
 <Screenshot
   name="coin-stats"
   alt="Monedas en Herramientas, en el total histórico: las monedas y los regalos, quienes más regalaron y los LIVEs con sus barras de monedas"
 />
 
+## Plataformas
+
+Con dos o más plataformas en el historial, cada una tiene su pestaña, y al final **Todas**. Una pestaña cuenta en el dinero de su plataforma, que nunca se suma al de otra:
+
+| Pestaña     | Cuenta                                                                                | Tops                                                                           |
+| ----------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **TikTok**  | **Monedas**, el precio de sus regalos, y **Regalos**                                  | **Quienes más regalaron**                                                      |
+| **Twitch**  | **Bits** y **Suscripciones regaladas**                                                | **Quienes más Bits enviaron** y **Quienes más suscripciones regalaron**        |
+| **YouTube** | **Super Chats** en dólares estadounidenses, **Regalos** y **Suscripciones regaladas** | **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
+| **Kick**    | **Kicks** y **Suscripciones regaladas**                                               | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**       |
+
+Una pestaña muestra solo los LIVEs que estuvieron en su plataforma. **Todas** muestra el dinero de cada plataforma por separado, con todos los regalos y las suscripciones regaladas, y lista los LIVEs por sus regalos. No tiene top ni búsqueda: para eso, elige la pestaña de una plataforma.
+
+<details>
+<summary>Lo que no cuenta</summary>
+
+- Los cofres, las suscripciones de Super Fan y las suscripciones no cuentan. Las suscripciones regaladas sí.
+- YouTube no dice cuánto cuestan sus Regalos, así que cuentan como regalos pero no como dinero. Quienes los envían solo entran en un top con Super Chats o suscripciones regaladas.
+- Un Super Chat en una moneda de la que Tokio no tiene tipo de cambio cuenta como 0 dólares.
+
+</details>
+
 ## Cada LIVE
 
-Un LIVE aparece en la lista cuando termina, primero el más reciente, con su fecha, duración y monedas. La barra debajo compara sus monedas con las del mejor LIVE de la lista.
+Un LIVE aparece en la lista cuando termina, primero el más reciente, con su fecha, su duración y lo que recibió en el dinero de la pestaña. La barra debajo lo compara con el mejor LIVE de la lista.
 
-Selecciona uno para ver sus **Monedas**, **Regalos** y **Quienes enviaron regalos**, primero los que dieron más monedas. Cuentan desde que Tokio se conectó hasta el final.
+Selecciona uno para ver sus totales y su top. Cuentan desde que Tokio se conectó hasta el final.
 
-Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no, ni tampoco los Bits ni las suscripciones de Twitch, ni los Super Chats ni las membresías de YouTube. Twitch no tiene regalos, así que un LIVE solo en Twitch no tiene ninguno. Los Kicks de Kick cuentan como regalos, con su precio en Kicks como monedas. YouTube no dice cuánto cuestan sus Regalos, así que quienes los envían nunca entran en **Quienes enviaron regalos**.
+## Tops
 
-## Total histórico
+En Twitch, YouTube y Kick, **Ordenar por** cambia el top entre el dinero de la plataforma y **Suscripciones regaladas**. Un espectador que solo regaló suscripciones aparece solo en **Quienes más suscripciones regalaron**. El top de TikTok, **Quienes más regalaron**, ordena por monedas.
 
-**Total histórico** suma todos los LIVEs y muestra **Quienes más regalaron**. Guarda hasta 10,000 personas que enviaron regalos, y quita primero a las que dieron menos monedas.
+**Total histórico** suma todos los LIVEs, con sus tops. Guarda hasta 10,000 espectadores por plataforma, y quita primero a los que enviaron menos.
 
-La búsqueda junto a **Quienes más regalaron**, o **Quienes enviaron regalos** en un LIVE, encuentra a un espectador por nombre o @usuario, con su lugar. **Quienes más regalaron** muestra los primeros 100, y su búsqueda incluye a todos.
+La búsqueda junto al top encuentra a un espectador por nombre o @usuario, con su lugar. El top muestra los primeros 100, y su búsqueda incluye a todos.
 
-Los overlays pueden mostrar el top 10 de quienes más regalan en el LIVE y en total: consulta [Quienes más regalan](/es/docs/developers/events/#quienes-más-regalan) para hacer uno.
+Los overlays pueden mostrar el top 10 de quienes más regalan en TikTok, en el LIVE y en total: consulta [Quienes más regalan](/es/docs/developers/events/#quienes-más-regalan) para hacer uno.
 
 ## Filtrar por fecha
 
-Arriba de la lista, elige **Últimas 24 horas**, **Últimos 7 días**, **Últimos 30 días** o **Últimos 12 meses**. La lista muestra los LIVEs de ese tiempo, y la primera fila suma las monedas y regalos enviados en él, con **Quienes más regalaron**.
+Arriba de la lista, elige **Últimas 24 horas**, **Últimos 7 días**, **Últimos 30 días** o **Últimos 12 meses**. La lista muestra los LIVEs de ese tiempo, y la primera fila suma lo que se envió en él, con sus tops.
 
-Un LIVE que empieza antes o termina después cuenta solo los regalos enviados dentro de esas fechas, al minuto. **Total histórico** vuelve a mostrar todos los LIVEs.
+Un LIVE que empieza antes o termina después cuenta solo lo que se envió dentro de esas fechas, al minuto. **Total histórico** vuelve a mostrar todos los LIVEs.
 
 Para otras fechas, elige **Fechas personalizadas**, luego **El día**, **Después del**, **Antes del** o **Entre el**, y las fechas. Cada fecha puede llevar una hora, al minuto, salvo con **El día**. Una fecha sin hora cuenta entera: **Después del** y **Antes del** no la incluyen, y **Entre el** sí.
 
 ## Eliminar
 
-- Para eliminar un LIVE, selecciónalo y haz clic en el botón de la papelera junto a su fecha. Sus regalos también dejan de contar en **Total histórico**.
+- Para eliminar un LIVE, selecciónalo y haz clic en el botón de la papelera junto a su fecha. Lo que contó también deja de contar en **Total histórico**.
 - Para borrar el historial, selecciona **Total histórico** y haz clic en el botón de la papelera junto a su título. Un LIVE al que estés conectado sigue contando.
 
 <details>
 <summary>Cómo se guardan los LIVEs</summary>
 
-Cada perfil guarda sus últimos 1,500 LIVEs en tu computadora. Pasado ese número, el más antiguo se va, y sus regalos también dejan de contar en **Total histórico**. Tokio guarda el LIVE en curso cada 30 segundos, así que un fallo, o cerrar Tokio antes de que termine el LIVE, pierde como mucho los últimos 30 segundos.
+Cada perfil guarda sus últimos 1,500 LIVEs en tu computadora. Pasado ese número, el más antiguo se va, y lo que contó también deja de contar en **Total histórico**. Tokio guarda el LIVE en curso cada 30 segundos, así que un fallo, o cerrar Tokio antes de que termine el LIVE, pierde como mucho los últimos 30 segundos.
 
 Si la conexión se pierde del todo y te vuelves a conectar, el LIVE aparece como dos.
 
