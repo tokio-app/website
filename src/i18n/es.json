@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Tokio: haz que tu LIVE de TikTok reaccione",
-    "description": "Haz que tu LIVE de TikTok reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
+    "title": "Tokio: haz que tu stream en vivo reaccione",
+    "description": "Haz que tu stream en vivo reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
   },
   "header": {
     "nav": "Principal",
@@ -84,7 +84,7 @@
     ]
   },
   "home": {
-    "title": "Haz que tu LIVE de TikTok reaccione.",
+    "title": "Haz que tu stream en vivo reaccione.",
     "lead": "Tokio convierte el chat, los regalos y los seguidores en voces, canciones, alertas y overlays para tu stream.",
     "readDocs": "Lee la documentación",
     "meta": "Gratis y de código abierto, para Windows, macOS y Linux.",
@@ -262,7 +262,7 @@
     "title": "Acerca de y licencia",
     "description": "Quién hace Tokio, su licencia, los servicios en línea que usa y qué pasa con tus datos.",
     "heading": "Acerca de Tokio",
-    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu LIVE de TikTok y reacciona con texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays, incluidos los que creas tú. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
+    "intro": "Tokio es una app de escritorio gratis y de código abierto que se conecta a tu stream en vivo y reacciona con texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays, incluidos los que creas tú. La hacen Italo Alfaro y colaboradores, y se desarrolla abiertamente en <a href=\"{repo}\">GitHub</a>.",
     "copyright": "© 2026 Italo Alfaro y colaboradores.",
     "licenseTitle": "Licencia",
     "license": [
