@@ -213,17 +213,17 @@
       },
       {
         "title": "Set it up",
-        "text": "Add your free Euler Stream key, then your voices, music, alerts and overlays.",
+        "text": "Add your platforms, voices, music, alerts and overlays.",
         "link": "Features"
       },
       {
         "title": "Prepare your stream",
-        "text": "Turn on the features you want, and add your overlays to OBS or TikTok LIVE Studio.",
+        "text": "Turn on the features you want, and add overlays to your streaming app.",
         "link": "Adding an overlay"
       },
       {
         "title": "Go live and connect",
-        "text": "Start your LIVE on TikTok, then connect with your @username.",
+        "text": "Start your LIVE, then connect your platforms on Home.",
         "link": "How to connect"
       }
     ],
