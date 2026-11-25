@@ -42,37 +42,74 @@
   "modDownload": {
     "label": "the Tokio mod"
   },
-  "liveFeed": {
-    "label": "Example: Tokio's Home during a LIVE, and what it does with each event",
-    "title": "Dashboard",
-    "stats": [
-      { "label": "Viewers", "value": "312" },
-      { "label": "Likes", "value": "48.2K" },
-      { "label": "Total views", "value": "15.2K" }
-    ],
+  "hero": {
+    "label": "Example: Tokio's Home during a LIVE on four platforms, with each one's viewers, numbers and activity",
+    "platforms": "Platforms",
+    "all": "All",
+    "viewers": "Viewers",
+    "peak": "Peak",
+    "stats": {
+      "likes": "Likes",
+      "views": "Total views",
+      "followers": "New followers",
+      "shares": "Shares",
+      "gifts": "Gifts",
+      "giftSubs": "Gifted subs",
+      "coins": "Coins",
+      "kicks": "Kicks",
+      "bits": "Bits",
+      "superChats": "Super Chats"
+    },
+    "tops": {
+      "coins": "Top gifters",
+      "bits": "Top Bits",
+      "superChats": "Top Super Chats",
+      "kicks": "Top Kicks",
+      "subs": "Top gifted subs"
+    },
+    "coins": "{count} coins",
+    "bits": "{count} Bits",
+    "kicks": "{count} Kicks",
+    "giftSub": "{count} gifted sub",
+    "giftSubs": "{count} gifted subs",
+    "activity": "Activity",
     "events": [
       {
-        "name": "Lucia",
-        "message": "hi from Lima!",
-        "reaction": "Read aloud with the Edge voice"
+        "name": "Maya",
+        "message": "this song is a vibe"
       },
       {
-        "name": "Marco",
-        "action": "sent Rose ×5",
-        "coins": "5 coins",
-        "reaction": "Played applause.mp3"
+        "name": "Leo",
+        "action": "sent Galaxy",
+        "amount": "1,000 coins"
+      },
+      {
+        "name": "Kai",
+        "action": "cheered 500 Bits"
+      },
+      {
+        "name": "Sunny Fox",
+        "action": "followed you"
+      },
+      {
+        "name": "Pixel Panda",
+        "message": "!play Blinding Lights"
+      },
+      {
+        "name": "Noor",
+        "action": "sent a $5.00 Super Chat"
+      },
+      {
+        "name": "Theo",
+        "action": "sent 100 Kicks"
       },
       {
         "name": "Ana",
-        "message": "!play One More Time",
-        "reaction": "Added to the music queue"
-      },
-      {
-        "name": "Sam",
-        "action": "followed you",
-        "reaction": "Follow banner on the overlay"
+        "action": "sent Rose ×5",
+        "amount": "5 coins"
       }
-    ]
+    ],
+    "playing": "Now playing"
   },
   "home": {
     "title": "Make your live stream react.",
@@ -318,6 +355,6 @@
     "trademarksTitle": "Trademarks",
     "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube, Google or Kick. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, Kick, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",
     "websiteTitle": "This website",
-    "website": "The source of this website is MIT-licensed and available at <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Its typeface is <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, by the Archivo Project Authors, under the <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>."
+    "website": "The source of this website is MIT-licensed and available at <a href=\"https://github.com/tokio-app/website\">github.com/tokio-app/website</a>. Its typeface is <a href=\"https://github.com/Omnibus-Type/Archivo\">Archivo</a>, by the Archivo Project Authors, under the <a href=\"https://openfontlicense.org\">SIL Open Font License 1.1</a>. The platforms' logos on the home page are the ones the app uses: TikTok's, Twitch's and YouTube's from <a href=\"https://fontawesome.com\">Font Awesome Free</a>, under <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>, and Kick's from <a href=\"https://simpleicons.org\">Simple Icons</a>, under CC0. Each logo is its owner's trademark."
   }
 }

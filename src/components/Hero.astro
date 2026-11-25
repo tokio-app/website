@@ -1,0 +1,1196 @@
+---
+// The landing page's top: the words, centered, and under them the app's Home
+// during a LIVE on four platforms, as wide as the page, fading out at its
+// foot. A tab per platform, and All, each with its own viewers, numbers and
+// tops, as the app shows them (liveStats and liveView in the app's
+// pages/Home/helper.ts): update it when Home changes. Its one moment: the
+// viewers line draws itself and ends in the rose "now" dot. The picture goes
+// through the tabs once on its own, unless the visitor picks one.
+import DownloadButton from "./DownloadButton.astro";
+import { fill, langOf, localize, textOf } from "../i18n";
+import { getLatestRelease } from "../lib/release";
+
+const lang = langOf(Astro.currentLocale);
+const t = textOf(lang).home;
+const w = textOf(lang).hero;
+const release = await getLatestRelease();
+
+interface Event {
+  name: string;
+  // After the name, as the app's rows say it
+  action?: string;
+  // A chat's message, under the name
+  message?: string;
+  // A gift's price, at the row's end
+  amount?: string;
+}
+const EVENTS = w.events as Event[];
+
+// Numbers as the app writes them in each language (formatStat, formatMoney)
+const locale = lang === "es" ? "es-419" : "en-US";
+const short = new Intl.NumberFormat(locale, {
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+const full = new Intl.NumberFormat(locale);
+const money = new Intl.NumberFormat(locale, {
+  style: "currency",
+  currency: "USD",
+});
+
+// Each minute's viewers for 01:23 of LIVE on one platform: a rise, then a
+// gentle plateau that peaks and settles to the count watching now
+const MINUTES = 84;
+function minutes(now: number, peak: number, crestAt: number, seed: number) {
+  const s = peak / 412;
+  const values = Array.from({ length: MINUTES }, (_, i) => {
+    const rise = s * (120 + 260 * (1 - Math.exp(-i / 9)));
+    const wobble =
+      s * (6 * Math.sin(i * 0.9 + seed) + 3 * Math.sin(i * 2.3 + 1 + seed));
+    const crest = s * 22 * Math.exp(-(((i - crestAt) / 9) ** 2));
+    const settle = i > 62 ? -1.6 * s * (i - 62) : 0;
+    return Math.min(rise + wobble + crest + settle, peak - 6 * s);
+  });
+  values[crestAt] = peak;
+  values[MINUTES - 1] = now;
+  return values;
+}
+
+type Stat = keyof typeof w.stats;
+type Gifter = [name: string, amount: string];
+interface Tab {
+  id: string;
+  name: string;
+  viewers: number[];
+  stats: [Stat, string][];
+  tops: { title: string; list: Gifter[] }[];
+}
+
+const coins = (n: number) => fill(w.coins, { count: full.format(n) });
+const bits = (n: number) => fill(w.bits, { count: full.format(n) });
+const kicks = (n: number) => fill(w.kicks, { count: full.format(n) });
+const subs = (n: number) =>
+  fill(n === 1 ? w.giftSub : w.giftSubs, { count: full.format(n) });
+const PLATFORM_TABS: Tab[] = [
+  {
+    id: "tiktok",
+    name: "TikTok",
+    viewers: minutes(342, 412, 44, 0),
+    stats: [
+      ["likes", short.format(52_400)],
+      ["views", short.format(18_300)],
+      ["followers", full.format(48)],
+      ["shares", full.format(17)],
+      ["gifts", full.format(126)],
+      ["coins", short.format(3_500)],
+    ],
+    tops: [
+      {
+        title: w.tops.coins,
+        list: [
+          ["Leo", coins(1_000)],
+          ["Ana", coins(480)],
+          ["Sam", coins(300)],
+        ],
+      },
+    ],
+  },
+  {
+    id: "twitch",
+    name: "Twitch",
+    viewers: minutes(128, 151, 38, 1.3),
+    stats: [
+      ["followers", full.format(23)],
+      ["giftSubs", full.format(12)],
+      ["bits", short.format(2_500)],
+    ],
+    tops: [
+      {
+        title: w.tops.bits,
+        list: [
+          ["Rex", bits(1_000)],
+          ["Kai", bits(500)],
+          ["Mia", bits(300)],
+        ],
+      },
+      {
+        title: w.tops.subs,
+        list: [
+          ["Ivy", subs(5)],
+          ["Rex", subs(4)],
+          ["Zoe", subs(3)],
+        ],
+      },
+    ],
+  },
+  {
+    id: "youtube",
+    name: "YouTube",
+    viewers: minutes(86, 97, 52, 2.1),
+    stats: [
+      ["gifts", full.format(14)],
+      ["giftSubs", full.format(6)],
+      ["superChats", money.format(42.5)],
+    ],
+    tops: [
+      {
+        title: w.tops.superChats,
+        list: [
+          ["Omar", money.format(20)],
+          ["Lina", money.format(12.5)],
+          ["Noor", money.format(5)],
+        ],
+      },
+      {
+        title: w.tops.subs,
+        list: [
+          ["Bea", subs(3)],
+          ["Omar", subs(2)],
+          ["Lina", subs(1)],
+        ],
+      },
+    ],
+  },
+  {
+    id: "kick",
+    name: "Kick",
+    viewers: minutes(54, 63, 30, 3.7),
+    stats: [
+      ["giftSubs", full.format(4)],
+      ["kicks", short.format(1_850)],
+    ],
+    tops: [
+      {
+        title: w.tops.kicks,
+        list: [
+          ["Vic", kicks(1_000)],
+          ["Theo", kicks(500)],
+          ["Pia", kicks(200)],
+        ],
+      },
+      {
+        title: w.tops.subs,
+        list: [
+          ["Gus", subs(2)],
+          ["Vic", subs(1)],
+          ["Theo", subs(1)],
+        ],
+      },
+    ],
+  },
+];
+
+// All adds the platforms up, one tile per currency and no tops, as the app
+// does: it would rank one currency against another
+const TABS: Tab[] = [
+  ...PLATFORM_TABS,
+  {
+    id: "all",
+    name: w.all,
+    viewers: Array.from({ length: MINUTES }, (_, i) =>
+      PLATFORM_TABS.reduce((sum, tab) => sum + tab.viewers[i]!, 0),
+    ),
+    stats: [
+      ["likes", short.format(52_400)],
+      ["views", short.format(18_300)],
+      ["followers", full.format(48 + 23)],
+      ["shares", full.format(17)],
+      ["gifts", full.format(126 + 14)],
+      ["giftSubs", full.format(12 + 6 + 4)],
+      ["coins", short.format(3_500)],
+      ["kicks", short.format(1_850)],
+      ["bits", short.format(2_500)],
+      ["superChats", money.format(42.5)],
+    ],
+    tops: [],
+  },
+];
+
+// Each platform's logo, as the app's tabs draw it (PLATFORM_ICONS): Font
+// Awesome Free 5.15.4's TikTok, Twitch and YouTube (CC BY 4.0), and Simple
+// Icons' Kick (CC0). Each logo stays its owner's trademark.
+const LOGOS: Record<string, { viewBox: string; d: string }> = {
+  tiktok: {
+    viewBox: "0 0 448 512",
+    d: "M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z",
+  },
+  twitch: {
+    viewBox: "0 0 512 512",
+    d: "M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z",
+  },
+  youtube: {
+    viewBox: "0 0 576 512",
+    d: "M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z",
+  },
+  kick: {
+    viewBox: "0 0 24 24",
+    d: "M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z",
+  },
+};
+
+// Each tab's line, drawn in a box 720 wide and as tall as the plot, which
+// stretches it across: the line keeps its height wherever it runs flat
+const W = 720;
+const H = 64;
+const charts = TABS.map((tab) => {
+  const now = Math.round(tab.viewers.at(-1)!);
+  const peak = Math.round(Math.max(...tab.viewers));
+  const points = tab.viewers.map(
+    (v, i) =>
+      `${((i / (MINUTES - 1)) * W).toFixed(1)},${(H * (1 - v / peak)).toFixed(1)}`,
+  );
+  const line = `M${points.join("L")}`;
+  return {
+    now,
+    peak,
+    line,
+    area: `${line}L${W},${H}L0,${H}Z`,
+    nowTop: `${((1 - now / peak) * 100).toFixed(1)}%`,
+  };
+});
+---
+
+<section class="app-hero">
+  <div class="container">
+    <div class="words">
+      <h1>{t.title}</h1>
+      <p class="lead">{t.lead}</p>
+      <div class="actions">
+        <DownloadButton size="lg" />
+        <a class="btn btn-lg" href={localize("/docs/", lang)}>
+          {t.readDocs}
+        </a>
+      </div>
+      <p class="meta">
+        {[t.meta, release && fill(t.version, { version: release.version })]
+          .filter(Boolean)
+          .join(" ")}
+      </p>
+    </div>
+
+    <figure class="window" aria-label={w.label} data-home>
+      <div class="board">
+        <div class="head">
+          <p class="status">
+            <span class="dot"></span>
+            <span class="timer">01:23:10</span>
+          </p>
+
+          <div class="tabs" role="tablist" aria-label={w.platforms}>
+            {TABS.map((tab, index) => (
+              <button
+                class="tab"
+                type="button"
+                role="tab"
+                id={`home-${tab.id}-tab`}
+                aria-controls={`home-${tab.id}`}
+                aria-selected={index === 0 ? "true" : "false"}
+                tabindex={index === 0 ? 0 : -1}
+              >
+                {LOGOS[tab.id] && (
+                  <svg
+                    class="logo"
+                    viewBox={LOGOS[tab.id]!.viewBox}
+                    aria-hidden="true"
+                  >
+                    <path d={LOGOS[tab.id]!.d} />
+                  </svg>
+                )}
+                <span class="name">{tab.name}</span>
+                <span class="readout count">{charts[index]!.now}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="views">
+          {TABS.map((tab, index) => {
+            const chart = charts[index]!;
+            return (
+              <div
+                class="view"
+                role="tabpanel"
+                id={`home-${tab.id}`}
+                aria-labelledby={`home-${tab.id}-tab`}
+                hidden={index !== 0}
+              >
+                <div class="pulse">
+                  <span class="readout viewers">{chart.now}</span>
+                  <span class="label">{w.viewers}</span>
+                  <div class="plot">
+                    <svg
+                      viewBox={`0 0 ${W} ${H}`}
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path class="area" d={chart.area} />
+                      <line class="base" x1="0" y1={H} x2={W} y2={H} />
+                      <path class="line" d={chart.line} pathLength="1" />
+                    </svg>
+                    <span class="now" style={`top: ${chart.nowTop}`} />
+                  </div>
+                  <p class="peak">
+                    {w.peak} <span class="readout">{chart.peak}</span>
+                  </p>
+                </div>
+
+                <div class:list={["stats", { wide: tab.stats.length > 6 }]}>
+                  {tab.stats.map(([stat, value]) => (
+                    <p class="stat">
+                      <span class="readout">{value}</span>
+                      <span class="label">{w.stats[stat]}</span>
+                    </p>
+                  ))}
+                </div>
+
+                {tab.tops.map((top) => (
+                  <div class="tops">
+                    <p class="part-title">{top.title}</p>
+                    <ol class="gifters">
+                      {top.list.map(([name, amount], i) => (
+                        <li>
+                          <span class="readout rank" aria-hidden="true">
+                            {i + 1}
+                          </span>
+                          <span class="avatar" aria-hidden="true">
+                            {name[0]}
+                          </span>
+                          <span class="gifter">
+                            <strong>{name}</strong>
+                            <span>{amount}</span>
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="rail">
+        <p class="part-title">{w.activity}</p>
+        <ol class="feed">
+          {EVENTS.map((event, i) => (
+            <li
+              class:list={{ arrives: i < 2 }}
+              style={`--delay: ${1.4 - i * 0.5}s`}
+            >
+              <span class="avatar" aria-hidden="true">
+                {event.name[0]}
+              </span>
+              <div class="event">
+                <p>
+                  <strong>{event.name}</strong>
+                  {event.action && ` ${event.action}`}
+                </p>
+                {event.message && <p class="message">{event.message}</p>}
+              </div>
+              {event.amount && <span class="amount">{event.amount}</span>}
+            </li>
+          ))}
+        </ol>
+        <div class="playing">
+          <p>
+            <span class="playing-label">{w.playing}</span>
+            <span class="song">Blinding Lights</span>
+            <span class="artist">The Weeknd</span>
+          </p>
+          <span class="bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<script>
+  // The tabs: a click or the arrow keys pick one. Until then, the demo goes
+  // through each once on its own, the picked tab's line filling for its
+  // time, and comes back to the first. It holds while a tab has the keyboard
+  // focus or it's out of view, not under the pointer (the user's call), and
+  // never runs with reduced motion.
+  for (const home of document.querySelectorAll<HTMLElement>("[data-home]")) {
+    const tabs = [...home.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+    const views = tabs.map((tab) =>
+      document.getElementById(tab.getAttribute("aria-controls")!),
+    );
+    let current = 0;
+
+    const select = (index: number, focus = false) => {
+      current = index;
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        views[i]!.hidden = i !== index;
+      });
+      // Each view keeps its place in the layout, so the page never moves; the
+      // one shown draws its line over, quicker than on load
+      home.dataset.switched = "";
+      for (const animation of views[index]!.getAnimations({ subtree: true })) {
+        animation.cancel();
+        animation.play();
+      }
+      if (focus) tabs[index]!.focus();
+    };
+    const stop = () => delete home.dataset.playing;
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        stop();
+        select(index);
+      });
+      tab.addEventListener("keydown", (event) => {
+        const last = tabs.length - 1;
+        const to = {
+          ArrowRight: index === last ? 0 : index + 1,
+          ArrowLeft: index === 0 ? last : index - 1,
+          Home: 0,
+          End: last,
+        }[event.key];
+        if (to === undefined) return;
+        event.preventDefault();
+        stop();
+        select(to, true);
+      });
+      // The line's fill ends: the next tab, or the first again
+      tab.addEventListener("animationend", () => {
+        if (!("playing" in home.dataset) || index !== current) return;
+        const next = (current + 1) % tabs.length;
+        select(next);
+        if (next === 0) stop();
+      });
+    });
+
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      home.dataset.playing = "";
+      const hold = new Set<string>();
+      const holdWhile = (reason: string, on: boolean) => {
+        if (on) hold.add(reason);
+        else hold.delete(reason);
+        home.toggleAttribute("data-held", hold.size > 0);
+      };
+      home.addEventListener("focusin", () => holdWhile("focus", true));
+      home.addEventListener("focusout", (event) => {
+        if (!home.contains(event.relatedTarget as Node))
+          holdWhile("focus", false);
+      });
+      new IntersectionObserver(([entry]) =>
+        holdWhile("view", !entry!.isIntersecting),
+      ).observe(home);
+    }
+  }
+</script>
+
+<style>
+  /* The wash warms the words and the window's top */
+  .app-hero {
+    padding-block: var(--space-12) var(--space-8);
+    overflow: hidden;
+    background: radial-gradient(ellipse 70% 55% at 50% 40%, var(--wash));
+  }
+
+  @media (min-width: 960px) {
+    .app-hero {
+      padding-top: var(--space-16);
+    }
+  }
+
+  .words {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-display);
+  }
+
+  .lead {
+    max-width: 600px;
+    color: var(--font-secondary);
+    text-wrap: balance;
+    font-size: var(--font-lg);
+  }
+
+  @media (min-width: 720px) {
+    .lead {
+      font-size: var(--font-xl);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  /* Stacked on phones, both as wide as the text: centering would pack the
+     grid's column to the wider button */
+  @media (max-width: 559px) {
+    .actions {
+      display: grid;
+      justify-content: stretch;
+      width: 100%;
+    }
+  }
+
+  .meta {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+  }
+
+  /* THE WINDOW: Home's board, and from 960px its Activity rail. No chrome:
+     the tally alone says it's the app, live. Its foot fades into the page. */
+  .window {
+    --fade: var(--space-12);
+
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: var(--space-12) 0 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--background-primary);
+    line-height: 1.5;
+    text-align: left;
+    mask-image: linear-gradient(
+      to bottom,
+      #000 calc(100% - var(--fade)),
+      transparent
+    );
+  }
+
+  /* The rail runs the window's height, as in the app, and fades at its foot.
+     The board, shorter without the app's feature switches, dissolves into
+     the page from under Top gifters instead of ending in an empty box. */
+  @media (min-width: 960px) {
+    .window {
+      --fade: var(--space-24);
+      --rail: 320px;
+      --solid: 440px;
+
+      grid-template-columns: minmax(0, 1fr) var(--rail);
+      margin-top: var(--space-16);
+      mask-image:
+        linear-gradient(
+          #000 var(--solid),
+          transparent calc(var(--solid) + 160px)
+        ),
+        linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+      /* The rail's column, its hairline and the window's edge included */
+      mask-size:
+        calc(100% - var(--rail) - 1px) 100%,
+        calc(var(--rail) + 1px) 100%;
+      mask-position:
+        left top,
+        right top;
+      mask-repeat: no-repeat;
+    }
+  }
+
+  /* On air: the app's tally, a rose line at the top's center, fading out to
+     both sides */
+  .window::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -1px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent-primary) 35%,
+      var(--accent-primary) 65%,
+      transparent
+    );
+    animation: on-air 0.3s ease-out 0.1s both;
+  }
+
+  /* The app's one warm spot, from the board's corner, eased out to the Ink
+     as the page's wash is */
+  .board {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    min-width: 0;
+    padding: var(--space-5) var(--space-4) calc(var(--fade) + var(--space-2));
+    border-radius: var(--radius-xl) 0 0 0;
+    background: radial-gradient(
+      720px 360px at 0 0,
+      color-mix(in srgb, var(--accent-primary) 8%, var(--background-primary)) 0%,
+      color-mix(in srgb, var(--accent-primary) 7.8%, var(--background-primary))
+        10%,
+      color-mix(in srgb, var(--accent-primary) 7.24%, var(--background-primary))
+        20%,
+      color-mix(in srgb, var(--accent-primary) 6.35%, var(--background-primary))
+        30%,
+      color-mix(in srgb, var(--accent-primary) 5.24%, var(--background-primary))
+        40%,
+      color-mix(in srgb, var(--accent-primary) 4%, var(--background-primary))
+        50%,
+      color-mix(in srgb, var(--accent-primary) 2.76%, var(--background-primary))
+        60%,
+      color-mix(in srgb, var(--accent-primary) 1.65%, var(--background-primary))
+        70%,
+      color-mix(in srgb, var(--accent-primary) 0.76%, var(--background-primary))
+        80%,
+      color-mix(in srgb, var(--accent-primary) 0.2%, var(--background-primary))
+        90%,
+      var(--background-primary) 100%
+    );
+  }
+
+  @media (min-width: 720px) {
+    .board {
+      gap: var(--space-8);
+      padding: var(--space-8) var(--space-8) var(--fade);
+    }
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  /* Steady, like the tally */
+  .dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--accent-primary);
+  }
+
+  /* The readout: live numbers, condensed, with tabular figures */
+  .readout,
+  .timer {
+    font-stretch: var(--stretch-readout);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .timer {
+    font-size: var(--font-xl);
+  }
+
+  /* As the app's Home: each platform's name and viewers now, on a hairline,
+     the picked one over a rose line */
+  .head {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    background: none;
+    color: var(--font-secondary);
+    font: inherit;
+    font-size: var(--font-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  .tab:first-child {
+    padding-left: 0;
+  }
+
+  .tab:hover,
+  .tab[aria-selected="true"] {
+    color: var(--font-primary);
+  }
+
+  .tab:focus-visible {
+    outline-offset: -2px;
+    border-radius: var(--radius-md);
+  }
+
+  .count {
+    font-size: var(--font-md);
+  }
+
+  /* Rose, as the app draws a connected platform's logo: every platform is
+     in this LIVE */
+  .logo {
+    flex: none;
+    width: 1em;
+    height: 1em;
+    fill: var(--accent-primary);
+  }
+
+  /* Under 720px the names and counts don't fit beside the logos: the logos
+     alone, their names still read out, and the big number says the count */
+  @media (max-width: 719px) {
+    .count {
+      display: none;
+    }
+
+    .logo + .name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+
+  .tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent-primary);
+    transform-origin: left;
+  }
+
+  /* While the demo plays, the picked tab's line fills over its time, and its
+     end moves on to the next tab */
+  [data-playing] .tab[aria-selected="true"]::after {
+    animation: fill 4s linear both;
+  }
+
+  /* Under the pointer, a tab says it can be picked: the app's Iron, never
+     the picked one's rose */
+  .tab:not([aria-selected="true"]):hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--background-secondary-hover);
+  }
+
+  [data-playing][data-held] .tab[aria-selected="true"]::after {
+    animation-play-state: paused;
+  }
+
+  /* Every tab's numbers in one cell, as tall as the tallest, so the page
+     under them never moves as the tabs change. Each is spaced as the board
+     spaces its parts. */
+  .views {
+    display: grid;
+    gap: inherit;
+  }
+
+  .view {
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / 1;
+    gap: inherit;
+  }
+
+  .view[hidden] {
+    display: flex;
+    visibility: hidden;
+  }
+
+  .label {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+    font-weight: 500;
+  }
+
+  /* The viewer count, its line beside it on the same floor, and "Viewers"
+     and "Peak" on the line under both, as the app lays them out */
+  .pulse {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: end;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  @media (min-width: 720px) {
+    .pulse {
+      column-gap: var(--space-8);
+    }
+  }
+
+  .viewers {
+    grid-area: 1 / 1;
+    min-width: 3ch;
+    /* The app's --font-4xl */
+    font-size: 48px;
+  }
+
+  .pulse .label {
+    grid-area: 2 / 1;
+  }
+
+  .plot {
+    grid-area: 1 / 2;
+    position: relative;
+    height: 64px;
+  }
+
+  /* A little taller than the app's, as the hero's one moment */
+  @media (min-width: 960px) {
+    .plot {
+      height: 88px;
+    }
+
+    .board {
+      gap: var(--space-10);
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .area {
+    fill: var(--font-secondary);
+    fill-opacity: 0.1;
+    animation: reveal 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+  }
+
+  .base {
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+
+  /* Draws itself once, from the LIVE's start to now */
+  .line {
+    fill: none;
+    stroke: var(--font-secondary);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    animation: draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+  }
+
+  /* Still 2px high, in a box stretched from 64 to 88 */
+  @media (min-width: 960px) {
+    .line {
+      stroke-width: 1.5;
+    }
+  }
+
+  /* Now, ringed in the page's color so it stands off the line. It lands as
+     the line reaches it. */
+  .now {
+    position: absolute;
+    left: 100%;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--background-primary);
+    border-radius: var(--radius-full);
+    background: var(--accent-primary);
+    translate: -50% -50%;
+    animation: land 0.3s ease-out 1.75s both;
+  }
+
+  /* A tab picked after the first draws its line quicker, so its numbers
+     read sooner */
+  [data-switched] .area,
+  [data-switched] .line {
+    animation-duration: 0.8s;
+    animation-delay: 0s;
+  }
+
+  [data-switched] .now {
+    animation-delay: 0.8s;
+  }
+
+  .peak {
+    grid-area: 2 / 2;
+    justify-self: end;
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+    font-weight: 500;
+  }
+
+  .peak .readout {
+    color: var(--font-primary);
+    font-size: var(--font-md);
+  }
+
+  /* Three by two on phones, one row of six from 720px. Labels may wrap. */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-5) var(--space-4);
+  }
+
+  /* All's ten in four columns on phones: its height is the picture's, as
+     the tallest tab's */
+  .stats.wide {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (min-width: 720px) {
+    .stats {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .stats.wide {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .stat .readout {
+    font-size: var(--font-2xl);
+  }
+
+  .part-title {
+    font-size: var(--font-xl);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Top gifters and the rail need the room phones don't have */
+  .tops,
+  .rail {
+    display: none;
+  }
+
+  @media (min-width: 720px) {
+    .tops {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+  }
+
+  .gifters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gifters li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .rank {
+    min-width: 1ch;
+    color: var(--font-secondary);
+    font-size: var(--font-lg);
+  }
+
+  .gifter {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    font-size: var(--font-md);
+  }
+
+  .gifter span {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--border);
+    color: var(--font-secondary);
+    font-size: var(--font-xs);
+    font-weight: 600;
+  }
+
+  /* THE RAIL: Activity, newest first, and the song at its foot */
+  @media (min-width: 960px) {
+    .rail {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      border-left: 1px solid var(--border);
+      border-radius: 0 var(--radius-xl) 0 0;
+      background: var(--background-tertiary);
+    }
+  }
+
+  .rail > .part-title {
+    padding: var(--space-6) var(--space-6) var(--space-3);
+  }
+
+  .feed {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feed li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-md);
+  }
+
+  .feed li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .arrives {
+    animation: arrive 0.5s ease-out var(--delay) both;
+  }
+
+  .event {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .message {
+    color: var(--font-secondary);
+  }
+
+  /* A gift's price at the row's end, on its first line's height */
+  .amount {
+    flex: none;
+    margin-left: auto;
+    padding-left: var(--space-2);
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+    line-height: calc(var(--font-md) * 1.5);
+    white-space: nowrap;
+  }
+
+  .playing {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--fade);
+    padding: var(--space-4) var(--space-6);
+    border-block: 1px solid var(--border);
+  }
+
+  .playing p {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .playing-label {
+    color: var(--font-secondary);
+    font-size: var(--font-sm);
+    font-weight: 500;
+  }
+
+  .song {
+    font-size: var(--font-md);
+    font-weight: 500;
+  }
+
+  .artist {
+    color: var(--font-secondary);
+    font-size: var(--font-xs);
+  }
+
+  /* The app's bars, standing still, short to tall */
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+    margin-left: auto;
+  }
+
+  .bars span {
+    width: 3px;
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--accent-primary);
+  }
+
+  .bars span:nth-child(1) {
+    height: 40%;
+  }
+
+  .bars span:nth-child(2) {
+    height: 70%;
+  }
+
+  @keyframes fill {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes on-air {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes land {
+    from {
+      opacity: 0;
+      scale: 0;
+    }
+  }
+
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+</style>

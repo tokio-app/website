@@ -69,6 +69,32 @@
 
   /* Web only */
 
+  /* The rose washes' stops: accent-soft over the Ink, fading out on an
+     eased curve that ends flat, so no line shows where a wash ends. Solid
+     colors, mixed into the Ink: see-through ones this faint lose their
+     green and blue to rounding and draw a dark ring. For radial gradients on
+     the Ink. */
+  --wash:
+    color-mix(in srgb, var(--accent-primary) 12%, var(--background-primary)) 0%,
+    color-mix(in srgb, var(--accent-primary) 11.71%, var(--background-primary))
+      7%,
+    color-mix(in srgb, var(--accent-primary) 10.85%, var(--background-primary))
+      14%,
+    color-mix(in srgb, var(--accent-primary) 9.53%, var(--background-primary))
+      21%,
+    color-mix(in srgb, var(--accent-primary) 7.85%, var(--background-primary))
+      28%,
+    color-mix(in srgb, var(--accent-primary) 6%, var(--background-primary)) 35%,
+    color-mix(in srgb, var(--accent-primary) 4.15%, var(--background-primary))
+      42%,
+    color-mix(in srgb, var(--accent-primary) 2.47%, var(--background-primary))
+      49%,
+    color-mix(in srgb, var(--accent-primary) 1.15%, var(--background-primary))
+      56%,
+    color-mix(in srgb, var(--accent-primary) 0.29%, var(--background-primary))
+      63%,
+    var(--background-primary) 70%;
+
   /* Text on rose buttons */
   --accent-ink: #ffffff;
   --space-20: 80px;

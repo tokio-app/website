@@ -1,15 +1,14 @@
 ---
 import DownloadButton from "../components/DownloadButton.astro";
+import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
-import LiveFeed from "../components/LiveFeed.astro";
-import { fill, langOf, localize, textOf } from "../i18n";
+import { langOf, localize, textOf } from "../i18n";
 import Base from "../layouts/Base.astro";
-import { getLatestRelease, REPO_URL } from "../lib/release";
+import { REPO_URL } from "../lib/release";
 
 // Also /es/ and the other languages' homes (src/pages/<code>/index.astro)
 const lang = langOf(Astro.currentLocale);
 const t = textOf(lang).home;
-const release = await getLatestRelease();
 
 // Code, or rows drawn the way the app draws them
 type Example = string | { name: string; value?: string; verified?: boolean }[];
@@ -48,26 +47,7 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
 ---
 
 <Base>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1>{t.title}</h1>
-        <p class="lead">{t.lead}</p>
-        <div class="actions">
-          <DownloadButton size="lg" />
-          <a class="btn btn-lg" href={localize("/docs/", lang)}>
-            {t.readDocs}
-          </a>
-        </div>
-        <p class="meta">
-          {[t.meta, release && fill(t.version, { version: release.version })]
-            .filter(Boolean)
-            .join(" ")}
-        </p>
-      </div>
-      <LiveFeed />
-    </div>
-  </section>
+  <Hero />
 
   <section class="section" id="features">
     <div class="container">
@@ -164,71 +144,11 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
 </Base>
 
 <style>
-  .hero {
-    padding-block: var(--space-12) var(--space-16);
-    background: radial-gradient(
-      ellipse 70% 80% at 85% 0%,
-      var(--accent-soft),
-      transparent 70%
-    );
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-12);
-    align-items: center;
-  }
-
-  @media (min-width: 960px) {
-    .hero {
-      padding-block: var(--space-20);
-    }
-
-    .hero-grid {
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: var(--space-16);
-    }
-  }
-
-  .hero-copy {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  h1 {
-    font-size: var(--font-display);
-  }
-
-  .lead {
-    max-width: 560px;
-    color: var(--font-secondary);
-    font-size: var(--font-lg);
-  }
-
-  @media (min-width: 720px) {
-    .lead {
-      font-size: var(--font-xl);
-    }
-  }
-
+  /* The closing section's buttons, which it stacks on phones */
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-  }
-
-  /* Stacked on phones, both as wide as the text, where they don't fit side by
-     side */
-  @media (max-width: 559px) {
-    .hero .actions {
-      display: grid;
-    }
-  }
-
-  .meta {
-    color: var(--font-secondary);
-    font-size: var(--font-sm);
   }
 
   .features {
@@ -495,11 +415,7 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
 
   .cta {
     border-top: 1px solid var(--border);
-    background: radial-gradient(
-      ellipse at bottom,
-      var(--accent-soft),
-      transparent 70%
-    );
+    background: radial-gradient(ellipse at bottom, var(--wash));
   }
 
   .cta-inner {
