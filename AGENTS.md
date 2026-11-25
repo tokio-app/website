@@ -143,6 +143,10 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
 - No pill tags or badges (version pills, "Free and open source" chips, colored labels), no uppercase "eyebrow" labels, and no meta lines joined with middle dots. Say it in a sentence instead.
 - No colored shadows on buttons, no gradient text, and no shadows on cards.
 - No grids of identical cards with an icon in a tinted square and a "Learn more →" link. Show features as rows with a concrete example (a template, a chat command, a URL, the app's own rows), and link the title.
+- The landing's rows are the five main features: Text-to-speech, Music, Alerts, Games and Overlays (the user's call).
+  - The rest go in the last row, "And more", a `<details>` that stays closed until it's clicked, with each feature linked to its docs page.
+  - A new feature goes there and in the docs' Features list.
+  - The examples use the app's defaults (the TTS template `{username} {comment}`, the gallery's tags, sound names without extensions): check them against the app when it changes.
 - No fake window chrome (traffic-light dots).
 - Prefer real content over decoration: actual commands, file names, event names and settings from the app. Mono is for code only.
 - One Ink surface. Panels (`--background-tertiary`, radius 8, a `--border` hairline) only hold grouped content, such as the hero's Activity rail, the feature examples and the download cards; hairlines and spacing do the rest. Controls take radius 6, the hero's window 10.
@@ -161,7 +165,13 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
   - Under 720px the tabs show the logos alone.
 - Descriptions are short, a few words each, as in the app.
 - In the docs, the app's screenshots are the loud element and everything around them stays quiet. No markers, badges or captions on them: a tight crop points at what to click. `Flow` draws only what has no screen (how Tokio sits between TikTok and your stream, a streaming app on another computer): stops on a hairline track, with the LIVE dot as its only color.
-- The getting-started timeline has four steps that match the app's flow: install, set it up (the Euler Stream API key, voices, music provider, alert sounds, overlays), prepare your stream (turn on the features, add the overlays to OBS or TikTok LIVE Studio), go live and connect. Everything is set up before the LIVE starts; Tokio can only connect once it has. The connect docs (`connect.mdx`) follow the same four steps. The steps' links line up at the bottom, whatever their text's length.
+- The getting-started timeline has four steps that match the app's flow:
+  1. Install.
+  2. Set it up: platforms, voices, music, alerts and overlays.
+  3. Prepare your stream: turn on the features, and add the overlays to the streaming app.
+  4. Go live and connect.
+
+  Each step is one short line that fits every platform, with no platform's details (the user's call). The connect docs (`connect.mdx`) follow the same four steps with those details: TikTok's Euler Stream key and Twitch's sign-in, set up before the LIVE starts. TikTok and YouTube connect only once the LIVE has started; Twitch and Kick can connect before. The steps' links line up at the bottom, whatever their text's length.
 
 ## Content
 

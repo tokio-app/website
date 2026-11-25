@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tokio: make your live stream react",
-    "description": "Make your live stream react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
+    "description": "Make your live stream react to your viewers: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
   },
   "header": {
     "nav": "Main",
@@ -113,7 +113,7 @@
   },
   "home": {
     "title": "Make your live stream react.",
-    "lead": "Tokio turns chat, gifts and follows into voices, songs, alerts and overlays on your stream.",
+    "lead": "Tokio turns what your viewers do into voices, songs, alerts, overlays and more.",
     "readDocs": "Read the docs",
     "meta": "Free and open source, for Windows, macOS and Linux.",
     "version": "Version {version}.",
@@ -121,66 +121,89 @@
     "features": {
       "tts": {
         "title": "Text-to-speech",
-        "text": "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices, or your own voice cloned with ElevenLabs, Fish Audio, Cartesia or Inworld.",
-        "example": "{username} says {comment}\n→ Lucia says hi from Lima!"
+        "text": "Chat read aloud in TikTok, Edge or Windows voices, or in your own cloned voice.",
+        "example": [
+          { "code": "{username} {comment}" },
+          { "text": "“Maya this song is a vibe”" }
+        ]
       },
       "music": {
         "title": "Music",
-        "text": "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
-        "example": "!play One More Time\n!next  !last  !revoke"
+        "text": "Viewers request songs from chat, played on YouTube or Spotify.",
+        "example": [{ "code": "!play Blinding Lights\n!next  !last  !revoke" }]
       },
       "alerts": {
         "title": "Alerts",
-        "text": "A sound, an image or a video for follows, gifts, Super Fan events and more.",
+        "text": "A sound, a spoken message, an image or a video for any event in your LIVE.",
         "example": [
-          { "name": "Follow", "value": "bell.mp3" },
-          { "name": "Gift", "value": "confetti.mp4" },
-          { "name": "Share", "value": "whoosh.mp3" }
+          { "name": "Follow", "value": "bell", "sound": true },
+          {
+            "name": "Gift worth 100+ coins",
+            "value": "airhorn",
+            "sound": true
+          },
+          {
+            "name": "Super Chat worth $5+",
+            "value": "cash register",
+            "sound": true
+          }
         ]
       },
       "games": {
         "title": "Games",
-        "text": "Gifts, follows and chat spawn mobs and run commands in your Minecraft world.",
-        "example": "Follow\n→ summon zombie \"Lucia\" ~ ~ ~"
+        "text": "Your LIVE spawns mobs, gives items and runs commands in Minecraft.",
+        "example": [
+          { "name": "Follow", "value": "Bedrock" },
+          { "code": "summon zombie \"Sunny Fox\" ~ ~ ~" }
+        ]
       },
       "overlays": {
         "title": "Overlays",
-        "text": "Install the official overlays, import your own or build one in Overlay Studio.",
+        "text": "Install the official overlays, like the Gift Jar, or import your own.",
         "example": [
           { "name": "Gift Jar", "value": "Verified", "verified": true },
-          { "name": "My chat box", "value": "External" },
-          { "name": "My overlay", "value": "4 elements" }
-        ]
-      },
-      "timer": {
-        "title": "Countdown",
-        "text": "A subathon clock on your stream that gifts, likes, follows and chat add time to.",
-        "example": [
-          { "name": "Coins", "value": "1 second per coin" },
-          { "name": "Likes", "value": "10 seconds every 100" },
-          { "name": "Follows", "value": "30 seconds each" }
-        ]
-      },
-      "coinStats": {
-        "title": "LIVE history",
-        "text": "What viewers sent in every LIVE, each platform's money apart, and who sent it. Overlays can show your top TikTok gifters.",
-        "example": [
-          { "name": "Leo", "value": "21,987 coins" },
-          { "name": "Maya", "value": "14,768 coins" },
-          { "name": "Sunny Fox", "value": "11,330 coins" }
+          { "name": "Now Playing", "value": "Verified", "verified": true },
+          { "name": "My chat box", "value": "External" }
         ]
       }
     },
-    "overlaysTitle": "One link per overlay, in any streaming app",
-    "overlaysText": "Each overlay gets its own address on your computer.",
-    "browseOverlays": "Browse the overlays",
-    "howToAddOverlay": "How to add an overlay",
-    "urlLabel": "Browser source URL",
-    "apps": [
-      "OBS Studio",
-      "TikTok LIVE Studio",
-      "Any app with a browser source"
-    ],
+    "more": {
+      "title": "And more",
+      "features": {
+        "countdown": {
+          "title": "Countdown",
+          "text": "A clock viewers add time to: 1 second per coin, Bit or Kick."
+        },
+        "studio": {
+          "title": "Overlay Studio",
+          "text": "Your own overlays, from text, images, cameras and other overlays."
+        },
+        "history": {
+          "title": "LIVE history",
+          "text": "Every LIVE, and who sent the most on each platform."
+        },
+        "fans": {
+          "title": "Fans",
+          "text": "Your TikTok fan club, Twitch and Kick subscribers and YouTube members."
+        },
+        "translation": {
+          "title": "Chat translation",
+          "text": "TikTok's chat, translated into your language."
+        },
+        "controls": {
+          "title": "Live controls",
+          "text": "Skip a song, stop TTS, replay an alert or pause everything, with a shortcut or from your phone."
+        },
+        "profiles": {
+          "title": "Profiles",
+          "text": "Separate settings for each stream."
+        },
+        "mcp": {
+          "title": "MCP server",
+          "text": "AI assistants like Claude Code set up and run Tokio for you."
+        }
+      }
+    },
     "stepsTitle": "Live in four steps",
     "steps": [
       {
@@ -190,17 +213,17 @@
       },
       {
         "title": "Set it up",
-        "text": "Add your free Euler Stream key, then your voices, music, alerts and overlays.",
+        "text": "Add your platforms, voices, music, alerts and overlays.",
         "link": "Features"
       },
       {
         "title": "Prepare your stream",
-        "text": "Turn on the features you want, and add your overlays to OBS or TikTok LIVE Studio.",
+        "text": "Turn on the features you want, and add overlays to your streaming app.",
         "link": "Adding an overlay"
       },
       {
         "title": "Go live and connect",
-        "text": "Start your LIVE on TikTok, then connect with your @username.",
+        "text": "Start your LIVE, then connect your platforms on Home.",
         "link": "How to connect"
       }
     ],
@@ -345,12 +368,15 @@
     "privacyTitle": "Privacy",
     "privacy": [
       "Tokio runs on your computer and has no account. Your settings, profiles, sounds, images and videos are saved there.",
-      "So are the fans Tokio sees in your LIVEs: their name, @handle, TikTok ID, fan level, whether they're a Super Fan, and when Tokio last saw them. Each profile also keeps the coins and gifts of every LIVE and the viewers who sent them: their name, @handle, TikTok ID, profile picture link, and the coins and gifts they sent and when.",
+      "So are the fans Tokio sees in your LIVEs (TikTok's fan club, Twitch's and Kick's subscribers and YouTube's members): their name, @handle and ID on that platform, their fan level or months subscribed, whether they're a Super Fan, and when Tokio last saw them.",
+      "Each profile also keeps what viewers sent in every LIVE (coins, Bits, Kicks, Super Chats, gifts and gifted subs) and who sent it: their name, @handle and ID on that platform, a link to their profile picture, and when.",
       "To connect to TikTok LIVE you need your own Euler Stream account. Tokio saves its API key on your computer, encrypted when your system supports it, and sends it only to Euler Stream. A TikTok session ID, if you add one, is saved the same way and sent only to TikTok, and an API key for ElevenLabs, Fish Audio, Cartesia or Inworld only to that service. The samples of a voice you clone go only to the service that clones it, and Tokio doesn't keep them.",
       "To connect to Twitch you sign in to your own account. Tokio saves that sign-in on your computer, encrypted when your system supports it, and sends it only to Twitch.",
+      "Spotify and YouTube play in Tokio's music window as their own websites. If you sign in to them there, your sign-in stays on your computer, as in a browser, and goes only to them.",
       "A camera you add in Overlay Studio goes only to the overlays Tokio serves, at an address that changes each time the overlay server starts. Tokio doesn't save its video.",
-      "Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions to keep itself up to date.",
-      "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
+      "Tokio keeps logs on your computer to help find problems. With Detailed logs on, they also note who sent each LIVE event and which gifts, but never what anyone writes in chat. They leave your computer only when you export them.",
+      "Tokio sends requests only to the services listed above, when you use the features that need them, and checks GitHub for new versions of itself and of the official overlays.",
+      "This website is static and hosted on GitHub Pages. It sets no cookies and uses no analytics; it only remembers the language you pick, in your browser. GitHub may log technical data such as your IP address when you visit or download a file; see GitHub's privacy statement."
     ],
     "trademarksTitle": "Trademarks",
     "trademarks": "Tokio is not affiliated with or endorsed by TikTok, ByteDance, Twitch, YouTube, Google or Kick. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, Kick, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia and Inworld are trademarks of their respective owners.",

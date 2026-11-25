@@ -1,6 +1,6 @@
 # Tokio website
 
-The website for [Tokio](https://github.com/tokio-app/tokio), the desktop app that makes your TikTok LIVE react to chat, gifts and follows. Live at [tokio.ialfaro.com](https://tokio.ialfaro.com).
+The website for [Tokio](https://github.com/tokio-app/tokio), the desktop app that makes your live stream react to your viewers. Live at [tokio.ialfaro.com](https://tokio.ialfaro.com).
 
 Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 

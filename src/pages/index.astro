@@ -10,16 +10,20 @@ import { REPO_URL } from "../lib/release";
 const lang = langOf(Astro.currentLocale);
 const t = textOf(lang).home;
 
-// Code, or rows drawn the way the app draws them
-type Example = string | { name: string; value?: string; verified?: boolean }[];
+// A line of an example: code, what Tokio says, or one of the app's rows (an
+// alert's trigger and sound, an overlay and its tag)
+type Part =
+  | { code: string }
+  | { text: string }
+  | { name: string; value: string; sound?: boolean; verified?: boolean };
 
-// Each feature shows a small, real example of what it does: code, or the
-// app's own rows (the gallery's tags, Time added's settings), in its words.
+// The main features, each with a small, real example of what it does with
+// the app's defaults, in its words
 const FEATURES: {
   title: string;
   href: string;
   text: string;
-  example: Example;
+  example: Part[];
 }[] = (
   [
     ["tts", "/docs/features/text-to-speech/"],
@@ -27,10 +31,25 @@ const FEATURES: {
     ["alerts", "/docs/features/alerts/"],
     ["games", "/docs/features/games/"],
     ["overlays", "/docs/features/overlays/"],
-    ["timer", "/docs/features/countdown-timer/"],
-    ["coinStats", "/docs/features/coin-stats/"],
   ] as const
 ).map(([id, href]) => ({ ...t.features[id], href: localize(href, lang) }));
+
+// The rest, under "And more", closed until it's clicked
+const MORE = (
+  [
+    ["countdown", "/docs/features/countdown-timer/"],
+    ["studio", "/docs/features/overlay-studio/"],
+    ["history", "/docs/features/coin-stats/"],
+    ["fans", "/docs/features/fans/"],
+    ["translation", "/docs/features/chat-translation/"],
+    ["controls", "/docs/features/live-controls/"],
+    ["profiles", "/docs/features/profiles-and-settings/"],
+    ["mcp", "/docs/developers/mcp/"],
+  ] as const
+).map(([id, href]) => ({
+  ...t.more.features[id],
+  href: localize(href, lang),
+}));
 
 // The docs' Features heading is #features in English, its own slug in others
 const STEP_LINKS = [
@@ -61,52 +80,43 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
               <a href={feature.href}>{feature.title}</a>
             </h3>
             <p>{feature.text}</p>
-            {typeof feature.example === "string" ? (
-              <pre aria-hidden="true">{feature.example}</pre>
-            ) : (
-              <ul class="example" aria-hidden="true">
-                {feature.example.map((row) => (
-                  <li>
-                    {row.name}
-                    {row.value && (
-                      <span>
-                        {row.verified && <Icon name="check" size={14} />}
-                        {row.value}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <div class="example" aria-hidden="true">
+              {feature.example.map((part) =>
+                "code" in part ? (
+                  <pre>{part.code}</pre>
+                ) : "text" in part ? (
+                  <p class="said">{part.text}</p>
+                ) : (
+                  <p class="row">
+                    {part.name}
+                    <span class:list={{ verified: part.verified }}>
+                      {part.sound && <Icon name="music" size={14} />}
+                      {part.verified && <Icon name="check" size={14} />}
+                      {part.value}
+                    </span>
+                  </p>
+                ),
+              )}
+            </div>
           </li>
         ))}
+        <li class="more">
+          <details>
+            <summary>
+              <h3>{t.more.title}</h3>
+              <Icon name="chevron" />
+            </summary>
+            <ul class="others">
+              {MORE.map((item) => (
+                <li>
+                  <a href={item.href}>{item.title}</a>
+                  <p>{item.text}</p>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </li>
       </ul>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container overlay-grid">
-      <div class="section-head">
-        <h2>{t.overlaysTitle}</h2>
-        <p>{t.overlaysText}</p>
-        <p class="links">
-          <a href={localize("/overlays/", lang)}>{t.browseOverlays}</a>
-          <a href={localize("/docs/guides/adding-an-overlay/", lang)}>
-            {t.howToAddOverlay}
-          </a>
-        </p>
-      </div>
-      <div class="card url-card">
-        <p class="label">{t.urlLabel}</p>
-        <code>http://tokio-app.local:37891/&lt;overlay-id&gt;/</code>
-        <ul>
-          {t.apps.map((app) => (
-            <li>
-              <Icon name="check" size={18} /> {app}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -177,31 +187,37 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     font-size: var(--font-xl);
   }
 
-  .features h3 a {
+  .features h3 a,
+  .others a {
     color: var(--font-primary);
     text-decoration: none;
   }
 
-  .features h3 a:hover {
+  .features h3 a:hover,
+  .others a:hover {
     color: var(--accent-primary-hover);
     text-decoration: underline;
   }
 
-  .features p {
+  .features > li > p {
     max-width: 520px;
     color: var(--font-secondary);
   }
 
-  /* Examples are panels: code in mono, app rows in the app's type */
-  pre,
+  /* Examples are panels: code in mono, the rest in the app's type */
   .example {
-    margin: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--background-tertiary);
+    font-size: var(--font-md);
   }
 
-  pre {
+  .example > * + * {
+    border-top: 1px solid var(--border);
+  }
+
+  .example pre {
+    margin: 0;
     padding: var(--space-3) var(--space-4);
     color: var(--font-primary);
     font-family: var(--font-family-mono);
@@ -210,13 +226,11 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     overflow-x: auto;
   }
 
-  .example {
-    padding: 0;
-    list-style: none;
-    font-size: var(--font-md);
+  .said {
+    padding: var(--space-3) var(--space-4);
   }
 
-  .example li {
+  .row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -225,83 +239,107 @@ const STEPS = t.steps.map(({ title, text, link }, index) => ({
     padding: var(--space-1) var(--space-4);
   }
 
-  .example li + li {
-    border-top: 1px solid var(--border);
-  }
-
-  .example span {
+  .row span {
     display: flex;
+    flex: none;
     align-items: center;
     gap: var(--space-1);
     color: var(--font-secondary);
     font-size: var(--font-sm);
   }
 
-  .example span :global(svg) {
+  .row .verified :global(svg) {
     color: var(--success);
   }
 
-  .overlay-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-8);
-    align-items: center;
-  }
-
-  .overlay-grid .section-head {
-    margin-bottom: 0;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-6);
-  }
-
-  @media (min-width: 960px) {
-    .overlay-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-16);
-    }
-  }
-
-  .url-card {
-    display: grid;
-    gap: var(--space-3);
-    padding: var(--space-6);
-  }
-
-  .url-card .label {
-    font-size: var(--font-sm);
-    font-weight: 500;
-  }
-
-  /* The app's overlay card shows it in a field */
-  .url-card code {
+  /* "And more": a row like the others that opens in place, the whole row
+     its button. It holds the rest, two to a line from 720px, under the
+     features' text from 960px. */
+  .features > li.more {
     display: block;
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-md);
-    color: var(--font-primary);
-    font-size: var(--font-md);
+    padding-block: 0;
   }
 
-  .url-card ul {
-    display: grid;
-    gap: var(--space-2);
-    margin: var(--space-1) 0 0;
-    padding: 0;
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: var(--space-8);
+    cursor: pointer;
     list-style: none;
   }
 
-  .url-card li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--font-secondary);
+  summary::-webkit-details-marker {
+    display: none;
   }
 
-  .url-card li :global(svg) {
-    color: var(--success);
+  summary :global(svg) {
+    flex: none;
+    color: var(--font-secondary);
+    transition: transform var(--transition-fast);
+  }
+
+  summary:hover h3,
+  summary:hover :global(svg) {
+    color: var(--accent-primary-hover);
+  }
+
+  details[open] summary :global(svg) {
+    transform: rotate(180deg);
+  }
+
+  /* Opens smoothly where browsers can animate to auto, at once elsewhere */
+  details {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 0.25s ease-out,
+      content-visibility 0.25s allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+
+  .others {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5) var(--space-8);
+    margin: 0;
+    padding: 0 0 var(--space-8);
+    list-style: none;
+  }
+
+  @media (min-width: 720px) {
+    .others {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 960px) {
+    .others {
+      margin-left: calc(220px + var(--space-8));
+    }
+  }
+
+  .others li {
+    display: grid;
+    align-content: start;
+    gap: var(--space-1);
+  }
+
+  .others a {
+    font-weight: 500;
+  }
+
+  .others p {
+    color: var(--font-secondary);
+    font-size: var(--font-md);
   }
 
   /* Timeline: vertical on phones, horizontal from 960px. Its track warms
