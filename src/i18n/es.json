@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Tokio: haz que tu stream en vivo reaccione",
-    "description": "Haz que tu stream en vivo reaccione al chat, a los regalos y a quienes te siguen: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
+    "title": "Tokio: haz que tu Live Stream reaccione",
+    "description": "Haz que tu Live Stream reaccione a tus espectadores: texto a voz, pedidos de canciones, alertas, acciones en Minecraft, un temporizador y overlays."
   },
   "header": {
     "nav": "Principal",
@@ -112,8 +112,8 @@
     "playing": "Sonando ahora"
   },
   "home": {
-    "title": "Haz que tu stream en vivo reaccione.",
-    "lead": "Tokio convierte el chat, los regalos y los seguidores en voces, canciones, alertas y overlays para tu stream.",
+    "title": "Haz que tu Live Stream reaccione.",
+    "lead": "Tokio convierte lo que hacen tus espectadores en voces, canciones, alertas, overlays y más.",
     "readDocs": "Lee la documentación",
     "meta": "Gratis y de código abierto, para Windows, macOS y Linux.",
     "version": "Versión {version}.",

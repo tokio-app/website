@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tokio: make your live stream react",
-    "description": "Make your live stream react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
+    "description": "Make your live stream react to your viewers: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays."
   },
   "header": {
     "nav": "Main",
@@ -113,7 +113,7 @@
   },
   "home": {
     "title": "Make your live stream react.",
-    "lead": "Tokio turns chat, gifts and follows into voices, songs, alerts and overlays on your stream.",
+    "lead": "Tokio turns what your viewers do into voices, songs, alerts, overlays and more.",
     "readDocs": "Read the docs",
     "meta": "Free and open source, for Windows, macOS and Linux.",
     "version": "Version {version}.",

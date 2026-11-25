@@ -37,7 +37,7 @@ export default defineConfig({
     starlight({
       title: "Tokio",
       description:
-        "Make your TikTok LIVE react to chat, gifts and follows: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays.",
+        "Make your live stream react to your viewers: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays.",
       logo: { src: "./src/assets/icon.png", alt: "Tokio" },
       favicon: "/favicon.ico",
       locales,
