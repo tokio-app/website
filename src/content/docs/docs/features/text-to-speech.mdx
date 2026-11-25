@@ -1,6 +1,6 @@
 ---
 title: Text-to-speech
-description: Read chat messages aloud with TikTok, Edge or system voices, or voices from ElevenLabs, Fish Audio, Cartesia or Inworld, your own cloned voice included.
+description: Read chat messages aloud with TikTok, Edge or Windows voices, or voices from ElevenLabs, Fish Audio, Cartesia or Inworld, your own cloned voice included.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
@@ -37,7 +37,7 @@ The format, the length limit and the permissions don't apply to the test, so it 
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **TikTok**     | TikTok's voices. They go through `ottsy.weilbyte.dev`, a proxy run by a third party, which gets the text of every message they read. Add your TikTok session ID in **Settings → Voice engines** to skip it.                                                                                                               |
 | **Edge**       | Microsoft Edge's voices.                                                                                                                                                                                                                                                                                                  |
-| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included.                                                                                                                                                                                                                                                  |
+| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included. Only on Windows.                                                                                                                                                                                                                                 |
 | **ElevenLabs** | The voices in your ElevenLabs account, cloned ones included, with your own API key in **Settings → Voice engines**. They speak all of ElevenLabs' languages and use your account's credits. ElevenLabs gets the text of every message they read.                                                                          |
 | **Fish Audio** | The voices in your Fish Audio account, cloned ones included, and the library voices Fish Audio licensed from their owners, with your own API key in **Settings → Voice engines**. They speak all of Fish Audio's languages and are paid from your account's balance. Fish Audio gets the text of every message they read. |
 | **Cartesia**   | Cartesia's voices and the ones you cloned, with your own API key in **Settings → Voice engines**. Each speaks the language it was made for, and they use your account's credits. Cartesia gets the text of every message they read.                                                                                       |
