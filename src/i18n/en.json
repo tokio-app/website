@@ -121,66 +121,89 @@
     "features": {
       "tts": {
         "title": "Text-to-speech",
-        "text": "Chat is read aloud as it comes in, with TikTok, Microsoft Edge or your system's voices, or your own voice cloned with ElevenLabs, Fish Audio, Cartesia or Inworld.",
-        "example": "{username} says {comment}\n→ Lucia says hi from Lima!"
+        "text": "Chat read aloud in TikTok, Edge or Windows voices, or in your own cloned voice.",
+        "example": [
+          { "code": "{username} {comment}" },
+          { "text": "“Maya this song is a vibe”" }
+        ]
       },
       "music": {
         "title": "Music",
-        "text": "Viewers request songs from chat, played in Tokio's YouTube player or your Spotify app.",
-        "example": "!play One More Time\n!next  !last  !revoke"
+        "text": "Viewers request songs from chat, played on YouTube or Spotify.",
+        "example": [{ "code": "!play Blinding Lights\n!next  !last  !revoke" }]
       },
       "alerts": {
         "title": "Alerts",
-        "text": "A sound, an image or a video for follows, gifts, Super Fan events and more.",
+        "text": "A sound, a spoken message, an image or a video for any event in your LIVE.",
         "example": [
-          { "name": "Follow", "value": "bell.mp3" },
-          { "name": "Gift", "value": "confetti.mp4" },
-          { "name": "Share", "value": "whoosh.mp3" }
+          { "name": "Follow", "value": "bell", "sound": true },
+          {
+            "name": "Gift worth 100+ coins",
+            "value": "airhorn",
+            "sound": true
+          },
+          {
+            "name": "Super Chat worth $5+",
+            "value": "cash register",
+            "sound": true
+          }
         ]
       },
       "games": {
         "title": "Games",
-        "text": "Gifts, follows and chat spawn mobs and run commands in your Minecraft world.",
-        "example": "Follow\n→ summon zombie \"Lucia\" ~ ~ ~"
+        "text": "Your LIVE spawns mobs, gives items and runs commands in Minecraft.",
+        "example": [
+          { "name": "Follow", "value": "Bedrock" },
+          { "code": "summon zombie \"Sunny Fox\" ~ ~ ~" }
+        ]
       },
       "overlays": {
         "title": "Overlays",
-        "text": "Install the official overlays, import your own or build one in Overlay Studio.",
+        "text": "Install the official overlays, like the Gift Jar, or import your own.",
         "example": [
           { "name": "Gift Jar", "value": "Verified", "verified": true },
-          { "name": "My chat box", "value": "External" },
-          { "name": "My overlay", "value": "4 elements" }
-        ]
-      },
-      "timer": {
-        "title": "Countdown",
-        "text": "A subathon clock on your stream that gifts, likes, follows and chat add time to.",
-        "example": [
-          { "name": "Coins", "value": "1 second per coin" },
-          { "name": "Likes", "value": "10 seconds every 100" },
-          { "name": "Follows", "value": "30 seconds each" }
-        ]
-      },
-      "coinStats": {
-        "title": "LIVE history",
-        "text": "What viewers sent in every LIVE, each platform's money apart, and who sent it. Overlays can show your top TikTok gifters.",
-        "example": [
-          { "name": "Leo", "value": "21,987 coins" },
-          { "name": "Maya", "value": "14,768 coins" },
-          { "name": "Sunny Fox", "value": "11,330 coins" }
+          { "name": "Now Playing", "value": "Verified", "verified": true },
+          { "name": "My chat box", "value": "External" }
         ]
       }
     },
-    "overlaysTitle": "One link per overlay, in any streaming app",
-    "overlaysText": "Each overlay gets its own address on your computer.",
-    "browseOverlays": "Browse the overlays",
-    "howToAddOverlay": "How to add an overlay",
-    "urlLabel": "Browser source URL",
-    "apps": [
-      "OBS Studio",
-      "TikTok LIVE Studio",
-      "Any app with a browser source"
-    ],
+    "more": {
+      "title": "And more",
+      "features": {
+        "countdown": {
+          "title": "Countdown",
+          "text": "A clock viewers add time to: 1 second per coin, Bit or Kick."
+        },
+        "studio": {
+          "title": "Overlay Studio",
+          "text": "Your own overlays, from text, images, cameras and other overlays."
+        },
+        "history": {
+          "title": "LIVE history",
+          "text": "Every LIVE, and who sent the most on each platform."
+        },
+        "fans": {
+          "title": "Fans",
+          "text": "Your TikTok fan club, Twitch and Kick subscribers and YouTube members."
+        },
+        "translation": {
+          "title": "Chat translation",
+          "text": "TikTok's chat, translated into your language."
+        },
+        "controls": {
+          "title": "Live controls",
+          "text": "Skip a song, stop TTS, replay an alert or pause everything, with a shortcut or from your phone."
+        },
+        "profiles": {
+          "title": "Profiles",
+          "text": "Separate settings for each stream."
+        },
+        "mcp": {
+          "title": "MCP server",
+          "text": "AI assistants like Claude Code set up and run Tokio for you."
+        }
+      }
+    },
     "stepsTitle": "Live in four steps",
     "steps": [
       {
