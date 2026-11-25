@@ -371,12 +371,15 @@
     "privacyTitle": "Privacidad",
     "privacy": [
       "Tokio funciona en tu computadora y no usa cuentas. Tu configuración, tus perfiles, sonidos, imágenes y videos se guardan ahí.",
-      "También se guardan los fans que Tokio ve en tus LIVEs: su nombre, @usuario, ID de TikTok, nivel de fan, si son Super Fans y cuándo los vio Tokio por última vez. Cada perfil guarda además las monedas y los regalos de cada LIVE y los espectadores que los enviaron: su nombre, @usuario, ID de TikTok, enlace a su foto de perfil, y las monedas y regalos que enviaron y cuándo.",
+      "También se guardan los fans que Tokio ve en tus LIVEs (el club de fans de TikTok, tus suscriptores de Twitch y Kick y tus miembros de YouTube): su nombre, @usuario e ID en esa plataforma, su nivel de fan o sus meses de suscripción, si son Super Fans y cuándo los vio Tokio por última vez.",
+      "Cada perfil guarda además lo que enviaron los espectadores en cada LIVE (monedas, Bits, Kicks, Super Chats, regalos y suscripciones regaladas) y quiénes lo enviaron: su nombre, @usuario e ID en esa plataforma, un enlace a su foto de perfil, y cuándo.",
       "Para conectarte a TikTok LIVE necesitas tu propia cuenta de Euler Stream. Tokio guarda su clave de API en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Euler Stream. Un ID de sesión de TikTok, si agregas uno, se guarda de la misma forma y solo se envía a TikTok, y una clave de API de ElevenLabs, Fish Audio, Cartesia o Inworld, solo a ese servicio. Las muestras de una voz que clonas solo se envían al servicio que la clona, y Tokio no las guarda.",
       "Para conectarte a Twitch inicias sesión en tu propia cuenta. Tokio guarda esa sesión en tu computadora, cifrada si tu sistema lo permite, y solo la envía a Twitch.",
+      "Spotify y YouTube suenan en la ventana de música de Tokio como sus propios sitios web. Si inicias sesión en ellos ahí, tu sesión se queda en tu computadora, como en un navegador, y solo se envía a ellos.",
       "Una cámara que agregas en Overlay Studio solo llega a los overlays que sirve Tokio, en una dirección que cambia cada vez que se inicia el servidor de overlays. Tokio no guarda su video.",
-      "Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca versiones nuevas en GitHub para mantenerse actualizado.",
-      "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
+      "Tokio guarda registros en tu computadora para ayudar a encontrar problemas. Con Registros detallados activado, también anotan quién envió cada evento del LIVE y qué regalos, pero nunca lo que alguien escribe en el chat. Solo salen de tu computadora cuando los exportas.",
+      "Tokio solo envía solicitudes a los servicios de arriba, cuando usas las funciones que los necesitan, y busca en GitHub versiones nuevas de sí mismo y de los overlays oficiales.",
+      "Este sitio web es estático y está alojado en GitHub Pages. No usa cookies ni analíticas; solo recuerda el idioma que eliges, en tu navegador. GitHub puede registrar datos técnicos, como tu dirección IP, cuando lo visitas o descargas un archivo; consulta la declaración de privacidad de GitHub."
     ],
     "trademarksTitle": "Marcas comerciales",
     "trademarks": "Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni Kick, ni cuenta con su respaldo. TikTok, TikTok LIVE Studio, Twitch, Spotify, YouTube, Kick, OBS Studio, Microsoft Edge, ElevenLabs, Fish Audio, Cartesia e Inworld son marcas comerciales de sus respectivos dueños.",
