@@ -33,7 +33,9 @@ async function preview(overlay: Overlay) {
       src: overlay.preview,
       inferSize: true,
       layout: "constrained",
-      format: "webp",
+      // Lossy AVIF: smaller and sharper than lossy WebP, and the site's WebP
+      // is lossless, for the screenshots (astro.config.mjs)
+      format: "avif",
       sizes: "(min-width: 960px) 560px, calc(100vw - 48px)",
     });
   } catch (error) {
