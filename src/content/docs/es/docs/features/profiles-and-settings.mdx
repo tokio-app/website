@@ -9,7 +9,7 @@ Los perfiles separan la configuración de cada stream, y **Configuración** guar
 
 ## Perfiles
 
-Cada perfil tiene su propio TTS, música, alertas, acciones de juego, temporizador, [historial de LIVEs](/es/docs/features/coin-stats/) y [fans](/es/docs/features/fans/), y recuerda el usuario, el canal de YouTube y el canal de Kick con los que te conectaste por última vez y las [plataformas](/es/docs/connect/#varias-plataformas-juntas) a las que se conecta. Cambia de perfil desde la barra de título, o en **Perfil activo** dentro de **Configuración → Perfiles de LIVE**, cuando no estés conectado.
+Cada perfil tiene su propio TTS, música, alertas, acciones de juego, temporizador, [historial de LIVEs](/es/docs/features/coin-stats/), [fans](/es/docs/features/fans/), y las [plataformas](/es/docs/connect/#varias-plataformas-juntas) y canales a los que se conecta. Cambia de perfil desde la barra de título cuando no estés conectado.
 
 <Screenshot
   name="profiles-menu"
@@ -18,43 +18,54 @@ Cada perfil tiene su propio TTS, música, alertas, acciones de juego, temporizad
 
 Todos los perfiles comparten los overlays instalados, los overlays de Overlay Studio, la [Biblioteca](/es/docs/features/alerts/#biblioteca), los overlays de prueba, las **Funciones activas** y el **Feed de actividad** de Inicio, y la conexión con Minecraft.
 
-En **Configuración → Perfiles de LIVE**, **Nuevo** crea un perfil en blanco, **Clonar** copia uno que ya tienes, sin su historial de LIVEs ni sus fans, y **Renombrar** cambia el nombre del perfil activo, que conserva todo lo que tiene. Los nombres necesitan 3 caracteres o más y no se pueden repetir, y los perfiles no se pueden eliminar. Pasa el puntero sobre un botón para ver su nombre.
+En **Configuración → Perfiles**, **Nuevo** crea un perfil en blanco, **Clonar** copia uno sin su historial de LIVEs ni sus fans, y **Renombrar** cambia el nombre del perfil activo. Los nombres necesitan 3 caracteres o más y no se pueden repetir. Pasa el puntero sobre un botón para ver su nombre.
 
 <Screenshot
   name="settings-profiles"
-  alt="Configuración → Perfiles de LIVE, con el perfil activo y los botones Nuevo, Clonar, Renombrar, Importar y Exportar"
+  alt="Configuración → Perfiles, con el perfil activo y los botones Nuevo, Clonar, Renombrar, Eliminar perfil, Importar y Exportar"
 />
 
-**Exportar** guarda la configuración del perfil activo en un archivo, e **Importar** agrega uno como perfil nuevo. El archivo no lleva sonidos, imágenes, videos, imágenes de juegos, historial de LIVEs ni fans, así que en otra computadora sus alertas avisan que falta un sonido hasta que lo vuelvas a elegir.
+**Eliminar perfil** pregunta qué perfil eliminar y luego lo elimina con su historial de LIVEs y sus fans. El perfil activo no se puede eliminar, así que cambia de perfil primero, y el botón aparece en gris cuando solo tienes uno.
+
+**Exportar** guarda la configuración del perfil activo en un archivo, e **Importar** agrega uno como perfil nuevo. El archivo no lleva sonidos, imágenes, videos, imágenes de juegos, historial de LIVEs ni fans, así que en otra computadora vuelve a elegir los sonidos de sus alertas.
 
 ## Configuración
 
-Las secciones de una plataforma aparecen solo mientras el perfil activo la usa: **TikTok LIVE** y **Traducción del chat** con TikTok, y **Twitch** con Twitch. Tu cuenta de Twitch sigue con la sesión iniciada aunque su sección esté oculta.
+**TikTok LIVE** y **Traducción del chat** aparecen solo en un perfil con TikTok, y **Twitch** en uno con Twitch.
 
-| Sección                  | Para qué sirve                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **TikTok LIVE**          | Tu clave de API de [Euler Stream](https://www.eulerstream.com), que Tokio necesita para conectarse. [Regístrate](https://www.eulerstream.com/register) gratis.                                                                                                                                                                                                                                                                       |
-| **Twitch**               | Inicia sesión en tu canal de Twitch, con **Iniciar sesión con Twitch**, para que Tokio pueda conectarse a él. La cuenta es la misma para todos los perfiles. Consulta [Inicia sesión en Twitch](/es/docs/connect/#inicia-sesión-en-twitch).                                                                                                                                                                                          |
-| **Servidor de overlays** | Activa el servidor de los overlays y muestra tu dirección de red para una app de streaming en [otra computadora](/es/docs/guides/adding-an-overlay/#en-otra-computadora).                                                                                                                                                                                                                                                            |
-| **Idioma**               | Inglés o español. **Idioma del sistema** sigue el de tu computadora y, si no está disponible, usa inglés. Cambia los menús y mensajes de Tokio, el texto que Tokio escribe en los overlays de juegos y del temporizador, y la configuración de un overlay cuando el overlay la traduce, pero no las voces del TTS.                                                                                                                   |
-| **Traducción del chat**  | Traduce los mensajes de los espectadores al idioma que elijas, gratis con Google, y **Probar** la prueba. Mira [Traducción del chat](/es/docs/features/chat-translation/).                                                                                                                                                                                                                                                           |
-| **Actualizaciones**      | Desactiva la búsqueda automática de versiones nuevas de Tokio y las [actualizaciones automáticas de los overlays oficiales](/es/docs/features/overlays/#instala-un-overlay-oficial).                                                                                                                                                                                                                                                 |
-| **Bandeja del sistema**  | Deja Tokio en la bandeja del sistema (la barra de menús en macOS) cuando lo cierras. Haz clic en el ícono o en **Abrir Tokio** para volver a abrirlo, y en **Salir de Tokio** para cerrarlo. En Linux, la primera vez que lo cierras después de que Tokio inicia, una notificación avisa que Tokio sigue abierto: haz clic en ella para volver a abrirlo.                                                                            |
-| **Atajos de teclado**    | Teclas para los [controles del LIVE](/es/docs/features/live-controls/), que funcionan en cualquier app: saltar una canción, detener el TTS, repetir la última alerta y pausar todo.                                                                                                                                                                                                                                                  |
-| **Control remoto**       | Los [controles del LIVE](/es/docs/features/live-controls/#desde-tu-celular-u-otra-computadora) en tu celular u otra computadora, con un código QR o su enlace, y la clave de la [API de control](/es/docs/developers/control-api/) y de [MCP](/es/docs/developers/mcp/). Desactivado hasta que lo marques.                                                                                                                           |
-| **Motores de voz**       | Tu ID de sesión de TikTok, para que las voces de TikTok vengan directo de TikTok en lugar de un proxy de terceros. Tus claves de API de ElevenLabs, Fish Audio, Cartesia o Inworld, para sus voces y para [clonar la tuya](/es/docs/features/text-to-speech/#clona-tu-voz). Agrega una con el **+** junto a **Motores de voz**. Al quitar una clave, vuelve la voz predeterminada donde se habían elegido las voces de ese servicio. |
-| **Registros**            | **Exportar registros**, el botón junto al título de la sección, guarda todos los registros de Tokio en un .zip para adjuntarlo a un reporte de error. **Registros detallados** también les agrega cada evento del LIVE, después de que lo confirmes. Así crecen más rápido, por eso desactívalo cuando ya los hayas enviado.                                                                                                         |
+| Sección                  | Para qué sirve                                                                                                                                                                                                       |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok LIVE**          | Tu clave de API de [Euler Stream](https://www.eulerstream.com), que Tokio necesita para conectarse. [Regístrate](https://www.eulerstream.com/register) gratis.                                                       |
+| **Twitch**               | [Inicia sesión en Twitch](/es/docs/connect/#inicia-sesión-en-twitch), una vez para todos los perfiles.                                                                                                               |
+| **Perfiles**             | [Tus perfiles](#perfiles): créalos, renómbralos, elimínalos, impórtalos y expórtalos.                                                                                                                                |
+| **Motores de voz**       | Tu ID de sesión de TikTok y tus claves para [otras voces](/es/docs/features/text-to-speech/#voces). Al quitar una clave, vuelve la voz predeterminada donde se habían elegido las voces de ese servicio.             |
+| **Servidor de overlays** | El servidor de los overlays, y tu dirección de red para una app de streaming en [otra computadora](/es/docs/guides/adding-an-overlay/#en-otra-computadora).                                                          |
+| **Control remoto**       | Los [controles del LIVE](/es/docs/features/live-controls/#desde-tu-celular-u-otra-computadora) en tu celular, y la clave de la [API de control](/es/docs/developers/control-api/). Desactivado hasta que lo marques. |
+| **Asistentes de IA**     | La configuración para [conectar un asistente de IA](/es/docs/developers/mcp/). Usa el interruptor y la clave de **Control remoto**.                                                                                  |
+| **Atajos de teclado**    | Teclas para los [controles del LIVE](/es/docs/features/live-controls/#atajos-de-teclado), en cualquier app.                                                                                                          |
+| **Traducción del chat**  | Traduce el chat a tu idioma. Mira [Traducción del chat](/es/docs/features/chat-translation/).                                                                                                                        |
+| **Idioma**               | Inglés o español para Tokio y el texto que escribe en los overlays. **Idioma del sistema** sigue el de tu computadora. Las voces no cambian.                                                                         |
+| **Actualizaciones**      | Busca versiones nuevas de Tokio al iniciar y cada 6 horas, y actualiza los [overlays oficiales](/es/docs/features/overlays/#instala-un-overlay-oficial). Desmarca cualquiera de las dos para desactivarla.           |
+| **Bandeja del sistema**  | Deja Tokio en la bandeja del sistema (la barra de menús en macOS) cuando lo cierras. Haz clic en su ícono para volver a abrirlo.                                                                                     |
+| **Registros**            | **Exportar registros** para un [reporte de error](#tus-archivos). **Registros detallados** también les agrega cada evento del LIVE: desactívalo cuando ya los hayas enviado.                                         |
 
 <Screenshot
   name="settings"
   alt="Configuración: la clave de API de Euler Stream, el servidor de overlays con su dirección de red, el idioma, la traducción del chat y las actualizaciones"
 />
 
-Si abres Tokio cuando ya está abierto, su ventana pasa al frente. **Acerca de**, en la barra lateral, muestra la versión de Tokio, su licencia y los avisos de terceros, y tiene **Buscar actualizaciones** y **Hacer el recorrido**. El recorrido nombra solo las plataformas del perfil activo, como la clave de Euler Stream con TikTok y el inicio de sesión en Twitch con Twitch.
+**Acerca de**, en la barra lateral, tiene la versión de Tokio, sus licencias, **Buscar actualizaciones** y **Hacer el recorrido**.
+
+<details>
+<summary>La bandeja del sistema en Linux</summary>
+
+La primera vez que cierras Tokio después de que inicia, una notificación avisa que sigue abierto: haz clic en ella para volver a abrirlo.
+
+</details>
 
 ## Notificaciones
 
-Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, Tokio te dice qué salió mal. La campana de la barra de título guarda las últimas 50 de la sesión, y **Borrar todas** la vacía.
+Cuando algo falla, como una voz que no se pudo generar o un sonido que falta, Tokio te dice qué salió mal. La campana de la barra de título guarda las últimas 50 de la sesión.
 
 <Screenshot
   name="notifications"
@@ -79,4 +90,4 @@ Tokio guarda tu configuración y tus archivos en la carpeta `.tokio` de tu carpe
 
 Tus sesiones de YouTube y Spotify se guardan aparte, en la carpeta de datos de Tokio: `%APPDATA%\tokio` en Windows, `~/Library/Application Support/tokio` en macOS y `~/.config/tokio` en Linux.
 
-Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta el .zip que guarda **Exportar registros** en **Configuración → Registros**. Los registros incluyen tu usuario de TikTok y, con **Registros detallados** activado, también los de tus espectadores.
+Para reportar un error, abre un [issue en GitHub](https://github.com/tokio-app/tokio/issues) y adjunta el .zip que guarda **Exportar registros** en **Configuración → Registros**. Los registros incluyen los canales a los que te conectas y, con **Registros detallados** activado, también los usuarios de tus espectadores.

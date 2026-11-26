@@ -6,11 +6,11 @@ description: Build your own overlays from text, images, your cameras and the ove
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-Overlay Studio builds your own overlays from text, images, your cameras, gifts and the overlays you already have. Each element can stay on screen or react to your LIVE, and each overlay is one browser source.
+Build your own overlays from text, images, cameras, gifts and the overlays you already have. Each one is a single browser source.
 
 <Steps>
 
-1. In **Tools**, open **Overlay Studio** and click **New overlay**. It's named **Overlay 1**, or the next free number, and opens in the editor.
+1. In **Tools**, open **Overlay Studio** and click **New overlay**. It opens in the editor.
 2. Click **+** in **Elements** and pick what to show. Drag it into place on the canvas.
 3. Click **Copy overlay URL** and add it to your streaming app (see [Adding an overlay](/docs/guides/adding-an-overlay/)):
 
@@ -22,43 +22,37 @@ Overlay Studio builds your own overlays from text, images, your cameras, gifts a
 
 Changes save as you make them and reach your stream right away. Every profile shares the same overlays, but what you [embed](#embedding-overlays) from alerts, the countdown and the games overlay follows the active profile.
 
-New overlays are **Portrait**, 1080 × 1920. With nothing selected, **Overlay settings** changes the name and the **Canvas**, to **Landscape** at 1920 × 1080.
-
-The browser source scales the canvas to fit, centered.
+New overlays are **Portrait**, 1080 × 1920. For **Landscape**, click an empty spot and change **Canvas** in **Overlay settings**. Your streaming app scales the canvas to fit.
 
 <Screenshot
   name="studio-editor"
   alt="The Overlay Studio editor: the Elements list with two groups and a logo, the canvas with a likes banner, a star, a follow message in a speech bubble and a viewer's picture, and the selected star's settings with its Shape picker"
 />
 
-To copy an overlay, use **Duplicate overlay** on its row. The copy is named after it, like **Overlay 1 copy**, and gets its own URL.
-
-To delete an overlay, use **Delete overlay** on its row in **Overlay Studio** and confirm.
+Each overlay's row has **Duplicate overlay**, for a copy with its own URL, and **Delete overlay**.
 
 ## Elements
 
 An overlay is made of elements, the things that show:
 
-| Element              | What it shows                                                                                                                                                                                                                                                                                                                                                                                                       |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Text**             | Your text, with its **Font**, **Size**, **Color**, **Gradient**, **Outline**, **Letter spacing**, **Line height**, **Alignment**, **Bold**, **Italic**, **All caps** and **Dark halo**. See [Text](#text).                                                                                                                                                                                                          |
-| **Image or video**   | A file from the media library you use for [alerts](/docs/features/alerts/#images-and-videos). A video plays with its sound.                                                                                                                                                                                                                                                                                         |
-| **Camera**           | A camera on this computer, live. See [Cameras](#cameras).                                                                                                                                                                                                                                                                                                                                                           |
-| **Gift**             | The picture of the gift a viewer sends, or of one of TikTok's gifts you pick. Only with TikTok or YouTube, whose gifts have pictures, and the pick only with TikTok. The gift sent needs the **Gift** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                       |
-| **Emote**            | The emote a viewer sends in chat, or one you pick from those viewers of the profile's platforms have used. The emote sent needs the **Emote** trigger, so it can't be **Always on screen** or **Moves all the time**.                                                                                                                                                                                               |
-| **Shape**            | A rectangle, an ellipse, a polygon, a star, an arrow, a heart or a speech bubble, filling its box, with a **Fill** and a **Border**, each in its own color. Turn either one off. With **Gradient**, the fill fades into a second color at the angle you set. **Border width** goes from 1 to 100. A polygon has 3 to 12 **Sides**, a star 3 to 12 **Points**, and a rectangle or speech bubble a **Corner radius**. |
-| **Viewer's picture** | The profile picture of the viewer who set the element off, or their initial when they have none. It can't be **Always on screen** or **Moves all the time**, and only reacts to events a viewer sends: not an envelope, a Super Fan Box or a music change.                                                                                                                                                          |
-| **Goal bar**         | A bar that fills as a LIVE number or a [counter](#counters) comes to its goal. See [Goal bars](#goal-bars).                                                                                                                                                                                                                                                                                                         |
-| **List**             | Rows of this LIVE's top gifters or top gifted subs, or its newest followers, gifts or chat messages. See [Lists](#lists).                                                                                                                                                                                                                                                                                           |
-| **Overlay**          | An installed overlay, the countdown, the games overlay or an alert's overlay. See [Embedding overlays](#embedding-overlays).                                                                                                                                                                                                                                                                                        |
+| Element              | What it shows                                                                                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Text**             | Your text, with live numbers and the event's values. See [Text](#text).                                                      |
+| **Image or video**   | A file from the media library you use for [alerts](/docs/features/alerts/#images-and-videos). A video plays with its sound.  |
+| **Camera**           | A camera on this computer, live. See [Cameras](#cameras).                                                                    |
+| **Gift**             | The picture of the gift a viewer sends, or a TikTok gift you pick. TikTok and YouTube only.                                  |
+| **Emote**            | The emote a viewer sends in chat, or one you pick from those your viewers have used.                                         |
+| **Shape**            | A rectangle, ellipse, polygon, star, arrow, heart or speech bubble, with a **Fill**, a **Border** or both.                   |
+| **Viewer's picture** | The profile picture of the viewer who set it off, or their initial.                                                          |
+| **Goal bar**         | A bar that fills as a LIVE number or a [counter](#counters) comes to its goal. See [Goal bars](#goal-bars).                  |
+| **List**             | Rows of this LIVE's top gifters or top gifted subs, or its newest followers, gifts or chat messages. See [Lists](#lists).    |
+| **Overlay**          | An installed overlay, the countdown, the games overlay or an alert's overlay. See [Embedding overlays](#embedding-overlays). |
 
 To order, lock, hide and move elements together, put them in a group. The [Overlay Studio editor](/docs/features/overlay-studio-editor/) page covers groups, placing, cropping and the keyboard shortcuts.
 
 A font that isn't installed on the computer that runs your streaming app shows as Archivo, and a browser tab plays a video's sound only after a click on it. See [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
 
-If you delete a file from the media library, it also leaves every element that showed it, and those elements stay empty.
-
-Every profile shares the overlays, but the editor offers only what the active profile's platforms send: the triggers, the LIVE numbers and goals, the lists and the emotes. What an overlay already has from another platform stays until you change it. A new element starts on Follow, or on Subscription when the profile has neither TikTok nor Twitch.
+Every element also has a **Shadow** and a **Blur**. With **X** and **Y** at 0, the shadow is a glow.
 
 ## When
 
@@ -71,26 +65,20 @@ Each element's and group's **When** sets how it reacts:
 | **Moves on an event**  | Stays on screen and plays its **Animation** each time its **Trigger** fires.                                                                       |
 | **Moves all the time** | Stays on screen and plays its **Animation** over and over, with no trigger.                                                                        |
 
-**Entrance** and **Exit** each pick one of Fade, Pop, Slide up, Slide down, Slide left, Slide right, Zoom, Drop, Spin, Flip, Wipe and Blur. For **Moves on an event**, **Animation** picks one of Bounce, Shake, Pulse, Wiggle, Spin, Flip, Jump, Swing, Ta-da, Heartbeat, Flash and Jelly; for **Moves all the time**, one of Float, Breathe, Spin, Sway, Hop and Drift.
-
 <Screenshot
   name="studio-when"
   alt="The follow message's When: Shows on an event, on Follow, with Pop as its entrance, Slide down as its exit, 5 seconds on screen and no delay"
 />
 
-A group moves as one: one that shows on an event brings all its elements in and out together, and one that moves carries them with it. Its elements keep their own **When**, so an element can bounce on each gift while its group floats.
+A group reacts as one, while its elements keep their own **When**: an element can bounce on each gift while its group floats.
 
-The **Trigger** picker has the same events, filters and [minimums](/docs/features/alerts/#minimums) as [alerts](/docs/features/alerts/#triggers), without **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger. The count starts over when you disconnect.
+The **Trigger** picker has the same events, filters and [minimums](/docs/features/alerts/#minimums) as [alerts](/docs/features/alerts/#triggers), without **From**. On **Like**, the element reacts every time your viewers send another 100 likes in total; change that number in the field next to the trigger.
 
 **Add a trigger** adds another one under **Or**, up to 5 in all, each with its own filters. The element reacts to any of them.
 
-**Goal reached** reacts once per LIVE, the first time a number reaches its goal. Pick a LIVE number, like `{likes}` or `{coins}`, or one of the overlay's [counters](#counters), then the goal. If you change the goal, it can react again in the same LIVE.
+**Goal reached** reacts once per LIVE, the first time a number reaches its goal. Pick a LIVE number, like `{likes}` or `{coins}`, or one of the overlay's [counters](#counters), then the goal.
 
-**Delay (s)** makes an element or group that shows or moves on an event wait up to 10 seconds after its trigger, for example until an alert is over. Another trigger during the wait changes the event it shows, but doesn't restart the wait.
-
-If its trigger fires again while it shows or leaves, it starts over with the newest event's values.
-
-In the editor, an element or group that shows on an event stays on the canvas with a dashed outline, so you can place it. What moves all the time moves on the canvas too.
+**Delay (s)** makes an element or group that shows or moves on an event wait up to 10 seconds after its trigger, for example until an alert is over.
 
 ## Text
 
@@ -110,28 +98,27 @@ A text element can show live numbers from your LIVE, written in braces:
 | `{giftsubs}`   | Subs gifted during this LIVE                         |
 | `{uptime}`     | How long you've been LIVE, like 01:02:03             |
 
-They're shortened in Tokio's language (**Settings → Language**), like 12.8K in English, and read 0 while you're not LIVE (`{uptime}` reads 00:00:00). `{superchats}` shows a dash until Tokio has the exchange rates. The editor shows sample numbers, and only the ones the profile's platforms send, like `{bits}` with Twitch. A text also shows the overlay's [counters](#counters), like `{roses}`.
+They're shortened, like 12.8K, and read 0 while you're not LIVE. A text also shows the overlay's [counters](#counters), like `{roses}`.
 
-A text that reacts to an event can also use that event's values, like `Thanks {username}!` on a gift or `{username} sent {count} {gift}`. Like has no viewer or count of its own, since its likes come from every viewer: `{likes}` shows the LIVE's total.
-
-With several triggers, a text can use the values of each. One that the event doesn't have is empty, like `{gift}` on a follow.
-
-The variables a text can use are listed under its **Text**: the LIVE numbers and the counters, then the event's when it reacts to one. Both offer only what the profile's platforms fill. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/) while Chat translation is on.
+A text that reacts to an event can also use its values, like `Thanks {username}!`. Click a variable under **Text** to add it. On Chat and Emote, `{translation}` shows the message's [translation](/docs/features/chat-translation/).
 
 <Screenshot
   name="studio-text"
   alt="A text's settings: the follow message, with the LIVE numbers and the event's values listed under it to add"
 />
 
-An element keeps its last event's values until Tokio closes, so `Last follower: {username}` still shows after you reload the browser source. Before its first event, those variables are empty.
+An element keeps its last event's values until Tokio closes, so `Last follower: {username}` still shows after you reload the browser source. Hidden elements keep reacting too.
 
-Hidden elements, and the elements of a hidden group, keep reacting, so they show the latest event when you show them again.
+<details>
+<summary>Text styles</summary>
 
 **Gradient** fades a text's color into a second one, at the angle you set: 90 runs left to right, 180 top to bottom. **Outline** draws a line around the letters, outside them, in its own color and width. **Letter spacing** and **Line height** are percents of the size, and line height starts at 115. A thick outline can reach past the text's box.
 
+</details>
+
 ## Counters
 
-A counter counts an event during each LIVE, like roses or follows. With nothing selected, click **Add a counter** in **Overlay settings**. Name it, like `roses`, and pick what it counts, with the same filters as a trigger. A new counter counts gifts, or, on a profile without gifts, starts on the same event as a new element. Each overlay has up to 10 of its own.
+A counter counts an event during each LIVE, like roses or follows. With nothing selected, click **Add a counter** in **Overlay settings**. Name it, like `roses`, and pick what it counts, with the same filters as a trigger. Each overlay has up to 10 of its own.
 
 A text shows it as `{roses}`, and **Goal reached** can wait for it. What each event adds:
 
@@ -139,57 +126,48 @@ A text shows it as `{roses}`, and **Goal reached** can wait for it. What each ev
 - A **Like** adds its likes.
 - Any other event adds 1.
 
-Counters start at 0 when you connect, keep counting when Tokio recovers a dropped connection, and read 0 while you're not LIVE. In the editor, each one shows 12.
+Counters start at 0 when you connect, keep counting when Tokio recovers a dropped connection, and read 0 while you're not LIVE.
 
-A name takes only letters without accents, numbers and `_`, up to 24 characters. The editor warns you when a counter has no name, the same name as another counter, or the name of a LIVE number or an event's value, like `likes` or `username`.
+A name takes letters without accents, numbers and `_`, up to 24 characters.
 
 ## Goal bars
 
 A **Goal bar** fills as its **Number** comes to its **Goal**. The number is a LIVE number, like `{likes}` or `{coins}`, or one of the overlay's [counters](#counters). The bar is full past its goal, and empty while you're not LIVE.
 
-- **Fill** is the bar's color. With **Gradient**, it fades into a second color across the whole bar, so the second color shows as it fills.
-- **Background** is the color of the part still to fill.
-- **Round corners** goes from square to round ends, which is where it starts.
-- **Vertical, filling from the bottom** stands the bar up where it is.
-
-The fill slides to each new number. A bar shows no words: put a text on or next to it, like `{roses} / 10 roses`. In the editor, every bar shows 60% full.
+A bar shows no words: put a text on or next to it, like `{roses} / 10 roses`.
 
 ## Lists
 
 A **List** shows a row per viewer or event of what it **Shows**:
 
-| Shows                         | Its rows                                                                                                                                                                                                                                  |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Top gifters this LIVE**     | The viewers who sent the most this LIVE on the list's **Platform**, in its money, the most first. Its name follows the money: **Top Bits this LIVE** on Twitch, **Top Kicks this LIVE** on Kick, **Top Super Chats this LIVE** on YouTube |
-| **Top gifted subs this LIVE** | The viewers who gifted the most subs this LIVE, on Twitch, YouTube or Kick, the most first                                                                                                                                                |
-| **New followers**             | The newest followers, the newest first. One who follows again moves up                                                                                                                                                                    |
-| **Latest gifts**              | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends                                                                                                                                              |
-| **Chat**                      | The newest messages, the newest at the bottom. Messages of emotes alone don't show                                                                                                                                                        |
+| Shows                         | Its rows                                                                                                      |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Top gifters this LIVE**     | The viewers who sent the most this LIVE on its **Platform**, in its money: coins, Bits, Kicks or Super Chats. |
+| **Top gifted subs this LIVE** | The viewers who gifted the most subs this LIVE, on Twitch, YouTube or Kick, the most first                    |
+| **New followers**             | The newest followers, the newest first. One who follows again moves up                                        |
+| **Latest gifts**              | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends                  |
+| **Chat**                      | The newest messages, the newest at the bottom. Messages of emotes alone don't show                            |
 
-Each row has the viewer's picture, or their initial, then their name. Chat puts the message after the name, and the amounts and counts sit on the right, in **Number color**. YouTube's amounts are in US dollars. **Rows** sets how many show, up to 10, and **Space between rows** the gap, in pixels of the canvas. Turn off **Viewers' pictures** to show names alone.
+Each row shows the viewer's picture and name, with amounts on the right (YouTube's in US dollars). **Rows** sets how many show, up to 10.
 
-A top lists only the viewers who sent some of its money or gifted subs, so YouTube's Gifts, which have no price, never put their senders on it.
+**Space between rows** sets the gap and **Number color** the amounts' color. Turn off **Viewers' pictures** to show names alone.
 
-With a platform besides TikTok in the profile, a top picks its **Platform**, and a new list starts on the profile's first platform. **New followers** shows only with a platform that sends follows, and **Latest gifts** with one that sends gifts.
+Lists are empty while you're not LIVE and start over when you connect.
 
-Lists are empty while you're not LIVE and start over when you connect. What doesn't fit in the box is cut off at its edge, chat's oldest at the top. The editor shows sample rows.
+<details>
+<summary>Which viewers and platforms a list shows</summary>
 
-## Shadow and blur
+- A top lists only the viewers who sent some of its money or gifted subs, so YouTube's Gifts, which have no price, never put their senders on it.
+- With a platform besides TikTok in the profile, a top picks its **Platform**. **New followers** shows only with a platform that sends follows, and **Latest gifts** with one that sends gifts.
+- What doesn't fit in the box is cut off at its edge, chat's oldest at the top.
 
-Every element has a **Shadow** and a **Blur**, under its own settings:
-
-- **Shadow** draws a shadow in its color, as soft as its **Softness** and moved by **X** and **Y**, in pixels of the canvas. It falls the same way however you turn or flip the element. With **X** and **Y** at 0 and a bright color, it's a glow.
-- **Blur** softens the element itself, from 0 to 50.
+</details>
 
 ## Cameras
 
-A **Camera** element shows a camera on this computer, live, on your stream and on the canvas. In **Camera**, pick **Default camera** (the one your system uses first) or any camera the computer has.
+A **Camera** element shows a camera on this computer, live. Pick it in **Camera**; one that isn't plugged in shows as **(not connected)**.
 
-Each element can show a different camera, and several elements can show the same one. A camera you picked that isn't plugged in shows as **(not connected)**.
-
-**Quality** sends the camera at **720p** or **1080p**. 1080p is sharper and takes more of your computer's power; 720p is plenty for a camera in a corner.
-
-Elements that show the same camera share it at the higher of their qualities.
+**Quality** is **720p**, plenty for a corner, or **1080p**, sharper but heavier on your computer.
 
 Crop it and round its corners like a picture, up to a circle for a round camera, and use **Flip** to mirror it. To show a camera on its own, make an overlay with one **Camera** element that fills the canvas.
 
@@ -200,13 +178,16 @@ Crop it and round its corners like a picture, up to a circle for a round camera,
 
 Tokio turns a camera on only while the editor or an overlay that shows it is open, and turns it off a few seconds after the last one closes. Hiding the element turns its camera off too.
 
-The editor shows the camera straight from your computer, so it works with the overlay server off. Your stream gets it through the server.
-
 :::note
-Once a camera has been on, Tokio uses about 100 MB more memory until you quit it, depending on your camera and graphics card. Chromium, which Tokio is built on, keeps that memory for the next camera, so it doesn't keep growing.
+Once a camera has been on, Tokio uses about 100 MB more memory until you quit it.
 :::
 
-Other computers on your network can't open your camera: only the overlays Tokio serves get its address, which changes every time the overlay server starts.
+:::tip
+If your lips look out of sync, delay your microphone a little in your streaming app (in OBS, **Sync Offset** in **Advanced Audio Properties**).
+:::
+
+<details>
+<summary>If a camera doesn't show</summary>
 
 If a camera can't start, Tokio tries again every 5 seconds, and tells you why once your stream uses it:
 
@@ -214,9 +195,11 @@ If a camera can't start, Tokio tries again every 5 seconds, and tells you why on
 - On Windows, turn on **Let desktop apps access your camera** in **Settings → Privacy & security → Camera**.
 - On macOS, allow Tokio when it asks, or later in **System Settings → Privacy & Security → Camera**.
 
-:::tip
-The camera can reach your stream slightly behind your microphone. If your lips look out of sync, delay the microphone a little in your streaming app. In OBS, that's **Sync Offset** in **Advanced Audio Properties**.
-:::
+The editor shows the camera straight from your computer, so it works with the overlay server off. Your stream gets it through the server.
+
+Other computers on your network can't open your camera: only the overlays Tokio serves get its address, which changes every time the overlay server starts.
+
+</details>
 
 ## Embedding overlays
 
@@ -224,36 +207,51 @@ An **Overlay** element shows another overlay inside this one: pick it in **Overl
 
 If your games overlay has more than one column, each column is in the list too (**Games overlay, column 2**, or **Games overlay, row 2** when it's horizontal), so you can place them apart. **Games overlay** shows all of them in one box.
 
-On your stream, each one is the real overlay at its own address, live. In the editor:
-
-- an installed overlay shows its own sample data;
-- the countdown and the games overlay show the previews from their own pages;
-- an alert's overlay is a box with the alert's name, since it only shows its image or video while the alert plays.
-
-The countdown, the games overlay and alerts follow the active profile. An alert from another profile shows nothing, and the editor calls it **Deleted alert**.
+On your stream, each one is the real overlay at its own address, live. An alert from another profile shows nothing, and the editor calls it **Deleted alert**.
 
 If you remove an official overlay you embedded, its element shows nothing until you install it again.
 
 ## Test
 
-The play button, **Test the elements and groups that react to events**, plays each element and group that reacts once, after its delay, elements with sample values for their first trigger, in the editor and on your stream. An element that shows on an event plays its entrance, its seconds on screen and its exit, then comes back to the canvas.
+The shooting-star button, **Test the elements and groups that react to events**, plays every element and group that reacts once, with sample values, in the editor and on your stream. It's off while nothing reacts to events.
 
-The samples come from the profile's platforms, so one event's elements show the same viewer, and a top's rows are its platform's.
-
-Embedded overlays don't get the samples. Tokio keeps them only while their element is on screen, so after that a reload shows the real last event again.
+The samples come from the profile's platforms, so one event's elements show the same viewer, and a top's rows are its platform's. Embedded overlays don't get them.
 
 ## Notes
+
+<details>
+<summary>Deleted files and other profiles</summary>
+
+If you delete a file from the media library, it also leaves every element that showed it, and those elements stay empty.
+
+The editor offers only what the active profile's platforms send: the triggers, the LIVE numbers and goals, the lists and the emotes. What an overlay already has from another platform stays until you change it.
+
+</details>
+
+<details>
+<summary>When a reaction waits or starts over</summary>
+
+- Another trigger during an element's **Delay** changes the event it shows, but doesn't restart the wait.
+- If its trigger fires again while it shows or leaves, it starts over with the newest event's values.
+- On **Like**, the count starts over when you disconnect.
+- If you change the goal of **Goal reached**, it can react again in the same LIVE.
+- An element that shows on an event plays its entrance, its seconds on screen and its exit on **Test**, after its delay, then comes back to the canvas.
+
+</details>
+
+<details>
+<summary>What the editor shows</summary>
+
+- LIVE numbers, counters, lists and goal bars show samples: each counter reads 12, and every bar shows 60% full.
+- An installed overlay shows its own sample data.
+- The countdown and the games overlay show the previews from their own pages, scaled to the element's box. They're close, not exact: check them in your streaming app.
+- An alert's overlay is a box with the alert's name, since it only shows its image or video while the alert plays.
+
+</details>
 
 <details>
 <summary>An overlay embedded twice shares its settings</summary>
 
 An overlay you embed in two elements, or in two Overlay Studio overlays, has one set of settings, the same as when you add it twice as browser sources.
-
-</details>
-
-<details>
-<summary>The editor's timer and games previews are close, not exact</summary>
-
-The editor can't open the real countdown or games overlay, so it scales their pages' previews to the element's box. Check them in your streaming app.
 
 </details>

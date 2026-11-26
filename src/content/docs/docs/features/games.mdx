@@ -22,7 +22,7 @@ On **Games**, turn on **Minecraft**: the status reads **Waiting for Minecraft**.
 
 ## Bedrock Edition
 
-Follow the steps **Games** shows for Bedrock, in Minecraft:
+In Minecraft, follow the Bedrock steps **Games** shows:
 
 <Screenshot
   name="games-connect-bedrock"
@@ -42,9 +42,14 @@ Follow the steps **Games** shows for Bedrock, in Minecraft:
 
 ## Java Edition
 
-The Tokio mod, for Fabric, connects single-player and LAN worlds you host, not dedicated servers. Cheats can stay off: it runs commands as you, with a command block's permission, and their answers don't show in chat.
+The Tokio mod, for Fabric, connects single-player and LAN worlds you host, not dedicated servers. Cheats can stay off.
 
-In a LAN world, Tokio's mobs never go after other players, and its explosions, lightning, arrows, potions and dragon's breath don't hurt them. Only you see the meteors and lasers.
+<details>
+<summary>In a LAN world</summary>
+
+Tokio's mobs never go after other players, and its explosions, lightning, arrows, potions and dragon's breath don't hurt them. Only you see the meteors and lasers.
+
+</details>
 
 ### Install the mod
 
@@ -99,7 +104,7 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
 <Steps>
 
 1. Pick the tab of your game's edition.
-2. Click **Add action** under its actions. It starts as a Follow that spawns one Zombie, or a Subscription when the profile has neither TikTok nor Twitch.
+2. Click **Add action** under its actions. It starts as a Follow that spawns one Zombie.
 3. Pick the trigger, change the step, and click **Add step** for more.
 4. Click the play button to test it.
 
@@ -110,9 +115,7 @@ An action is a trigger and the steps it runs. Actions belong to the profile, and
   alt="The Bedrock tab of Actions: a follow that spawns a zombie named after the viewer, and a gift that runs a say command"
 />
 
-Each action has its own on/off switch. **Remove action** and each step's **Remove step** delete at once, without asking.
-
-**Games** opens on the connected game's tab, or on **Java** when only Java has actions, and turns to a game's tab when it connects. A new action takes its tab's edition.
+Each action has its own on/off switch. **Remove action** asks first, and each step's **Remove step** deletes it at once.
 
 **Duplicate action** puts a copy right after the action: change its edition to run the same steps in the other game.
 
@@ -126,17 +129,13 @@ Each action has its own on/off switch. **Remove action** and each step's **Remov
 
 </details>
 
-Click **Actions** to fold the actions away and give the overlay more room. They open again the next time you open **Games**.
+Triggers work as for [alerts](/docs/features/alerts/#triggers), with what your [platforms](/docs/features/alerts/#platforms) send, but without joins, envelopes, Super Fan Boxes, song changes, **Worth at least** or **From**.
 
-Triggers work as for [alerts](/docs/features/alerts/#triggers), without joins, envelopes, Super Fan Boxes and song changes. They have no **Worth at least** or **From**. Each trigger offers what its [platforms](/docs/features/alerts/#platforms) send, as alerts' do: Twitch's Subscription, Gifted subs, Bits, Raid and Channel points, YouTube's Super Chat and Kick's Kicks, Subscription, Gifted subs, Raid and Channel points are there with those platforms, and with two or more, a trigger can pick one.
-
-| Trigger            | Options                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| **Gift**           | The gifts, and **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts)        |
-| **Chat**           | A keyword or phrase the message must have                                                                             |
-| **Like**           | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
-| **Emote**          | The emotes, or any                                                                                                    |
-| **Channel points** | A reward's title, or **Any reward**                                                                                   |
+| Trigger  | Options                                                                                                               |
+| -------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Gift** | The gifts, and **When streak ends** or **Every gift**, as in [gift alerts](/docs/features/alerts/#gift-alerts)        |
+| **Chat** | A keyword or phrase the message must have                                                                             |
+| **Like** | Every how many likes, 100 to start. All viewers' likes count together, and the count starts over when you disconnect. |
 
 Actions run while **Minecraft** is on, a game of their edition is connected and Tokio isn't [paused](/docs/features/live-controls/#pause), whatever's on at **Home**.
 
@@ -171,8 +170,6 @@ A mob's name and a command can use these. Click one to add it.
 | `{reward}`               | Channel points                                                                                    |
 | `{amount}`               | Super Chat (as YouTube shows it, like $4.99)                                                      |
 
-Only the ones the trigger's platforms fill are offered.
-
 Viewers pick their own names and messages, so Tokio cleans what a variable adds to a command.
 
 <details>
@@ -191,7 +188,7 @@ The play button runs the action once with sample values, from the trigger's plat
   alt="An action after a test: 1 of 3 commands failed, the anvil's in red"
 />
 
-Failures show in red, in the game's language, and the list keeps the last 25: click its count to fold it. Test needs a game of the action's edition connected.
+Failures show in red, in the game's language. Test needs a game of the action's edition connected.
 
 ## Show your actions on stream
 
@@ -220,12 +217,9 @@ Split it into up to 4 **Columns**, or **Rows** when it's horizontal, to spread i
 
 Each action has a row, in the actions' order:
 
-- **Show on the overlay** puts it on the overlay. It needs the action on, and a picture or a name.
-- The event shows a gift's or emote's picture, or Tokio's own pixel icon. On **Chat**, and on a gift or emote action with none picked, type over its text to change it; empty it to go back.
-- The square picks the picture.
-- The name starts from the steps, like **Zombie**. Type your own, or empty it to go back.
-- **Column** (**Row** when horizontal) picks where it shows, with more than one.
-- Drag a row by the dots on its left to move it up or down, or reach them with Tab and use the arrow keys. **Actions** lists them in the same order.
+- **Show on the overlay** puts an action on the overlay. The action must be on and have a picture or a name.
+- Click the square to pick its picture, and type over the event's text or the name to change them; empty one to go back.
+- **Column** (**Row** when horizontal) picks where it shows. Drag a row by its dots to reorder it.
 
 ### Pictures
 
@@ -252,11 +246,7 @@ All profiles share the library, in the `games/minecraft` folder inside the [`.to
 | Option                          | What it does                                                                                                                                 |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Layout**                      | **Vertical** shows every action top to bottom and **Horizontal** side by side; **One at a time** turns every 3 seconds                       |
-| **Columns**                     | Splits the actions into 1 to 4 overlays, called **Rows** when horizontal                                                                     |
-| **Event pictures**              | **Small**, **Medium** or **Large** gifts, emotes and icons                                                                                   |
 | **Counts**                      | **Small**, **Medium** or **Large** numbers on the pictures' corners: an action's amount and the likes' count                                 |
-| **Pictures only**               | Hides the texts next to pictures                                                                                                             |
-| **Text below pictures**         | Puts the texts under the pictures                                                                                                            |
 | **Font**                        | A font on your computer, Archivo by default. [Install it where your streaming app runs too](/docs/guides/adding-an-overlay/#fonts-and-sound) |
 | **Text**, **Accent**, **Arrow** | The colors of the texts, a lit action and the arrows                                                                                         |
 
@@ -279,7 +269,7 @@ The play button on **Overlay** lights up the next action, in the preview and on 
 <details>
 <summary>Notices</summary>
 
-- **Minecraft Java Edition isn't connected, so the … action didn't run.** (or Bedrock Edition): an action ran with no game of its edition. At most once a minute.
+- **Minecraft Java Edition isn't connected, so the … action didn't run. …** (or Bedrock Edition): an action ran with no game of its edition. At most once a minute.
 - **A command of the … action failed in Minecraft:** then the game's answer. At most once every 30 seconds per action.
 - **The … action has 100 runs waiting, so new ones are skipped until Minecraft catches up.** At most once every 30 seconds per action.
 - **Tokio couldn't listen for Minecraft. Port 37892 may be in use.**: the port was in use when Tokio started.

@@ -5,7 +5,7 @@ description: Cada LIVE, lo que enviaron los espectadores en cada plataforma y qu
 
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-**Historial de LIVEs**, en **Herramientas**, guarda cada LIVE al que conectas Tokio: lo que enviaron los espectadores en cada plataforma, y quiénes enviaron más. Su fila en **Herramientas** cuenta los LIVEs que guarda.
+**Historial de LIVEs**, en **Herramientas**, guarda cada LIVE al que conectas Tokio: lo que enviaron los espectadores en cada plataforma, y quiénes enviaron más.
 
 <Screenshot
   name="coin-stats"
@@ -23,22 +23,21 @@ Con dos o más plataformas en el historial, cada una tiene su pestaña, y al fin
 | **YouTube** | **Super Chats** en dólares estadounidenses, **Regalos** y **Suscripciones regaladas** | **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
 | **Kick**    | **Kicks** y **Suscripciones regaladas**                                               | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**       |
 
-Una pestaña muestra solo los LIVEs que estuvieron en su plataforma. **Todas** muestra el dinero de cada plataforma por separado, con todos los regalos y las suscripciones regaladas, y lista los LIVEs por sus regalos. No tiene top ni búsqueda: para eso, elige la pestaña de una plataforma.
+Una pestaña muestra solo los LIVEs que estuvieron en su plataforma. **Todas** muestra el dinero de cada plataforma por separado, sin top ni búsqueda.
 
 <details>
 <summary>Lo que no cuenta</summary>
 
 - Los cofres, las suscripciones de Super Fan y las suscripciones no cuentan. Las suscripciones regaladas sí.
 - YouTube no dice cuánto cuestan sus Regalos, así que cuentan como regalos pero no como dinero. Quienes los envían solo entran en un top con Super Chats o suscripciones regaladas.
+- Los Super Chats se suman en dólares estadounidenses con los tipos de cambio del día de Frankfurter. Hasta que cargan, **Super Chats** muestra un guion en Inicio, y el Historial de LIVEs los cuenta cuando cargan.
 - Un Super Chat en una moneda de la que Tokio no tiene tipo de cambio cuenta como 0 dólares.
 
 </details>
 
 ## Cada LIVE
 
-Un LIVE aparece en la lista cuando termina, primero el más reciente, con su fecha, su duración y lo que recibió en el dinero de la pestaña. La barra debajo lo compara con el mejor LIVE de la lista.
-
-Selecciona uno para ver sus totales y su top. Cuentan desde que Tokio se conectó hasta el final.
+Un LIVE aparece en la lista cuando termina. Selecciona uno para ver sus totales y su top, contados desde que Tokio se conectó.
 
 ## Tops
 
@@ -46,7 +45,7 @@ En Twitch, YouTube y Kick, **Ordenar por** cambia el top entre el dinero de la p
 
 **Total histórico** suma todos los LIVEs, con sus tops. Guarda hasta 10,000 espectadores por plataforma, y quita primero a los que enviaron menos.
 
-La búsqueda junto al top encuentra a un espectador por nombre o @usuario, con su lugar. El top muestra los primeros 100, y su búsqueda incluye a todos.
+El top muestra los primeros 100. Su búsqueda encuentra a cualquiera por nombre o @usuario, con su lugar.
 
 Los overlays pueden mostrar el top 10 de quienes más regalan en TikTok, en el LIVE y en total: consulta [Quienes más regalan](/es/docs/developers/events/#quienes-más-regalan) para hacer uno.
 
@@ -56,7 +55,14 @@ Arriba de la lista, elige **Últimas 24 horas**, **Últimos 7 días**, **Último
 
 Un LIVE que empieza antes o termina después cuenta solo lo que se envió dentro de esas fechas, al minuto. **Total histórico** vuelve a mostrar todos los LIVEs.
 
-Para otras fechas, elige **Fechas personalizadas**, luego **El día**, **Después del**, **Antes del** o **Entre el**, y las fechas. Cada fecha puede llevar una hora, al minuto, salvo con **El día**. Una fecha sin hora cuenta entera: **Después del** y **Antes del** no la incluyen, y **Entre el** sí.
+**Fechas personalizadas** elige otros días.
+
+<details>
+<summary>Fechas personalizadas</summary>
+
+Elige **El día**, **Después del**, **Antes del** o **Entre el**, y las fechas. Cada fecha puede llevar una hora, al minuto, salvo con **El día**. Una fecha sin hora cuenta entera: **Después del** y **Antes del** no la incluyen, y **Entre el** sí.
+
+</details>
 
 ## Eliminar
 

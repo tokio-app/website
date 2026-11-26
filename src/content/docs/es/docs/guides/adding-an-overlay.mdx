@@ -13,18 +13,18 @@ Tokio ofrece sus overlays como páginas web, y tu app de streaming los muestra s
 
 1. **Activa el servidor de overlays**
 
-   En **Configuración → Servidor de overlays**, enciende **Activar el servidor**, o activa **Overlays** en **Funciones activas** de **Inicio**, y confirma. La primera vez, acepta el aviso de administrador (tu contraseña en macOS y Linux) para que Tokio pueda agregar su dirección a tu archivo hosts.
+   En **Configuración → Servidor de overlays**, enciende **Activar el servidor**, o activa **Overlays** en **Funciones activas** de **Inicio**. La primera vez, acepta el aviso de administrador (tu contraseña en macOS y Linux) para que Tokio pueda agregar `tokio-app.local` a tu archivo hosts.
 
    <Screenshot
      name="settings-overlay-server"
      alt="Configuración → Servidor de overlays, con el servidor activado y la dirección de red de la computadora"
    />
 
-2. **Copia la dirección del overlay en Tokio**
+2. **Copia la URL del overlay en Tokio**
 
-   Todas las direcciones empiezan con `http://tokio-app.local:37891`, como `http://tokio-app.local:37891/timer/`.
+   Todas las URL empiezan con `http://tokio-app.local:37891`, como `http://tokio-app.local:37891/timer/`.
 
-   | Dónde copiarla                                                                                      | Dirección               |
+   | Dónde copiarla                                                                                      | URL                     |
    | --------------------------------------------------------------------------------------------------- | ----------------------- |
    | La tarjeta de un [overlay](/es/docs/features/overlays/) en **Overlays**                             | `/<overlay-id>/`        |
    | La pestaña **Imagen o video** de una [alerta](/es/docs/features/alerts/#imágenes-y-videos)          | `/alerts/<alert-id>/`   |
@@ -35,7 +35,7 @@ Tokio ofrece sus overlays como páginas web, y tu app de streaming los muestra s
 
 3. **Agrégalo en tu app de streaming**
 
-   Pega la dirección en una nueva fuente de navegador:
+   Pega la URL en una nueva fuente de navegador:
 
 </Steps>
 
@@ -43,32 +43,31 @@ Tokio ofrece sus overlays como páginas web, y tu app de streaming los muestra s
   <TabItem label="OBS Studio">
 
 1. En **Fuentes**, haz clic en **+** y elige **Navegador**.
-2. Pega la dirección y ajusta el ancho y el alto al tamaño de tu lienzo.
+2. Pega la URL y ajusta el ancho y el alto al tamaño de tu lienzo.
 
   </TabItem>
   <TabItem label="TikTok LIVE Studio">
 
 1. Haz clic en **Add source** y elige **Link**.
-2. Pega la dirección y coloca el overlay en tu escena.
+2. Pega la URL y coloca el overlay en tu escena.
 
   </TabItem>
   <TabItem label="Otras apps">
 
 1. Agrega una fuente de navegador o fuente web.
-2. Pega la dirección.
+2. Pega la URL.
 
   </TabItem>
 </Tabs>
-
-Los overlays usan `tokio-app.local` porque TikTok LIVE Studio no acepta enlaces a `localhost`.
 
 <details>
 <summary>Si el overlay no aparece</summary>
 
 - Tokio está cerrado, o **Activar el servidor** está apagado. Los overlays solo aparecen mientras Tokio está abierto con el servidor activado.
 - "No se pudo configurar la dirección de los overlays. Acepta el aviso de administrador para agregarla." Vuelve a activar **Activar el servidor** y acepta el aviso.
-- "El servidor de overlays no pudo iniciarse. Puede que el puerto 37891 esté en uso." Otro programa usa ese puerto: ciérralo y vuelve a activar el servidor. Si pasa al abrir Tokio, dice "El servidor de overlays no pudo iniciarse, así que Tokio lo apagó. Puede que el puerto 37891 esté en uso."
+- "El servidor de overlays no pudo iniciarse. Puede que el puerto 37891 esté en uso." Otro programa usa ese puerto: ciérralo y vuelve a activar el servidor.
 - Un overlay se actualizó y la fuente de navegador sigue mostrando el anterior. Actualiza la fuente: en OBS, abre sus propiedades y haz clic en **Actualizar la caché de la página actual**.
+- Escribiste una URL con `localhost`. TikTok LIVE Studio no las acepta; por eso los overlays usan `tokio-app.local`.
 - Tu app de streaming está en otra computadora: consulta [En otra computadora](#en-otra-computadora).
 
 </details>

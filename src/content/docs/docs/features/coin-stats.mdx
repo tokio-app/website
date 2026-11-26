@@ -5,7 +5,7 @@ description: Every LIVE, what viewers sent on each platform and who sent the mos
 
 import Screenshot from "../../../../components/Screenshot.astro";
 
-**LIVE history**, in **Tools**, keeps every LIVE you connect Tokio to: what viewers sent on each platform, and who sent the most. Its row in **Tools** counts the LIVEs it keeps.
+**LIVE history**, in **Tools**, keeps every LIVE you connect Tokio to: what viewers sent on each platform, and who sent the most.
 
 <Screenshot
   name="coin-stats"
@@ -23,22 +23,21 @@ With two or more platforms in the history, each has a tab, then **All**. A tab c
 | **YouTube** | **Super Chats** in US dollars, **Gifts** and **Gifted subs** | **Top Super Chats** and **Top gifted subs** |
 | **Kick**    | **Kicks** and **Gifted subs**                                | **Top Kicks** and **Top gifted subs**       |
 
-A tab lists only the LIVEs that were on its platform. **All** shows each platform's money side by side, with every gift and gifted sub, and lists the LIVEs by their gifts. It has no top or search: pick a platform's tab for those.
+A tab lists only the LIVEs that were on its platform. **All** shows every platform's money side by side, with no top or search.
 
 <details>
 <summary>What doesn't count</summary>
 
 - Treasure chests, Super Fan subscriptions and subscriptions don't count. Gifted subs do.
 - YouTube doesn't say what its Gifts cost, so they count as gifts but not as money. Their senders only join a top with Super Chats or gifted subs.
+- Super Chats add up in US dollars at the day's exchange rates from Frankfurter. Until the rates load, Home's **Super Chats** shows a dash, and LIVE history counts them once they do.
 - A Super Chat in a currency Tokio has no exchange rate for counts as 0 dollars.
 
 </details>
 
 ## Each LIVE
 
-A LIVE joins the list when it ends, newest first, with its date, its length and what it made in the tab's money. The bar under it compares it with the best LIVE in the list.
-
-Select one to see its totals and its top. They count from when Tokio connected until the end.
+A LIVE joins the list when it ends. Select one to see its totals and its top, counted from when Tokio connected.
 
 ## Tops
 
@@ -46,7 +45,7 @@ On Twitch, YouTube and Kick, **Rank by** switches the top between the platform's
 
 **All time** adds up every LIVE, with its tops. It keeps up to 10,000 gifters per platform, dropping the ones who sent the least.
 
-The search next to the top finds a viewer by name or @handle, with their place. The top lists the first 100, and its search looks among everyone.
+The top lists the first 100. Its search finds anyone by name or @handle, with their place.
 
 Overlays can show the top 10 TikTok gifters of the LIVE and of all time: see [Gifters](/docs/developers/events/#gifters) to build one.
 
@@ -56,7 +55,14 @@ Above the list, pick **Last 24 hours**, **Last 7 days**, **Last 30 days** or **L
 
 A LIVE that runs past the start or the end counts only what was sent inside the dates, to the minute. **All time** brings back every LIVE.
 
-For other dates, pick **Custom dates**, then **On**, **After**, **Before** or **Between** and the days. Each day can take a time, to the minute, except with **On**. A day without a time counts whole: **After** and **Before** leave it out, and **Between** includes it.
+**Custom dates** picks other days.
+
+<details>
+<summary>Custom dates</summary>
+
+Pick **On**, **After**, **Before** or **Between** and the days. Each day can take a time, to the minute, except with **On**. A day without a time counts whole: **After** and **Before** leave it out, and **Between** includes it.
+
+</details>
 
 ## Deleting
 

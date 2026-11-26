@@ -42,9 +42,14 @@ En Minecraft, sigue los pasos que **Juegos** muestra para Bedrock:
 
 ## Java Edition
 
-El mod de Tokio, para Fabric, conecta los mundos de un jugador y los mundos LAN que hospedas, no los servidores dedicados. Los trucos pueden quedar desactivados: el mod ejecuta los comandos como tú, con el permiso de un bloque de comandos, y sus respuestas no aparecen en el chat.
+El mod de Tokio, para Fabric, conecta los mundos de un jugador y los mundos LAN que hospedas, no los servidores dedicados. Los trucos pueden quedar desactivados.
 
-En un mundo LAN, las criaturas de Tokio nunca persiguen a otros jugadores, y sus explosiones, rayos, flechas, pociones y aliento de dragón no los lastiman. Solo tú ves los meteoritos y los láseres.
+<details>
+<summary>En un mundo LAN</summary>
+
+Las criaturas de Tokio nunca persiguen a otros jugadores, y sus explosiones, rayos, flechas, pociones y aliento de dragón no los lastiman. Solo tú ves los meteoritos y los láseres.
+
+</details>
 
 ### Instala el mod
 
@@ -99,7 +104,7 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
 <Steps>
 
 1. Elige la pestaña de la edición de tu juego.
-2. Haz clic en **Agregar acción**, debajo de sus acciones. Empieza como una de Seguir que genera un Zombie, o una de Suscripción si el perfil no tiene TikTok ni Twitch.
+2. Haz clic en **Agregar acción**, debajo de sus acciones. Empieza como una de Seguir que genera un Zombie.
 3. Elige el activador, cambia el paso y haz clic en **Agregar paso** para agregar más.
 4. Haz clic en el botón de reproducir para probarla.
 
@@ -110,9 +115,7 @@ Una acción es un activador y los pasos que ejecuta. Cada perfil tiene sus propi
   alt="La pestaña Bedrock de Acciones: una de Seguir que genera un Zombie con el nombre del espectador, y una de Regalo que ejecuta un comando say"
 />
 
-Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar acción** la quita enseguida, sin preguntar, y **Quitar paso** hace lo mismo con cada paso.
-
-**Juegos** se abre en la pestaña del juego conectado, o en **Java** si solo Java tiene acciones, y cambia a la pestaña de un juego cuando se conecta. Una acción nueva toma la edición de su pestaña.
+Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar acción** pregunta primero, y **Quitar paso** quita cada paso enseguida.
 
 **Duplicar acción** pone una copia justo después de la acción. Cámbiale la edición para ejecutar los mismos pasos en el otro juego.
 
@@ -126,17 +129,13 @@ Cada acción tiene su propio interruptor para activarla o desactivarla. **Quitar
 
 </details>
 
-Haz clic en **Acciones** para plegar las acciones y darle más espacio al overlay. Se vuelven a abrir la próxima vez que entres a **Juegos**.
+Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), con lo que envían tus [plataformas](/es/docs/features/alerts/#plataformas), pero sin entradas, cofres, Cajas de Super Fan, cambios de canción, **Valor mínimo** ni **De**.
 
-Los activadores funcionan como en las [alertas](/es/docs/features/alerts/#activadores), pero sin entradas, cofres, Cajas de Super Fan ni cambios de canción. No tienen **Valor mínimo** ni **De**. Cada activador ofrece lo que envían sus [plataformas](/es/docs/features/alerts/#plataformas), como en las alertas: los de Twitch (Suscripción, Suscripciones regaladas, Bits, Raid y Puntos del canal), el Super Chat de YouTube y los de Kick (Kicks, Suscripción, Suscripciones regaladas, Raid y Puntos del canal) aparecen con esas plataformas, y con dos o más, un activador puede elegir una.
-
-| Activador            | Opciones                                                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Regalo**           | Los regalos, y **Al terminar el combo** o **Cada regalo**, como en las [alertas de regalos](/es/docs/features/alerts/#alertas-de-regalos)  |
-| **Chat**             | Una palabra clave o frase que el mensaje debe tener                                                                                        |
-| **Me gusta**         | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
-| **Emote**            | Los emotes, o cualquiera                                                                                                                   |
-| **Puntos del canal** | El título de una recompensa, o **Cualquier recompensa**                                                                                    |
+| Activador    | Opciones                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Regalo**   | Los regalos, y **Al terminar el combo** o **Cada regalo**, como en las [alertas de regalos](/es/docs/features/alerts/#alertas-de-regalos)  |
+| **Chat**     | Una palabra clave o frase que el mensaje debe tener                                                                                        |
+| **Me gusta** | Cada cuántos Me gusta, 100 al principio. Se suman los Me gusta de todos los espectadores, y la cuenta vuelve a cero cuando te desconectas. |
 
 Las acciones se ejecutan mientras **Minecraft** está activado, hay un juego de su edición conectado y Tokio no está en [pausa](/es/docs/features/live-controls/#pausa), sin importar qué esté activado en **Inicio**.
 
@@ -171,8 +170,6 @@ El nombre de una criatura y los comandos pueden usarlas. Haz clic en una para ag
 | `{reward}`               | Puntos del canal                                                                                              |
 | `{amount}`               | Super Chat (como lo muestra YouTube, por ejemplo $4.99)                                                       |
 
-Solo aparecen las que completan las plataformas del activador.
-
 Los espectadores eligen sus propios nombres y mensajes, así que Tokio limpia lo que una variable agrega a un comando.
 
 <details>
@@ -191,7 +188,7 @@ El botón de reproducir ejecuta la acción una vez con valores de ejemplo, de la
   alt="Una acción después de una prueba: 1 de 3 comandos fallaron, el del yunque en rojo"
 />
 
-Los fallos aparecen en rojo, en el idioma del juego, y la lista guarda los últimos 25: haz clic en el número para plegarla. Para probar una acción, tiene que haber un juego de su edición conectado.
+Los fallos aparecen en rojo, en el idioma del juego. Para probar una acción, tiene que haber un juego de su edición conectado.
 
 ## Muestra tus acciones en el stream
 
@@ -220,12 +217,9 @@ Divídelo en hasta 4 **Columnas**, o **Filas** si es horizontal, para repartirlo
 
 Cada acción tiene una fila, en el mismo orden que las acciones:
 
-- **Mostrar en el overlay** la pone en el overlay. Necesita la acción activada, y una imagen o un nombre.
-- El evento muestra la imagen del regalo o del emote, o el ícono pixelado de Tokio. Con **Chat**, y con una acción de regalo o de emote sin ninguno elegido, escribe sobre su texto para cambiarlo, o bórralo para volver al original.
-- El cuadrado elige la imagen.
-- El nombre sale de los pasos, como **Zombie**. Escribe el tuyo, o bórralo para volver al original.
-- **Columna** (**Fila** si es horizontal) elige dónde se muestra, si hay más de una.
-- Arrastra una fila por los puntos de su izquierda para subirla o bajarla, o llega a ellos con Tab y usa las teclas de flecha. **Acciones** las muestra en el mismo orden.
+- **Mostrar en el overlay** pone una acción en el overlay. La acción tiene que estar activada y tener una imagen o un nombre.
+- Haz clic en el cuadrado para elegir su imagen, y escribe sobre el texto del evento o el nombre para cambiarlos; borra uno para volver al original.
+- **Columna** (**Fila** si es horizontal) elige dónde se muestra. Arrastra una fila por sus puntos para cambiar su orden.
 
 ### Imágenes
 
@@ -252,11 +246,7 @@ Todos los perfiles comparten la biblioteca, que está en la carpeta `games/minec
 | Opción                               | Qué hace                                                                                                                                                            |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Diseño**                           | **Vertical** muestra todas las acciones de arriba abajo, y **Horizontal** una al lado de la otra; **Una a la vez** cambia cada 3 segundos                           |
-| **Columnas**                         | Reparte las acciones en 1 a 4 overlays, que se llaman **Filas** si es horizontal                                                                                    |
-| **Imágenes de eventos**              | El tamaño de regalos, emotes e íconos: **Pequeñas**, **Medianas** o **Grandes**                                                                                     |
 | **Cantidades**                       | El tamaño de los números en la esquina de las imágenes, la cantidad de una acción y la de los Me gusta: **Pequeñas**, **Medianas** o **Grandes**                    |
-| **Solo imágenes**                    | Oculta los textos junto a las imágenes                                                                                                                              |
-| **Texto debajo de las imágenes**     | Pone los textos debajo de las imágenes                                                                                                                              |
 | **Fuente**                           | Una fuente de tu computadora; la predeterminada es Archivo. [Instálala también donde está tu app de streaming](/es/docs/guides/adding-an-overlay/#fuentes-y-sonido) |
 | **Texto**, **Destacado**, **Flecha** | Los colores de los textos, de la acción iluminada y de las flechas                                                                                                  |
 
@@ -279,7 +269,7 @@ El botón de reproducir de **Overlay** ilumina la siguiente acción, en la vista
 <details>
 <summary>Avisos</summary>
 
-- **Minecraft Java Edition no está conectado, así que la acción “…” no se ejecutó.** (o Bedrock Edition): una acción se ejecutó sin un juego de su edición conectado. Como mucho, una vez por minuto.
+- **Minecraft Java Edition no está conectado, así que la acción “…” no se ejecutó. …** (o Bedrock Edition): una acción se ejecutó sin un juego de su edición conectado. Como mucho, una vez por minuto.
 - **Un comando de la acción “…” falló en Minecraft:** y luego la respuesta del juego. Como mucho, una vez cada 30 segundos por acción.
 - **La acción “…” tiene 100 ejecuciones en espera, así que las nuevas se omiten hasta que Minecraft se ponga al día.** Como mucho, una vez cada 30 segundos por acción.
 - **Tokio no pudo esperar conexiones de Minecraft. Puede que el puerto 37892 esté en uso.**: el puerto estaba en uso cuando Tokio se inició.

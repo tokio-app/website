@@ -6,7 +6,7 @@ description: Place, group, crop and cut the elements of your Overlay Studio over
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-The editor opens when you click an overlay in [Overlay Studio](/docs/features/overlay-studio/). Each change saves as you make it and reaches your stream right away.
+The editor opens when you click an overlay in [Overlay Studio](/docs/features/overlay-studio/).
 
 ## Elements and groups
 
@@ -17,11 +17,14 @@ The **Elements** list shows every element, the front one on top, with a small pi
   alt="The Elements list: the logo on its own, a group with a viewer's picture, the follow message and its speech bubble, and a group with the star, the likes text and the banner's rectangle, each with a small picture of what it shows"
 />
 
-In the **+** menu, **New group** adds a group in front of the rest. The menu offers **Gift** only on profiles with TikTok or YouTube, and the pickers only what the profile's platforms send (see [Overlay Studio](/docs/features/overlay-studio/#elements)).
+**New group**, the last item in the **+** menu, adds a group in front of the rest.
 
 A new element goes into the selected group, or the selected element's group, and the menu names it: **Add to Group 1**. Otherwise it goes in front, on its own.
 
-Drag a row's grip to reorder groups and elements, or to move an element into a group or out of one. Where you drop an element decides where it goes:
+Drag a row's grip to reorder it. Drop an element on a group's row to put it in the group, or below the list to take it out.
+
+<details>
+<summary>Where a drop lands</summary>
 
 | Drop it                                  | It goes                           |
 | ---------------------------------------- | --------------------------------- |
@@ -29,15 +32,11 @@ Drag a row's grip to reorder groups and elements, or to move an element into a g
 | Near the top edge of a group's row       | In front of the group, on its own |
 | Below the list, or in a gap between rows | There, on its own                 |
 
-You can also focus a grip and press the up and down arrows. An element at the edge of its group steps out of it, and an element on its own steps into a group it meets.
+</details>
 
-Each group's row has three buttons:
+The arrow next to a group's grip folds its elements away in the list.
 
-- the arrow next to its grip folds its elements away in the list;
-- **Lock group** keeps the canvas from picking, moving, resizing or rotating its elements, and a click goes through to what's under them. You can still change them from the list and their settings;
-- **Hide group** takes it off the canvas and the stream until you show it again.
-
-Each element's row has its own **Lock element** and **Hide element**, which work the same for that element alone. The lock and hide buttons show when you point at a row or select it, and stay visible while they're on.
+**Lock** keeps the canvas from picking or moving a group or element; you can still change it from the list. **Hide** takes it off the canvas and the stream. Both show when you point at a row.
 
 Select a group or an element to name it in its settings. An element without a name shows what it is, like its text.
 
@@ -47,36 +46,27 @@ To delete the selection, click the trash button next to **+**. A group goes with
 
 Click an element to select it, drag it to move it and drag any of its corners to resize it. To rotate it, drag the round handle above it.
 
+An element or group that shows on an event stays on the canvas with a dashed outline, so you can place it. What moves all the time moves on the canvas too.
+
 A text's box can't get narrower than its longest word, or shorter than its words. It grows to fit them when you change its text, font, size or bold.
 
 **Position and size**, **Rotation (°)** and **Opacity** set the same things by number. You can also click and hold a number field, then drag left or right to change its number.
 
 **Link width and height**, the button between **Width** and **Height**, keeps the proportions as you change either one, in the fields or by dragging a corner. **Align to the canvas** moves the element to an edge of the canvas or to its center, and **Flip** mirrors it horizontally or vertically.
 
-Select a group in the list to change all its elements at once. Drag inside its outline to move it, and drag its corners or its round handle to resize or rotate it.
-
-A group's settings have the same fields as an element's, and its **Opacity** fades the whole group. Click an empty spot on the canvas or in the list to deselect.
+Select a group to move, resize or rotate all its elements at once; its **Opacity** fades the whole group. Click an empty spot to deselect.
 
 ## Selecting several
 
-Shift-click elements on the canvas, or Shift-click or Ctrl-click rows in the list, to select several. Do it again on one to take it out. On the canvas, you can also drag from an empty spot: every element the box touches gets selected, added to what's already selected if you hold Shift.
+Shift-click elements, or drag a box from an empty spot, to select several. Drag any of them to move them all; locked ones stay where they are.
 
-Drag any of them to move them all. They stick as one, and the arrow keys move them together. Delete, copy, cut and paste take all of them. Locked ones stay where they are.
-
-With several selected, the settings say how many, with:
-
-- **Align to each other**, which lines them up by their left, center, right, top, middle or bottom.
-- **Space evenly**, across or down, which leaves the same gap between them when there are 3 or more. The two at the ends stay put.
-- **Put them in a new group**, which groups them. It's off while a group is selected, since a group can't go inside another group.
-- **Delete the selection**.
-
-Each one is a single step for **Undo**. Several can't be resized or rotated together.
+Then **Align to each other**, **Space evenly** (3 or more) and **Put them in a new group** work on all of them, each as one **Undo** step. Several can't be resized or rotated together.
 
 ## Sticking
 
 When you drag an element, a group or a corner, it sticks to the canvas's edges and middle, the other elements' edges and middles, and the guides while the rulers are on. A line shows what it lines up with.
 
-Hold Alt while you drag to place it freely. The arrow keys, the fields, **Align to the canvas** and rotating never stick.
+The arrow keys, the fields, **Align to the canvas** and rotating never stick.
 
 ## Cropping
 
@@ -95,9 +85,9 @@ You can crop an image, a video, a camera, a gift or an emote. The whole picture 
   alt="Cropping the logo on the canvas: all of it shows, the parts cut away dimmed around a frame with a handle on each side and corner"
 />
 
-Cropping never moves or resizes the picture: the element's box shrinks to the part you keep. **Crop (%)** in its settings sets the same crop by number, and **Reset the crop** brings back the whole picture.
+The element's box shrinks to the part you keep. **Crop (%)** in its settings sets the same crop by number, and **Reset the crop** brings back the whole picture.
 
-**Round corners** rounds them, up to a circle for a square picture. A new file, gift or emote starts uncropped.
+**Round corners** rounds them, up to a circle for a square picture.
 
 A viewer's picture crops from its fields only. They pick the part of each viewer's picture that fills its circle.
 
@@ -113,21 +103,13 @@ An element that moves on an event plays its video again each time. The canvas is
 
 ## Copy, paste and undo
 
-Copy, cut and paste work on the selection, each paste 20 px down and to the right of the last. A copied element goes into the selected group, and a copied group pastes as a new group.
+Copy, cut and paste work on the selection. The copy stays until Tokio quits, so you can paste into another overlay.
 
-The copy stays until Tokio quits, so you can paste it into another overlay.
+**Undo** and **Redo** go through your changes while the editor is open.
 
-**Undo** and **Redo**, at the top of the editor, go back and forward through your changes while the editor is open. A drag on the canvas counts as one change, and so does a number typed into a field.
+## Zoom, rulers and guides
 
-Folding a group, showing the rulers, the selection and the zoom aren't changes. Each change to the guides is one.
-
-## Zoom
-
-The bar under the canvas shows its zoom level. Zoom with its buttons, or with Ctrl and the mouse wheel where the pointer is.
-
-**Zoom to fit** shows the whole canvas again. Zoomed in, move around with the wheel or the scrollbars, or hold Space and drag the canvas.
-
-## Rulers and guides
+Zoom with the bar under the canvas; **Zoom to fit** shows it all again.
 
 **Rulers and guides**, the button beside the zoom, shows rulers along the canvas's top and left edges, in pixels from its top-left corner. Each overlay remembers whether they're on.
 
@@ -136,7 +118,7 @@ The bar under the canvas shows its zoom level. Zoom with its buttons, or with Ct
   alt="The canvas with rulers along its top and left edges and a guide across each of its middles"
 />
 
-Hold Ctrl and drag from the top ruler for a horizontal guide, or from the left one for a vertical guide. Hold Ctrl and drag a guide to move it, or back onto a ruler to remove it.
+Ctrl-drag from the top ruler for a horizontal guide, or from the left one for a vertical guide.
 
 With the rulers on and nothing selected, **Overlay settings** lists the **Guides**: type their positions, add one at the canvas's middle, lock them or remove them all. Guides are saved with the overlay and never show on stream.
 

@@ -8,6 +8,11 @@ import Screenshot from "../../../../components/Screenshot.astro";
 
 Viewers request songs from chat. YouTube songs play in Tokio's own player window, and Spotify songs in your Spotify app.
 
+<Screenshot
+  name="music-provider"
+  alt="The Provider section with YouTube picked and Block ads"
+/>
+
 ## Providers
 
 Pick one under **Provider** on the **Music** page, then turn on **Music** under **Active features** on **Home**. Music doesn't reconnect when Tokio starts, so click **Connect** each time you open it.
@@ -29,11 +34,6 @@ YouTube says blocking its ads breaks its Terms of Service, and that it may stop 
 2. YouTube Music opens in a window of its own. To use your account, sign in there with its **Sign in** button. Tokio remembers it.
 
 </Steps>
-
-<Screenshot
-  name="music-provider"
-  alt="The Provider section with YouTube picked and Block ads"
-/>
 
 Keep the player window open while you stream: closing it disconnects music.
 
@@ -86,23 +86,23 @@ Before your LIVE, open Spotify and play a song, so Tokio has a device to play on
   alt="The Controls section, where each chat command can be renamed or turned off"
 />
 
-Rename or turn off each one under **Controls**; viewers can type them in any case.
+Rename or turn off each one under **Controls**, where `!last` is **Previous**. Viewers can type them in any case.
 
 `!play One More Time` adds that song, and `!revoke` takes its name as typed or as it shows in the queue. A song that's playing or already played can't be revoked.
 
 A request waits for the song playing to end. If you skip that song in the player window or in Spotify, the next request starts within a minute. A request without a song name, one that finds nothing, or one past **Max queue length** is ignored, and `!next` does nothing with no request waiting.
 
-**Limit Next, Last and Revoke**, on by default, keeps `!next`, `!last` and revoking other viewers' songs to you and your moderators; turn it off to open them to every viewer **Permissions** allows. With it on, viewers can still skip a song they asked for while it plays, and revoke their own requests.
+**Limit Next, Previous and Revoke**, on by default, keeps `!next`, `!last` and revoking other viewers' songs to you and your moderators, though viewers can still skip their own song while it plays. Turn it off to open them to every viewer **Permissions** allows.
 
 ## Who can request
 
-Music has its own **Permissions** and **Protection**, set like [text-to-speech's](/docs/features/text-to-speech/#permissions): a tab of rules per platform, and allow and block lists that apply on every platform. The cooldown is for all of chat: a command sent before it passes is dropped.
+Music has its own **Permissions** and **Protection**, set like [text-to-speech's](/docs/features/text-to-speech/#permissions). The cooldown is for all of chat: a command sent before it passes is dropped.
 
 <Screenshot
   name="music-protection"
   alt="The Protection section on the Music page, with One request per viewer on"
 />
 
-**One request per viewer** ignores a viewer's next `!play` while their song waits, and doesn't add a song that's already playing or waiting.
+**One request per viewer** keeps each viewer to one waiting song, and drops a song that's already playing or waiting.
 
 Song changes are a LIVE event too, so they can trigger an [alert](/docs/features/alerts/) or update an [overlay](/docs/features/overlays/).

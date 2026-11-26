@@ -6,11 +6,11 @@ description: Crea tus propios overlays con texto, imágenes, tus cámaras y los 
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-Overlay Studio crea tus propios overlays con texto, imágenes, tus cámaras, regalos y los overlays que ya tienes. Cada elemento puede quedarse en pantalla o reaccionar a tu LIVE, y cada overlay es una sola fuente de navegador.
+Crea tus propios overlays con texto, imágenes, cámaras, regalos y los overlays que ya tienes. Cada uno es una sola fuente de navegador.
 
 <Steps>
 
-1. En **Herramientas**, abre **Overlay Studio** y haz clic en **Nuevo overlay**. Se llama **Overlay 1**, o el siguiente número libre, y se abre en el editor.
+1. En **Herramientas**, abre **Overlay Studio** y haz clic en **Nuevo overlay**. Se abre en el editor.
 2. Haz clic en **+** en **Elementos** y elige qué mostrar. Arrástralo a su lugar en el lienzo.
 3. Haz clic en **Copiar la URL del overlay** y agrégala a tu app de streaming (mira [cómo agregar un overlay](/es/docs/guides/adding-an-overlay/)):
 
@@ -22,43 +22,37 @@ Overlay Studio crea tus propios overlays con texto, imágenes, tus cámaras, reg
 
 Los cambios se guardan mientras los haces y llegan a tu stream al instante. Todos los perfiles comparten los mismos overlays, pero las alertas, el temporizador y el overlay de juegos que [pones dentro](#overlays-dentro-de-otro) de un overlay siguen al perfil activo.
 
-Los overlays nuevos son **Vertical**, de 1080 × 1920. Sin nada seleccionado, **Configuración del overlay** cambia el nombre y el **Lienzo**, a **Horizontal** de 1920 × 1080.
-
-La fuente de navegador ajusta el lienzo a su tamaño, centrado.
+Los overlays nuevos son **Vertical**, de 1080 × 1920. Para **Horizontal**, haz clic en un espacio vacío y cambia el **Lienzo** en **Configuración del overlay**. Tu app de streaming ajusta el lienzo a su tamaño.
 
 <Screenshot
   name="studio-editor"
   alt="El editor de Overlay Studio: la lista de Elementos con dos grupos y un logo, el lienzo con un banner de Me gusta, una estrella, un mensaje de seguimiento en un globo de diálogo y la imagen de un espectador, y la configuración de la estrella seleccionada con su selector de Forma"
 />
 
-Para copiar un overlay, usa **Duplicar overlay** en su fila. La copia lleva su nombre, como **Copia de Overlay 1**, y tiene su propia URL.
-
-Para eliminar un overlay, usa **Eliminar overlay** en su fila de **Overlay Studio** y confirma.
+La fila de cada overlay tiene **Duplicar overlay**, para una copia con su propia URL, y **Eliminar overlay**.
 
 ## Elementos
 
 Un overlay se arma con elementos, lo que se ve:
 
-| Elemento                  | Qué muestra                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Texto**                 | Tu texto, con su **Fuente**, **Tamaño**, **Color**, **Degradado**, **Contorno**, **Espacio entre letras**, **Interlineado**, **Alineación**, **Negrita**, **Cursiva**, **Todo en mayúsculas** y **Halo oscuro**. Mira [Texto](#texto).                                                                                                                                                                                                                                                        |
-| **Imagen o video**        | Un archivo de la biblioteca multimedia que usas en las [alertas](/es/docs/features/alerts/#imágenes-y-videos). Un video se reproduce con su sonido.                                                                                                                                                                                                                                                                                                                                           |
-| **Cámara**                | Una cámara de esta computadora, en vivo. Mira [Cámaras](#cámaras).                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Regalo**                | La imagen del regalo que envía un espectador, o de un regalo de TikTok que eliges. Solo con TikTok o YouTube, cuyos regalos tienen imagen, y la elección solo con TikTok. El regalo enviado necesita el activador **Regalo**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                                  |
-| **Emote**                 | El emote que envía un espectador en el chat, o uno que eliges entre los que usaron los espectadores de las plataformas del perfil. El emote enviado necesita el activador **Emote**, así que no puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**.                                                                                                                                                                                                                           |
-| **Forma**                 | Un rectángulo, una elipse, un polígono, una estrella, una flecha, un corazón o un globo de diálogo, que llena su recuadro, con un **Relleno** y un **Borde**, cada uno de su color. Puedes quitar cualquiera de los dos. Con **Degradado**, el relleno pasa a un segundo color en el ángulo que elijas. El **Grosor del borde** va de 1 a 100. Un polígono tiene de 3 a 12 **Lados**, una estrella de 3 a 12 **Puntas**, y un rectángulo o un globo de diálogo, un **Radio de las esquinas**. |
-| **Imagen del espectador** | La foto de perfil del espectador que activó el elemento, o su inicial si no tiene. No puede estar **Siempre en pantalla** ni **Se mueve todo el tiempo**, y solo reacciona a eventos que envía un espectador: no a un cofre, una Caja de Super Fan ni un cambio de canción.                                                                                                                                                                                                                   |
-| **Barra de meta**         | Una barra que se llena a medida que un número del LIVE o un [contador](#contadores) llega a su meta. Mira [Barras de meta](#barras-de-meta).                                                                                                                                                                                                                                                                                                                                                  |
-| **Lista**                 | Filas con quienes más enviaron o más suscripciones regalaron en este LIVE, o con sus seguidores, regalos o mensajes del chat más nuevos. Mira [Listas](#listas).                                                                                                                                                                                                                                                                                                                              |
-| **Overlay**               | Un overlay instalado, el temporizador, el overlay de juegos o el overlay de una alerta. Mira [Overlays dentro de otro](#overlays-dentro-de-otro).                                                                                                                                                                                                                                                                                                                                             |
+| Elemento                  | Qué muestra                                                                                                                                                      |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Texto**                 | Tu texto, con números en vivo y los valores del evento. Mira [Texto](#texto).                                                                                    |
+| **Imagen o video**        | Un archivo de la biblioteca multimedia que usas en las [alertas](/es/docs/features/alerts/#imágenes-y-videos). Un video se reproduce con su sonido.              |
+| **Cámara**                | Una cámara de esta computadora, en vivo. Mira [Cámaras](#cámaras).                                                                                               |
+| **Regalo**                | La imagen del regalo que envía un espectador, o un regalo de TikTok que eliges. Solo con TikTok y YouTube.                                                       |
+| **Emote**                 | El emote que envía un espectador en el chat, o uno que eliges entre los que usaron tus espectadores.                                                             |
+| **Forma**                 | Un rectángulo, una elipse, un polígono, una estrella, una flecha, un corazón o un globo de diálogo, con **Relleno**, **Borde** o los dos.                        |
+| **Imagen del espectador** | La foto de perfil del espectador que lo activó, o su inicial.                                                                                                    |
+| **Barra de meta**         | Una barra que se llena a medida que un número del LIVE o un [contador](#contadores) llega a su meta. Mira [Barras de meta](#barras-de-meta).                     |
+| **Lista**                 | Filas con quienes más enviaron o más suscripciones regalaron en este LIVE, o con sus seguidores, regalos o mensajes del chat más nuevos. Mira [Listas](#listas). |
+| **Overlay**               | Un overlay instalado, el temporizador, el overlay de juegos o el overlay de una alerta. Mira [Overlays dentro de otro](#overlays-dentro-de-otro).                |
 
 Para ordenar, bloquear, ocultar y mover elementos juntos, ponlos en un grupo. La página [Editor de Overlay Studio](/es/docs/features/overlay-studio-editor/) explica los grupos, cómo ubicar y recortar, y los atajos de teclado.
 
 Una fuente que no está instalada en la computadora donde corre tu app de streaming se ve en Archivo, y una pestaña del navegador reproduce el sonido de un video solo después de un clic en ella. Mira [Fuentes y sonido](/es/docs/guides/adding-an-overlay/#fuentes-y-sonido).
 
-Si eliminas un archivo de la biblioteca multimedia, también sale de cada elemento que lo mostraba, y esos elementos quedan vacíos.
-
-Todos los perfiles comparten los overlays, pero el editor ofrece solo lo que envían las plataformas del perfil activo: los activadores, los números del LIVE y las metas, las listas y los emotes. Lo que un overlay ya tiene de otra plataforma se queda hasta que lo cambies. Un elemento nuevo empieza en Seguir, o en Suscripción si el perfil no tiene TikTok ni Twitch.
+Cada elemento también tiene **Sombra** y **Desenfoque**. Con **X** e **Y** en 0, la sombra es un brillo.
 
 ## Cuándo
 
@@ -71,26 +65,20 @@ El **Cuándo** de cada elemento y de cada grupo define cómo reacciona:
 | **Se mueve con un evento**  | Se queda en pantalla y hace su **Animación** cada vez que llega su **Activador**.                                                                   |
 | **Se mueve todo el tiempo** | Se queda en pantalla y repite su **Animación** sin parar, sin activador.                                                                            |
 
-**Entrada** elige entre Fundido, Aparición, Deslizar hacia arriba, Deslizar hacia abajo, Deslizar a la izquierda, Deslizar a la derecha, Zoom, Caída, Giro, Volteo, Barrido y Desenfoque, y **Salida** entre los mismos, con Desaparición en lugar de Aparición. Con **Se mueve con un evento**, **Animación** elige entre Rebote, Sacudida, Pulso, Meneo, Giro, Volteo, Salto, Vaivén, Tadá, Latido, Destello y Gelatina; con **Se mueve todo el tiempo**, entre Flotar, Respirar, Girar, Mecerse, Saltitos y A la deriva.
-
 <Screenshot
   name="studio-when"
   alt="El Cuándo del mensaje de seguimiento: Aparece con un evento, con Seguir, Aparición como entrada, Deslizar hacia abajo como salida, 5 segundos en pantalla y sin espera"
 />
 
-Un grupo se mueve como un todo: uno que aparece con un evento hace entrar y salir a todos sus elementos juntos, y uno que se mueve los lleva consigo. Sus elementos conservan su propio **Cuándo**, así que un elemento puede rebotar con cada regalo mientras su grupo flota.
+Un grupo reacciona como un todo, y sus elementos conservan su propio **Cuándo**: un elemento puede rebotar con cada regalo mientras su grupo flota.
 
-El selector de **Activador** tiene los mismos eventos, filtros y [mínimos](/es/docs/features/alerts/#mínimos) que las [alertas](/es/docs/features/alerts/#activadores), sin **De**. Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador. La cuenta vuelve a empezar cuando te desconectas.
+El selector de **Activador** tiene los mismos eventos, filtros y [mínimos](/es/docs/features/alerts/#mínimos) que las [alertas](/es/docs/features/alerts/#activadores), sin **De**. Con **Me gusta**, el elemento reacciona cada vez que tus espectadores suman otros 100 Me gusta entre todos; cambia ese número en el campo junto al activador.
 
 **Agregar un activador** agrega otro debajo de **O**, hasta 5 en total, cada uno con sus propios filtros. El elemento reacciona a cualquiera de ellos.
 
-**Meta alcanzada** reacciona una vez por LIVE, la primera vez que un número llega a su meta. Elige un número del LIVE, como `{likes}` o `{coins}`, o uno de los [contadores](#contadores) del overlay, y luego la meta. Si cambias la meta, puede reaccionar otra vez en el mismo LIVE.
+**Meta alcanzada** reacciona una vez por LIVE, la primera vez que un número llega a su meta. Elige un número del LIVE, como `{likes}` o `{coins}`, o uno de los [contadores](#contadores) del overlay, y luego la meta.
 
-Con **Espera (s)**, un elemento o grupo que aparece o se mueve con un evento espera hasta 10 segundos después de su activador, por ejemplo hasta que termine una alerta. Otro activador durante la espera cambia el evento que muestra, pero no reinicia la espera.
-
-Si su activador llega otra vez mientras se muestra o sale, empieza de nuevo con los valores del evento más reciente.
-
-En el editor, un elemento o grupo que aparece con un evento se queda en el lienzo con un borde punteado, para que puedas ubicarlo. Lo que se mueve todo el tiempo también se mueve en el lienzo.
+Con **Espera (s)**, un elemento o grupo que aparece o se mueve con un evento espera hasta 10 segundos después de su activador, por ejemplo hasta que termine una alerta.
 
 ## Texto
 
@@ -110,28 +98,27 @@ Un texto puede mostrar números en vivo de tu LIVE, escritos entre llaves:
 | `{giftsubs}`   | Las suscripciones regaladas durante este LIVE                           |
 | `{uptime}`     | Cuánto llevas en LIVE, como 01:02:03                                    |
 
-Se acortan en el idioma de Tokio (**Configuración → Idioma**), como 12.8 k en español, y marcan 0 mientras no estás en LIVE (`{uptime}` marca 00:00:00). `{superchats}` muestra un guion hasta que Tokio tiene los tipos de cambio. El editor muestra números de ejemplo, y solo los que envían las plataformas del perfil, como `{bits}` con Twitch. Un texto también muestra los [contadores](#contadores) del overlay, como `{rosas}`.
+Se acortan, como 12.8 k, y marcan 0 mientras no estás en LIVE. Un texto también muestra los [contadores](#contadores) del overlay, como `{rosas}`.
 
-Un texto que reacciona a un evento también puede usar los valores de ese evento, como `¡Gracias, {username}!` con un regalo o `{username} envió {count} {gift}`. Me gusta no tiene espectador ni cantidad propios, porque sus Me gusta vienen de todos los espectadores: `{likes}` muestra el total del LIVE.
-
-Con varios activadores, un texto puede usar los valores de cada uno. El que no venga en el evento queda vacío, como `{gift}` cuando alguien te sigue.
-
-Las variables que puede usar un texto aparecen debajo de su **Texto**: los números del LIVE y los contadores y, si reacciona a un evento, las del evento. Las dos ofrecen solo lo que completan las plataformas del perfil. Con Chat y Emote, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje mientras la Traducción del chat está activada.
+Un texto que reacciona a un evento también puede usar sus valores, como `¡Gracias, {username}!`. Haz clic en una variable debajo de **Texto** para agregarla. Con Chat y Emote, `{translation}` muestra la [traducción](/es/docs/features/chat-translation/) del mensaje.
 
 <Screenshot
   name="studio-text"
   alt="La configuración de un texto: el mensaje de seguimiento, con los números en vivo y los valores del evento listados debajo para agregarlos"
 />
 
-Un elemento guarda los valores de su último evento hasta que Tokio se cierra, así que `Último seguidor: {username}` se sigue viendo después de recargar la fuente de navegador. Antes de su primer evento, esas variables están vacías.
+Un elemento guarda los valores de su último evento hasta que Tokio se cierra, así que `Último seguidor: {username}` se sigue viendo después de recargar la fuente de navegador. Los elementos ocultos también siguen reaccionando.
 
-Los elementos ocultos, y los de un grupo oculto, siguen reaccionando, así que muestran el último evento cuando los vuelves a mostrar.
+<details>
+<summary>Estilos del texto</summary>
 
 **Degradado** hace que el color del texto pase a un segundo color, en el ángulo que elijas: 90 va de izquierda a derecha y 180 de arriba abajo. **Contorno** dibuja una línea alrededor de las letras, por fuera, de su propio color y grosor. **Espacio entre letras** e **Interlineado** son porcentajes del tamaño, y el interlineado empieza en 115. Un contorno grueso puede salirse del recuadro del texto.
 
+</details>
+
 ## Contadores
 
-Un contador cuenta un evento durante cada LIVE, como las rosas o los seguidores nuevos. Sin nada seleccionado, haz clic en **Agregar un contador** en **Configuración del overlay**. Ponle un nombre, como `rosas`, y elige qué cuenta, con los mismos filtros que un activador. Un contador nuevo cuenta regalos o, en un perfil sin regalos, empieza en el mismo evento que un elemento nuevo. Cada overlay tiene hasta 10 propios.
+Un contador cuenta un evento durante cada LIVE, como las rosas o los seguidores nuevos. Sin nada seleccionado, haz clic en **Agregar un contador** en **Configuración del overlay**. Ponle un nombre, como `rosas`, y elige qué cuenta, con los mismos filtros que un activador. Cada overlay tiene hasta 10 propios.
 
 Un texto lo muestra como `{rosas}`, y **Meta alcanzada** puede esperarlo. Lo que suma cada evento:
 
@@ -139,57 +126,48 @@ Un texto lo muestra como `{rosas}`, y **Meta alcanzada** puede esperarlo. Lo que
 - Un **Me gusta** suma sus Me gusta.
 - Cualquier otro evento suma 1.
 
-Los contadores empiezan en 0 al conectarte, siguen contando cuando Tokio recupera una conexión caída y marcan 0 mientras no estás en LIVE. En el editor, cada uno muestra 12.
+Los contadores empiezan en 0 al conectarte, siguen contando cuando Tokio recupera una conexión caída y marcan 0 mientras no estás en LIVE.
 
-Un nombre solo admite letras sin tildes ni ñ, números y `_`, hasta 24 caracteres. El editor te avisa cuando un contador no tiene nombre, tiene el mismo que otro contador o el de un número del LIVE o un dato del evento, como `likes` o `username`.
+Un nombre admite letras sin tildes ni ñ, números y `_`, hasta 24 caracteres.
 
 ## Barras de meta
 
 Una **Barra de meta** se llena a medida que su **Número** llega a su **Meta**. El número es un número del LIVE, como `{likes}` o `{coins}`, o uno de los [contadores](#contadores) del overlay. La barra queda llena al pasar la meta, y vacía mientras no estás en LIVE.
 
-- **Relleno** es el color de la barra. Con **Degradado**, pasa a un segundo color a lo largo de toda la barra, así que el segundo color aparece a medida que se llena.
-- **Fondo** es el color de la parte que falta llenar.
-- **Esquinas redondeadas** va de esquinas rectas a extremos redondos, que es como empieza.
-- **Vertical, se llena desde abajo** pone la barra de pie en el mismo lugar.
-
-El relleno se desliza hasta cada número nuevo. Una barra no muestra palabras: pon un texto encima o al lado, como `{rosas} / 10 rosas`. En el editor, toda barra se ve llena al 60 %.
+Una barra no muestra palabras: pon un texto encima o al lado, como `{rosas} / 10 rosas`.
 
 ## Listas
 
 Una **Lista** muestra una fila por espectador o evento de lo que **Muestra**:
 
-| Muestra                                              | Sus filas                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Quienes más regalaron en este LIVE**               | Los espectadores que más enviaron en este LIVE en la **Plataforma** de la lista, en su dinero, primero quien más envió. Su nombre sigue al dinero: **Quienes más Bits enviaron en este LIVE** en Twitch, **Quienes más Kicks enviaron en este LIVE** en Kick, **Quienes más Super Chats enviaron en este LIVE** en YouTube |
-| **Quienes más suscripciones regalaron en este LIVE** | Los espectadores que más suscripciones regalaron en este LIVE, en Twitch, YouTube o Kick, primero quien más regaló                                                                                                                                                                                                         |
-| **Seguidores nuevos**                                | Los seguidores más nuevos, primero el último. Quien te vuelve a seguir sube                                                                                                                                                                                                                                                |
-| **Últimos regalos**                                  | Los regalos más nuevos, con el regalo y su cantidad, primero el último. Un combo aparece cuando termina                                                                                                                                                                                                                    |
-| **Chat**                                             | Los mensajes más nuevos, el último abajo. Los mensajes que solo tienen emotes no aparecen                                                                                                                                                                                                                                  |
+| Muestra                                              | Sus filas                                                                                                              |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Quienes más regalaron en este LIVE**               | Los espectadores que más enviaron en este LIVE en su **Plataforma**, en su dinero: monedas, Bits, Kicks o Super Chats. |
+| **Quienes más suscripciones regalaron en este LIVE** | Los espectadores que más suscripciones regalaron en este LIVE, en Twitch, YouTube o Kick, primero quien más regaló     |
+| **Seguidores nuevos**                                | Los seguidores más nuevos, primero el último. Quien te vuelve a seguir sube                                            |
+| **Últimos regalos**                                  | Los regalos más nuevos, con el regalo y su cantidad, primero el último. Un combo aparece cuando termina                |
+| **Chat**                                             | Los mensajes más nuevos, el último abajo. Los mensajes que solo tienen emotes no aparecen                              |
 
-Cada fila tiene la imagen del espectador, o su inicial, y luego su nombre. El chat pone el mensaje después del nombre, y los montos y cantidades van a la derecha, en **Color de los números**. Los montos de YouTube están en dólares estadounidenses. **Filas** define cuántas se ven, hasta 10, y **Espacio entre filas** la separación, en píxeles del lienzo. Desactiva **Imágenes de los espectadores** para mostrar solo los nombres.
+Cada fila muestra la imagen y el nombre del espectador, con los montos a la derecha (los de YouTube, en dólares estadounidenses). **Filas** define cuántas se ven, hasta 10.
 
-Un top muestra solo a los espectadores que enviaron algo de su dinero o regalaron suscripciones, así que los Regalos de YouTube, que no tienen precio, nunca ponen a quienes los envían en él.
+**Espacio entre filas** define la separación, y **Color de los números**, el color de los montos. Desactiva **Imágenes de los espectadores** para mostrar solo los nombres.
 
-Con otra plataforma además de TikTok en el perfil, un top elige su **Plataforma**, y una lista nueva empieza en la primera plataforma del perfil. **Seguidores nuevos** solo aparece con una plataforma que avisa cuando te siguen, y **Últimos regalos** con una que envía regalos.
+Las listas están vacías mientras no estás en LIVE y empiezan de nuevo al conectarte.
 
-Las listas están vacías mientras no estás en LIVE y empiezan de nuevo al conectarte. Lo que no cabe en el recuadro se corta en su borde: en el chat, lo más viejo arriba. El editor muestra filas de ejemplo.
+<details>
+<summary>Qué espectadores y plataformas muestra una lista</summary>
 
-## Sombra y desenfoque
+- Un top muestra solo a los espectadores que enviaron algo de su dinero o regalaron suscripciones, así que los Regalos de YouTube, que no tienen precio, nunca ponen a quienes los envían en él.
+- Con otra plataforma además de TikTok en el perfil, un top elige su **Plataforma**. **Seguidores nuevos** solo aparece con una plataforma que avisa cuando te siguen, y **Últimos regalos** con una que envía regalos.
+- Lo que no cabe en el recuadro se corta en su borde: en el chat, lo más viejo arriba.
 
-Cada elemento tiene **Sombra** y **Desenfoque**, debajo de su propia configuración:
-
-- **Sombra** dibuja una sombra de su color, tan suave como su **Suavidad** y movida por **X** e **Y**, en píxeles del lienzo. Cae hacia el mismo lado aunque gires o voltees el elemento. Con **X** e **Y** en 0 y un color brillante, es un brillo.
-- **Desenfoque** suaviza el propio elemento, de 0 a 50.
+</details>
 
 ## Cámaras
 
-Un elemento **Cámara** muestra una cámara de esta computadora, en vivo, en tu stream y en el lienzo. En **Cámara**, elige **Cámara predeterminada** (la que tu sistema usa primero) o cualquier cámara que tenga la computadora.
+Un elemento **Cámara** muestra una cámara de esta computadora, en vivo. Elígela en **Cámara**; una que no está conectada aparece como **(no conectada)**.
 
-Cada elemento puede mostrar una cámara distinta, y varios elementos pueden mostrar la misma. Una cámara que elegiste y no está conectada aparece como **(no conectada)**.
-
-**Calidad** envía la cámara en **720p** o **1080p**. En 1080p se ve más nítida y usa más recursos de tu computadora; 720p alcanza para una cámara en una esquina.
-
-Los elementos que muestran la misma cámara la comparten en la calidad más alta de las que piden.
+**Calidad** puede ser **720p**, que alcanza para una esquina, o **1080p**, más nítida pero más pesada para tu computadora.
 
 Recórtala y redondea sus esquinas como una imagen, hasta un círculo para una cámara redonda, y usa **Voltear** para reflejarla. Para mostrar solo una cámara, crea un overlay con un elemento **Cámara** que llene el lienzo.
 
@@ -200,13 +178,16 @@ Recórtala y redondea sus esquinas como una imagen, hasta un círculo para una c
 
 Tokio enciende una cámara solo mientras está abierto el editor o un overlay que la muestra, y la apaga unos segundos después de que se cierra el último. Ocultar el elemento también apaga su cámara.
 
-El editor muestra la cámara directamente desde tu computadora, así que funciona con el servidor de overlays apagado. Tu stream la recibe a través del servidor.
-
 :::note
-Una vez que una cámara estuvo encendida, Tokio usa unos 100 MB más de memoria hasta que sales de la app, según tu cámara y tu tarjeta gráfica. Chromium, que es la base de Tokio, guarda esa memoria para la siguiente cámara, así que no sigue aumentando.
+Una vez que una cámara estuvo encendida, Tokio usa unos 100 MB más de memoria hasta que sales de la app.
 :::
 
-Otras computadoras de tu red no pueden abrir tu cámara: solo los overlays que sirve Tokio reciben su dirección, que cambia cada vez que se inicia el servidor de overlays.
+:::tip
+Si tus labios no van sincronizados con tu voz, retrasa un poco el micrófono en tu app de streaming (en OBS, **Intervalo de sincronización** en **Propiedades de Audio avanzadas**).
+:::
+
+<details>
+<summary>Si una cámara no se ve</summary>
 
 Si una cámara no puede iniciar, Tokio lo vuelve a intentar cada 5 segundos, y te dice por qué cuando tu stream la usa:
 
@@ -214,9 +195,11 @@ Si una cámara no puede iniciar, Tokio lo vuelve a intentar cada 5 segundos, y t
 - En Windows, activa **Permitir que las aplicaciones de escritorio accedan a la cámara** en **Configuración → Privacidad y seguridad → Cámara**.
 - En macOS, permite que Tokio la use cuando te lo pregunte, o después en **Configuración del Sistema → Privacidad y seguridad → Cámara**.
 
-:::tip
-La cámara puede llegar a tu stream un poco después que tu micrófono. Si tus labios no van sincronizados con tu voz, retrasa un poco el micrófono en tu app de streaming. En OBS, es **Intervalo de sincronización** en **Propiedades de Audio avanzadas**.
-:::
+El editor muestra la cámara directamente desde tu computadora, así que funciona con el servidor de overlays apagado. Tu stream la recibe a través del servidor.
+
+Otras computadoras de tu red no pueden abrir tu cámara: solo los overlays que sirve Tokio reciben su dirección, que cambia cada vez que se inicia el servidor de overlays.
+
+</details>
 
 ## Overlays dentro de otro
 
@@ -224,36 +207,51 @@ Un elemento **Overlay** muestra otro overlay dentro de este: elígelo en **Overl
 
 Si tu overlay de juegos tiene más de una columna, cada columna también está en la lista (**Overlay de juegos, columna 2**, u **Overlay de juegos, fila 2** si es horizontal), para que puedas ponerlas por separado. **Overlay de juegos** las muestra todas en un solo recuadro.
 
-En tu stream, cada uno es el overlay real en su propia dirección, en vivo. En el editor:
-
-- un overlay instalado muestra sus propios datos de ejemplo;
-- el temporizador y el overlay de juegos muestran las vistas previas de sus propias páginas;
-- el overlay de una alerta es un recuadro con el nombre de la alerta, porque solo muestra su imagen o video mientras la alerta suena.
-
-El temporizador, el overlay de juegos y las alertas siguen al perfil activo. Una alerta de otro perfil no muestra nada, y el editor la llama **Alerta eliminada**.
+En tu stream, cada uno es el overlay real en su propia dirección, en vivo. Una alerta de otro perfil no muestra nada, y el editor la llama **Alerta eliminada**.
 
 Si quitas un overlay oficial que pusiste en un elemento, ese elemento no muestra nada hasta que lo instales de nuevo.
 
 ## Probar
 
-El botón de reproducir, **Probar los elementos y grupos que reaccionan a eventos**, reproduce una vez cada elemento y grupo que reacciona, después de su espera, los elementos con valores de ejemplo de su primer activador, en el editor y en tu stream. Un elemento que aparece con un evento hace su entrada, sus segundos en pantalla y su salida, y luego vuelve al lienzo.
+El botón de la estrella fugaz, **Probar los elementos y grupos que reaccionan a eventos**, reproduce una vez cada elemento y grupo que reacciona, con valores de ejemplo, en el editor y en tu stream. Está desactivado mientras nada reacciona a eventos.
 
-Los ejemplos vienen de las plataformas del perfil, así que los elementos de un mismo evento muestran al mismo espectador, y las filas de un top son de su plataforma.
-
-Los overlays que pusiste dentro no reciben los ejemplos. Tokio solo los guarda mientras su elemento está en pantalla, así que después, al recargar, vuelve a verse el último evento real.
+Los ejemplos vienen de las plataformas del perfil, así que los elementos de un mismo evento muestran al mismo espectador, y las filas de un top son de su plataforma. Los overlays que pusiste dentro no los reciben.
 
 ## Notas
+
+<details>
+<summary>Archivos eliminados y otros perfiles</summary>
+
+Si eliminas un archivo de la biblioteca multimedia, también sale de cada elemento que lo mostraba, y esos elementos quedan vacíos.
+
+El editor ofrece solo lo que envían las plataformas del perfil activo: los activadores, los números del LIVE y las metas, las listas y los emotes. Lo que un overlay ya tiene de otra plataforma se queda hasta que lo cambies.
+
+</details>
+
+<details>
+<summary>Cuándo una reacción espera o empieza de nuevo</summary>
+
+- Otro activador durante la **Espera** de un elemento cambia el evento que muestra, pero no reinicia la espera.
+- Si su activador llega otra vez mientras se muestra o sale, empieza de nuevo con los valores del evento más reciente.
+- Con **Me gusta**, la cuenta vuelve a empezar cuando te desconectas.
+- Si cambias la meta de **Meta alcanzada**, puede reaccionar otra vez en el mismo LIVE.
+- Con **Probar**, un elemento que aparece con un evento hace su entrada, sus segundos en pantalla y su salida, después de su espera, y luego vuelve al lienzo.
+
+</details>
+
+<details>
+<summary>Lo que muestra el editor</summary>
+
+- Los números del LIVE, los contadores, las listas y las barras de meta muestran ejemplos: cada contador marca 12 y toda barra se ve llena al 60 %.
+- Un overlay instalado muestra sus propios datos de ejemplo.
+- El temporizador y el overlay de juegos muestran las vistas previas de sus propias páginas, ajustadas al recuadro del elemento. Son aproximadas: revísalos en tu app de streaming.
+- El overlay de una alerta es un recuadro con el nombre de la alerta, porque solo muestra su imagen o video mientras la alerta suena.
+
+</details>
 
 <details>
 <summary>Un overlay que aparece dos veces comparte su configuración</summary>
 
 Un overlay que pones en dos elementos, o en dos overlays de Overlay Studio, tiene una sola configuración, igual que cuando lo agregas dos veces como fuente de navegador.
-
-</details>
-
-<details>
-<summary>Las vistas previas del temporizador y de juegos en el editor son aproximadas</summary>
-
-El editor no puede abrir el temporizador ni el overlay de juegos reales, así que ajusta las vistas previas de sus páginas al recuadro del elemento. Revísalos en tu app de streaming.
 
 </details>

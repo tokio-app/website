@@ -27,23 +27,21 @@ Tokio reads chat messages aloud as they come in.
 
 </Steps>
 
-**Test voice** applies your replacements, **Remove emojis** and banned words, so a message with a banned word or nothing left to read shows a notice instead.
-
-The format, the length limit and the permissions don't apply to the test, so it can play a message chat would skip.
+**Test voice** uses your replacements, **Remove emojis** and banned words, but not the format, the length limit or the permissions.
 
 ## Voices
 
-| Engine         | Notes                                                                                                                                                                                                                                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TikTok**     | TikTok's voices. They go through `ottsy.weilbyte.dev`, a proxy run by a third party, which gets the text of every message they read. Add your TikTok session ID in **Settings → Voice engines** to skip it.                                                                                                               |
-| **Edge**       | Microsoft Edge's voices.                                                                                                                                                                                                                                                                                                  |
-| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included. Only on Windows.                                                                                                                                                                                                                                 |
-| **ElevenLabs** | The voices in your ElevenLabs account, cloned ones included, with your own API key in **Settings → Voice engines**. They speak all of ElevenLabs' languages and use your account's credits. ElevenLabs gets the text of every message they read.                                                                          |
-| **Fish Audio** | The voices in your Fish Audio account, cloned ones included, and the library voices Fish Audio licensed from their owners, with your own API key in **Settings → Voice engines**. They speak all of Fish Audio's languages and are paid from your account's balance. Fish Audio gets the text of every message they read. |
-| **Cartesia**   | Cartesia's voices and the ones you cloned, with your own API key in **Settings → Voice engines**. Each speaks the language it was made for, and they use your account's credits. Cartesia gets the text of every message they read.                                                                                       |
-| **Inworld**    | Inworld's voices and the ones you cloned, with your own API key in **Settings → Voice engines**: its Base64 value from Inworld's Portal. They're paid from your Inworld account. Inworld gets the text of every message they read.                                                                                        |
+| Engine         | Voices                                                                                                                                               |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok**     | TikTok's voices. Without your TikTok session ID in **Settings → Voice engines**, they go through `ottsy.weilbyte.dev`, a proxy run by a third party. |
+| **Edge**       | Microsoft Edge's voices.                                                                                                                             |
+| **Windows**    | The voices installed on Windows, SAPI and OneCore, 32-bit ones included. Only on Windows.                                                            |
+| **ElevenLabs** | Your account's voices, clones included, in all of ElevenLabs' languages.                                                                             |
+| **Fish Audio** | Your account's voices, clones included, and the library voices Fish Audio licensed from their owners, in all of its languages.                       |
+| **Cartesia**   | Cartesia's voices and your clones, each in the language it was made for.                                                                             |
+| **Inworld**    | Inworld's voices and your clones. Its key is the Base64 value from Inworld's Portal.                                                                 |
 
-Search the list, filter it by engine and language, and play any voice before you pick it.
+ElevenLabs, Fish Audio, Cartesia and Inworld need your own API key, added with **+** in **Settings → Voice engines**. Each message they read is paid from your account, and the service gets its text, as TikTok's proxy does.
 
 ## Clone your voice
 
@@ -51,14 +49,14 @@ Have chat read in your own voice, cloned with ElevenLabs, Fish Audio, Cartesia o
 
 <Steps>
 
-1. Create an API key in your account with one of them. In **Settings → Voice engines**, add the service with **+** and paste the key there. The table below says what each one needs.
+1. Create an API key with one of them, and add it with **+** in **Settings → Voice engines**. The table below says what each one needs.
 
    <Screenshot
      name="settings-voice-engines"
      alt="Settings → Voice engines, with TikTok's session ID and the + menu listing ElevenLabs, Fish Audio, Cartesia and Inworld"
    />
 
-2. On the **TTS** page, click **Clone a voice**, the microphone next to **Voice**. It shows once a key is set, and with more than one you pick the **Engine** first. Name the voice and add samples: audio files, or a recording you make there with **Record**.
+2. On the **TTS** page, click **Clone a voice**, the microphone next to **Voice**. It shows once a key is set, and with more than one you pick the **Engine** first. Name the voice and add audio files, or record with **Record**.
 
    <Screenshot
      name="tts-clone"
@@ -66,7 +64,7 @@ Have chat read in your own voice, cloned with ElevenLabs, Fish Audio, Cartesia o
    />
 
 3. Check that the voice is yours or that you have the speaker's permission, then click **Clone voice**.
-4. Give the new voice to a special user under [Special users](#special-users), and keep a free voice for the rest of chat. It also works for all of chat or an alert's message, but you pay for every message it reads.
+4. Give the new voice to a [special user](#special-users), and keep a free voice for the rest of chat. You pay for every message it reads.
 
 </Steps>
 
@@ -75,9 +73,9 @@ Have chat read in your own voice, cloned with ElevenLabs, Fish Audio, Cartesia o
 | **ElevenLabs** | A paid plan, and a key with access to Text to Speech and read and write access to Voices | 1 to 2 minutes   |
 | **Fish Audio** | Balance in your account, which is pay as you go                                          | 10 to 60 seconds |
 | **Cartesia**   | The Pro plan or a higher one                                                             | 10 to 60 seconds |
-| **Inworld**    | A key with write access. Paste its Base64 value from Inworld's Portal.                   | 10 to 30 seconds |
+| **Inworld**    | A key with write access                                                                  | 10 to 30 seconds |
 
-Samples work best with one person speaking clearly, without music or background noise. A recording stops by itself at the longest length in the table. Cartesia and Inworld learn from a single clip, so Tokio joins your samples into one, up to that length.
+Samples work best with one person speaking clearly, without music or background noise.
 
 <details>
 <summary>Costs, limits and deleting a voice</summary>
@@ -86,11 +84,13 @@ Every message a voice from these services reads is paid from your account with i
 
 A voice takes up to 10 samples of up to 25 MB each: MP3, WAV, M4A, OGG, FLAC or WebM files. Tokio sends them only to the service you clone with and doesn't keep them. To rename or delete a cloned voice, use that service's website.
 
+A recording stops by itself at the longest length in the table. Cartesia and Inworld learn from a single clip, so Tokio joins your samples into one, up to that length.
+
 </details>
 
 ## Special users
 
-Give some viewers a voice of their own: under **Special users**, add their @handle and pick a voice for each. Their messages still go through the format, permissions and protection, and are read at the same speed, pitch and volume as everyone's.
+Under **Special users**, add a viewer's @handle and pick a voice for them. Only the voice changes: the format, permissions, protection, speed, pitch and volume still apply.
 
 <Screenshot
   name="tts-special-users"
@@ -99,9 +99,7 @@ Give some viewers a voice of their own: under **Special users**, add their @hand
 
 ## Format
 
-Read every message, or only the ones that start with a dot, a slash or a command of your own.
-
-Choosing **Custom command** fills in `!tts`, which you can change. The command isn't read aloud, and with the command left blank nothing is read.
+Pick which messages get read: **All messages**, **Messages starting with a period ( . )**, **Messages starting with a slash ( / )**, or a **Custom command** of your own, like `!tts`. The period, slash or command isn't read, and a blank command reads nothing.
 
 <Screenshot
   name="tts-format"
@@ -119,13 +117,11 @@ The **Message template** sets what's read:
 
 `{username} {comment}` reads "Lucia hi from Lima!". **Remove emojis** leaves emojis out, and skips messages that are only emojis.
 
-**Read translations** reads a message's translation in place of `{comment}`, when [Chat translation](/docs/features/chat-translation/) gave it one. Only TikTok's chat is translated, so it and `{translation}` only show on a profile with TikTok. Until you pick a language in **Settings → Chat translation**, it's grayed out and `{translation}` isn't offered.
-
-A message is skipped when the filled template has no letter, number or emoji, like `{comment}` with "?" alone.
+**Read translations** reads the [translation](/docs/features/chat-translation/#turn-it-on) in place of `{comment}`.
 
 ## Replacements
 
-Teach the voice to say acronyms, slang and names. Each one swaps a whole word, in any case, and applies before **Remove emojis**, so ❤️ can become "love".
+Teach the voice to say acronyms, slang and names. Each one swaps a whole word, in any case, before emojis are removed, so ❤️ can become "love".
 
 <Screenshot
   name="tts-replacements"
@@ -134,19 +130,17 @@ Teach the voice to say acronyms, slang and names. Each one swaps a whole word, i
 
 ## Permissions
 
-Uncheck **Allow everyone**, then check who can talk. Until you check one, everyone still talks, and a viewer who matches any checked one gets through.
+Uncheck **Allow everyone**, then check who can talk. Anyone with one of the checked roles gets through, and with none checked, everyone does. Each platform has its own tab:
 
-Each of the profile's platforms has a tab with its own rules, since each chat tells different things about a viewer:
+| Platform             | Rules                                                                   |
+| -------------------- | ----------------------------------------------------------------------- |
+| **TikTok**           | **Followers**, **Super Fans**, **Moderators** and **Minimum fan level** |
+| **Twitch**, **Kick** | **Subscribers**, **Moderators** and **VIPs**                            |
+| **YouTube**          | **Members** and **Moderators**                                          |
 
-| Platform             | Rules                                                                                  |
-| -------------------- | -------------------------------------------------------------------------------------- |
-| **TikTok**           | **Followers only**, **Super Fans only**, **Moderators only** and **Minimum fan level** |
-| **Twitch**, **Kick** | **Subscribers only**, **Moderators only** and **VIPs only**                            |
-| **YouTube**          | **Members only** and **Moderators only**                                               |
+**Moderators** includes you, and **Subscribers** includes founders.
 
-**Moderators only** includes you, and **Subscribers only** includes founders. Each tab starts on **Allow everyone**.
-
-With **Use allow and block lists**, an allow list with names lets only them talk. @handles on the block list are never read, even when they're on the allow list. The lists apply on every platform. On Kick, add a viewer by the name in their kick.com link: `shark-34` for Shark_34.
+With **Use allow and block lists**, an allow list with names lets only them talk, and @handles on the block list are never read. Both lists apply on every platform. On Kick, add a viewer by the name in their kick.com link: `shark-34` for Shark_34.
 
 <Screenshot
   name="tts-permissions"
@@ -157,11 +151,20 @@ With **Use allow and block lists**, an allow list with names lets only them talk
 
 The **Cooldown** is the seconds between two messages, for all of chat. Messages that come while the queue holds **Max queue length** messages are dropped.
 
-Messages over the **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters or hidden characters. So is a message whose [translation](/docs/features/chat-translation/) is over that length. A banned word also matches inside other words, so banning "ass" skips "class" too.
+Messages over **Max message length**, or with a banned word in the comment, name or @handle, are skipped, even with look-alike letters. **Banned words** also match inside other words, so banning "ass" skips "class" too.
 
 <Screenshot
   name="tts-protection"
   alt="The Protection section: cooldown, maximum queue length, maximum comment length and banned words"
 />
 
-Replacements, **Remove emojis**, banned words and the block list also apply to [alerts that speak](/docs/features/alerts/#spoken-messages). [Music](/docs/features/music-requests/#who-can-request) has its own permissions.
+<details>
+<summary>Messages that are skipped</summary>
+
+- A message whose filled template has no letter, number or emoji, like `{comment}` with "?" alone.
+- A message whose [translation](/docs/features/chat-translation/) is over **Max message length**.
+- A message with a banned word written with hidden characters in it.
+
+</details>
+
+[Alerts that speak](/docs/features/alerts/#spoken-messages) use the replacements, **Remove emojis**, banned words and the block list too, and [music](/docs/features/music-requests/#who-can-request) has its own permissions.
