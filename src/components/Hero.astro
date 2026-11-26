@@ -28,10 +28,13 @@ const EVENTS = w.events as Event[];
 
 // Numbers as the app writes them in each language (formatStat, formatMoney)
 const locale = lang === "es" ? "es-419" : "en-US";
-const short = new Intl.NumberFormat(locale, {
+const compact = new Intl.NumberFormat(locale, {
   notation: "compact",
   maximumFractionDigits: 1,
 });
+// Spanish reads "1.2 K" throughout, as in the app: es-419 writes "52.4 k"
+// from ten thousand up
+const short = { format: (n: number) => compact.format(n).replace(/k$/, "K") };
 const full = new Intl.NumberFormat(locale);
 const money = new Intl.NumberFormat(locale, {
   style: "currency",
@@ -313,6 +316,7 @@ const charts = TABS.map((tab) => {
                 id={`home-${tab.id}`}
                 aria-labelledby={`home-${tab.id}-tab`}
                 hidden={index !== 0}
+                tabindex="0"
               >
                 <div class="pulse">
                   <span class="readout viewers">{chart.now}</span>
@@ -714,8 +718,11 @@ const charts = TABS.map((tab) => {
     transition: color var(--transition-fast);
   }
 
+  /* Its logo lines up with the board's left edge, with room for the focus
+     ring around it */
   .tab:first-child {
-    padding-left: 0;
+    margin-left: calc(-1 * var(--space-2));
+    padding-left: var(--space-2);
   }
 
   .tab:hover,
@@ -785,6 +792,11 @@ const charts = TABS.map((tab) => {
     bottom: -1px;
     height: 2px;
     background: var(--background-secondary-hover);
+  }
+
+  /* The first tab's line starts at its logo, as the board's left edge */
+  .tabs > .tab:first-child::after {
+    left: var(--space-2);
   }
 
   [data-playing][data-held] .tab[aria-selected="true"]::after {
