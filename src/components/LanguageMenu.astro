@@ -62,6 +62,12 @@ const hrefOf = (code: (typeof LANGUAGE_NAMES)[number]["code"]) =>
       menu.open = false;
       menu.querySelector("summary")?.focus();
     });
+    // So does Tab leaving it. Not a blur to nowhere: Safari doesn't focus a
+    // clicked link, and closing on its mousedown would lose the click
+    menu.addEventListener("focusout", (event) => {
+      const to = event.relatedTarget as Node | null;
+      if (to && !menu.contains(to)) menu.open = false;
+    });
   }
   // So does a click outside it, and coming back to the page
   document.addEventListener("click", (event) => {
