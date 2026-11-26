@@ -60,6 +60,10 @@ export default defineConfig({
         ThemeSelect: "./src/components/DarkOnly.astro",
         // The site header's globe menu, not a select
         LanguageSelect: "./src/components/LanguageMenu.astro",
+        // Archivo preloaded, as on the site
+        Head: "./src/components/DocsHead.astro",
+        // The site header's Overlays, Download and About links
+        SocialIcons: "./src/components/DocsLinks.astro",
       },
       expressiveCode: {
         // The plain frame for shell code too: the terminal frame draws
