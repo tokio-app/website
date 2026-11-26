@@ -16,7 +16,7 @@ Set everything up before you go live. Tokio can only connect to TikTok and YouTu
 
 2. **Set it up**
 
-   Paste your free [Euler Stream](https://www.eulerstream.com/register) API key in **Settings → TikTok LIVE**, once. For Twitch, [sign in](#sign-in-to-twitch) in **Settings → Twitch** instead. YouTube and Kick need neither. Then set up your [voice](/docs/features/text-to-speech/), [music](/docs/features/music-requests/), [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
+   On **Home**, the **+** after the tabs adds a platform. For TikTok, paste your free [Euler Stream](https://www.eulerstream.com/register) API key in **Settings → TikTok LIVE**, once. For Twitch, [sign in](#sign-in-to-twitch) in **Settings → Twitch**. YouTube and Kick need neither. Then set up your [voice](/docs/features/text-to-speech/), [music](/docs/features/music-requests/), [alerts](/docs/features/alerts/) and [overlays](/docs/features/overlays/).
 
    <Screenshot
      name="settings-tiktok-live"
@@ -25,20 +25,18 @@ Set everything up before you go live. Tokio can only connect to TikTok and YouTu
 
 3. **Prepare your stream**
 
-   On **Home**, under **Active features**, turn on what you need; it stays as you leave it. [Add your overlays](/docs/guides/adding-an-overlay/) to your streaming app.
+   On **Home**, under **Active features**, turn on what you need; they stay as you leave them. [Add your overlays](/docs/guides/adding-an-overlay/) to your streaming app.
 
    <Screenshot
      name="home-features"
      alt="Active features on the Home page, with TTS, Alerts and Overlays on"
    />
 
-   For music, click **Connect** on **Music** every time you start Tokio. It doesn't reconnect on its own, and **Home** shows "YouTube · not connected" until you do.
-
-   For [games](/docs/features/games/), turn on the **Minecraft** switch on **Games** and paste its command in your world's chat.
+   For music, click **Connect** on **Music** each time you open Tokio. For [games](/docs/features/games/), turn on the **Minecraft** switch on **Games** and paste its command in your world's chat.
 
 4. **Go live and connect**
 
-   Start your LIVE. On **Home**, each platform you stream to has a tab; the **+** after them adds Twitch, YouTube or Kick. For TikTok, enter your `@username`, for [YouTube](#connect-to-youtube), your channel's `@handle` or a link to the LIVE, and for [Kick](#connect-to-kick), your channel's name or its kick.com link. Then click **Connect**.
+   Start your LIVE. On **Home**, type your TikTok `@username`, your [YouTube](#connect-to-youtube) `@handle` or LIVE link, or your [Kick](#connect-to-kick) channel in its tab, then click **Connect**. Twitch uses the account you signed in with.
 
    <Screenshot
      name="home-connect"
@@ -53,46 +51,52 @@ Tokio connects to your own Twitch channel, so you sign in to it once.
 
 <Steps>
 
-1. In **Settings → Twitch**, click **Sign in with Twitch**. Tokio opens Twitch in your browser with a code already filled in.
+1. In **Settings → Twitch** (there once Twitch has a tab on **Home**), click **Sign in with Twitch**. Tokio opens Twitch in your browser with a code already filled in.
 2. Click **Activate** there to finish. Tokio then says **Signed in as @your-channel**.
 
 </Steps>
 
-Tokio hides the code until you click **Show**. Keep it off your stream: anyone who types it signs Tokio in to their own account.
-
-**Sign out** works once you're disconnected from Twitch. If Twitch signs Tokio out, sign in again.
+Keep the code off your stream: anyone who types it signs Tokio in to their own account.
 
 ## Connect to YouTube
 
-YouTube needs no key and no sign-in. In YouTube's **@channel or LIVE link**, type your channel's `@handle`, or paste a link: the LIVE's watch, youtu.be, /live/, popout chat or YouTube Studio link, or your channel's.
+YouTube needs no key and no sign-in. In its tab, type your channel's `@handle` or paste a link to the LIVE, its chat or your channel. Tokio connects once the LIVE has started, with its chat turned on.
 
-Tokio connects once the LIVE has started. Before that, it tells you the channel isn't LIVE. If the LIVE's chat is turned off, Tokio asks you to turn it on in YouTube Studio.
+<details>
+<summary>What YouTube sends, and its limits</summary>
+
+Tokio takes the LIVE's watch, youtu.be, /live/, popout chat or YouTube Studio link, and your channel's. Before the LIVE starts, Tokio tells you the channel isn't LIVE. If the LIVE's chat is turned off, it asks you to turn it on in YouTube Studio.
 
 Tokio reads the LIVE's chat from YouTube's public website, the way a browser does. It doesn't use an official API, so a change to YouTube's site can stop it from working until a Tokio update fixes it.
 
 On YouTube, memberships count as subscriptions, gifted memberships as gifted subs, one event for the whole gift, and Gifts bought with Jewels as gifts. Super Chats and Super Stickers are their own event, **Super Chat**. YouTube doesn't send follows, since new channel subscribers don't show in its chat, nor likes, shares or total views.
 
+Chat badges say who moderates and who is a member, with their months when the badge shows them.
+
+</details>
+
 ## Connect to Kick
 
-Kick needs no key and no sign-in either. In Kick's **Channel or kick.com link**, type your channel's name or paste its kick.com link, or its popout chat's.
+Kick needs no key and no sign-in either. Type your channel's name or paste its kick.com link. Tokio connects even before you go live, and disconnects when the stream ends.
 
-Kick's chat is open before the stream starts, so, as with Twitch, Tokio connects to your channel even before you go live. Once Tokio has seen the stream live, the stream's end disconnects it.
+<details>
+<summary>What Kick sends, and its limits</summary>
 
-Tokio reads Kick's website and chat feed the way kick.com's own page does, without an official API. A change on Kick's side can stop it from working until a Tokio update fixes it, as when Kick changed its chat feed in October 2026.
+Tokio also takes your channel's popout chat link. It disconnects at the stream's end only once it has seen the stream live.
+
+Tokio reads Kick's website and chat feed the way kick.com's own page does, without an official API. A change on Kick's side can stop it from working until a Tokio update fixes it.
 
 On Kick, Kicks are Kick's money, like Twitch's Bits: they come as their own event, **Kicks**, with how many the viewer sent and the message they pinned, if any. Kick sends no gifts. Subscriptions count as subscriptions, with their months, gifted subs as gifted subs, one event for the whole gift, hosts as raids, with the viewers they bring, and channel rewards as channel points. Kick's emotes count as chat emotes. Kick doesn't send follows, since its chat feed carries none, nor likes, shares or total views.
 
+Chat badges say who moderates, who subscribes and who's a VIP, as on Twitch, with a subscriber's months when the badge shows them.
+
+</details>
+
 ## Several platforms together
 
-Each platform you stream to has its own tab at the top of **Home**, and they all connect to the same LIVE. The **+** after the tabs adds another, even while you're LIVE, and the × in a platform's tab removes it once that platform is disconnected. The profile keeps your list.
+Each platform has its own tab on **Home**, and they all connect to the same LIVE. The **+** adds one, even while you're LIVE, and a tab's × removes it once that platform is disconnected.
 
-A platform's tab holds your TikTok `@username`, your Twitch account, your YouTube channel or your Kick channel, and under it how it's doing: **Connecting…**, **Connected**, **Reconnecting…**, **Waiting for the LIVE…** or **Not connected**. The Euler Stream key is only for TikTok. A tab's logo turns rose while its platform is connected.
-
-**Connect all**, next to the status above the tabs, connects every platform that's ready, and the **Connect** or **Disconnect** in a platform's tab works on that platform alone. A platform that isn't ready turns its tab red and says what it needs, like **Type the channel first.**; the others connect anyway, and Home opens its tab for you. If one fails or drops for good, the LIVE goes on and its tab offers **Connect** again. When the LIVE ends on one platform, Tokio keeps going on the others. **Disconnect all** leaves every platform, and Tokio disconnects on its own when the last one is down.
-
-Twitch and Kick connect to your channel even before you go live. Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
-
-Each platform sends its own events:
+With two or more, **Connect all** connects every platform that's ready, and each tab's **Connect** works on its platform alone. If one fails or its LIVE ends, Tokio keeps going on the others. **Disconnect all** leaves them all.
 
 | Events                        | Come from                        |
 | ----------------------------- | -------------------------------- |
@@ -106,39 +110,36 @@ Each platform sends its own events:
 | Super Chats                   | YouTube                          |
 | Kicks                         | Kick                             |
 
-Each platform's money counts on its own and is never added to another's: TikTok's coins, Twitch's Bits, YouTube's Super Chats and Kick's Kicks. Super Chats come in each viewer's currency, so Tokio adds them up in US dollars, at the day's exchange rates from Frankfurter. YouTube doesn't say what a Gift costs, so its Gifts count as gifts and add no money.
-
-On Twitch, YouTube and Kick, chat badges say who moderates and who subscribes or is a member, with their months when the badge shows them. On Twitch and Kick they also say who's a VIP.
+Each platform's money counts on its own, never added to another's: see [LIVE history](/docs/features/coin-stats/).
 
 ## While you're LIVE
 
-While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are the LIVE's numbers and who sent the most.
+While you're connected, **Home** shows how long you've been LIVE and your **Viewers**, with a line of the LIVE so far and its **Peak**. Below them are the LIVE's numbers and who sent the most, for the platform whose tab is open.
 
-These are the numbers of the platform whose tab is open, and each tab shows its platform's viewers right now next to its name. A platform you disconnect keeps its numbers in its tab until the LIVE ends. Each tab shows what its platform sends:
+<details>
+<summary>What each tab shows</summary>
 
-| Tab     | Numbers                                                                         | Tops                                        |
-| ------- | ------------------------------------------------------------------------------- | ------------------------------------------- |
-| TikTok  | **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** | **Top gifters**                             |
-| Twitch  | **New followers**, **Gifted subs**, **Bits**                                    | **Top Bits** and **Top gifted subs**        |
-| YouTube | **Gifts**, **Gifted subs**, **Super Chats**                                     | **Top Super Chats** and **Top gifted subs** |
-| Kick    | **Gifted subs**, **Kicks**                                                      | **Top Kicks** and **Top gifted subs**       |
+Each tab shows its platform's viewers right now next to its name. A platform you disconnect keeps its numbers in its tab until the LIVE ends.
 
-Each top ranks one thing: **Top gifters** TikTok's coins, **Top Bits**, **Top Kicks** and **Top Super Chats** their money, and **Top gifted subs** the subs a viewer gifted, kept apart from the money. YouTube's Gifts count in **Gifts** but rank no one, since they have no price. **Super Chats** shows a dash until the exchange rates load.
+| Tab     | Numbers                                                                         |
+| ------- | ------------------------------------------------------------------------------- |
+| TikTok  | **Likes**, **Total views**, **New followers**, **Shares**, **Gifts**, **Coins** |
+| Twitch  | **New followers**, **Gifted subs**, **Bits**                                    |
+| YouTube | **Gifts**, **Gifted subs**, **Super Chats**                                     |
+| Kick    | **Gifted subs**, **Kicks**                                                      |
 
-On two or more platforms, an **All** tab adds up the viewers, the counts and the gifted subs, with a tile for each platform's money. It has no tops, since they would rank one money against another.
+On two or more platforms, an **All** tab adds up the viewers, the counts and the gifted subs, with a tile for each platform's money.
 
-A rose line also lights up at the top of the title bar.
+Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
+
+</details>
 
 <Screenshot
   name="dashboard"
   alt="The Home page during a LIVE: how long it's been on, the TikTok tab with its viewers and their line, its numbers and top gifters, the features, and the activity feed with the song playing"
 />
 
-The **Activity** feed keeps the last 100 events, from every platform. A TikTok gift shows its price in coins, and Bits and Kicks show the message sent with them. It stays after the LIVE ends, until the next one. With [Chat translation](/docs/features/chat-translation/) on, a message in another language shows its translation underneath.
-
-While a song plays, **Now playing** at the foot of **Activity** shows its cover, name and artist.
-
-**Feed settings**, the gear next to **Activity**, picks which events the feed shows, and **Save** keeps your choice. Hidden events still count in the totals.
+The **Activity** feed shows the last 100 events from every platform, and keeps them until your next LIVE. **Feed settings**, the gear next to it, picks which events it shows. Hidden events still count in the totals.
 
 <Screenshot
   name="home-feed-settings"
@@ -153,23 +154,24 @@ Turning a feature off during the LIVE stops what it has queued. For music, that 
 
 If Tokio can't connect, it tells you why. When the network was the problem, it first tries twice more, 3 seconds apart.
 
-If the connection drops, Tokio reconnects on its own and keeps trying until it's back or you click **Disconnect**. Meanwhile **Home** says **Reconnecting…** where the LIVE's time was.
+If the connection drops, Tokio reconnects on its own until it's back or you click **Disconnect**. If the LIVE ended meanwhile, **Home** says **Waiting for the LIVE…** and Tokio looks for it for 2 minutes.
 
-When the LIVE ends, Tokio disconnects with "The LIVE has ended." If it ended while Tokio was reconnecting, as when your connection cuts the LIVE short, **Home** says **Waiting for the LIVE…** and Tokio looks for it for 2 minutes. It does the same when it can't reconnect for another reason. If the LIVE comes back in that time, Tokio connects to it; if not, it tells you "Unable to reconnect to the LIVE. Connect again from Home." **Disconnect** stops the wait.
-
-Any disconnect drops what TTS, alerts and music had queued, and the song playing keeps playing.
+Any disconnect drops what TTS, alerts and music had queued. The song playing keeps playing.
 
 <details>
 <summary>Why a connect fails</summary>
 
 - The LIVE hasn't started yet.
-- The username wasn't found on TikTok, or the channel on YouTube.
+- The username or channel wasn't found.
 - The LIVE's chat is turned off on YouTube. Turn it on in YouTube Studio.
-- Your Euler Stream key is missing, wasn't accepted or hit its rate limit.
+- Your Euler Stream key is missing or wasn't accepted, or you've connected too often for your plan.
 - Your Euler Stream [plan](https://www.eulerstream.com/pricing) doesn't include the connection.
 - Euler Stream couldn't sign it, or TikTok can't be reached.
 - You aren't signed in to Twitch, or Twitch signed Tokio out. Sign in again in **Settings → Twitch**.
+- Twitch, YouTube or Kick is limiting Tokio's requests: try again in a few minutes.
+- The LIVE ended: Tokio says "The LIVE has ended."
+- The LIVE didn't come back within those 2 minutes: Tokio says "Unable to reconnect to the LIVE. Connect again from Home."
 
 </details>
 
-Other problems show as notifications, kept under the bell in the title bar.
+Other problems show as notifications, under the bell in the title bar.
