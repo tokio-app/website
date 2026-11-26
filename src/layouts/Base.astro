@@ -20,7 +20,8 @@ interface Props {
 }
 
 const lang = langOf(Astro.currentLocale);
-const t = textOf(lang).meta;
+const text = textOf(lang);
+const t = text.meta;
 const { title, description = t.description } = Astro.props;
 const fullTitle = title ? `${title} | Tokio` : t.title;
 const path = Astro.url.pathname;
@@ -63,8 +64,11 @@ const ogImage = new URL("/icon.png", Astro.site);
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
+    <a class="skip-link" href="#main">
+      {text.header.skip}
+    </a>
     <Header />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer />

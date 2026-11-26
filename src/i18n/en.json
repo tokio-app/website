@@ -5,6 +5,7 @@
   },
   "header": {
     "nav": "Main",
+    "skip": "Skip to content",
     "features": "Features",
     "docs": "Docs",
     "overlays": "Overlays",

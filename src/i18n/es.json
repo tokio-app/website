@@ -5,6 +5,7 @@
   },
   "header": {
     "nav": "Principal",
+    "skip": "Ir al contenido",
     "features": "Funciones",
     "docs": "Docs",
     "overlays": "Overlays",
