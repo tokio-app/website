@@ -42,7 +42,9 @@ export default defineConfig({
       title: "Tokio",
       description:
         "Make your live stream react to your viewers: text-to-speech, music requests, alerts, Minecraft actions, a countdown and overlays.",
-      logo: { src: "./src/assets/icon.png", alt: "Tokio" },
+      // 56 px for the 28 px header on 2x screens, and no alt: the title beside
+      // it already says Tokio
+      logo: { src: "./src/assets/logo.png", alt: "" },
       favicon: "/favicon.ico",
       locales,
       // After Starlight's canonical and hreflang links: see detect.mjs
