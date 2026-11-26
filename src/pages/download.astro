@@ -78,7 +78,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
 
       <div class="notes">
         <div class="note">
-          <h2>Windows</h2>
+          <h3>Windows</h3>
           <div>
             <p set:html={t.windows} />
             <details class="more">
@@ -91,11 +91,7 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
           </div>
         </div>
         <div class="note">
-          <h2>Linux</h2>
-          <p set:html={t.linux} />
-        </div>
-        <div class="note">
-          <h2>macOS</h2>
+          <h3>macOS</h3>
           <div>
             <p set:html={t.mac} />
             <details class="more">
@@ -108,6 +104,10 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
               ))}
             </details>
           </div>
+        </div>
+        <div class="note">
+          <h3>Linux</h3>
+          <p set:html={t.linux} />
         </div>
       </div>
     </div>
@@ -197,7 +197,8 @@ const OS_ICONS: Record<OS, "windows" | "apple" | "linux"> = {
     }
   }
 
-  .note h2 {
+  /* A level below the cards' names, which they share */
+  .note h3 {
     color: var(--font-primary);
     font-size: var(--font-lg);
   }
