@@ -196,6 +196,13 @@ site-search button[data-open-modal]:hover {
   border-radius: var(--radius-lg);
 }
 
+/* Each links to its 2x file: only the picture is the link, with its corners */
+.screenshot-link {
+  display: block;
+  width: fit-content;
+  border-radius: var(--radius-lg);
+}
+
 /* Smaller previous/next links at the bottom of each docs page. Two fixed
    columns, so a lone link keeps half the width on its own side. */
 @media (min-width: 40rem) {

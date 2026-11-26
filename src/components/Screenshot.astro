@@ -4,8 +4,9 @@
 // narrower to fit the text column, crisp on HiDPI screens and never enlarged.
 // Other languages' pages show the app in their language, from
 // src/assets/screenshots/<code>/, or the English one while it's missing.
+// Each links to its 2x file, readable on phones, where the column shrinks it.
 import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import { DEFAULT_LANG, langOf } from "../i18n";
 
 interface Props {
@@ -28,12 +29,17 @@ if (!src) {
   throw new Error(`No screenshot named "${name}" in src/assets/screenshots/`);
 }
 const width = Math.round(src.width / 2);
+const full = await getImage({ src, width: src.width });
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  width={width}
-  densities={[1, 2]}
-  class="screenshot"
-/>
+<p>
+  <a class="screenshot-link" href={full.src}>
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      densities={[1, 2]}
+      class="screenshot"
+    />
+  </a>
+</p>
