@@ -81,10 +81,14 @@ const items = await Promise.all(
                   <img
                     src={image.src}
                     srcset={image.srcSet.attribute}
-                    {...image.attributes}
-                    {...(index === 0
-                      ? { loading: "eager", fetchpriority: "high" }
-                      : {})}
+                    {...{
+                      ...image.attributes,
+                      // The first is above the fold
+                      ...(index === 0 && {
+                        loading: "eager",
+                        fetchpriority: "high",
+                      }),
+                    }}
                     alt={fill(t.previewOf, { name: overlay.name })}
                   />
                 ) : (
