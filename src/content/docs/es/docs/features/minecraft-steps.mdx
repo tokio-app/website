@@ -14,7 +14,14 @@ Si son varias, aparecen de una en una, con un cuarto de segundo entre cada una. 
 Las criaturas que generas no se queman con la luz del día, y las hostiles van por ti.
 
 - En Java, el mod de Tokio se encarga de las dos cosas. Durante su primer segundo no atacan a nadie, así que un grupo no puede matarte apenas aparece.
-- En Bedrock, las que se quemarían reciben resistencia al fuego. Las hostiles te atacan cuando te ven, como siempre, y las arañas de cueva aparecen enojadas. Los endermen, los piglins zombificados y las arañas de día no te atacan hasta que los golpeas.
+- En Bedrock, las que se quemarían reciben resistencia al fuego, y las hostiles te atacan cuando te ven.
+
+<details>
+<summary>Criaturas tranquilas y enojadas en Bedrock</summary>
+
+Las arañas de cueva aparecen enojadas. Los endermen, los piglins zombificados y las arañas de día no te atacan hasta que los golpeas.
+
+</details>
 
 ## Dar objeto
 
@@ -24,11 +31,10 @@ Marca **reemplazando los tuyos** y primero se van los que ya tienes de ese objet
 
 En Java, la armadura, las armas, las herramientas, los escudos, las elytras y las cañas de pescar tienen una casilla **con encantamientos**. Márcala y el objeto llega con los mejores encantamientos que puede tener, cada uno en su nivel más alto, y el paso los muestra debajo.
 
-Una espada de netherita lleva Filo V, Barrido III, Aspecto de fuego II, Empuje II, Saqueo III, Irrompibilidad III y Reparación.
-
 <details>
 <summary>Qué encantamientos</summary>
 
+- Una espada de netherita lleva Filo V, Barrido III, Aspecto de fuego II, Empuje II, Saqueo III, Irrompibilidad III y Reparación.
 - Cuando dos no pueden ir juntos, el objeto lleva Protección (no Protección contra el fuego, contra explosiones ni contra proyectiles), Filo (no Castigo ni Perdición de los artrópodos), Densidad (no Fisura), Fortuna (no Toque de seda), Agilidad acuática (no Paso helado), Multidisparo (no Perforación), y Lealtad y Conductividad (no Propulsión acuática).
 - Un arco lleva Infinidad, que no puede ir con Reparación. Aun así necesita una flecha en tu inventario para disparar, así que quizá te convenga dar una con él.
 - Ningún objeto lleva maldiciones.
@@ -100,8 +106,13 @@ Solo en Java, gracias al mod de Tokio. Te conviertes en cualquier criatura viva,
 
 En **Cuánto tiempo**, elige **hasta volver a la normalidad**, que termina con un paso **Volver a la normalidad**, o **durante** 1 a 600 segundos (30 al principio).
 
-- También vuelves a la normalidad si cierras el mundo.
-- Si mueres, reapareces como la criatura por el tiempo que te quedaba: su tiempo se detiene mientras estás muerto.
+Si cierras el mundo, vuelves a la normalidad. Si mueres, reapareces como la criatura por el tiempo que te quedaba.
+
+Los invitados de tu mundo LAN necesitan el mod para ver la criatura.
+
+<details>
+<summary>Varias conversiones, y cómo se juega la criatura</summary>
+
 - Mientras dura una con tiempo fijo, un nuevo **Convertirse en criatura** espera a que se acabe ese tiempo y luego empieza con sus propios segundos. Van en el orden en que llegaron.
 - Una criatura sin segundos le cede el lugar a la siguiente enseguida, y **Volver a la normalidad** también descarta las que esperaban.
 - Conservas la misma parte de tus corazones: con la mitad de tu salud de jugador, tienes la mitad de los 100 de un Iron Golem.
@@ -115,13 +126,16 @@ Mientras eres la criatura:
 - Haces los sonidos de la criatura al recibir daño, al morir, al caminar y cuando está quieta.
 - El Ender Dragon destruye lo que atraviesa volando, salvo que la regla de juego `mob_griefing` esté desactivada.
 
-Los invitados de tu mundo LAN necesitan el mod para ver la criatura.
+</details>
 
 ### Ataques
 
 Presiona **R** para usar el ataque de la criatura hacia donde miras, y mantenla presionada para seguir atacando a su ritmo. La tecla es **Mob attack**, en **Tokio**, dentro de **Opciones → Controles → Asignación de teclas**.
 
 Las criaturas que solo muerden o golpean, como los zombis y las arañas, no tienen nada en la R. Golpean con clic izquierdo, con el daño de la criatura.
+
+<details>
+<summary>Qué hace la R con cada criatura</summary>
 
 | Criatura                                                         | Qué hace la R                                                                                                                                                                                             |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -141,6 +155,8 @@ Las criaturas que solo muerden o golpean, como los zombis y las arañas, no tien
 | **Evoker**                                                       | Levanta los brazos, y un segundo después 16 colmillos muerden desde el suelo en línea hacia la criatura a la que apuntaste, o en dos anillos a tu alrededor si está a menos de 3 bloques, cada 5 segundos |
 | **Guardian**, **Elder Guardian**                                 | Un rayo sobre la criatura que miras, que la golpea a los 4 segundos (3 en un Elder Guardian) si no la pierdes de vista                                                                                    |
 | **Creeper**                                                      | Sisea durante 1.5 segundos y luego explota a tu alrededor, cada 3 segundos. Sigues siendo un creeper                                                                                                      |
+
+</details>
 
 Tus golpes con clic izquierdo también hacen lo que hace el golpe de la criatura: el de un Wither Skeleton da Descomposición, el de una Cave Spider y el de una Bee dan Veneno (salvo en Fácil), el de un Iron Golem lanza a las criaturas hacia arriba, y el de un Hoglin y el de un Zoglin las arrojan. Con la mano vacía, el de un Husk da Hambre, y el de un zombi en llamas puede prenderles fuego.
 

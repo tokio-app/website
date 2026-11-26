@@ -14,7 +14,14 @@ Several mobs come one at a time, a quarter of a second apart. So 100 take about 
 Mobs you spawn don't burn in daylight, and hostile ones come after you.
 
 - On Java, the Tokio mod does both. For their first second they attack no one, so a crowd can't kill you the moment it appears.
-- On Bedrock, mobs that would burn get fire resistance. Hostile mobs attack when they see you, as usual, and cave spiders spawn angry. Endermen, zombified piglins and spiders in daylight stay calm until you hit them.
+- On Bedrock, mobs that would burn get fire resistance, and hostile ones attack when they see you.
+
+<details>
+<summary>Calm and angry mobs on Bedrock</summary>
+
+Cave spiders spawn angry. Endermen, zombified piglins and spiders in daylight stay calm until you hit them.
+
+</details>
 
 ## Give item
 
@@ -24,11 +31,10 @@ Check **replacing yours** and the ones you already have of that item go first, e
 
 On Java, armor, weapons, tools, shields, elytras and fishing rods have an **enchanted** box. Check it and the item comes with the best enchantments it can have, each at its highest level, listed under the step.
 
-A netherite sword gets Sharpness V, Sweeping Edge III, Fire Aspect II, Knockback II, Looting III, Unbreaking III and Mending.
-
 <details>
 <summary>Which enchantments</summary>
 
+- A netherite sword gets Sharpness V, Sweeping Edge III, Fire Aspect II, Knockback II, Looting III, Unbreaking III and Mending.
 - Where two can't go together, the item gets Protection (not Fire, Blast or Projectile Protection), Sharpness (not Smite or Bane of Arthropods), Density (not Breach), Fortune (not Silk Touch), Depth Strider (not Frost Walker), Multishot (not Piercing), and Loyalty and Channeling (not Riptide).
 - A bow gets Infinity, which can't go with Mending. It still needs an arrow in your inventory to shoot, so you may want to give one with it.
 - No item gets a curse.
@@ -100,8 +106,13 @@ Java only, through the Tokio mod. You become any living mob, bosses too, with it
 
 Under **How long**, pick **until turned back**, which a **Back to normal** step ends, or **for** 1 to 600 seconds (30 to start).
 
-- Closing the world turns you back too.
-- If you die, you respawn as the mob for the time you had left: its time stops while you're dead.
+Closing the world turns you back. If you die, you respawn as the mob for the time you had left.
+
+Guests in your LAN world need the mod to see the mob.
+
+<details>
+<summary>Several turns, and how the mob plays</summary>
+
 - While a timed one runs, a new **Turn into mob** waits until its time is up, then starts with its own seconds. They go in the order they came.
 - A mob without seconds gives way to the next one at once, and **Back to normal** also drops the ones waiting.
 - You keep the same share of your hearts, so half your health as a player is half an iron golem's 100.
@@ -115,13 +126,16 @@ While you're the mob:
 - You make the mob's hurt, death, step and idle sounds.
 - The Ender Dragon smashes through what it flies into, unless the `mob_griefing` game rule is off.
 
-Guests in your LAN world need the mod to see the mob.
+</details>
 
 ### Attacks
 
 Press **R** to use the mob's own attack where you look, and hold it to keep attacking at the mob's pace. The key is **Mob attack**, under **Tokio** in **Options → Controls → Key Binds**.
 
 Mobs that only bite or punch, like zombies and spiders, have nothing on R. They hit with left-click, for the mob's damage.
+
+<details>
+<summary>What R does for each mob</summary>
 
 | Mob                                                              | What R does                                                                                                                                                       |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -141,6 +155,8 @@ Mobs that only bite or punch, like zombies and spiders, have nothing on R. They 
 | **Evoker**                                                       | Raises its arms, and a second later 16 fangs bite up in a line toward the mob you aimed at, or in two rings around you when it's within 3 blocks, every 5 seconds |
 | **Guardian**, **Elder Guardian**                                 | A beam on the mob you look at, which hits after 4 seconds (3 for an Elder Guardian) if you keep it in sight                                                       |
 | **Creeper**                                                      | Hisses for 1.5 seconds, then explodes around you, every 3 seconds. You live on as a creeper                                                                       |
+
+</details>
 
 Your left-click hits also do what the mob's own hit does: a Wither Skeleton's gives Wither, a Cave Spider's and a Bee's give Poison (not on Easy), an Iron Golem's tosses mobs up, and a Hoglin's and a Zoglin's throw them. Bare-handed, a Husk's makes mobs hungry, and a burning zombie's may set them on fire.
 
