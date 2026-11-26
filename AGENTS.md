@@ -58,6 +58,7 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code offers each one as 
 **Other agents:** before doing one of these tasks, read its `SKILL.md`.
 
 - `frontend-design`: the visual direction for new or reshaped pages (Anthropic's skill, Apache-2.0, vendored as published, like the app's copy)
+- `modern-web-guidance`: current HTML, CSS and browser APIs, with Tokio's browser targets (GoogleChrome v1.0.2, Apache-2.0, guides vendored as published, the same copy as the app's). It reads them from its folder: never run its CLI, which reports usage to Google.
 
 ## Architecture
 
@@ -202,7 +203,7 @@ The site follows the app's "On air" look (`tokio/.claude/rules/renderer.md`) and
 
 ## Licensing
 
-- The website's source is MIT (`LICENSE`), except `.claude/skills/frontend-design/`, Anthropic's skill under Apache-2.0 (its `LICENSE.txt` is beside it).
+- The website's source is MIT (`LICENSE`), except two vendored skills under Apache-2.0, each with its license beside it: `.claude/skills/frontend-design/` (Anthropic's) and `.claude/skills/modern-web-guidance/` (Google Chrome's).
 - The site self-hosts the Archivo typeface (`@fontsource-variable/archivo`, as in the app). Its font files are under the SIL OFL 1.1, the copyleft exception the user approved: it allows bundling with any software. The About page's "This website" section names it; keep that.
 - Tokio's source and the distributed app are MIT, except `drm-v2.ts` (LGPL-3.0-only). It connects to TikTok LIVE through `@tokioapp/connector` (MIT, `tokio-app/connector`). The About page must keep stating this, along with the copyright (`© 2026 Italo Alfaro and contributors`), the no-warranty notice and where to get the source.
 - `about.services` in `src/i18n/<lang>.json` mirrors the Services list in the app's `THIRD_PARTY_NOTICES.md`. Keep them in sync.
