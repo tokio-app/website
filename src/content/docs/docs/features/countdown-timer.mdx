@@ -6,7 +6,7 @@ description: A countdown on your stream that viewers add time to with gifts, lik
 import { Steps } from "@astrojs/starlight/components";
 import Screenshot from "../../../../components/Screenshot.astro";
 
-A subathon-style countdown on your stream, which viewers add time to with gifts, likes, follows, shares, new Super Fans, subs, Bits, Kicks, Super Chats and chat.
+A subathon-style countdown on your stream, which viewers add time to.
 
 <Screenshot
   name="timer-preview"
@@ -37,14 +37,12 @@ A subathon-style countdown on your stream, which viewers add time to with gifts,
 | Button              | What it does                                                                                                                                                      |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Start**           | Runs the clock from the **Starting time**, or carries on.                                                                                                         |
-| **Pause**           | Holds the clock. Events still add time.                                                                                                                           |
-| **Stop**            | Holds the clock, and events add nothing until you **Start** again.                                                                                                |
-| **Reset**           | Puts the starting time back, after you confirm.                                                                                                                   |
+| **Pause**           | Holds the clock while events still add time. The status reads **Paused, still adding time**.                                                                      |
+| **Stop**            | Holds the clock, and events add nothing until you **Start** again. The status reads **Stopped, adding no time**.                                                  |
+| **Reset**           | Asks **Reset the countdown?**, then puts the starting time back. The time added so far is lost.                                                                   |
 | **Add**, **Remove** | Change the clock by the minutes you enter, say for a donation from elsewhere. They work once you **Start**, skip the **Multiplier** and stop at **Maximum time**. |
 
-At 0 the status reads **Time's up**, and **Start** waits until you use **Add** or **Reset**. The clock keeps running when you leave its page.
-
-It pauses when the LIVE ends or Tokio disconnects, unless you uncheck **Pause when the LIVE ends or disconnects**.
+At 0 the status reads **Time's up**, and **Start** waits until you use **Add** or **Reset**. The clock keeps running when you leave its page, and pauses when the LIVE ends or Tokio disconnects, unless you uncheck **Pause when the LIVE ends or disconnects**.
 
 ## Time added
 
@@ -55,40 +53,37 @@ It pauses when the LIVE ends or Tokio disconnects, unless you uncheck **Pause wh
 
 Events add time only after you press **Start**. By default:
 
-| Event              | Adds                                |
-| ------------------ | ----------------------------------- |
-| **Coins**          | 1 second per coin                   |
-| **Likes**          | 10 seconds every 100 likes          |
-| **Follows**        | 30 seconds each                     |
-| **Shares**         | 10 seconds each                     |
-| **New Super Fans** | 300 seconds each                    |
-| **Chat messages**  | 0, once per viewer every 30 seconds |
-| **New subs**       | 300 seconds each                    |
-| **Gifted subs**    | 300 seconds per gifted sub          |
-| **Bits**           | 1 second per Bit                    |
-| **Kicks**          | 1 second per Kick                   |
-| **Super Chats**    | 300 seconds each                    |
+| Event              | Adds                                | From                          |
+| ------------------ | ----------------------------------- | ----------------------------- |
+| **Coins**          | 1 second per coin                   | TikTok                        |
+| **Likes**          | 10 seconds every 100 likes          | TikTok                        |
+| **Follows**        | 30 seconds each                     | TikTok, Twitch                |
+| **Shares**         | 10 seconds each                     | TikTok                        |
+| **New Super Fans** | 300 seconds each                    | TikTok                        |
+| **Chat messages**  | 0, once per viewer every 30 seconds | All                           |
+| **New subs**       | 300 seconds each, renewals too      | Twitch, Kick, YouTube members |
+| **Gifted subs**    | 300 seconds per gifted sub          | Twitch, Kick, YouTube members |
+| **Bits**           | 1 second per Bit                    | Twitch                        |
+| **Kicks**          | 1 second per Kick                   | Kick                          |
+| **Super Chats**    | 300 seconds each, whatever it cost  | YouTube                       |
 
-On **Likes**, the second number sets how many likes add time at once.
+You see only the rows for your profile's [platforms](/docs/connect/#several-platforms-together).
 
-**New subs** and **Gifted subs** come from Twitch, Kick and YouTube's memberships, **Bits** from Twitch, **Kicks** from Kick and **Super Chats** from YouTube. A **New subs** row counts each subscription or renewal, and **Gifted subs**, **Bits** and **Kicks** count each sub given, each Bit and each Kick. **Super Chats** adds the same seconds for each Super Chat or Super Sticker, whatever it cost, since currencies differ. **Coins** counts TikTok's gifts by their price, and shows only with TikTok, since YouTube doesn't say what its Gifts cost. The rows, and the overlay's triggers, only show what the profile's [platforms](/docs/connect/#several-platforms-together) send: with only Twitch, there are no coins, likes, shares or Super Fans.
-
-- 0 seconds leaves an event out. **Multiplier** multiplies every event, like 2 for a double-time hour.
+- 0 seconds leaves an event out. **Multiplier** multiplies every event: 2 is double time.
 - **Maximum time** stops adding time once the clock reaches it. 0 is no limit.
-- Chat messages count only with the keyword you enter, matched like a [chat alert's](/docs/features/alerts/#chat-emote-and-join-alerts), and once per viewer in the cooldown. Leave it empty to count any message.
+- Chat messages count only with the keyword you type after **only messages with**, matched like a [chat alert's](/docs/features/alerts/#chat-emote-and-join-alerts). Leave it empty to count any message.
 
 ## On stream
 
-The overlay shows the clock, an optional **Title**, and what each burst adds, like **+1:30**. Set the rest in **Timer look**.
+The overlay shows the clock, an optional **Title**, and what each burst adds, like **+1:30**. Set the rest in **Look**.
 
 <Screenshot
   name="timer-look"
-  alt="Timer look: the colors, the title, the warning, the fonts and the names shown for each trigger"
+  alt="Look: the colors, the title, the warning, the fonts and the names shown for each trigger"
 />
 
-- **Clock**, **Title**, **Added time** and **Warning** are its four colors.
 - **Warning** turns the clock to its warning color that many minutes before the end. 0 turns it off.
-- **Clock font** and **Title font** list the fonts on your computer. With your streaming app on another computer, see [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
+- **Clock font** and **Title font** list the fonts on your computer. For a streaming app on another computer, see [Fonts and sound](/docs/guides/adding-an-overlay/#fonts-and-sound).
 - **Show the multiplier** shows it, like **×2**, while it isn't 1.
 - **Show the triggers, one at a time** shows what each event adds, like **Follow +30s**, with the names you type.
 

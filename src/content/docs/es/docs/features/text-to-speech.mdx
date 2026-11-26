@@ -27,23 +27,21 @@ Tokio lee en voz alta los mensajes del chat a medida que llegan.
 
 </Steps>
 
-**Probar voz** aplica tus reemplazos, **Quitar emojis** y las palabras prohibidas, así que un mensaje con una palabra prohibida o sin nada que leer muestra un aviso en lugar de sonar.
-
-El formato, el largo máximo y los permisos no se aplican a la prueba, así que puede sonar un mensaje que en el chat se omitiría.
+**Probar voz** usa tus reemplazos, **Quitar emojis** y las palabras prohibidas, pero no el formato, el largo máximo ni los permisos.
 
 ## Voces
 
-| Motor          | Notas                                                                                                                                                                                                                                                                                                                                         |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TikTok**     | Las voces de TikTok. Pasan por `ottsy.weilbyte.dev`, un proxy que administra un tercero y que recibe el texto de cada mensaje que leen. Para evitarlo, agrega tu ID de sesión de TikTok en **Configuración → Motores de voz**.                                                                                                                |
-| **Edge**       | Las voces de Microsoft Edge.                                                                                                                                                                                                                                                                                                                  |
-| **Windows**    | Las voces instaladas en Windows, SAPI y OneCore, incluidas las de 32 bits. Solo en Windows.                                                                                                                                                                                                                                                   |
-| **ElevenLabs** | Las voces de tu cuenta de ElevenLabs, incluidas las clonadas, con tu propia clave de API en **Configuración → Motores de voz**. Hablan todos los idiomas de ElevenLabs y usan los créditos de tu cuenta. ElevenLabs recibe el texto de cada mensaje que leen.                                                                                 |
-| **Fish Audio** | Las voces de tu cuenta de Fish Audio, incluidas las clonadas, y las voces de la biblioteca que Fish Audio usa con licencia de sus dueños, con tu propia clave de API en **Configuración → Motores de voz**. Hablan todos los idiomas de Fish Audio y se pagan con el saldo de tu cuenta. Fish Audio recibe el texto de cada mensaje que leen. |
-| **Cartesia**   | Las voces de Cartesia y las que clonaste, con tu propia clave de API en **Configuración → Motores de voz**. Cada una habla el idioma para el que se hizo, y usan los créditos de tu cuenta. Cartesia recibe el texto de cada mensaje que leen.                                                                                                |
-| **Inworld**    | Las voces de Inworld y las que clonaste, con tu propia clave de API en **Configuración → Motores de voz**: su valor en Base64 del Portal de Inworld. Se pagan desde tu cuenta de Inworld. Inworld recibe el texto de cada mensaje que leen.                                                                                                   |
+| Motor          | Voces                                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok**     | Las voces de TikTok. Sin tu ID de sesión de TikTok en **Configuración → Motores de voz**, pasan por `ottsy.weilbyte.dev`, un proxy que administra un tercero. |
+| **Edge**       | Las voces de Microsoft Edge.                                                                                                                                  |
+| **Windows**    | Las voces instaladas en Windows, SAPI y OneCore, incluidas las de 32 bits. Solo en Windows.                                                                   |
+| **ElevenLabs** | Las voces de tu cuenta, incluidas las clonadas, en todos los idiomas de ElevenLabs.                                                                           |
+| **Fish Audio** | Las voces de tu cuenta, incluidas las clonadas, y las voces de la biblioteca que Fish Audio usa con licencia de sus dueños, en todos sus idiomas.             |
+| **Cartesia**   | Las voces de Cartesia y las que clonaste, cada una en el idioma para el que se hizo.                                                                          |
+| **Inworld**    | Las voces de Inworld y las que clonaste. Su clave es el valor en Base64 del Portal de Inworld.                                                                |
 
-Busca en la lista, fíltrala por motor e idioma y reproduce cualquier voz antes de elegirla.
+ElevenLabs, Fish Audio, Cartesia e Inworld necesitan tu propia clave de API, que agregas con **+** en **Configuración → Motores de voz**. Cada mensaje que leen se paga desde tu cuenta, y el servicio recibe su texto, igual que el proxy de TikTok.
 
 ## Clona tu voz
 
@@ -51,14 +49,14 @@ Haz que el chat se lea con tu propia voz, clonada con ElevenLabs, Fish Audio, Ca
 
 <Steps>
 
-1. Crea una clave de API en tu cuenta de uno de ellos. En **Configuración → Motores de voz**, agrega el servicio con **+** y pega ahí la clave. La tabla de abajo dice lo que necesita cada uno.
+1. Crea una clave de API en uno de ellos y agrégala con **+** en **Configuración → Motores de voz**. La tabla de abajo dice lo que necesita cada uno.
 
    <Screenshot
      name="settings-voice-engines"
      alt="Configuración → Motores de voz, con el ID de sesión de TikTok y el menú + con ElevenLabs, Fish Audio, Cartesia e Inworld"
    />
 
-2. En la página **TTS**, haz clic en **Clonar una voz**, el micrófono junto a **Voz**. Aparece cuando hay una clave configurada, y si hay más de una, primero eliges el **Motor**. Ponle un nombre a la voz y agrega muestras: archivos de audio, o una grabación que haces ahí mismo con **Grabar**.
+2. En la página **TTS**, haz clic en **Clonar una voz**, el micrófono junto a **Voz**. Aparece cuando hay una clave configurada, y si hay más de una, primero eliges el **Motor**. Ponle un nombre a la voz y agrega archivos de audio, o graba con **Grabar**.
 
    <Screenshot
      name="tts-clone"
@@ -66,7 +64,7 @@ Haz que el chat se lea con tu propia voz, clonada con ElevenLabs, Fish Audio, Ca
    />
 
 3. Marca que la voz es tuya o que tienes el permiso de esa persona, y haz clic en **Clonar voz**.
-4. Dale la voz nueva a un usuario especial en [Usuarios especiales](#usuarios-especiales), y deja una voz gratis para el resto del chat. También sirve para todo el chat o para el mensaje de una alerta, pero pagas cada mensaje que lee.
+4. Dale la voz nueva a un [usuario especial](#usuarios-especiales) y deja una voz gratis para el resto del chat. Pagas cada mensaje que lee.
 
 </Steps>
 
@@ -75,9 +73,9 @@ Haz que el chat se lea con tu propia voz, clonada con ElevenLabs, Fish Audio, Ca
 | **ElevenLabs** | Un plan de pago, y una clave con acceso a Text to Speech y acceso de lectura y escritura a Voices | 1 a 2 minutos    |
 | **Fish Audio** | Saldo en tu cuenta, que se paga según el uso                                                      | 10 a 60 segundos |
 | **Cartesia**   | El plan Pro o uno superior                                                                        | 10 a 60 segundos |
-| **Inworld**    | Una clave con acceso de escritura. Pega su valor en Base64 del Portal de Inworld.                 | 10 a 30 segundos |
+| **Inworld**    | Una clave con acceso de escritura                                                                 | 10 a 30 segundos |
 
-Las muestras funcionan mejor con una sola persona hablando con claridad, sin música ni ruido de fondo. Una grabación se detiene sola en el largo máximo de la tabla. Cartesia e Inworld aprenden de un solo clip, así que Tokio une tus muestras en una, hasta ese largo.
+Las muestras funcionan mejor con una sola persona hablando con claridad, sin música ni ruido de fondo.
 
 <details>
 <summary>Costos, límites y cómo eliminar una voz</summary>
@@ -86,11 +84,13 @@ Cada mensaje que lee una voz de estos servicios se paga desde tu cuenta en ese s
 
 Una voz acepta hasta 10 muestras de hasta 25 MB cada una: archivos MP3, WAV, M4A, OGG, FLAC o WebM. Tokio solo las envía al servicio con el que clonas y no las guarda. Para cambiarle el nombre a una voz clonada o eliminarla, usa el sitio web de ese servicio.
 
+Una grabación se detiene sola en el largo máximo de la tabla. Cartesia e Inworld aprenden de un solo clip, así que Tokio une tus muestras en una, hasta ese largo.
+
 </details>
 
 ## Usuarios especiales
 
-Dale a algunos espectadores una voz propia: en **Usuarios especiales**, agrega su @usuario y elige una voz para cada uno. Sus mensajes siguen pasando por el formato, los permisos y la protección, y se leen con la misma velocidad, tono y volumen que los demás.
+En **Usuarios especiales**, agrega el @usuario de un espectador y elige una voz para él. Solo cambia la voz: el formato, los permisos, la protección, la velocidad, el tono y el volumen se siguen aplicando.
 
 <Screenshot
   name="tts-special-users"
@@ -99,9 +99,7 @@ Dale a algunos espectadores una voz propia: en **Usuarios especiales**, agrega s
 
 ## Formato
 
-Lee todos los mensajes, o solo los que empiezan con un punto, una barra o un comando tuyo.
-
-Al elegir **Comando personalizado** aparece `!tts`, que puedes cambiar. El comando no se lee en voz alta, y si lo dejas vacío no se lee nada.
+Elige qué mensajes se leen: **Todos los mensajes**, **Mensajes que empiezan con un punto ( . )**, **Mensajes que empiezan con una barra ( / )**, o un **Comando personalizado** tuyo, como `!tts`. El punto, la barra o el comando no se leen, y un comando vacío no lee nada.
 
 <Screenshot
   name="tts-format"
@@ -119,13 +117,11 @@ La **Plantilla del mensaje** define lo que se lee:
 
 `{username} {comment}` lee "Lucia ¡hola desde Lima!". **Quitar emojis** deja fuera los emojis y omite los mensajes que solo tienen emojis.
 
-**Leer las traducciones** lee la traducción de un mensaje en lugar de `{comment}`, cuando la [Traducción del chat](/es/docs/features/chat-translation/) le dio una. Solo se traduce el chat de TikTok, así que esta opción y `{translation}` solo aparecen en un perfil con TikTok. Hasta que elijas un idioma en **Configuración → Traducción del chat**, esta opción aparece en gris y `{translation}` no está disponible.
-
-Un mensaje sin nada que leer se omite: pasa cuando la plantilla ya completada no tiene ninguna letra, número ni emoji, como `{comment}` con un "?" solo.
+**Leer las traducciones** lee la [traducción](/es/docs/features/chat-translation/#actívala) en lugar de `{comment}`.
 
 ## Reemplazos
 
-Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una palabra completa, en mayúsculas o minúsculas, y se aplica antes de **Quitar emojis**, así que ❤️ puede convertirse en "amor".
+Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una palabra completa, en mayúsculas o minúsculas, antes de quitar los emojis, así que ❤️ puede convertirse en "amor".
 
 <Screenshot
   name="tts-replacements"
@@ -134,19 +130,17 @@ Enséñale a la voz a decir siglas, jerga y nombres. Cada reemplazo cambia una p
 
 ## Permisos
 
-Desmarca **Permitir a todos** y marca quién puede hablar. Hasta que marques una, todos siguen hablando, y basta con cumplir cualquiera de las marcadas.
+Desmarca **Permitir a todos** y marca quién puede hablar. Pasa cualquiera que tenga uno de los roles marcados, y si no marcas ninguno, pasan todos. Cada plataforma tiene su propia pestaña:
 
-Cada plataforma del perfil tiene una pestaña con sus propias reglas, porque cada chat dice cosas distintas de un espectador:
+| Plataforma           | Reglas                                                                    |
+| -------------------- | ------------------------------------------------------------------------- |
+| **TikTok**           | **Seguidores**, **Super Fans**, **Moderadores** y **Nivel mínimo de fan** |
+| **Twitch**, **Kick** | **Suscriptores**, **Moderadores** y **VIPs**                              |
+| **YouTube**          | **Miembros** y **Moderadores**                                            |
 
-| Plataforma           | Reglas                                                                                   |
-| -------------------- | ---------------------------------------------------------------------------------------- |
-| **TikTok**           | **Solo seguidores**, **Solo Super Fans**, **Solo moderadores** y **Nivel mínimo de fan** |
-| **Twitch**, **Kick** | **Solo suscriptores**, **Solo moderadores** y **Solo VIPs**                              |
-| **YouTube**          | **Solo miembros** y **Solo moderadores**                                                 |
+**Moderadores** te incluye a ti, y **Suscriptores** incluye a los fundadores.
 
-**Solo moderadores** te incluye a ti, y **Solo suscriptores** incluye a los fundadores. Cada pestaña empieza con **Permitir a todos**.
-
-Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene nombres, solo ellos hablan. Los @usuarios de la lista de bloqueados nunca se leen, aunque estén en la de permitidos. Las listas valen en todas las plataformas. En Kick, agrega a un espectador por el nombre de su enlace de kick.com: `shark-34` para Shark_34.
+Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene nombres, solo ellos hablan, y los @usuarios de la lista de bloqueados nunca se leen. Las dos listas valen en todas las plataformas. En Kick, agrega a un espectador por el nombre de su enlace de kick.com: `shark-34` para Shark_34.
 
 <Screenshot
   name="tts-permissions"
@@ -157,11 +151,20 @@ Con **Usar listas de permitidos y bloqueados**, si la lista de permitidos tiene 
 
 El **Tiempo de espera** son los segundos entre dos mensajes, para todo el chat. Los mensajes que llegan cuando la cola ya tiene **Largo máximo de la cola** mensajes se descartan.
 
-Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas o caracteres ocultos. También se omite un mensaje cuya [traducción](/es/docs/features/chat-translation/) pasa ese largo. Una palabra prohibida también cuenta dentro de otras, así que prohibir "cola" omite también "chocolate".
+Se omiten los mensajes que pasan el **Largo máximo del mensaje** o que tienen una palabra prohibida en el comentario, el nombre o el @usuario, aunque usen letras parecidas. **Palabras prohibidas** también cuentan dentro de otras palabras, así que prohibir "cola" omite también "chocolate".
 
 <Screenshot
   name="tts-protection"
   alt="La sección Protección: tiempo de espera, largo máximo de la cola, largo máximo del mensaje y palabras prohibidas"
 />
 
-Los reemplazos, **Quitar emojis**, las palabras prohibidas y la lista de bloqueados también se aplican a las [alertas que hablan](/es/docs/features/alerts/#mensajes-hablados). [Música](/es/docs/features/music-requests/#quién-puede-pedir) tiene sus propios permisos.
+<details>
+<summary>Mensajes que se omiten</summary>
+
+- Un mensaje cuya plantilla ya completada no tiene ninguna letra, número ni emoji, como `{comment}` con un "?" solo.
+- Un mensaje cuya [traducción](/es/docs/features/chat-translation/) pasa el **Largo máximo del mensaje**.
+- Un mensaje con una palabra prohibida escrita con caracteres ocultos.
+
+</details>
+
+Las [alertas que hablan](/es/docs/features/alerts/#mensajes-hablados) también usan los reemplazos, **Quitar emojis**, las palabras prohibidas y la lista de bloqueados, y la [música](/es/docs/features/music-requests/#quién-puede-pedir) tiene sus propios permisos.

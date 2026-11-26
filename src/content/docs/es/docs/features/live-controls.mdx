@@ -5,14 +5,19 @@ description: Salta una canción, detén el TTS, repite una alerta o pausa todo d
 
 import Screenshot from "../../../../../components/Screenshot.astro";
 
-Cuatro controles funcionan mientras Tokio sigue en segundo plano, así no tienes que cambiar de ventana durante tu LIVE.
+Cuatro controles funcionan con una tecla o desde tu celular mientras Tokio sigue en segundo plano, así no tienes que cambiar de ventana durante tu LIVE.
 
-| Control                      | Qué hace                                                                                                                                                                                                                                                                                      |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Saltar canción**           | Pone el siguiente pedido de canción. Si no hay ninguno en espera, el reproductor salta a su propia siguiente canción.                                                                                                                                                                         |
-| **Detener TTS**              | Detiene el mensaje del chat que se está leyendo y descarta los que esperan. Los mensajes nuevos se leen como siempre.                                                                                                                                                                         |
-| **Repetir la última alerta** | Vuelve a reproducir las alertas del último evento, una vez: sus sonidos, mensajes hablados, imágenes y videos. Funciona aunque las alertas estén desactivadas.                                                                                                                                |
-| **Pausar todo**              | Detiene el TTS y las alertas, y luego ignora el TTS del chat, las alertas, los pedidos de canciones y las acciones de juego hasta que reanudes. Nada de la pausa se reproduce después. La música sigue sonando, el temporizador sigue sumando tiempo y los overlays siguen mostrando tu LIVE. |
+<Screenshot
+  name="remote"
+  alt="El control remoto en un celular: el @usuario del LIVE, la canción que suena, Saltar canción, Detener TTS, Repetir la última alerta y Pausar todo"
+/>
+
+| Control                      | Qué hace                                                                                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Saltar canción**           | Pone el siguiente pedido de canción, o la siguiente canción del reproductor si no hay ninguno en espera.                                                                         |
+| **Detener TTS**              | Detiene el mensaje del chat que se está leyendo y descarta los que esperan.                                                                                                      |
+| **Repetir la última alerta** | Vuelve a reproducir las alertas del último evento, una vez, aunque las alertas estén desactivadas.                                                                               |
+| **Pausar todo**              | Detiene el TTS y las alertas, e ignora el TTS del chat, las alertas, los pedidos de canciones y las acciones de juego hasta que reanudes. Nada de la pausa se reproduce después. |
 
 ## Atajos de teclado
 
@@ -27,13 +32,13 @@ Un atajo funciona en todas las apps, y las demás apps pierden esas teclas, así
 
 - **F13** a **F24** y las teclas multimedia como **Reproducir/Pausar** funcionan solas. Los teclados de macros y las acciones de teclas de acceso rápido del Stream Deck las envían. Una tecla multimedia que elijas deja de funcionar en tus otros reproductores.
 - Cualquier otra tecla necesita **Ctrl** y otro modificador, como **Ctrl + Mayús + S**. En macOS, **Comando** o **Control** y otro más.
-- En Windows y Linux, **Ctrl + Alt** también necesita **Mayús**. En muchos teclados es AltGr, que escribe caracteres como @ y €.
+- En Windows y Linux, **Ctrl + Alt** también necesita **Mayús**, porque en muchos teclados escribe caracteres como @ y €.
 
-Los atajos empiezan vacíos. Si otra app ya usa uno, Tokio te avisa y muestra **Otra app ya lo usa** debajo: elige otro.
+Si otra app ya usa uno, Tokio te avisa y muestra **Otra app ya lo usa** debajo: elige otro.
 
 ## Pausa
 
-Mientras Tokio está en pausa, Inicio lo indica arriba. Haz clic en **Reanudar** ahí o vuelve a presionar el atajo. Conectarte a un LIVE también reanuda, así que un LIVE nuevo nunca empieza en pausa. Reiniciar Tokio también reanuda.
+Mientras Tokio está en pausa, Inicio lo indica arriba. Haz clic en **Reanudar** ahí o vuelve a presionar el atajo. La música, el temporizador y tus overlays siguen. Conectarte a un LIVE o reiniciar Tokio también reanuda.
 
 <Screenshot
   name="home-paused"
@@ -49,13 +54,12 @@ En **Configuración → Control remoto**, marca **Activar el control remoto** y 
   alt="El control remoto activado, con el código QR, el enlace y la clave"
 />
 
-La página muestra el @usuario del LIVE al que está conectado Tokio, la canción que suena y cuando Tokio está en pausa. Un control que no tiene nada que hacer, como **Saltar canción** cuando la música no está conectada, aparece en gris y dice por qué. En una computadora, una tablet o un celular de lado, los controles van en fila, con **Pausar todo** debajo.
+La página muestra el LIVE, la canción que suena y cuando Tokio está en pausa. Un control que no tiene nada que hacer aparece en gris y dice por qué.
 
-<Screenshot
-  name="remote"
-  alt="El control remoto en un celular: el @usuario del LIVE, la canción que suena, Saltar canción, Detener TTS, Repetir la última alerta y Pausar todo"
-/>
+Llega a Tokio a través del servidor de overlays, así que marca también **Activar el servidor** en **Configuración → Servidor de overlays**. Si Windows pregunta si quieres permitir Tokio en el firewall, permítelo, o la página [no podrá conectarse](/es/docs/guides/adding-an-overlay/#en-otra-computadora).
 
-La página llega a Tokio a través del servidor de overlays, así que marca también **Activar el servidor** en **Configuración → Servidor de overlays**. Si Windows pregunta si quieres permitir Tokio en el firewall, permítelo, o la página [no podrá conectarse](/es/docs/guides/adding-an-overlay/#en-otra-computadora).
+Cualquiera en tu red que tenga el enlace puede usar los controles. Mientras el control remoto está activado, el botón junto a su título crea una clave nueva, después de preguntarte.
 
-Cualquiera en tu red que tenga el enlace puede usar los controles. El botón junto al título de **Control remoto** crea una clave nueva: los dispositivos con el enlace anterior dejan de funcionar hasta que abras el nuevo. Para usar los controles desde un Stream Deck o un script, consulta [API de control](/es/docs/developers/control-api/).
+Los dispositivos con el enlace anterior dejan de funcionar hasta que abras el nuevo. Para usar los controles desde un Stream Deck o un script, consulta [API de control](/es/docs/developers/control-api/).
+
+Los asistentes de IA tienen su propia sección, **Configuración → Asistentes de IA** ([MCP](/es/docs/developers/mcp/)).

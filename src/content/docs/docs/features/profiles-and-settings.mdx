@@ -9,52 +9,63 @@ Profiles keep each stream's setup apart, and **Settings** holds what they all sh
 
 ## Profiles
 
-Each profile has its own TTS, music, alerts, game actions, countdown, [LIVE history](/docs/features/coin-stats/) and [fans](/docs/features/fans/), and remembers the username, YouTube channel and Kick channel you last connected with and the [platforms](/docs/connect/#several-platforms-together) it connects to. Switch profiles from the title bar, or under **Active profile** in **Settings → Live profiles**, while you're not connected.
+Each profile has its own TTS, music, alerts, game actions, countdown, [LIVE history](/docs/features/coin-stats/), [fans](/docs/features/fans/), and the [platforms](/docs/connect/#several-platforms-together) and channels it connects to. Switch profiles from the title bar while you're not connected.
 
 <Screenshot
   name="profiles-menu"
   alt="The profile menu in the title bar, with two profiles"
 />
 
-Every profile shares the installed overlays, Overlay Studio's overlays, the [Library](/docs/features/alerts/#library), the test overlays, Home's **Active features** and **Activity feed**, and the Minecraft connection.
+All profiles share the installed overlays, Overlay Studio's overlays, the [Library](/docs/features/alerts/#library), the test overlays, Home's **Active features** and **Activity feed**, and the Minecraft connection.
 
-In **Settings → Live profiles**, **New** creates a blank profile, **Clone** copies one you have, without its LIVE history or fans, and **Rename** changes the active profile's name, keeping everything it has. Names need 3 or more characters and must be unique, and profiles can't be deleted. Point at a button to see its name.
+In **Settings → Profiles**, **New** creates a blank profile, **Clone** copies one without its LIVE history or fans, and **Rename** changes the active one's name. Names need 3 or more characters and must be unique. Point at a button to see its name.
 
 <Screenshot
   name="settings-profiles"
-  alt="Settings → Live profiles, with the active profile and the New, Clone, Rename, Import and Export buttons"
+  alt="Settings → Profiles, with the active profile and the New, Clone, Rename, Delete profile, Import and Export buttons"
 />
 
-**Export** saves the active profile's settings as a file, and **Import** adds one as a new profile. The file holds no sounds, images, videos, game pictures, LIVE history or fans, so on another computer its alerts report a missing sound until you pick it again.
+**Delete profile** asks first, then deletes the profile with its LIVE history and fans. It's grayed out for the active profile and when you have only one.
+
+**Export** saves the active profile's settings as a file, and **Import** adds one as a new profile. The file holds no sounds, images, videos, game pictures, LIVE history or fans, so on another computer, pick its alerts' sounds again.
 
 ## Settings
 
-A platform's sections show only while the active profile uses it: **TikTok LIVE** and **Chat translation** with TikTok, and **Twitch** with Twitch. Your Twitch account stays signed in while its section is hidden.
+**TikTok LIVE** and **Chat translation** show only on a profile with TikTok, and **Twitch** on one with Twitch.
 
-| Section              | What it's for                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TikTok LIVE**      | Your [Euler Stream](https://www.eulerstream.com) API key, which Tokio needs to connect. [Sign up](https://www.eulerstream.com/register) for free.                                                                                                                                                                                                                                                     |
-| **Twitch**           | Signs Tokio in to your Twitch channel, with **Sign in with Twitch**, so it can connect to it. The account is shared by every profile. See [Sign in to Twitch](/docs/connect/#sign-in-to-twitch).                                                                                                                                                                                                      |
-| **Overlay server**   | Turns on the server for overlays, and shows your network address for a streaming app on [another computer](/docs/guides/adding-an-overlay/#on-another-computer).                                                                                                                                                                                                                                      |
-| **Language**         | English or Spanish. **System language** follows your computer's, falling back to English. It changes Tokio's menus and messages, the text Tokio writes on the games and timer overlays, and an overlay's settings when the overlay translates them, but not the TTS voices.                                                                                                                           |
-| **Chat translation** | Translates viewers' messages into the language you pick, for free with Google, and **Test** tries it. See [Chat translation](/docs/features/chat-translation/).                                                                                                                                                                                                                                       |
-| **Updates**          | Turns off the automatic checks for new versions of Tokio, and the [automatic updates of official overlays](/docs/features/overlays/#install-an-official-overlay).                                                                                                                                                                                                                                     |
-| **Tray**             | Keeps Tokio in the tray (the menu bar on macOS) when you close it. Click the icon or **Open Tokio** to bring it back, and **Quit Tokio** to quit. On Linux, the first time you close it after Tokio starts, a notification says Tokio is still running: click it to bring Tokio back.                                                                                                                 |
-| **Shortcuts**        | Keys for the [live controls](/docs/features/live-controls/), which work in any app: skip a song, stop TTS, replay the last alert and pause everything.                                                                                                                                                                                                                                                |
-| **Remote control**   | The [live controls](/docs/features/live-controls/#from-your-phone-or-another-computer) on your phone or another computer, through a QR code or its link, and the key for the [Control API](/docs/developers/control-api/) and [MCP](/docs/developers/mcp/). Off until you check it.                                                                                                                   |
-| **Voice engines**    | Your TikTok session ID, so TikTok voices come straight from TikTok instead of a third-party proxy. Your API keys for ElevenLabs, Fish Audio, Cartesia or Inworld, for their voices and to [clone your own](/docs/features/text-to-speech/#clone-your-voice). Add one with the **+** next to **Voice engines**. Removing a key puts the default voice back wherever that service's voices were picked. |
-| **Logs**             | **Export logs**, the button next to the section's title, saves all of Tokio's logs in one .zip to attach to a bug report. **Detailed logs** also writes every LIVE event to them, after you confirm. They grow faster that way, so turn it off once you've sent them.                                                                                                                                 |
+| Section              | What it's for                                                                                                                                                                                   |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok LIVE**      | Your [Euler Stream](https://www.eulerstream.com) API key, which Tokio needs to connect. [Sign up](https://www.eulerstream.com/register) for free.                                               |
+| **Twitch**           | [Sign in to Twitch](/docs/connect/#sign-in-to-twitch), once for every profile.                                                                                                                  |
+| **Profiles**         | [Your profiles](#profiles): make, rename, delete, import and export them.                                                                                                                       |
+| **Voice engines**    | Your TikTok session ID and your keys for [other voices](/docs/features/text-to-speech/#voices). Removing a key puts the default voice back where that service's voices were picked.             |
+| **Overlay server**   | The server for overlays, and your network address for a streaming app on [another computer](/docs/guides/adding-an-overlay/#on-another-computer).                                               |
+| **Remote control**   | The [live controls](/docs/features/live-controls/#from-your-phone-or-another-computer) on your phone, and the key for the [Control API](/docs/developers/control-api/). Off until you check it. |
+| **AI assistants**    | The setup to [connect an AI assistant](/docs/developers/mcp/). It uses **Remote control**'s switch and key.                                                                                     |
+| **Shortcuts**        | Keys for the [live controls](/docs/features/live-controls/#shortcuts), in any app.                                                                                                              |
+| **Chat translation** | Translates chat into your language. See [Chat translation](/docs/features/chat-translation/).                                                                                                   |
+| **Language**         | English or Spanish for Tokio and the text it writes on overlays. **System language** follows your computer's. Voices don't change.                                                              |
+| **Updates**          | Checks for new versions of Tokio on startup and every 6 hours, and updates [official overlays](/docs/features/overlays/#install-an-official-overlay). Uncheck either one to turn it off.        |
+| **Tray**             | Keeps Tokio in the tray (the menu bar on macOS) when you close it. Click its icon to bring it back.                                                                                             |
+| **Logs**             | **Export logs** for a [bug report](#your-files). **Detailed logs** also writes every LIVE event to them: turn it off once you've sent them.                                                     |
 
 <Screenshot
   name="settings"
   alt="Settings: the Euler Stream API key, the overlay server with its network address, the language, chat translation and updates"
 />
 
-Opening Tokio while it's already running brings its window to the front. **About**, in the sidebar, shows Tokio's version, its license and the third-party notices, and has **Check for updates** and **Take the tour**. The tour names only the active profile's platforms, like the Euler Stream key with TikTok and the Twitch sign-in with Twitch.
+**About**, in the sidebar, has Tokio's version, its licenses, **Check for updates** and **Take the tour**.
+
+<details>
+<summary>The tray on Linux</summary>
+
+The first time you close Tokio after it starts, a notification says it's still running: click it to bring Tokio back.
+
+</details>
 
 ## Notifications
 
-When something fails, such as a voice that can't be made or a missing sound, Tokio tells you what went wrong. The bell in the title bar keeps the session's last 50, and **Clear all** empties it.
+When something fails, such as a voice that can't be made or a missing sound, Tokio tells you what went wrong. The bell in the title bar keeps the session's last 50.
 
 <Screenshot
   name="notifications"
@@ -79,4 +90,4 @@ Tokio keeps your settings and files in the `.tokio` folder in your user folder: 
 
 Your YouTube and Spotify sign-ins are in Tokio's app data folder instead: `%APPDATA%\tokio` on Windows, `~/Library/Application Support/tokio` on macOS and `~/.config/tokio` on Linux.
 
-To report a bug, open an [issue on GitHub](https://github.com/tokio-app/tokio/issues) and attach the .zip that **Export logs** saves in **Settings → Logs**. The logs include your TikTok username, and with **Detailed logs** on, your viewers' usernames too.
+To report a bug, open an [issue on GitHub](https://github.com/tokio-app/tokio/issues) and attach the .zip that **Export logs** saves in **Settings → Logs**. The logs include the channels you connect to, and with **Detailed logs** on, your viewers' usernames too.

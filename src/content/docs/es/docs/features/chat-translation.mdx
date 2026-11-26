@@ -9,23 +9,34 @@ Los espectadores que escriben en otro idioma se traducen al tuyo. Tokio traduce 
 
 ## Actívala
 
-En **Configuración → Traducción del chat**, elige tu idioma en **Traducir a**. **Desactivada**, la opción predeterminada, no traduce nada. Google traduce gratis, sin una cuenta que configurar.
+En **Configuración → Traducción del chat**, elige tu idioma en **Traducir a**. **Desactivada**, la opción predeterminada, no traduce nada.
+
+Google traduce gratis cada mensaje en otro idioma, sin una cuenta que configurar.
 
 Solo se traduce el chat de TikTok, así que la sección aparece solo en los perfiles con TikTok, igual que **Leer las traducciones** del TTS y `{translation}`.
 
-Para probarla, escribe un mensaje en otro idioma junto a **Probar**. Tokio lo muestra como lo hará el feed de Inicio, y dice de qué idioma vino.
+Para probarla, escribe un mensaje en otro idioma junto a **Probar**.
 
 <Screenshot
   name="settings-translation"
   alt="Traducción del chat al español, con un mensaje en inglés probado y su traducción debajo"
 />
 
+<details>
+<summary>Velocidad y límites</summary>
+
+- Un mensaje traducido llega a cada función un momento después, normalmente en menos de medio segundo. Los mensajes que no necesitan traducción no esperan.
+- Google limita qué tan rápido responde, así que Tokio le envía un mensaje por segundo, después de una tanda de hasta 10. Cuando llegan más a la vez, el mensaje que tendría que esperar más de 2 segundos queda sin traducir.
+- Cuando Google no responde, el chat queda sin traducir durante un minuto, y después Tokio vuelve a intentarlo.
+- El servicio de Google no es una API pública oficial, así que puede ir más lento en LIVEs con mucho movimiento o dejar de funcionar.
+
+</details>
+
 ## Qué se traduce
 
 TikTok marca cada mensaje con su idioma. Tokio traduce los que vienen marcados con otro idioma que el tuyo, y deja estos tal como se escribieron:
 
 - los mensajes que TikTok no marcó, como los que solo tienen emotes
-- el chat de Twitch, el de YouTube y el de Kick, que no marcan el idioma
 - los comandos de música como `!play <canción>`, con el nombre de la canción
 - los mensajes con una palabra clave a la que reaccionan tus alertas, acciones de juego, elementos de Overlay Studio o el temporizador
 - el comando de chat de un overlay, como `!socials` de Social Links
@@ -40,11 +51,3 @@ Con un [comando del TTS](/es/docs/features/text-to-speech/#formato) como `!tts`,
 | **TTS**                                     | Con **Leer las traducciones** marcado en [Formato](/es/docs/features/text-to-speech/#formato), se lee la traducción en lugar del mensaje                                     |
 | Alertas, acciones de juego y Overlay Studio | `{translation}` en un mensaje o texto: la traducción, o el mensaje tal como se escribió cuando no se tradujo. Aparece mientras hay un idioma elegido en un perfil con TikTok |
 | Overlays                                    | La `translation` del evento del chat, para los overlays que la muestran. Mira [Eventos](/es/docs/developers/events/#datos)                                                   |
-
-## Bueno saber
-
-- Cada mensaje en otro idioma va a Google.
-- Un mensaje traducido llega a cada función un momento después, normalmente en menos de medio segundo. Los mensajes que no necesitan traducción no esperan.
-- Google limita qué tan rápido responde, así que Tokio le envía un mensaje por segundo, después de una tanda de hasta 10. Cuando llegan más a la vez, el mensaje que tendría que esperar más de 2 segundos queda sin traducir.
-- Cuando Google no responde, el chat queda sin traducir durante un minuto, y después Tokio vuelve a intentarlo.
-- El servicio de Google no es una API pública oficial, así que puede ir más lento en LIVEs con mucho movimiento o dejar de funcionar.

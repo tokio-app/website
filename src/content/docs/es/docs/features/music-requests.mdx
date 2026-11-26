@@ -8,6 +8,11 @@ import Screenshot from "../../../../../components/Screenshot.astro";
 
 Los espectadores piden canciones desde el chat. Las de YouTube suenan en la ventana del reproductor de Tokio, y las de Spotify en tu app de Spotify.
 
+<Screenshot
+  name="music-provider"
+  alt="La sección Proveedor con YouTube elegido y Bloquear anuncios"
+/>
+
 ## Proveedores
 
 Elige uno en **Proveedor**, en la página **Música**. Luego, en **Inicio**, activa **Música** en **Funciones activas**. La música no se reconecta cuando Tokio abre, así que haz clic en **Conectar** cada vez que lo abras.
@@ -29,11 +34,6 @@ YouTube dice que bloquear sus anuncios va contra sus Condiciones del Servicio, y
 2. YouTube Music se abre en su propia ventana. Para usar tu cuenta, inicia sesión ahí con su botón **Acceder**. Tokio recuerda la sesión.
 
 </Steps>
-
-<Screenshot
-  name="music-provider"
-  alt="La sección Proveedor con YouTube elegido y Bloquear anuncios"
-/>
 
 Deja abierta la ventana del reproductor mientras transmites: si la cierras, la música se desconecta.
 
@@ -86,23 +86,23 @@ Antes de tu LIVE, abre Spotify y pon una canción, así Tokio tiene un dispositi
   alt="La sección Controles, donde cada comando de chat se puede renombrar o desactivar"
 />
 
-Cambia el nombre de cada uno o desactívalo en **Controles**; los espectadores pueden escribirlos en mayúsculas o minúsculas.
+Cambia el nombre de cada uno o desactívalo en **Controles**, donde `!last` es **Anterior**. Los espectadores pueden escribirlos en mayúsculas o minúsculas.
 
 `!play One More Time` agrega esa canción, y `!revoke` acepta su nombre tal como se escribió o como aparece en la cola. No se puede retirar una canción que está sonando o que ya sonó.
 
 Un pedido espera a que termine la canción que suena. Si saltas esa canción en la ventana del reproductor o en Spotify, el siguiente pedido empieza en menos de un minuto. Se ignora un pedido sin nombre de canción, uno que no encuentra nada o uno que pasa el **Largo máximo de la cola**, y `!next` no hace nada si no hay pedidos en espera.
 
-**Limitar Siguiente, Anterior y Retirar**, activado por defecto, deja `!next`, `!last` y retirar canciones de otros espectadores solo para ti y tus moderadores; desactívalo para que los use cualquier espectador al que **Permisos** deje pedir. Con la opción activada, los espectadores igual pueden saltar una canción que pidieron mientras suena y retirar sus propios pedidos.
+**Limitar Siguiente, Anterior y Retirar**, activado por defecto, deja `!next`, `!last` y retirar canciones de otros espectadores solo para ti y tus moderadores, aunque cada espectador puede saltar su propia canción mientras suena. Desactívalo para que los use cualquier espectador al que **Permisos** deje pedir.
 
 ## Quién puede pedir
 
-La música tiene sus propios **Permisos** y **Protección**, que se configuran como los del [texto a voz](/es/docs/features/text-to-speech/#permisos): una pestaña de reglas por plataforma, y listas de permitidos y bloqueados que valen en todas las plataformas. El tiempo de espera es para todo el chat: un comando enviado antes de que pase se descarta.
+La música tiene sus propios **Permisos** y **Protección**, que se configuran como los del [texto a voz](/es/docs/features/text-to-speech/#permisos). El tiempo de espera es para todo el chat: un comando enviado antes de que pase se descarta.
 
 <Screenshot
   name="music-protection"
   alt="La sección Protección de la página Música, con Un pedido por espectador activado"
 />
 
-**Un pedido por espectador** ignora el siguiente `!play` de un espectador mientras su canción espera, y no agrega una canción que ya suena o está en espera.
+**Un pedido por espectador** deja a cada espectador una sola canción en espera, y descarta una canción que ya suena o espera.
 
 Los cambios de canción también son un evento del LIVE, así que pueden activar una [alerta](/es/docs/features/alerts/) o actualizar un [overlay](/es/docs/features/overlays/).

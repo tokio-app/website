@@ -9,23 +9,34 @@ Viewers who chat in another language get translated into yours. Tokio translates
 
 ## Turn it on
 
-In **Settings → Chat translation**, pick your language under **Translate into**. **Off**, the default, translates nothing. Google translates for free, with no account to set up.
+In **Settings → Chat translation**, pick your language under **Translate into**. **Off**, the default, translates nothing.
+
+Google translates each message in another language for free, with no account to set up.
 
 Only TikTok's chat is translated, so the section shows only on profiles with TikTok, and so do TTS's **Read translations** and `{translation}`.
 
-To try it, type a message in another language next to **Test**. Tokio shows it the way Home's feed will, and says which language it came from.
+To try it, type a message in another language next to **Test**.
 
 <Screenshot
   name="settings-translation"
   alt="Chat translation into English, with a message in Portuguese tested and its translation under it"
 />
 
+<details>
+<summary>Speed and limits</summary>
+
+- A translated message reaches every feature a moment later, usually under half a second. Messages that need no translation aren't held up.
+- Google limits how fast it answers, so Tokio sends it one message a second, after a burst of up to 10. When more come at once, a message that would wait over 2 seconds stays untranslated.
+- When Google doesn't answer, chat stays untranslated for a minute, then Tokio tries again.
+- Google's service isn't an official public API, so it may slow down on very busy LIVEs or stop working.
+
+</details>
+
 ## What gets translated
 
 TikTok tags each message with its language. Tokio translates the ones tagged with a language other than yours, and leaves these as typed:
 
 - messages TikTok didn't tag, like those with only emotes
-- Twitch's, YouTube's and Kick's chat, which have no language tag
 - music commands like `!play <song>`, song name included
 - messages with a keyword that your alerts, game actions, Overlay Studio elements or countdown timer react to
 - an overlay's own chat command, like `!socials` for Social Links
@@ -40,11 +51,3 @@ With a [TTS command](/docs/features/text-to-speech/#format) like `!tts`, the com
 | **TTS**                                 | With **Read translations** checked under [Format](/docs/features/text-to-speech/#format), the translation is read in place of the message                                  |
 | Alerts, game actions and Overlay Studio | `{translation}` in a message or text: the translation, or the message as typed when it wasn't translated. It's offered while a language is picked on a profile with TikTok |
 | Overlays                                | The chat event's `translation`, for overlays that show it. See [Events](/docs/developers/events/#data)                                                                     |
-
-## Good to know
-
-- Each message in another language goes to Google.
-- A translated message reaches every feature a moment later, usually under half a second. Messages that need no translation aren't held up.
-- Google limits how fast it answers, so Tokio sends it one message a second, after a burst of up to 10. When more come at once, a message that would wait over 2 seconds stays untranslated.
-- When Google doesn't answer, chat stays untranslated for a minute, then Tokio tries again.
-- Google's service isn't an official public API, so it may slow down on very busy LIVEs or stop working.
