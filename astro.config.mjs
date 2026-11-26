@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import starlight from "@astrojs/starlight";
 import { DETECT_LANGUAGE } from "./src/i18n/detect.mjs";
 import { LANGUAGES } from "./src/i18n/languages.mjs";
@@ -19,10 +19,14 @@ export default defineConfig({
   // Custom domain on GitHub Pages, so no `base`. Must match public/CNAME.
   site: "https://tokio.ialfaro.com",
   trailingSlash: "always",
-  // The overlay previews, from the overlays' releases (src/lib/overlays.ts).
-  // GitHub redirects downloads to release-assets.githubusercontent.com, and
-  // Astro checks every redirect against these.
   image: {
+    // Lossless WebP keeps the app's screenshots pixel for pixel: lossy WebP
+    // blurred their small text and dulled the rose. The overlay previews
+    // are lossy AVIF instead (overlays.astro).
+    service: sharpImageService({ webp: { lossless: true } }),
+    // The overlay previews, from the overlays' releases (src/lib/overlays.ts).
+    // GitHub redirects downloads to release-assets.githubusercontent.com, and
+    // Astro checks every redirect against these.
     remotePatterns: [
       {
         protocol: "https",
