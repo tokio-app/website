@@ -1,6 +1,8 @@
 ---
 // Layout for the pages outside the docs. The docs use Starlight's own layout.
 import "@fontsource-variable/archivo/wdth.css";
+// The file wdth.css asks for first, for the Latin text every page starts with
+import archivo from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
 import "../styles/tokens.css";
 import "../styles/site.css";
 import Footer from "../components/Footer.astro";
@@ -20,7 +22,8 @@ interface Props {
 }
 
 const lang = langOf(Astro.currentLocale);
-const t = textOf(lang).meta;
+const text = textOf(lang);
+const t = text.meta;
 const { title, description = t.description } = Astro.props;
 const fullTitle = title ? `${title} | Tokio` : t.title;
 const path = Astro.url.pathname;
@@ -50,6 +53,13 @@ const ogImage = new URL("/icon.png", Astro.site);
       href={new URL(twinPath(path, DEFAULT_LANG), Astro.site)}
     />
     <script is:inline set:html={DETECT_LANGUAGE} />
+    <link
+      rel="preload"
+      href={archivo}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -63,8 +73,11 @@ const ogImage = new URL("/icon.png", Astro.site);
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
+    <a class="skip-link" href="#main">
+      {text.header.skip}
+    </a>
     <Header />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer />

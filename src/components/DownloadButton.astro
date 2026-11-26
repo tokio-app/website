@@ -3,7 +3,8 @@
 // OS has a single one: the setup on Windows, the AppImage on Linux. Their
 // names carry the version, so they only get a direct link when the build could
 // read the latest release.
-import { langOf, localize, textOf } from "../i18n";
+import { fill, langOf, localize, textOf } from "../i18n";
+import { OS_LABELS } from "../lib/os";
 import { FALLBACK_DOWNLOADS, getLatestRelease } from "../lib/release";
 import Icon from "./Icon.astro";
 
@@ -31,7 +32,12 @@ const direct = Object.fromEntries(
   data-label-for={t.labelFor}
 >
   <Icon name="download" size={size === "lg" ? 20 : 18} />
-  <span data-label>{t.label}</span>
+  <span class="label">
+    <span data-label>{t.label}</span>
+    <span class="longest" aria-hidden="true">
+      {fill(t.labelFor, { os: OS_LABELS.windows })}
+    </span>
+  </span>
 </a>
 
 <script>
@@ -51,3 +57,20 @@ const direct = Object.fromEntries(
     }
   }
 </script>
+
+<style>
+  /* As wide as its longest label from the start, so naming the system after
+     load moves nothing around it */
+  .label {
+    display: grid;
+    justify-items: center;
+  }
+
+  .label > * {
+    grid-area: 1 / 1;
+  }
+
+  .longest {
+    visibility: hidden;
+  }
+</style>

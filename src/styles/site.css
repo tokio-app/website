@@ -88,6 +88,30 @@ code {
   outline-offset: 2px;
 }
 
+/* Hidden until Tab reaches it, where Starlight shows the docs' own */
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: calc(var(--z-sticky) + 1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--accent-strong);
+  color: var(--accent-ink);
+  font-size: var(--font-md);
+  font-weight: 600;
+  text-decoration: none;
+  clip-path: inset(50%);
+}
+
+.skip-link:focus {
+  clip-path: none;
+}
+
+.skip-link:hover {
+  color: var(--accent-ink);
+}
+
 .container {
   width: 100%;
   max-width: var(--container);
@@ -156,14 +180,14 @@ code {
 
 .btn-primary {
   border-color: transparent;
-  background: var(--accent-primary);
+  background: var(--accent-strong);
   color: var(--accent-ink);
   font-weight: 600;
 }
 
 .btn-primary:hover {
   border-color: transparent;
-  background: var(--accent-primary-hover);
+  background: var(--accent-strong-hover);
   color: var(--accent-ink);
 }
 

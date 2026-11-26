@@ -1,0 +1,9 @@
+---
+// Replaces Starlight's Head (astro.config.mjs) to preload Archivo, as
+// Base.astro does: the file wdth.css asks for first, for Latin text.
+import Default from "@astrojs/starlight/components/Head.astro";
+import archivo from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
+---
+
+<Default />
+<link rel="preload" href={archivo} as="font" type="font/woff2" crossorigin />

@@ -16,6 +16,8 @@ import { formatSize } from "../lib/release";
 const lang = langOf(Astro.currentLocale);
 const t = textOf(lang).overlays;
 const overlays = await getOverlays();
+// Only an overlay that skips a platform says where it works
+const EVERY_PLATFORM = Object.keys(PLATFORMS).length;
 
 // "TikTok, Twitch and Kick"
 function platformList(overlay: Overlay) {
@@ -72,14 +74,21 @@ const items = await Promise.all(
 
       {overlays ? (
         <ul class="overlays">
-          {items.map(({ overlay, image }) => (
+          {items.map(({ overlay, image }, index) => (
             <li id={overlay.id}>
               <div class="preview">
                 {image ? (
                   <img
                     src={image.src}
                     srcset={image.srcSet.attribute}
-                    {...image.attributes}
+                    {...{
+                      ...image.attributes,
+                      // The first is above the fold
+                      ...(index === 0 && {
+                        loading: "eager",
+                        fetchpriority: "high",
+                      }),
+                    }}
                     alt={fill(t.previewOf, { name: overlay.name })}
                   />
                 ) : (
@@ -89,11 +98,12 @@ const items = await Promise.all(
               <div class="info">
                 <h2>{overlay.name}</h2>
                 <p class="description">{overlay.description}</p>
-                {overlay.platforms.length > 0 && (
-                  <p class="meta">
-                    {fill(t.worksOn, { platforms: platformList(overlay) })}
-                  </p>
-                )}
+                {overlay.platforms.length > 0 &&
+                  overlay.platforms.length < EVERY_PLATFORM && (
+                    <p class="meta">
+                      {fill(t.worksOn, { platforms: platformList(overlay) })}
+                    </p>
+                  )}
                 <p class="meta">
                   {fill(t.version, { version: overlay.version })}{" "}
                   <a href={overlay.url}>{t.downloadZip}</a>{" "}

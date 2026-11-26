@@ -5,6 +5,7 @@
   },
   "header": {
     "nav": "Principal",
+    "skip": "Ir al contenido",
     "features": "Funciones",
     "docs": "Docs",
     "overlays": "Overlays",
@@ -14,7 +15,7 @@
     "language": "Idioma"
   },
   "footer": {
-    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni Kick, ni cuenta con su respaldo.",
+    "intro": "Gratis y de código abierto. Tokio no está afiliado a TikTok, ByteDance, Twitch, YouTube, Google ni\u00a0Kick, ni cuenta con su respaldo.",
     "product": "Producto",
     "features": "Funciones",
     "overlays": "Overlays",
