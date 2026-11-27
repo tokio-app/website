@@ -22,14 +22,16 @@ Los demás archivos de la carpeta (scripts, estilos, imágenes) se sirven junto 
 name: Likes Counter
 version: "1.0.0"
 config: true
+platforms: [tiktok]
 ```
 
-| Clave      | Descripción                                                                                                                  |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `name`     | Se muestra en la galería.                                                                                                    |
-| `version`  | La versión de tu overlay, entre comillas: YAML lee `1.0` como un número, y Tokio lo rechaza.                                 |
-| `config`   | Obligatoria: `true` cuando el overlay tiene un `config.yaml` con configuración; si no, `false`.                              |
-| `commands` | Opcional: los [comandos del chat](#comandos-del-chat) que responde tu overlay y que ninguna opción guarda, como `["!join"]`. |
+| Clave       | Descripción                                                                                                                                                                                                                  |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`      | Se muestra en la galería.                                                                                                                                                                                                    |
+| `version`   | La versión de tu overlay, entre comillas: YAML lee `1.0` como un número, y Tokio lo rechaza.                                                                                                                                 |
+| `config`    | Obligatoria: `true` cuando el overlay tiene un `config.yaml` con configuración; si no, `false`.                                                                                                                              |
+| `commands`  | Opcional: los [comandos del chat](#comandos-del-chat) que responde tu overlay y que ninguna opción guarda, como `["!join"]`.                                                                                                 |
+| `platforms` | Opcional: las plataformas con las que funciona tu overlay, como una lista de `tiktok`, `twitch`, `youtube` y `kick`, o `any`, el valor por defecto. Si el perfil no usa ninguna, la tarjeta del overlay dice dónde funciona. |
 
 ### El bloque tokio-setup
 

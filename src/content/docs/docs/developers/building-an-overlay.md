@@ -22,14 +22,16 @@ Any other files in the folder (scripts, styles, images) are served next to `inde
 name: Likes Counter
 version: "1.0.0"
 config: true
+platforms: [tiktok]
 ```
 
-| Key        | Description                                                                                                 |
-| ---------- | ----------------------------------------------------------------------------------------------------------- |
-| `name`     | Shown in the gallery.                                                                                       |
-| `version`  | Your overlay's version, in quotes: YAML reads `1.0` as a number, which Tokio refuses.                       |
-| `config`   | Required: `true` when the overlay has a `config.yaml` with settings, else `false`.                          |
-| `commands` | Optional: the [chat commands](#chat-commands) your overlay answers that no setting holds, like `["!join"]`. |
+| Key         | Description                                                                                                                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`      | Shown in the gallery.                                                                                                                                                                                      |
+| `version`   | Your overlay's version, in quotes: YAML reads `1.0` as a number, which Tokio refuses.                                                                                                                      |
+| `config`    | Required: `true` when the overlay has a `config.yaml` with settings, else `false`.                                                                                                                         |
+| `commands`  | Optional: the [chat commands](#chat-commands) your overlay answers that no setting holds, like `["!join"]`.                                                                                                |
+| `platforms` | Optional: the platforms your overlay works with, as a list of `tiktok`, `twitch`, `youtube` and `kick`, or `any`, the default. When the profile uses none of them, the overlay's card says where it works. |
 
 ### The setup block
 
