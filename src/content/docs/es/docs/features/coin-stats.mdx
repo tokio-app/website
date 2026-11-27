@@ -16,12 +16,12 @@ import Screenshot from "../../../../../components/Screenshot.astro";
 
 Con dos o más plataformas en el historial, cada una tiene su pestaña, y al final **Todas**. Una pestaña cuenta en el dinero de su plataforma, que nunca se suma al de otra:
 
-| Pestaña     | Cuenta                                                                                | Tops                                                                           |
-| ----------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **TikTok**  | **Monedas**, el precio de sus regalos, y **Regalos**                                  | **Quienes más regalaron**                                                      |
-| **Twitch**  | **Bits** y **Suscripciones regaladas**                                                | **Quienes más Bits enviaron** y **Quienes más suscripciones regalaron**        |
-| **YouTube** | **Super Chats** en dólares estadounidenses, **Regalos** y **Suscripciones regaladas** | **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
-| **Kick**    | **Kicks** y **Suscripciones regaladas**                                               | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**       |
+| Pestaña     | Cuenta                                                                                                                     | Tops                                                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **TikTok**  | **Monedas**, el precio de sus regalos, y **Regalos**                                                                       | **Quienes más regalaron**                                                                                 |
+| **Twitch**  | **Bits** y **Suscripciones regaladas**                                                                                     | **Quienes más Bits enviaron** y **Quienes más suscripciones regalaron**                                   |
+| **YouTube** | **Gemas**, el precio de sus Regalos, **Super Chats** en dólares estadounidenses, **Regalos** y **Suscripciones regaladas** | **Quienes más regalaron**, **Quienes más Super Chats enviaron** y **Quienes más suscripciones regalaron** |
+| **Kick**    | **Kicks** y **Suscripciones regaladas**                                                                                    | **Quienes más Kicks enviaron** y **Quienes más suscripciones regalaron**                                  |
 
 Una pestaña muestra solo los LIVEs que estuvieron en su plataforma. **Todas** muestra el dinero de cada plataforma por separado, sin top ni búsqueda.
 
@@ -29,7 +29,7 @@ Una pestaña muestra solo los LIVEs que estuvieron en su plataforma. **Todas** m
 <summary>Lo que no cuenta</summary>
 
 - Los cofres, las suscripciones de Super Fan y las suscripciones no cuentan. Las suscripciones regaladas sí.
-- YouTube no dice cuánto cuestan sus Regalos, así que cuentan como regalos pero no como dinero. Quienes los envían solo entran en un top con Super Chats o suscripciones regaladas.
+- Las gemas y los Super Chats de YouTube cuentan aparte, sin sumarse nunca. Un Regalo cuyo precio Tokio no conoce cuenta como regalo sin gemas.
 - Los Super Chats se suman en dólares estadounidenses con los tipos de cambio del día de Frankfurter. Hasta que cargan, **Super Chats** muestra un guion en Inicio, y el Historial de LIVEs los cuenta cuando cargan.
 - Un Super Chat en una moneda de la que Tokio no tiene tipo de cambio cuenta como 0 dólares.
 
@@ -41,7 +41,7 @@ Un LIVE aparece en la lista cuando termina. Selecciona uno para ver sus totales 
 
 ## Tops
 
-En Twitch, YouTube y Kick, **Ordenar por** cambia el top entre el dinero de la plataforma y **Suscripciones regaladas**. Un espectador que solo regaló suscripciones aparece solo en **Quienes más suscripciones regalaron**. El top de TikTok, **Quienes más regalaron**, ordena por monedas.
+En Twitch y Kick, **Ordenar por** cambia el top entre el dinero de la plataforma y **Suscripciones regaladas**. En YouTube elige **Gemas**, **Super Chats** o **Suscripciones regaladas**. Un espectador que solo regaló suscripciones aparece solo en **Quienes más suscripciones regalaron**. El top de TikTok, **Quienes más regalaron**, ordena por monedas.
 
 **Total histórico** suma todos los LIVEs, con sus tops. Guarda hasta 10,000 espectadores por plataforma, y quita primero a los que enviaron menos.
 
