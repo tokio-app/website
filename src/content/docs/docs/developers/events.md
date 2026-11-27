@@ -33,20 +33,22 @@ Subscribe with `tokio.on(TOKIO_EVENTS.<NAME>, callback)`. Over a raw WebSocket, 
 
 Tokio connects to TikTok, Twitch, YouTube and Kick, alone or several in the same LIVE. Each platform sends some of the events:
 
-| Events                                                                                     | Come from                        |
-| ------------------------------------------------------------------------------------------ | -------------------------------- |
-| `CHAT` and chat emotes                                                                     | TikTok, Twitch, YouTube and Kick |
-| `FOLLOW`                                                                                   | TikTok and Twitch                |
-| `GIFT`                                                                                     | TikTok and YouTube               |
-| `SUBSCRIBE`, `GIFT_SUB`                                                                    | Twitch, YouTube and Kick         |
-| `RAID`, `REDEEM`                                                                           | Twitch and Kick                  |
-| `SHARE`, `LIKE`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok                           |
-| `CHEER`                                                                                    | Twitch                           |
-| `SUPER_CHAT`                                                                               | YouTube                          |
-| `KICKS`                                                                                    | Kick                             |
-| `ROOM_USER`                                                                                | All of them, summed              |
+| Events                                                                                     | Come from                          |
+| ------------------------------------------------------------------------------------------ | ---------------------------------- |
+| `CHAT` and chat emotes                                                                     | TikTok, Twitch, YouTube and Kick   |
+| `FOLLOW`                                                                                   | TikTok and Twitch                  |
+| `GIFT`                                                                                     | TikTok and YouTube                 |
+| `SUBSCRIBE`, `GIFT_SUB`                                                                    | Twitch, YouTube and Kick           |
+| `RAID`, `REDEEM`                                                                           | Twitch and Kick                    |
+| `SHARE`, `LIKE`, `ENVELOPE`, `SUPER_FAN`, `SUPER_FAN_BOX`, `SUPER_FAN_JOIN`, `MEMBER_JOIN` | TikTok                             |
+| `CHEER`                                                                                    | Twitch                             |
+| `SUPER_CHAT`                                                                               | YouTube                            |
+| `KICKS`                                                                                    | Kick                               |
+| `ROOM_USER`                                                                                | All of them, summed and each apart |
 
-An overlay gets the events of every platform the profile connects to, so check `user.platform` to tell them apart. `ROOM_USER` adds up `viewers` and `views` across the platforms, which is TikTok's alone when no other is connected. Twitch, YouTube and Kick have no `views`, so they add 0, and `ranks` are TikTok's. Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
+An overlay gets the events of every platform the profile connects to, so check `user.platform` to tell them apart. [The LIVE's platforms](#the-lives-platforms) says which ones the LIVE is on.
+
+`ROOM_USER` adds up `viewers` and `views` across the platforms, and its `platforms` has each one's own. Twitch, YouTube and Kick have no `views`, so theirs are 0, and `ranks` are TikTok's. Twitch's and YouTube's viewer counts update every 30 seconds, and Kick's every 60.
 
 In Tokio's previews, **Test** sends the events of the profile's platforms, each the way its platform sends it. Twitch only has Bits and channel points on Affiliate and Partner channels.
 
@@ -69,6 +71,14 @@ Tokio sends `GIFTERS` (`tokio:gifters`) with the top gifters, at most once a sec
 Ties go to whoever got there first. Only gifts count as coins: treasure chests and Super Fan subscriptions don't.
 
 In Tokio's previews, it comes as a sample when you click **Test**.
+
+## The LIVE's platforms
+
+Tokio sends `LIVE` (`tokio:live`) with the platforms the LIVE is on: when the overlay connects, when a LIVE starts or ends, and when a platform joins or leaves it. In Tokio's previews, it comes as a sample when you click **Test**.
+
+`platforms` lists them in the order TikTok, Twitch, YouTube, Kick, each as `{ platform, channel }`, and is empty while Tokio isn't connected. A platform stays in it while Tokio reconnects to it.
+
+`channel` is the streamer's channel there, without "@": TikTok's username, Twitch's login, YouTube's handle and Kick's channel. When the streamer gave Tokio a YouTube link without the handle, like a LIVE's, it's the channel's name.
 
 ## Music
 
@@ -106,12 +116,12 @@ interface UserData {
   fanLevel?: number;
   fanBadge?: string; // the picture of the fan level's badge
   userId?: string; // the platform's id, which stays when the handle changes
-  platform?: "tiktok" | "twitch" | "youtube" | "kick"; // missing means TikTok
+  platform: "tiktok" | "twitch" | "youtube" | "kick"; // where the viewer is
   subMonths?: number; // months subscribed or a member, from their chat badge
 }
 ```
 
-`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. Tokio takes a YouTube Gift's sender's channel id from the card YouTube shows with the Gift, or from their other events in the LIVE, and otherwise uses `youtube:` and their @handle, like `youtube:@tokio`. A Kick viewer's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions and gifted subs name people only by username, so Tokio finds their id in the LIVE's chat or looks up their channel, and sends the event without one when that fails. Kick's hosts and channel rewards come without a `userId`.
+`platform` says where the viewer is. Tokio leaves it out for TikTok viewers, and `@tokioapp/overlay` fills in `"tiktok"`, so only a raw WebSocket sees it missing. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. Tokio takes a YouTube Gift's sender's channel id from the card YouTube shows with the Gift, or from their other events in the LIVE, and otherwise uses `youtube:` and their @handle, like `youtube:@tokio`. A Kick viewer's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions and gifted subs name people only by username, so Tokio finds their id in the LIVE's chat or looks up their channel, and sends the event without one when that fails. Kick's hosts and channel rewards come without a `userId`.
 
 `fanBadge` is the picture TikTok shows for the fan level: a heart that changes every 10 levels, without the number, so draw `fanLevel` next to it. It's empty for a viewer who isn't a fan.
 
@@ -140,10 +150,11 @@ On a Kick `CHAT`, `moderator` is true for your moderators and for you, `superfan
 | `REDEEM`                                               | `{ user, reward: { id, title, cost }, input }`                            |
 | `SUPER_CHAT`                                           | `{ user, amount, usd, message, sticker }`                                 |
 | `KICKS`                                                | `{ user, kicks, message }`                                                |
-| `ROOM_USER`                                            | `{ views, viewers, ranks }`                                               |
+| `ROOM_USER`                                            | `{ views, viewers, ranks, platforms }`                                    |
 | `MUSIC_CHANGE`                                         | The queue: `{ title, thumbnail, playing, played }[]`                      |
 | `FANS`                                                 | `{ fans: Fan[] }`                                                         |
 | `GIFTERS`                                              | `{ live: TopGifter[], allTime: TopGifter[] }`                             |
+| `LIVE`                                                 | `{ platforms: { platform, channel }[] }`                                  |
 
 Each chat emote is `{ emoteID, index, images }`, and a comment made only of emotes has an empty `content`. A gift's `image` is the URL of its picture.
 
@@ -163,7 +174,7 @@ A YouTube Gift, bought with Jewels, comes as `GIFT` with an `id` of `youtube:` a
 
 `gift.id` is a string, while a `gifts` setting's value is a number, so compare them with `Number(gift.id)`. `coins` is one gift's price, so a streak is worth `coins × comboCount`.
 
-`totalLikes` can drop for a while, so keep the highest you've seen. In `ROOM_USER`, `viewers` is how many watch now and `views` the LIVE's total, and each of `ranks` is `{ username, handle, profilePictures, userId, score, position }`.
+`totalLikes` can drop for a while, so keep the highest you've seen. In `ROOM_USER`, `viewers` is how many watch now and `views` the LIVE's total, and each of `ranks` is `{ username, handle, profilePictures, userId, platform, score, position }`. `platforms` has each connected platform's own `{ platform, viewers, views }`, in the order TikTok, Twitch, YouTube, Kick.
 
 :::tip[Gift combos]
 A gift streak sends several `GIFT` events with a growing `comboCount`. The last one has `repeatEnd: true`; react to that one for a single reaction per combo.
@@ -196,7 +207,7 @@ interface TopGifter {
   live: { coins: number; gifts: number }; // in this LIVE, 0 if they sent none
   allTime: { coins: number; gifts: number }; // in every LIVE the profile kept
   giftedAt: number; // when their last gift came, in ms since the epoch
-  platform?: "tiktok" | "twitch" | "youtube" | "kick"; // missing means TikTok
+  platform: "tiktok" | "twitch" | "youtube" | "kick"; // filled in like a viewer's
 }
 ```
 
