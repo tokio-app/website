@@ -16,12 +16,12 @@ import Screenshot from "../../../../components/Screenshot.astro";
 
 With two or more platforms in the history, each has a tab, then **All**. A tab counts in its platform's own money, which is never added to another platform's:
 
-| Tab         | Counts                                                                                           | Tops                                                         |
-| ----------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| **TikTok**  | **Coins**, the price of its gifts, and **Gifts**                                                 | **Top gifters**                                              |
-| **Twitch**  | **Bits** and **Gifted subs**                                                                     | **Top Bits** and **Top gifted subs**                         |
-| **YouTube** | **Jewels**, the price of its Gifts, **Super Chats** in US dollars, **Gifts** and **Gifted subs** | **Top gifters**, **Top Super Chats** and **Top gifted subs** |
-| **Kick**    | **Kicks** and **Gifted subs**                                                                    | **Top Kicks** and **Top gifted subs**                        |
+| Tab         | Counts                                                       | Tops                                        |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------- |
+| **TikTok**  | **Coins**, the price of its gifts, and **Gifts**             | **Top gifters**                             |
+| **Twitch**  | **Bits** and **Gifted subs**                                 | **Top Bits** and **Top gifted subs**        |
+| **YouTube** | **Super Chats** in US dollars, **Gifts** and **Gifted subs** | **Top Super Chats** and **Top gifted subs** |
+| **Kick**    | **Kicks** and **Gifted subs**                                | **Top Kicks** and **Top gifted subs**       |
 
 A tab lists only the LIVEs that were on its platform. **All** shows every platform's money side by side, with no top or search.
 
@@ -29,7 +29,7 @@ A tab lists only the LIVEs that were on its platform. **All** shows every platfo
 <summary>What doesn't count</summary>
 
 - Treasure chests, Super Fan subscriptions and subscriptions don't count. Gifted subs do.
-- YouTube's Jewels and Super Chats count apart, never added up. A Gift Tokio doesn't know the price of counts as a gift with no Jewels.
+- YouTube doesn't say what its Gifts cost, so they count as gifts but not as money. Their senders only join a top with Super Chats or gifted subs.
 - Super Chats add up in US dollars at the day's exchange rates from Frankfurter. Until the rates load, Home's **Super Chats** shows a dash, and LIVE history counts them once they do.
 - A Super Chat in a currency Tokio has no exchange rate for counts as 0 dollars.
 
@@ -41,7 +41,7 @@ A LIVE joins the list when it ends. Select one to see its totals and its top, co
 
 ## Tops
 
-On Twitch and Kick, **Rank by** switches the top between the platform's money and **Gifted subs**. On YouTube it picks **Jewels**, **Super Chats** or **Gifted subs**. A viewer who only gifted subs is only on **Top gifted subs**. TikTok's **Top gifters** ranks coins.
+On Twitch, YouTube and Kick, **Rank by** switches the top between the platform's money and **Gifted subs**. A viewer who only gifted subs is only on **Top gifted subs**. TikTok's **Top gifters** ranks coins.
 
 **All time** adds up every LIVE, with its tops. It keeps up to 10,000 gifters per platform, dropping the ones who sent the least.
 

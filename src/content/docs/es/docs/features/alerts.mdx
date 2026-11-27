@@ -75,13 +75,13 @@ Con [dos o más plataformas](/es/docs/connect/#varias-plataformas-juntas), cada 
 
 Los Bits, los Kicks, los Super Chats, las suscripciones regaladas y los regalos con **Cualquier regalo** tienen un mínimo. Con 0, suena con cualquier cantidad.
 
-| Activador                   | Mínimo                                                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Regalo**                  | **Valor mínimo**, en monedas en TikTok y gemas en YouTube: lo que vale un combo al terminar, o cada regalo con **Cada regalo** |
-| **Bits**                    | **Valor mínimo**, en Bits                                                                                                      |
-| **Kicks**                   | **Valor mínimo**, en Kicks                                                                                                     |
-| **Super Chat**              | **Valor mínimo**, en dólares estadounidenses (USD). Si Tokio no tiene la tasa de su moneda, suena siempre                      |
-| **Suscripciones regaladas** | **Al menos**, en suscripciones regaladas de una vez                                                                            |
+| Activador                   | Mínimo                                                                                                      |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Regalo**                  | **Valor mínimo**, en monedas de TikTok: lo que vale un combo al terminar, o cada regalo con **Cada regalo** |
+| **Bits**                    | **Valor mínimo**, en Bits                                                                                   |
+| **Kicks**                   | **Valor mínimo**, en Kicks                                                                                  |
+| **Super Chat**              | **Valor mínimo**, en dólares estadounidenses (USD). Si Tokio no tiene la tasa de su moneda, suena siempre   |
+| **Suscripciones regaladas** | **Al menos**, en suscripciones regaladas de una vez                                                         |
 
 Las [reacciones de Overlay Studio](/es/docs/features/overlay-studio/#cuándo) tienen los mismos mínimos.
 
@@ -102,9 +102,7 @@ Luego elige cuándo suena:
 <details>
 <summary>Los Regalos de YouTube y los regalos que faltan en la lista</summary>
 
-Los Regalos de YouTube llegan enteros, un combo como un solo evento, así que un activador de YouTube no tiene opción de cuándo suena. No están en la lista de regalos, así que suenan con **Cualquier regalo**.
-
-Su mínimo va en gemas. Con **Cualquier plataforma**, el **Valor mínimo** cuenta monedas para los regalos de TikTok y gemas para los de YouTube.
+Los Regalos de YouTube llegan enteros, un combo como un solo evento, y no dicen cuánto cuestan, así que un activador de YouTube no tiene opción de cuándo suena ni mínimo. Tampoco están en la lista de regalos, así que suenan con **Cualquier regalo**. Con **Cualquier plataforma** valen 0 monedas y solo suenan con un **Valor mínimo** de 0.
 
 A la lista de TikTok le faltan algunos regalos, como los de otras regiones. Tokio agrega los que envían tus espectadores.
 
@@ -149,16 +147,16 @@ En la pestaña **Texto a voz** del selector de sonidos, escribe un mensaje, elig
 
 Haz clic en una variable para agregar los datos del evento. El editor solo ofrece las que completan las plataformas de tu activador.
 
-| Variable                 | Activadores                                                                                                                                                                                                                                                               |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                                                                                                                                                  |
-| `{comment}`              | Chat y Emote; Suscripción (no en Kick), Bits, Kicks y Super Chat (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                                                                                                                         |
-| `{translation}`          | Chat y Emote: la [traducción](/es/docs/features/chat-translation/) del mensaje, o el mensaje tal como se escribió                                                                                                                                                         |
-| `{gift}`                 | Regalo                                                                                                                                                                                                                                                                    |
-| `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo** o en YouTube), Me gusta (los Me gusta enviados), Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits y Kicks (la cantidad enviada) y Raid (los espectadores que trae) |
-| `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                                                                                                                                             |
-| `{amount}`               | Super Chat (lo que costó, como lo muestra YouTube, por ejemplo $4.99)                                                                                                                                                                                                     |
-| `{song}`                 | Cambio de canción                                                                                                                                                                                                                                                         |
+| Variable                 | Activadores                                                                                                                                                                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `{username}`, `{handle}` | Todos menos Cofre, Caja de Super Fan y Cambio de canción                                                                                                                                                                                                     |
+| `{comment}`              | Chat y Emote; Suscripción (no en Kick), Bits, Kicks y Super Chat (lo que escribió el espectador); Puntos del canal (lo que escribió para canjear)                                                                                                            |
+| `{translation}`          | Chat y Emote: la [traducción](/es/docs/features/chat-translation/) del mensaje, o el mensaje tal como se escribió                                                                                                                                            |
+| `{gift}`                 | Regalo                                                                                                                                                                                                                                                       |
+| `{count}`                | Regalo (el tamaño del combo, salvo con **Cada regalo**), Me gusta (los Me gusta enviados), Suscripción (los meses hasta ahora), Suscripciones regaladas (las suscripciones regaladas), Bits y Kicks (la cantidad enviada) y Raid (los espectadores que trae) |
+| `{reward}`               | Puntos del canal (el título de la recompensa)                                                                                                                                                                                                                |
+| `{amount}`               | Super Chat (lo que costó, como lo muestra YouTube, por ejemplo $4.99)                                                                                                                                                                                        |
+| `{song}`                 | Cambio de canción                                                                                                                                                                                                                                            |
 
 El botón de reproducir las completa con un espectador de muestra.
 

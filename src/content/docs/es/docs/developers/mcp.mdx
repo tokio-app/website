@@ -144,8 +144,8 @@ Deja `Authorization:` sin espacio después: en Windows, Claude Desktop separa lo
 
 ## Varias plataformas
 
-- El dinero de cada plataforma llega aparte y nunca se suma: `coins` para TikTok, `bits` para Twitch, `usd` para los Super Chats de YouTube en dólares estadounidenses (`null` hasta que cargan los tipos de cambio), `jewels` para los Regalos de YouTube y `kicks` para Kick. Así vienen los números del LIVE, quienes más enviaron y cada LIVE de tu historial. Las suscripciones regaladas también llegan aparte, como `giftSubs`.
-- `get_gifters` ordena a quienes más enviaron en una plataforma (`platform`, TikTok si no dice otra), por lo que gastaron o por las suscripciones que regalaron (`by: "amount"` o `"subs"`, y en YouTube `"jewels"`).
+- El dinero de cada plataforma llega aparte y nunca se suma: `coins` para TikTok, `bits` para Twitch, `usd` para los Super Chats de YouTube en dólares estadounidenses (`null` hasta que cargan los tipos de cambio) y `kicks` para Kick. Así vienen los números del LIVE, quienes más enviaron y cada LIVE de tu historial. Las suscripciones regaladas también llegan aparte, como `giftSubs`.
+- `get_gifters` ordena a quienes más enviaron en una plataforma (`platform`, TikTok si no dice otra), por lo que gastaron o por las suscripciones que regalaron (`by: "amount"` o `"subs"`).
 - La sección `platforms` también guarda el nombre de cada plataforma, `username` (el de TikTok), `youtube` y `kick`, y los guarda sin conectarse. Una plataforma conectada conserva el nombre con el que está conectada.
 - Los fans llegan de todas las plataformas: el club de fans de TikTok con su nivel de fan, y los suscriptores de Twitch y de Kick y los miembros de YouTube con sus meses cuando se saben.
 - Los permisos del TTS y de la música tienen reglas propias para Twitch, YouTube y Kick, en `platforms`, con VIPs en Twitch y Kick. Las alertas y las acciones de juego pueden reaccionar a los Kicks y elegir VIPs, cada una con un mínimo en la unidad de su evento, como Bits o Kicks, y una lista de Overlay Studio puede ordenar a quienes más suscripciones regalaron (`giftsubs`).
