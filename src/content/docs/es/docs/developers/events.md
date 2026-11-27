@@ -64,7 +64,7 @@ TikTok solo envía el nivel de fan de un espectador cuando hace algo en el LIVE,
 
 Tokio envía `GIFTERS` (`tokio:gifters`) con quienes más regalan, como mucho una vez por segundo: cuando el overlay se conecta, después de cargar un perfil, cuando un LIVE empieza, termina o se elimina, cuando se borra el historial y con cada regalo.
 
-`live` es el top 10 de este LIVE de quienes más regalan en TikTok, por monedas, vacío mientras Tokio no está conectado. `allTime` es el top 10 de todos los LIVEs que guardó el perfil, este incluido. Solo cuentan las monedas de TikTok, así que los Bits de Twitch, los Super Chats y las gemas de YouTube y los Kicks de Kick nunca ponen a nadie aquí, y el dinero de una plataforma nunca se compara con el de otra.
+`live` es el top 10 de este LIVE de quienes más regalan en TikTok, por monedas, vacío mientras Tokio no está conectado. `allTime` es el top 10 de todos los LIVEs que guardó el perfil, este incluido. Solo cuentan las monedas de TikTok, así que los Bits de Twitch, los Super Chats y los Regalos de YouTube y los Kicks de Kick nunca ponen a nadie aquí, y el dinero de una plataforma nunca se compara con el de otra.
 
 Si hay un empate, gana quien llegó primero. Solo los regalos cuentan como monedas: los cofres y las suscripciones de Super Fan no.
 
@@ -111,7 +111,7 @@ interface UserData {
 }
 ```
 
-`platform` dice dónde está el espectador, y si falta, es TikTok. El `userId` de un espectador de Twitch empieza con `twitch:`, como `twitch:1234`, y el de uno de YouTube es `youtube:` y el id de su canal, como `youtube:UC…`, así que nunca coinciden con uno de TikTok. El chat de YouTube no da el id del canal de quien envía un Regalo, así que Tokio usa el que vio en sus otros eventos del LIVE y, si no lo vio, `youtube:` y su @handle, como `youtube:@tokio`. El `userId` de un espectador de Kick es `kick:` y su id de Kick, como `kick:1234`. Las suscripciones y las suscripciones regaladas de Kick nombran a las personas solo por su nombre de usuario, así que Tokio busca su id en el chat del LIVE o consulta su canal, y envía el evento sin él cuando eso falla. Los hosts y las recompensas del canal de Kick llegan sin `userId`.
+`platform` dice dónde está el espectador, y si falta, es TikTok. El `userId` de un espectador de Twitch empieza con `twitch:`, como `twitch:1234`, y el de uno de YouTube es `youtube:` y el id de su canal, como `youtube:UC…`, así que nunca coinciden con uno de TikTok. Tokio toma el id del canal de quien envía un Regalo de YouTube de la tarjeta que YouTube muestra con el Regalo o de sus otros eventos del LIVE y, si no lo encuentra, usa `youtube:` y su @handle, como `youtube:@tokio`. El `userId` de un espectador de Kick es `kick:` y su id de Kick, como `kick:1234`. Las suscripciones y las suscripciones regaladas de Kick nombran a las personas solo por su nombre de usuario, así que Tokio busca su id en el chat del LIVE o consulta su canal, y envía el evento sin él cuando eso falla. Los hosts y las recompensas del canal de Kick llegan sin `userId`.
 
 `fanBadge` es la imagen que TikTok muestra para el nivel de fan: un corazón que cambia cada 10 niveles, sin el número, así que dibuja `fanLevel` al lado. Está vacío para un espectador que no es fan.
 
@@ -157,13 +157,11 @@ En Kick, el `months` de `SUBSCRIBE` es cuántos meses lleva suscrito el espectad
 
 El `amount` de `SUPER_CHAT` es lo que pagó el espectador, como lo muestra YouTube, por ejemplo `"$4.99"`, así que no sumes montos: pueden estar en divisas distintas. Suma `usd`, el monto en dólares estadounidenses con los tipos de cambio del día. Es `null` cuando Tokio no pudo leer el monto, antes de que carguen los tipos de cambio o con una divisa que no tienen. `message` es lo que escribió, vacío en un Super Sticker, y `sticker` es la URL de la imagen del Super Sticker, vacía en un Super Chat.
 
-Un Regalo de YouTube llega como `GIFT` con un `id` que es `youtube:` y el nombre del archivo de su imagen, como `youtube:silver_star_v2_320x320`. Su `coins` es el precio de un Regalo en gemas de YouTube, no en monedas de TikTok, así que revisa `user.platform` antes de sumar regalos. Es `0` para un Regalo cuyo precio Tokio no conoce.
-
-Cuando YouTube avisa de un combo, el mismo Regalo enviado varias veces seguidas, llega como un solo `GIFT` con `comboCount` en cuántos fueron. Quien envía un Regalo nunca entra en `GIFTERS`.
+Un Regalo de YouTube, que se compra con gemas, llega como `GIFT` con un `id` que es `youtube:` y el nombre del archivo de su imagen, como `youtube:vicecity_heart_v2`, y `coins: 0`, porque YouTube no dice cuánto cuesta. Un combo, el mismo Regalo enviado varias veces seguidas, llega como un solo `GIFT` con `comboCount` en cuántos fueron. Quien lo envía nunca entra en `GIFTERS`.
 
 `KICKS` es el dinero de Kick, como los Bits de `CHEER`: `kicks` es cuántos envió el espectador, y `message` lo que fijó con ellos, vacío si no fijó nada. Kick no envía `GIFT`.
 
-`gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, en monedas de TikTok o gemas de YouTube, así que un combo vale `coins × comboCount`.
+`gift.id` es un texto, mientras que el valor de un campo `gifts` es un número, así que compáralos con `Number(gift.id)`. `coins` es el precio de un regalo, así que un combo vale `coins × comboCount`.
 
 `totalLikes` puede bajar por un rato, así que quédate con el más alto que hayas visto. En `ROOM_USER`, `viewers` es cuántos miran ahora y `views` el total del LIVE, y cada elemento de `ranks` es `{ username, handle, profilePictures, userId, score, position }`.
 

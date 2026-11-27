@@ -75,13 +75,13 @@ With [two or more platforms](/docs/connect/#several-platforms-together), each tr
 
 Bits, Kicks, Super Chats, gifted subs and gifts on **Any gift** take a minimum. At 0, any amount plays.
 
-| Trigger         | Minimum                                                                                                                       |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Gift**        | **Worth at least**, in coins on TikTok and Jewels on YouTube: a streak's worth when it ends, or each gift's on **Every gift** |
-| **Bits**        | **Worth at least**, in Bits                                                                                                   |
-| **Kicks**       | **Worth at least**, in Kicks                                                                                                  |
-| **Super Chat**  | **Worth at least**, in US dollars (USD). One whose currency Tokio has no rate for always plays                                |
-| **Gifted subs** | **At least**, in subs gifted at once                                                                                          |
+| Trigger         | Minimum                                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------ |
+| **Gift**        | **Worth at least**, in TikTok's coins: a streak's worth when it ends, or each gift's on **Every gift** |
+| **Bits**        | **Worth at least**, in Bits                                                                            |
+| **Kicks**       | **Worth at least**, in Kicks                                                                           |
+| **Super Chat**  | **Worth at least**, in US dollars (USD). One whose currency Tokio has no rate for always plays         |
+| **Gifted subs** | **At least**, in subs gifted at once                                                                   |
 
 [Overlay Studio's reactions](/docs/features/overlay-studio/#when) take the same minimums.
 
@@ -102,9 +102,7 @@ Then choose when it plays:
 <details>
 <summary>YouTube's Gifts, and gifts missing from the list</summary>
 
-YouTube's Gifts come whole, a combo as one event, so a YouTube trigger has no choice of when it plays. They aren't in the gift list, so they play on **Any gift**.
-
-Their minimum is in Jewels. On **Any platform**, **Worth at least** counts coins for TikTok's gifts and Jewels for YouTube's.
+YouTube's Gifts come whole, a combo as one event, and don't say what they cost, so a YouTube trigger has no choice of when it plays and no minimum. They aren't in the gift list either, so they play on **Any gift**. On **Any platform**, they're worth 0 coins and play only with **Worth at least** at 0.
 
 TikTok's list misses some gifts, like other regions' ones. Tokio adds the ones viewers send.
 
@@ -149,16 +147,16 @@ On the sound picker's **Text-to-speech** tab, type a message, pick a voice, and 
 
 Click a variable to add the event's details. The editor offers only the ones your trigger's platforms fill.
 
-| Variable                 | Triggers                                                                                                                                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                                                                                                   |
-| `{comment}`              | Chat and Emote; Subscription (not on Kick), Bits, Kicks and Super Chat (what the viewer wrote); Channel points (what they typed)                                                                                   |
-| `{translation}`          | Chat and Emote: the message's [translation](/docs/features/chat-translation/), or the message as typed                                                                                                             |
-| `{gift}`                 | Gift                                                                                                                                                                                                               |
-| `{count}`                | Gift (the combo size, not on **Every gift** or YouTube), Like (the likes sent), Subscription (the months so far), Gifted subs (the subs gifted), Bits and Kicks (the amount sent) and Raid (the viewers it brings) |
-| `{reward}`               | Channel points (the reward's title)                                                                                                                                                                                |
-| `{amount}`               | Super Chat (what it cost, as YouTube shows it, like $4.99)                                                                                                                                                         |
-| `{song}`                 | Music change                                                                                                                                                                                                       |
+| Variable                 | Triggers                                                                                                                                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{username}`, `{handle}` | All but Envelope, Super Fan Box and Music change                                                                                                                                                        |
+| `{comment}`              | Chat and Emote; Subscription (not on Kick), Bits, Kicks and Super Chat (what the viewer wrote); Channel points (what they typed)                                                                        |
+| `{translation}`          | Chat and Emote: the message's [translation](/docs/features/chat-translation/), or the message as typed                                                                                                  |
+| `{gift}`                 | Gift                                                                                                                                                                                                    |
+| `{count}`                | Gift (the combo size, not on **Every gift**), Like (the likes sent), Subscription (the months so far), Gifted subs (the subs gifted), Bits and Kicks (the amount sent) and Raid (the viewers it brings) |
+| `{reward}`               | Channel points (the reward's title)                                                                                                                                                                     |
+| `{amount}`               | Super Chat (what it cost, as YouTube shows it, like $4.99)                                                                                                                                              |
+| `{song}`                 | Music change                                                                                                                                                                                            |
 
 The play button fills them with a sample viewer.
 

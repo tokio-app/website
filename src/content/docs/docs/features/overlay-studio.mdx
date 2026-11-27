@@ -91,7 +91,6 @@ A text element can show live numbers from your LIVE, written in braces:
 | `{followers}`  | New followers during this LIVE                       |
 | `{shares}`     | Shares during this LIVE                              |
 | `{coins}`      | TikTok coins received during this LIVE               |
-| `{jewels}`     | YouTube's Jewels received during this LIVE           |
 | `{kicks}`      | Kicks received during this LIVE                      |
 | `{bits}`       | Bits received during this LIVE                       |
 | `{superchats}` | Super Chats received during this LIVE, in US dollars |
@@ -141,15 +140,15 @@ A bar shows no words: put a text on or next to it, like `{roses} / 10 roses`.
 
 A **List** shows a row per viewer or event of what it **Shows**:
 
-| Shows                         | Its rows                                                                                                                                     |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Top gifters this LIVE**     | The viewers who sent the most this LIVE on its **Platform**, in its money: coins, Bits or Kicks. A YouTube list picks Jewels or Super Chats. |
-| **Top gifted subs this LIVE** | The viewers who gifted the most subs this LIVE, on Twitch, YouTube or Kick, the most first                                                   |
-| **New followers**             | The newest followers, the newest first. One who follows again moves up                                                                       |
-| **Latest gifts**              | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends                                                 |
-| **Chat**                      | The newest messages, the newest at the bottom. Messages of emotes alone don't show                                                           |
+| Shows                         | Its rows                                                                                                      |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Top gifters this LIVE**     | The viewers who sent the most this LIVE on its **Platform**, in its money: coins, Bits, Kicks or Super Chats. |
+| **Top gifted subs this LIVE** | The viewers who gifted the most subs this LIVE, on Twitch, YouTube or Kick, the most first                    |
+| **New followers**             | The newest followers, the newest first. One who follows again moves up                                        |
+| **Latest gifts**              | The newest gifts, with the gift and its count, the newest first. A streak shows when it ends                  |
+| **Chat**                      | The newest messages, the newest at the bottom. Messages of emotes alone don't show                            |
 
-Each row shows the viewer's picture and name, with amounts on the right (Super Chats in US dollars). **Rows** sets how many show, up to 10.
+Each row shows the viewer's picture and name, with amounts on the right (YouTube's in US dollars). **Rows** sets how many show, up to 10.
 
 **Space between rows** sets the gap and **Number color** the amounts' color. Turn off **Viewers' pictures** to show names alone.
 
@@ -158,7 +157,7 @@ Lists are empty while you're not LIVE and start over when you connect.
 <details>
 <summary>Which viewers and platforms a list shows</summary>
 
-- A top lists only the viewers who sent some of its money or gifted subs.
+- A top lists only the viewers who sent some of its money or gifted subs, so YouTube's Gifts, which have no price, never put their senders on it.
 - With a platform besides TikTok in the profile, a top picks its **Platform**. **New followers** shows only with a platform that sends follows, and **Latest gifts** with one that sends gifts.
 - What doesn't fit in the box is cut off at its edge, chat's oldest at the top.
 

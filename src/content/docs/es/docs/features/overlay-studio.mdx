@@ -91,7 +91,6 @@ Un texto puede mostrar números en vivo de tu LIVE, escritos entre llaves:
 | `{followers}`  | Los seguidores nuevos durante este LIVE                                 |
 | `{shares}`     | Los compartidos durante este LIVE                                       |
 | `{coins}`      | Las monedas de TikTok recibidas durante este LIVE                       |
-| `{jewels}`     | Las gemas de YouTube recibidas durante este LIVE                        |
 | `{kicks}`      | Los Kicks recibidos durante este LIVE                                   |
 | `{bits}`       | Los Bits recibidos durante este LIVE                                    |
 | `{superchats}` | Los Super Chats recibidos durante este LIVE, en dólares estadounidenses |
@@ -141,15 +140,15 @@ Una barra no muestra palabras: pon un texto encima o al lado, como `{rosas} / 10
 
 Una **Lista** muestra una fila por espectador o evento de lo que **Muestra**:
 
-| Muestra                                              | Sus filas                                                                                                                                                 |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Quienes más regalaron en este LIVE**               | Los espectadores que más enviaron en este LIVE en su **Plataforma**, en su dinero: monedas, Bits o Kicks. Una lista de YouTube elige gemas o Super Chats. |
-| **Quienes más suscripciones regalaron en este LIVE** | Los espectadores que más suscripciones regalaron en este LIVE, en Twitch, YouTube o Kick, primero quien más regaló                                        |
-| **Seguidores nuevos**                                | Los seguidores más nuevos, primero el último. Quien te vuelve a seguir sube                                                                               |
-| **Últimos regalos**                                  | Los regalos más nuevos, con el regalo y su cantidad, primero el último. Un combo aparece cuando termina                                                   |
-| **Chat**                                             | Los mensajes más nuevos, el último abajo. Los mensajes que solo tienen emotes no aparecen                                                                 |
+| Muestra                                              | Sus filas                                                                                                              |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Quienes más regalaron en este LIVE**               | Los espectadores que más enviaron en este LIVE en su **Plataforma**, en su dinero: monedas, Bits, Kicks o Super Chats. |
+| **Quienes más suscripciones regalaron en este LIVE** | Los espectadores que más suscripciones regalaron en este LIVE, en Twitch, YouTube o Kick, primero quien más regaló     |
+| **Seguidores nuevos**                                | Los seguidores más nuevos, primero el último. Quien te vuelve a seguir sube                                            |
+| **Últimos regalos**                                  | Los regalos más nuevos, con el regalo y su cantidad, primero el último. Un combo aparece cuando termina                |
+| **Chat**                                             | Los mensajes más nuevos, el último abajo. Los mensajes que solo tienen emotes no aparecen                              |
 
-Cada fila muestra la imagen y el nombre del espectador, con los montos a la derecha (los Super Chats, en dólares estadounidenses). **Filas** define cuántas se ven, hasta 10.
+Cada fila muestra la imagen y el nombre del espectador, con los montos a la derecha (los de YouTube, en dólares estadounidenses). **Filas** define cuántas se ven, hasta 10.
 
 **Espacio entre filas** define la separación, y **Color de los números**, el color de los montos. Desactiva **Imágenes de los espectadores** para mostrar solo los nombres.
 
@@ -158,7 +157,7 @@ Las listas están vacías mientras no estás en LIVE y empiezan de nuevo al cone
 <details>
 <summary>Qué espectadores y plataformas muestra una lista</summary>
 
-- Un top muestra solo a los espectadores que enviaron algo de su dinero o regalaron suscripciones.
+- Un top muestra solo a los espectadores que enviaron algo de su dinero o regalaron suscripciones, así que los Regalos de YouTube, que no tienen precio, nunca ponen a quienes los envían en él.
 - Con otra plataforma además de TikTok en el perfil, un top elige su **Plataforma**. **Seguidores nuevos** solo aparece con una plataforma que avisa cuando te siguen, y **Últimos regalos** con una que envía regalos.
 - Lo que no cabe en el recuadro se corta en su borde: en el chat, lo más viejo arriba.
 
