@@ -144,8 +144,8 @@ Keep `Authorization:` without a space after it: on Windows, Claude Desktop split
 
 ## Several platforms
 
-- Each platform's money comes apart and is never added up: `coins` for TikTok, `bits` for Twitch, `usd` for YouTube's Super Chats in US dollars (`null` until the exchange rates load) and `kicks` for Kick. That goes for the LIVE's numbers, its top supporters and each LIVE in your history. Gifted subs come apart too, as `giftSubs`.
-- `get_gifters` ranks one `platform`'s gifters, TikTok's unless it says another, by what they spent or by the subs they gifted (`by: "amount"` or `"subs"`).
+- Each platform's money comes apart and is never added up: `coins` for TikTok, `bits` for Twitch, `usd` for YouTube's Super Chats in US dollars (`null` until the exchange rates load), `jewels` for YouTube's Gifts and `kicks` for Kick. That goes for the LIVE's numbers, its top supporters and each LIVE in your history. Gifted subs come apart too, as `giftSubs`.
+- `get_gifters` ranks one `platform`'s gifters, TikTok's unless it says another, by what they spent or by the subs they gifted (`by: "amount"` or `"subs"`, and on YouTube `"jewels"`).
 - The `platforms` section also holds the name saved for each platform, `username` (TikTok's), `youtube` and `kick`, and saves them without connecting. A platform that's connected keeps the name it's on.
 - Fans come from every platform: TikTok's fan club with their fan level, and Twitch's and Kick's subscribers and YouTube's members with their months when known.
 - TTS's and music's permissions have Twitch's, YouTube's and Kick's own rules, in `platforms`, with VIPs on Twitch and Kick. Alerts and game actions can react to Kicks and pick VIPs, each with a minimum in its event's own unit, like Bits or Kicks, and an Overlay Studio list can rank who gifted the most subs (`giftsubs`).
