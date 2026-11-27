@@ -111,7 +111,7 @@ interface UserData {
 }
 ```
 
-`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. YouTube's chat doesn't give a Gift's sender's channel id, so Tokio uses the one it saw on their other events in the LIVE, and otherwise `youtube:` and their @handle, like `youtube:@tokio`. A Kick viewer's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions and gifted subs name people only by username, so Tokio finds their id in the LIVE's chat or looks up their channel, and sends the event without one when that fails. Kick's hosts and channel rewards come without a `userId`.
+`platform` says where the viewer is, and a missing one means TikTok. A Twitch viewer's `userId` starts with `twitch:`, like `twitch:1234`, and a YouTube viewer's is `youtube:` and their channel id, like `youtube:UC…`, so they never match a TikTok one. Tokio takes a YouTube Gift's sender's channel id from the card YouTube shows with the Gift, or from their other events in the LIVE, and otherwise uses `youtube:` and their @handle, like `youtube:@tokio`. A Kick viewer's `userId` is `kick:` and their Kick id, like `kick:1234`. Kick's subscriptions and gifted subs name people only by username, so Tokio finds their id in the LIVE's chat or looks up their channel, and sends the event without one when that fails. Kick's hosts and channel rewards come without a `userId`.
 
 `fanBadge` is the picture TikTok shows for the fan level: a heart that changes every 10 levels, without the number, so draw `fanLevel` next to it. It's empty for a viewer who isn't a fan.
 
